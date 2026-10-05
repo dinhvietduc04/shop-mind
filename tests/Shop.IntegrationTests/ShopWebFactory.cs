@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.Interfaces;
 using Shop.Infrastructure.Persistence;
+using Shop.Infrastructure.Seed;
 using Testcontainers.PostgreSql;
 
 namespace Shop.IntegrationTests;
@@ -22,6 +24,8 @@ public class ShopWebFactory : WebApplicationFactory<Program>, IAsyncLifetime
         using var scope = Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         await db.Database.MigrateAsync();
+        var hasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
+        await SeedData.EnsureSeededAsync(db, hasher);
     }
 
     protected override void ConfigureWebHost(Microsoft.AspNetCore.Hosting.IWebHostBuilder builder)

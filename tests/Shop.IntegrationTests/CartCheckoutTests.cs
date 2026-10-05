@@ -66,6 +66,27 @@ public class CartCheckoutTests(ShopWebFactory factory) : IntegrationTestBase(fac
     }
 
     [Fact]
+    public async Task Checkout_EmptyCart_Returns400()
+    {
+        var email = $"emptycart_{Guid.NewGuid():N}@test.local";
+        var token = await RegisterAndLoginAsync(email);
+        UseToken(token);
+
+        // Ensure cart is empty (fresh user has empty cart)
+        var clear = await Client.DeleteAsync("/api/cart");
+        Assert.True(clear.IsSuccessStatusCode || clear.StatusCode == System.Net.HttpStatusCode.NoContent);
+
+        var checkout = await Client.PostAsJsonAsync("/api/checkout", new
+        {
+            shippingAddress = new { fullName = "John Doe", phone = "0123456789", address = "123 Example Street", city = "HCMC" },
+            paymentMethod = "fake",
+            simulateFailure = false,
+            simulateTimeout = false
+        });
+        Assert.Equal(HttpStatusCode.BadRequest, checkout.StatusCode);
+    }
+
+    [Fact]
     public async Task Customer_Cannot_Access_Another_Customers_Order()
     {
         var (tokenA, productId) = await SetupCustomerWithProductAsync();
