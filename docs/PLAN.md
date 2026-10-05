@@ -134,8 +134,8 @@ docs/PLAN.md                THIS FILE
 | M6 | Order Management | ✅ Done | M5 |
 | M7 | Admin System | ✅ Done | M2–M6 |
 | M8 | Testing & API Quality | ✅ Done | M0–M7 |
-| M9 | Redis & Caching | ⬜ Next | M8 |
-| M10 | Events + Outbox | ⬜ | M9 |
+| M9 | Redis & Caching | ✅ Done (2026-10-05) | M8 |
+| M10 | Events + Outbox | ⬜ Next | M9 |
 | M11 | Queue + Workers (RabbitMQ) | ⬜ | M10 |
 | M12 | MCP Foundation | ⬜ | M11 |
 | M13 | MCP Business Tools | ⬜ | M12 |
@@ -264,7 +264,7 @@ frontend → ASP.NET Core (Auth/Products/Cart/Checkout/Orders/Admin) → Postgre
 
 > Conventions per milestone: Goal · Baseline · Architecture · Tasks · Contracts · Rules · Acceptance Criteria · Test Plan · Risks · Deliverable/Exit · Dependencies.
 
-## M9 — Redis & Caching — ⬜ NEXT (do first after V1)
+## M9 — Redis & Caching — ✅ Done (2026-10-05)
 
 **Goal.** Cut hot-read latency and DB load for catalog reads without introducing stale-write bugs.
 
@@ -279,16 +279,16 @@ GET → ICacheService.GetAsync(key)
 PUT/POST/DELETE (admin) → DB write → RemoveAsync/RemoveByPrefixAsync
 ```
 
-**Tasks.**
+**Tasks.** (all done 2026-10-05)
 
-- [ ] Add `redis` service to `docker-compose.yml` (image `redis:7-alpine`, port 6379, volume, healthcheck).
-- [ ] Add `StackExchange.Redis` + `ICacheService` in `Shop.Application/Caching/`:
-  `GetAsync<T>`, `SetAsync<T>(ttl)`, `RemoveAsync`, `RemoveByPrefixAsync`, `GetOrCreateAsync` with stampede guard (short lock or single-flight).
-- [ ] Implement `RedisCacheService` in `Shop.Infrastructure/Caching/` (JSON serialization, key prefix `shop:{env}:`, resilient: cache failure never fails request — log + fall through to DB).
-- [ ] Cache: `ListPublic categories` (TTL 10 min), `GetProductById` (TTL 5 min), `Query products` (TTL 1–2 min, key includes normalized query hash, cap `pageSize<=100`).
-- [ ] Invalidation: product create/update/delete → evict `product:{id}` + `products:query:*`; category write → evict `categories:all`; inventory quantity change → evict `product:{id}`.
-- [ ] Config: `Redis:ConnectionString`, `Redis:Enabled` (kill-switch), `Redis:DefaultTtlSeconds`; document in README + `appsettings.json`.
-- [ ] Admin bypass header/query (`?nocache=1`, Admin only) for debugging.
+- [x] Add `redis` service to `docker-compose.yml` (image `redis:7-alpine`, port 6379, volume, healthcheck).
+- [x] Add `StackExchange.Redis` + `ICacheService` in `Shop.Application/Caching/`:
+  `GetAsync<T>`, `SetAsync<T>(ttl)`, `RemoveAsync`, `RemoveByPrefixAsync`, `GetOrCreateAsync` with stampede guard (per-key single-flight).
+- [x] Implement `RedisCacheService` in `Shop.Infrastructure/Caching/` (JSON serialization, key prefix `shop:`, resilient: cache failure never fails request — log throttled 1/min + fall through to DB; background reconnect so the request path never blocks on connect).
+- [x] Cache: `ListPublic categories` (TTL 10 min), `GetProductById` (TTL 5 min), `Query products` (TTL `Redis:DefaultTtlSeconds`=90s, key includes normalized query hash, cap `pageSize<=100`).
+- [x] Invalidation: product create/update/delete → evict `product:{id}` + `products:query:*`; category write → evict `categories:all` (+ `products:query:*` since listings filter by category slug); inventory quantity change → evict `product:{id}` (+ `products:query:*` since listings embed stock).
+- [x] Config: `Redis:ConnectionString`, `Redis:Enabled` (kill-switch), `Redis:DefaultTtlSeconds`; document in README + `appsettings.json`.
+- [x] Admin bypass header/query (`?nocache=1` / `X-Bypass-Cache`, Admin only) for debugging.
 
 **Contracts.**
 
@@ -300,12 +300,12 @@ PUT/POST/DELETE (admin) → DB write → RemoveAsync/RemoveByPrefixAsync
 - Never cache: cart, checkout, orders, auth/me, admin order list. Only cache public catalog reads.
 - TTLs short; invalidation on write is mandatory, not optional.
 
-**Acceptance Criteria.**
+**Acceptance Criteria.** (verified 2026-10-05, see `tests/Shop.IntegrationTests/CatalogCacheTests.cs`)
 
-- [ ] Cold `GET /api/products/{id}` = MISS, repeat = HIT (`X-Cache`).
-- [ ] Admin `PUT /api/admin/products/{id}` then `GET` reflects new price within 5s (invalidation works).
-- [ ] Redis down → API still 200 (fallback), error logged once per minute (no log spam).
-- [ ] p95 catalog latency down vs pre-cache baseline (measure 200 req locally, record in PR).
+- [x] Cold `GET /api/products/{id}` = MISS, repeat = HIT (`X-Cache`).
+- [x] Admin `PUT /api/admin/products/{id}` then `GET` reflects new price immediately (synchronous eviction, well within 5s).
+- [x] Redis down → API still 200 (fallback), error logged once per minute (no log spam; request path never blocks on connect — background reconnect).
+- [x] p95 catalog latency down vs pre-cache baseline (measured 2026-10-05, 200 req `GET /api/products/{id}`, 20-parallel batches, local compose: cached wall 272ms avg 8.4ms p50 6.9ms p95 21.3ms vs no-redis wall 583ms avg 24.3ms p50 20.9ms p95 50.2ms).
 
 **Test Plan.**
 

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shop.Application.Caching;
 using Shop.Application.Common;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
@@ -10,7 +11,7 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Services;
 
-public class ProductService(IAppDbContext db) : IProductService
+public class ProductService(IAppDbContext db, ICacheService cache) : IProductService
 {
     public async Task<PagedResult<ProductDto>> QueryAsync(ProductQueryParams query, CancellationToken ct = default)
     {
@@ -126,6 +127,7 @@ public class ProductService(IAppDbContext db) : IProductService
         product.Inventory = new Inventory { ProductId = product.Id, Quantity = request.InitialStock, ReservedQuantity = 0 };
         db.Products.Add(product);
         await db.SaveChangesAsync(ct);
+        await EvictProductCacheAsync(product.Id, ct);
         return await GetByIdAsync(product.Id, true, ct);
     }
 
@@ -161,6 +163,7 @@ public class ProductService(IAppDbContext db) : IProductService
                 product.Images.Add(new ProductImage { ProductId = product.Id, Url = img.Url.Trim(), AltText = img.AltText?.Trim(), DisplayOrder = img.DisplayOrder });
         }
         await db.SaveChangesAsync(ct);
+        await EvictProductCacheAsync(product.Id, ct);
         return await GetByIdAsync(product.Id, true, ct);
     }
 
@@ -172,5 +175,13 @@ public class ProductService(IAppDbContext db) : IProductService
         product.Status = ProductStatus.Inactive;
         product.UpdatedAt = DateTime.UtcNow;
         await db.SaveChangesAsync(ct);
+        await EvictProductCacheAsync(product.Id, ct);
+    }
+
+    /// <summary>M9: product write → evict product:{id} + products:query:*. Best-effort; never fails the write.</summary>
+    private async Task EvictProductCacheAsync(Guid id, CancellationToken ct)
+    {
+        await cache.RemoveAsync(CacheKeys.Product(id), ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
     }
 }

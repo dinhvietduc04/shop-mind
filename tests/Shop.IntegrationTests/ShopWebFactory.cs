@@ -44,6 +44,9 @@ public class ShopWebFactory : WebApplicationFactory<Program>, IAsyncLifetime
         });
         builder.UseSetting("ApplyMigrations", "false");
         builder.UseSetting("Jwt:Secret", "shopmind-integration-test-secret-32chars!!");
+        // M9: integration tests replace ICacheService with an in-memory fake per
+        // test; keep the default suite quiet (no Redis connection attempts).
+        builder.UseSetting("Redis:Enabled", "false");
     }
 
     public new async Task DisposeAsync()

@@ -58,6 +58,40 @@ docker compose up --build
 
 See Swagger for full docs. Validation errors return `{ title, status, errors }`.
 
+## Caching (M9 — Redis)
+
+Hot catalog reads are cached in Redis via `ICacheService`
+(`src/Shop.Application/Caching/`) backed by `RedisCacheService`
+(`src/Shop.Infrastructure/Caching/`):
+
+| Cached read | Key | TTL |
+|---|---|---|
+| `GET /api/products?...` | `shop:products:q:{sha1(search\|category\|brand\|min\|max\|sort\|page\|size)}` | `Redis:DefaultTtlSeconds` (default 90s) |
+| `GET /api/products/{id}` (public only) | `shop:product:{id}` | 5 min |
+| `GET /api/categories` (public list) | `shop:categories:all` | 10 min |
+
+- Cached responses carry `X-Cache: HIT | MISS`. Admins can bypass with
+  `?nocache=1` (or `X-Bypass-Cache: 1` header) → `X-Cache: BYPASSED`.
+- Invalidation (mandatory, best-effort): product create/update/delete →
+  `product:{id}` + `products:q:*`; category write → `categories:all` (+
+  `products:q:*`, since listings filter by category slug); inventory
+  quantity change → `product:{id}` + `products:q:*`.
+- Never cached: cart, checkout, orders, auth/me, admin lists.
+- Resilience: Redis down or `Redis:Enabled=false` → API still serves 200
+  from Postgres (MISS), warning logged at most once/minute.
+- Checkout always revalidates live stock/prices, so a briefly stale cache
+  can never oversell.
+
+Config (`appsettings.json`, overridable via env):
+
+```json
+"Redis": { "ConnectionString": "localhost:6379", "Enabled": true, "DefaultTtlSeconds": 90 }
+```
+
+Docker Compose runs `redis:7-alpine` (API uses `Redis__ConnectionString:
+redis:6379`). Local dev without Docker: run Redis locally or set
+`Redis:Enabled=false` to silence connection warnings.
+
 ## Projects
 
 ```
