@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shop.Application.Caching;
 using Shop.Application.Common;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
@@ -7,7 +8,7 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Services;
 
-public class InventoryService(IAppDbContext db) : IInventoryService
+public class InventoryService(IAppDbContext db, ICacheService cache) : IInventoryService
 {
     public async Task<PagedResult<InventoryDto>> ListAsync(int page, int pageSize, string? search, CancellationToken ct = default)
     {
@@ -39,6 +40,11 @@ public class InventoryService(IAppDbContext db) : IInventoryService
             ?? throw new ProductNotFoundException(productId);
         inv.SetQuantity(quantity);
         await db.SaveChangesAsync(ct);
+        // M9: stock change → evict product:{id} (+ query listings that embed
+        // AvailableStock / InStockOnly). Checkout revalidates live stock so a
+        // briefly stale cache can never oversell.
+        await cache.RemoveAsync(CacheKeys.Product(productId), ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
         return inv.ToDto();
     }
 }

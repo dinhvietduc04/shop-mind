@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shop.Application.Caching;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
@@ -8,7 +9,7 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Services;
 
-public class CategoryService(IAppDbContext db) : ICategoryService
+public class CategoryService(IAppDbContext db, ICacheService cache) : ICategoryService
 {
     public async Task<IReadOnlyList<CategoryDto>> ListPublicAsync(CancellationToken ct = default)
         => await db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name)
@@ -41,6 +42,7 @@ public class CategoryService(IAppDbContext db) : ICategoryService
         };
         db.Categories.Add(c);
         await db.SaveChangesAsync(ct);
+        await EvictCategoryCacheAsync(ct);
         return c.ToDto();
     }
 
@@ -57,6 +59,7 @@ public class CategoryService(IAppDbContext db) : ICategoryService
         c.IsActive = request.IsActive;
         c.UpdatedAt = DateTime.UtcNow;
         await db.SaveChangesAsync(ct);
+        await EvictCategoryCacheAsync(ct);
         return c.ToDto();
     }
 
@@ -68,5 +71,17 @@ public class CategoryService(IAppDbContext db) : ICategoryService
             throw new DomainValidationException("Cannot delete category that contains products. Deactivate it instead.");
         db.Categories.Remove(c);
         await db.SaveChangesAsync(ct);
+        await EvictCategoryCacheAsync(ct);
+    }
+
+    /// <summary>
+    /// M9: category write → evict categories:all. Also evicts products:query:*
+    /// because product queries filter by category slug — a slug rename must not
+    /// leave stale listings. Best-effort; never fails the write.
+    /// </summary>
+    private async Task EvictCategoryCacheAsync(CancellationToken ct)
+    {
+        await cache.RemoveAsync(CacheKeys.CategoriesAll, ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
     }
 }

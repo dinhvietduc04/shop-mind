@@ -27,11 +27,31 @@ services:
       Jwt__Secret: "shopmind-dev-secret-key-change-me-please-32chars!"
       Jwt__Issuer: "ShopMind"
       Jwt__Audience: "ShopMind"
+      Redis__ConnectionString: "redis:6379"
+      Redis__Enabled: "true"
+      Redis__DefaultTtlSeconds: "90"
     ports:
       - "5000:8080"
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_started
+
+  redis:
+    image: redis:7-alpine
+    container_name: shopmind-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
 volumes:
   pgdata:
+  redisdata:

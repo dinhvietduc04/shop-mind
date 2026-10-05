@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.Caching;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
 using Shop.Application.Services;
 using Shop.Infrastructure.Auth;
+using Shop.Infrastructure.Caching;
 using Shop.Infrastructure.Payments;
 using Shop.Infrastructure.Persistence;
 
@@ -20,6 +22,8 @@ public static class DependencyInjection
         services.AddScoped<IAppDbContext>(sp => sp.GetRequiredService<AppDbContext>());
 
         services.Configure<JwtOptions>(config.GetSection("Jwt"));
+        services.Configure<RedisOptions>(config.GetSection("Redis"));
+        services.AddSingleton<ICacheService, RedisCacheService>();
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IFakePaymentService, FakePaymentService>();
