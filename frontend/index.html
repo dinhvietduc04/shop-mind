@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopMind — Electronics Store (V1)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="brand" onclick="showView('shop')">⚡ ShopMind</div>
+  <nav>
+    <button onclick="showView('shop')">Shop</button>
+    <button onclick="showView('cart')">Cart <span id="cartCount">0</span></button>
+    <button onclick="showView('orders')">Orders</button>
+    <button id="adminBtn" onclick="showView('admin')" style="display:none">Admin</button>
+    <button id="authBtn" onclick="showView('auth')">Login</button>
+    <button id="logoutBtn" onclick="logout()" style="display:none">Logout</button>
+  </nav>
+  <div class="api-config">
+    <input id="apiBase" placeholder="API base (http://localhost:5000)" />
+    <button onclick="saveApiBase()">Save</button>
+  </div>
+</header>
+<main>
+  <div id="notice"></div>
+
+  <section id="view-shop" class="view">
+    <h2>Products</h2>
+    <div class="filters">
+      <input id="fSearch" placeholder="Search name/SKU (e.g. laptop)" />
+      <select id="fCategory"><option value="">All categories</option></select>
+      <input id="fBrand" placeholder="Brand (e.g. Lenovo)" />
+      <input id="fMin" type="number" placeholder="Min price" />
+      <input id="fMax" type="number" placeholder="Max price" />
+      <select id="fSort">
+        <option value="">Sort: name</option>
+        <option value="price_asc">Price ↑</option>
+        <option value="price_desc">Price ↓</option>
+        <option value="newest">Newest</option>
+        <option value="name_desc">Name ↓</option>
+      </select>
+      <label><input type="checkbox" id="fStock" /> In stock only</label>
+      <button onclick="loadProducts(1)">Search</button>
+    </div>
+    <div id="productGrid" class="grid"></div>
+    <div class="pager">
+      <button onclick="prevPage()">Prev</button>
+      <span id="pageInfo"></span>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </section>
+
+  <section id="view-product" class="view" style="display:none">
+    <button onclick="showView('shop')">← Back</button>
+    <div id="productDetail"></div>
+  </section>
+
+  <section id="view-cart" class="view" style="display:none">
+    <h2>Your Cart</h2>
+    <div id="cartDetail"></div>
+    <button onclick="showView('checkout')">Proceed to Checkout →</button>
+  </section>
+
+  <section id="view-checkout" class="view" style="display:none">
+    <h2>Checkout (Fake Payment)</h2>
+    <div class="form">
+      <input id="cName" placeholder="Full name" value="John Doe" />
+      <input id="cPhone" placeholder="Phone" value="0123456789" />
+      <input id="cAddr" placeholder="Address" value="123 Example Street" />
+      <input id="cCity" placeholder="City" value="Ho Chi Minh City" />
+      <label><input type="checkbox" id="cFail" /> Simulate payment failure</label>
+      <label><input type="checkbox" id="cTimeout" /> Simulate timeout</label>
+      <button onclick="doCheckout()">Pay & Place Order</button>
+    </div>
+    <div id="checkoutResult"></div>
+  </section>
+
+  <section id="view-orders" class="view" style="display:none">
+    <h2>Order History</h2>
+    <div id="orderList"></div>
+    <div id="orderDetail"></div>
+  </section>
+
+  <section id="view-auth" class="view" style="display:none">
+    <h2>Login / Register</h2>
+    <div class="two-col">
+      <div class="form">
+        <h3>Login</h3>
+        <input id="lEmail" placeholder="Email" value="customer@shopmind.local" />
+        <input id="lPass" type="password" placeholder="Password" value="Customer123!" />
+        <button onclick="doLogin()">Login</button>
+        <p class="hint">Seeded: admin@shopmind.local / Admin123! · customer@shopmind.local / Customer123!</p>
+      </div>
+      <div class="form">
+        <h3>Register</h3>
+        <input id="rEmail" placeholder="Email" />
+        <input id="rPass" type="password" placeholder="Password (min 8, upper/lower/digit)" />
+        <input id="rFirst" placeholder="First name" />
+        <input id="rLast" placeholder="Last name" />
+        <button onclick="doRegister()">Register</button>
+      </div>
+    </div>
+    <div id="profile"></div>
+  </section>
+
+  <section id="view-admin" class="view" style="display:none">
+    <h2>Admin Dashboard</h2>
+    <div class="tabs">
+      <button onclick="adminTab('products')">Products</button>
+      <button onclick="adminTab('categories')">Categories</button>
+      <button onclick="adminTab('inventory')">Inventory</button>
+      <button onclick="adminTab('orders')">Orders</button>
+    </div>
+    <div id="adminContent"></div>
+  </section>
+</main>
+<footer>ShopMind V1 · REST API + Fake Payment · <a href="#" onclick="document.getElementById('apiBase').scrollIntoView()">API docs at /swagger</a></footer>
+<script src="app.js"></script>
+</body>
+</html>
