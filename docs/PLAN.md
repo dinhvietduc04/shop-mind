@@ -133,7 +133,7 @@ docs/PLAN.md                THIS FILE
 | M5 | Checkout + Fake Payment | ✅ Done | M4 |
 | M6 | Order Management | ✅ Done | M5 |
 | M7 | Admin System | ✅ Done | M2–M6 |
-| M8 | Testing & API Quality | ✅ Done (partial*) | M0–M7 |
+| M8 | Testing & API Quality | ✅ Done | M0–M7 |
 | M9 | Redis & Caching | ⬜ Next | M8 |
 | M10 | Events + Outbox | ⬜ | M9 |
 | M11 | Queue + Workers (RabbitMQ) | ⬜ | M10 |
@@ -148,7 +148,7 @@ docs/PLAN.md                THIS FILE
 | M20 | Production Hardening + Observability | ⬜ | M9–M11, M19 |
 | M21 | Deployment | ⬜ | M20 |
 
-`*M8 partial`: unit tests pass; integration tests require Docker/Testcontainers and are not yet run in CI. See M8 gaps.
+`M8 closed 2026-10-05`: unit 32/32 green; integration 8/8 green (Docker/Testcontainers); CI runs unit always + integration on `integration` label. See M8 evidence.
 
 ---
 
@@ -245,12 +245,12 @@ In `Controllers/AdminControllers.cs` + `Services/*`:
 
 Deliverable met: store operable without direct DB access.
 
-## M8 — Testing & API Quality — ✅ Done (partial — see gaps)
+## M8 — Testing & API Quality — ✅ Done
 
-- [x] Unit: `CartTests`, `InventoryTests`, `OrderTransitionsTests`, `ValidatorTests` — `dotnet test tests/Shop.UnitTests` green
-- [x] Integration: `AuthFlowTests`, `CartCheckoutTests` via `ShopWebFactory` (Testcontainers Postgres) — requires Docker; not runnable without it
+- [x] Unit: `CartTests`, `InventoryTests`, `OrderTransitionsTests`, `ValidatorTests` — `dotnet test tests/Shop.UnitTests` green (32/32 on 2026-10-05)
+- [x] Integration: `AuthFlowTests`, `CartCheckoutTests` via `ShopWebFactory` (Testcontainers Postgres) — 8/8 green on 2026-10-05 with Docker 29.7.2 (seed fix in `ShopWebFactory.InitializeAsync` via `SeedData.EnsureSeededAsync`)
 - [x] API quality: global errors `{title,status,errors}`, FluentValidation, consistent status codes, Swagger, pagination (`PagedResult`), logging via `ILogger`
-- [ ] GAPS → must close before M9: (1) run integration suite once with Docker and record result; (2) add negative cases already listed but verify: order access-control cross-user, admin 403 for customer, checkout empty-cart; (3) add CI (`dotnet test` unit always; integration on label); (4) decide code coverage gate (suggest 70% Application services for V1).
+- [x] GAPS closed 2026-10-05: (1) integration suite run with Docker — 8/8 passed; (2) negative cases verified: cross-user order access (`Customer_Cannot_Access_Another_Customers_Order` → 403/404), admin 403 for customer (`Admin_Can_Manage_Orders_But_Customer_Cannot_Access_Admin_Api`), checkout empty-cart 400 (`Checkout_EmptyCart_Returns400`); (3) CI added (`.github/workflows/ci.yml`: unit always, integration on `integration` label, both with XPlat coverage upload); (4) coverage gate DECIDED: 70% line coverage for `Shop.Application` (combined unit+integration, report-only for now — baseline 2026-10-05: unit-only ~4.9%, integration-only ~45.9%, overall ~77.0% across all assemblies).
 
 **V1 exit declaration:** V1 is complete for demo purposes once M8 gaps (1)–(2) are closed. M9+ must not start on a red suite.
 

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize, reopened, labeled ]
+
+jobs:
+  unit:
+    name: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore
+        run: dotnet restore
+      - name: Unit tests + coverage
+        run: dotnet test tests/Shop.UnitTests --collect:"XPlat Code Coverage" --results-directory TestResults-unit -v minimal
+      - name: Upload unit coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-coverage
+          path: TestResults-unit/**/coverage.cobertura.xml
+
+  integration:
+    name: integration-tests
+    runs-on: ubuntu-latest
+    # Run on main push, or on PRs with the `integration` label (Testcontainers needs Docker).
+    if: github.event_name == 'push' || contains(github.event.pull_request.labels.*.name, 'integration')
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore
+        run: dotnet restore
+      - name: Integration tests + coverage (Testcontainers Postgres)
+        run: dotnet test tests/Shop.IntegrationTests --collect:"XPlat Code Coverage" --results-directory TestResults-integration -v minimal
+      - name: Upload integration coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-coverage
+          path: TestResults-integration/**/coverage.cobertura.xml
+
+  # Coverage gate (M8 decision): 70% line coverage for Shop.Application (combined
+  # unit + integration). CI collects coverage in the jobs above; enforcement is
+  # currently report-only until the baseline (~46% integration-only on 2026-10-05)
+  # reaches 70%. See docs/PLAN.md M8.
