@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "title": "Design System: ShopMind",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Packing Paper (warm)", "description": "Page ground. Inverts to #17140e in dark theme." },
+      "card": { "role": "neutral", "displayName": "Label Card Stock", "description": "Product cards, inputs, empty states. Inverts to #201c14 in dark." },
+      "kraft": { "role": "neutral", "displayName": "Kraft Bin Cardboard", "description": "Masthead, bin rail, spec-table keys, scrollbar track. Inverts to #241f15 in dark." },
+      "kraft-deep": { "role": "neutral", "displayName": "Kraft Deep", "description": "Skeleton fill, pressed/hover grounds. Inverts to #2c261a in dark." },
+      "ink": { "role": "neutral", "displayName": "Shop Ink", "description": "Primary text, object borders, active nav fill, band chip outline. Inverts to #f0ece2 in dark." },
+      "ink-soft": { "role": "neutral", "displayName": "Faded Ink", "description": "Secondary text, mono captions, meta lines. Inverts to #b4ac97 in dark." },
+      "line": { "role": "neutral", "displayName": "Rule Line", "description": "Quiet 1.5px borders and dashed dividers. Inverts to #8a8068 in dark." },
+      "drawer": { "role": "neutral", "displayName": "Tool-Case Drawer", "description": "Assistant card ground. #1a1a1a light, #0d0b07 dark — deepens rather than inverts." },
+      "drawer-ink": { "role": "neutral", "displayName": "Drawer Label Ink", "description": "Text on drawer. #f0ece2 in both themes." },
+      "band-black": { "role": "data", "displayName": "Band — Black (0)", "fixedIdentity": true, "description": "IEERC digit 0. Never re-themed." },
+      "band-brown": { "role": "data", "displayName": "Band — Brown (1)", "fixedIdentity": true, "description": "Digit 1; laptops category; light-theme scrollbar thumb." },
+      "band-red": { "role": "primary", "displayName": "Band — Red (2)", "fixedIdentity": true, "description": "Digit 2; ADD control; error border/dot; input caret; stock 'bin empty'." },
+      "band-orange": { "role": "data", "displayName": "Band — Orange (3)", "fixedIdentity": true, "description": "Digit 3; phones category." },
+      "band-yellow": { "role": "secondary", "displayName": "Band — Yellow (4) / Human Yellow", "fixedIdentity": true, "description": "Digit 4; low stock dot; text-selection highlight; and, as a filled control, human-only actions (Yellow-Is-Human rule)." },
+      "band-green": { "role": "data", "displayName": "Band — Green (5)", "fixedIdentity": true, "description": "Digit 5; audio category; stock 'in bin'." },
+      "band-blue": { "role": "data", "displayName": "Band — Blue (6)", "fixedIdentity": true, "description": "Digit 6; displays category." },
+      "band-violet": { "role": "data", "displayName": "Band — Violet (7)", "fixedIdentity": true, "description": "Digit 7; components category." },
+      "band-grey": { "role": "data", "displayName": "Band — Grey (8)", "fixedIdentity": true, "description": "Digit 8; fallback band for undecodable digits." },
+      "band-white": { "role": "data", "displayName": "Band — White (9)", "fixedIdentity": true, "description": "Digit 9. Text on white bands flips to ink." },
+      "band-gold": { "role": "data", "displayName": "Tolerance — Gold", "fixedIdentity": true, "description": "Tolerance metal, no digit value. Reserved for tolerance bands." },
+      "band-silver": { "role": "data", "displayName": "Tolerance — Silver", "fixedIdentity": true, "description": "Tolerance metal, no digit value. Reserved for tolerance bands." }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page headlines, uppercase, tracking 0.04em." },
+      "wordmark": { "displayName": "Wordmark", "purpose": "Masthead 'ShopMind', uppercase, extreme tracking 0.3em." },
+      "title": { "displayName": "Title", "purpose": "Product names on label cards." },
+      "body": { "displayName": "Body", "purpose": "Prose and assistant dialogue, 14px/1.6, ~62ch max." },
+      "label": { "displayName": "Label", "purpose": "Uppercase micro-copy: nav, fields, legends, buttons. Tracking widens as size drops (0.08em–0.26em)." },
+      "mono": { "displayName": "Mono / Data", "purpose": "Every number and machine trace: SKU, bin code, search, tool-trail." },
+      "price": { "displayName": "Price Figure", "purpose": "Printed money: JetBrains Mono 700, 19px, tabular-nums, beneath the band strip." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "band-set", "value": "@keyframes band-set { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }", "purpose": "Digit-by-digit decode of band strips on mount." },
+      { "name": "band-in", "value": "animation: band-set 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards", "purpose": "Applied per chip; content visible by default after the pass (backwards fill)." },
+      { "name": "band-stagger", "value": "animation-delay: calc(index * 70ms)", "purpose": "70ms left-to-right stagger per band chip in a strip." },
+      { "name": "control-transition", "value": "transition: filter 150ms ease-out", "purpose": "Button hover brightness; border/background deepening." },
+      { "name": "reduced-motion-collapse", "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }", "purpose": "Decode never becomes a barrier." }
+    ],
+    "browserSurface": [
+      { "name": "focus-ring", "value": "outline: 2px dashed var(--ink); outline-offset: 3px; border-radius: 2px", "purpose": "Global *:focus-visible treatment — dashed, hand-inked." },
+      { "name": "selection", "value": "background: var(--color-band-yellow); color: #1a1a1a", "purpose": "Text selection is yellow-on-ink." },
+      { "name": "caret", "value": "caret-color: var(--color-band-red)", "purpose": "Red caret in all inputs and textareas." },
+      { "name": "scrollbar", "value": "width/height 12px; track var(--kraft); thumb var(--color-band-brown) with 3px kraft border, 8px radius (dark: thumb var(--line))", "purpose": "Kraft-and-brown scrollbar." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px", "purpose": "Catalog grid goes 2-up; masthead extras appear." },
+      { "name": "lg", "value": "1024px", "purpose": "Bin rail docks at 248px; desktop nav; rail legend appears." },
+      { "name": "xl", "value": "1280px", "purpose": "Assistant docks as sticky 400px right column." },
+      { "name": "2xl", "value": "1536px", "purpose": "Catalog grid goes 3-up." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Add Button",
+      "kind": "button",
+      "refersTo": "button-add",
+      "description": "Resistor-red 'grab this part' control. The only red filled control; disabled = 40% opacity.",
+      "html": "<button class=\"ds-btn-add\">&#10003; Add to bin</button>",
+      "css": ".ds-btn-add { display: inline-flex; align-items: center; gap: 8px; background: var(--color-band-red); color: var(--card); border: 1.5px solid var(--color-band-red); border-radius: 4px; padding: 8px 16px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; transition: filter 150ms ease-out; cursor: pointer; } .ds-btn-add:hover { filter: brightness(1.1); } .ds-btn-add:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; border-radius: 2px; } .ds-btn-add:disabled { opacity: 0.4; pointer-events: none; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action on card stock; hover deepens the border to ink and fills kraft.",
+      "html": "<button class=\"ds-btn-ghost\">Remove</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: var(--card); color: var(--ink); border: 1.5px solid var(--line); border-radius: 4px; padding: 8px 16px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; transition: border-color 150ms ease-out, background 150ms ease-out; cursor: pointer; } .ds-btn-ghost:hover { border-color: var(--ink); background: var(--kraft); } .ds-btn-ghost:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; border-radius: 2px; } .ds-btn-ghost:disabled { opacity: 0.4; pointer-events: none; }"
+    },
+    {
+      "name": "Human-Only Button",
+      "kind": "button",
+      "refersTo": "button-human",
+      "description": "Yellow filled control reserved for actions across the money boundary. Never rendered as a control the assistant can press.",
+      "html": "<button class=\"ds-btn-human\">Review bill &amp; pay</button>",
+      "css": ".ds-btn-human { display: inline-flex; align-items: center; gap: 8px; background: var(--color-band-yellow); color: #1a1a1a; border: 1.5px solid #1a1a1a; border-radius: 4px; padding: 8px 16px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; transition: filter 150ms ease-out; cursor: pointer; } .ds-btn-human:hover { filter: brightness(1.08); } .ds-btn-human:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Band Strip (decoding price)",
+      "kind": "custom",
+      "refersTo": "band-chip",
+      "description": "Signature component: price digits encoded as IEERC chips, decoding left-to-right on mount with a 70ms stagger.",
+      "html": "<span class=\"ds-band-strip\"><span class=\"ds-band-in\"><i class=\"ds-band-chip ds-band-brown\"></i></span><span class=\"ds-band-in\"><i class=\"ds-band-chip ds-band-black\"></i></span><span class=\"ds-band-in\"><i class=\"ds-band-chip ds-band-white\"></i></span><span class=\"ds-band-in\"><i class=\"ds-band-chip ds-band-white\"></i></span></span>",
+      "css": "@keyframes ds-band-set { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } } .ds-band-strip { display: inline-flex; align-items: flex-end; gap: 3px; } .ds-band-in { display: inline-flex; animation: ds-band-set 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards; } .ds-band-in:nth-child(2) { animation-delay: 70ms; } .ds-band-in:nth-child(3) { animation-delay: 140ms; } .ds-band-in:nth-child(4) { animation-delay: 210ms; } .ds-band-chip { display: inline-block; width: 12px; height: 22px; border: 1.5px solid var(--ink); border-radius: 3px; } .ds-band-brown { background: var(--color-band-brown); } .ds-band-black { background: var(--color-band-black); } .ds-band-white { background: var(--color-band-white); } @media (prefers-reduced-motion: reduce) { .ds-band-in { animation-duration: 0.01ms; } }"
+    },
+    {
+      "name": "Stock Dots",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Three-dot stock gauge: 3 green = in bin, 2 yellow = low, 1 red = empty; always beside the printed label.",
+      "html": "<span class=\"ds-stock\"><span class=\"ds-dot ds-fill-yellow\"></span><span class=\"ds-dot ds-fill-yellow\"></span><span class=\"ds-dot ds-hollow\"></span><span class=\"ds-stock-label\">low stock · 2</span></span>",
+      "css": ".ds-stock { display: inline-flex; align-items: center; gap: 8px; } .ds-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-block; } .ds-dot + .ds-dot { margin-left: 4px; } .ds-fill-yellow { background: var(--color-band-yellow); } .ds-fill-green { background: var(--color-band-green); } .ds-fill-red { background: var(--color-band-red); } .ds-hollow { background: transparent; opacity: 0.3; } .ds-stock-label { font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Labeled input; focus deepens border to ink (plus dashed global ring); error turns resistor-red with an alert message.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Quantity</span><input class=\"ds-field-input ds-error\" value=\"5\" /><span class=\"ds-field-error\" role=\"alert\">Bin holds 2 — not 5</span></label>",
+      "css": ".ds-field { display: block; } .ds-field-label { display: block; margin-bottom: 6px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--ink-soft); } .ds-field-input { width: 100%; box-sizing: border-box; background: var(--card); color: var(--ink); border: 1.5px solid var(--line); border-radius: 4px; padding: 8px 12px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 14px; caret-color: var(--color-band-red); } .ds-field-input:focus { border-color: var(--ink); outline: 2px dashed var(--ink); outline-offset: 3px; } .ds-field-input.ds-error { border-color: var(--color-band-red); } .ds-field-error { display: block; margin-top: 4px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 600; color: var(--color-band-red); }"
+    },
+    {
+      "name": "Product Label Card",
+      "kind": "card",
+      "refersTo": "card-product",
+      "description": "Paper label card with straddling category tab, plate slot, band-encoded price over printed digits, stock dots.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-tab\">LAP · A1-01</span><div class=\"ds-plate\"><span class=\"ds-plate-corner ds-tl\"></span><span class=\"ds-plate-corner ds-tr\"></span><span class=\"ds-plate-corner ds-bl\"></span><span class=\"ds-plate-corner ds-br\"></span><span class=\"ds-plate-label\"><i class=\"ds-ptab-chip\"></i>pl. A1-01 · photo not on file</span></div><h3 class=\"ds-name\">ThinkPad X1 Carbon</h3><p class=\"ds-model\">model gen 12 · 16 gb</p><div class=\"ds-money\"><span class=\"ds-price-strip\"><i class=\"ds-b ds-brown\"></i><i class=\"ds-b ds-black\"></i><i class=\"ds-b ds-white\"></i><i class=\"ds-b ds-white\"></i></span><span class=\"ds-price\">$1,099.00</span></div><div class=\"ds-stock\"><i class=\"ds-dot ds-fill-green\"></i><i class=\"ds-dot ds-fill-green\"></i><i class=\"ds-dot ds-fill-green\"></i><span class=\"ds-stock-txt\">in bin · 7</span></div></article>",
+      "css": ".ds-card { position: relative; background: var(--card); border: 1.5px solid var(--ink); border-radius: 8px; padding: 20px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); color: var(--ink); max-width: 360px; } .ds-tab { position: absolute; top: -9px; right: 16px; background: var(--color-band-brown); color: var(--card); border: 1.5px solid #1a1a1a; border-radius: 3px; padding: 0 8px; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; } .ds-plate { position: relative; height: 150px; margin: 8px 0 20px; border: 1.5px dashed var(--line); background: var(--kraft); display: flex; align-items: center; justify-content: center; } .ds-plate-corner { position: absolute; width: 12px; height: 12px; border-color: var(--line); } .ds-tl { top: 8px; left: 8px; border-top: 1.5px solid; border-left: 1.5px solid; } .ds-tr { top: 8px; right: 8px; border-top: 1.5px solid; border-right: 1.5px solid; } .ds-bl { bottom: 8px; left: 8px; border-bottom: 1.5px solid; border-left: 1.5px solid; } .ds-br { bottom: 8px; right: 8px; border-bottom: 1.5px solid; border-right: 1.5px solid; } .ds-plate-label { display: flex; align-items: center; gap: 10px; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--ink-soft); } .ds-ptab-chip { display: inline-block; width: 7px; height: 12px; border: 1.5px solid var(--ink); border-radius: 3px; background: var(--color-band-brown); } .ds-name { font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; margin: 0; } .ds-model { margin: 4px 0 16px; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-soft); } .ds-money { display: flex; align-items: flex-end; gap: 12px; } .ds-price-strip { display: inline-flex; align-items: flex-end; gap: 3px; } .ds-b { display: inline-block; width: 12px; height: 22px; border: 1.5px solid var(--ink); border-radius: 3px; } .ds-brown { background: var(--color-band-brown); } .ds-black { background: var(--color-band-black); } .ds-white { background: var(--color-band-white); } .ds-price { font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 19px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; } .ds-stock { display: flex; align-items: center; gap: 4px; margin-top: 16px; } .ds-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-block; } .ds-fill-green { background: var(--color-band-green); } .ds-stock-txt { margin-left: 6px; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }"
+    },
+    {
+      "name": "Assistant Drawer",
+      "kind": "custom",
+      "refersTo": "drawer-assistant",
+      "description": "Black tool-drawer card: turn number, inline band quotes, mono tool-trail, and a yellow link a human — only a human — presses.",
+      "html": "<section class=\"ds-drawer\"><h2 class=\"ds-drawer-title\">The assistant · turn 41</h2><p class=\"ds-drawer-said\">Two units in bin A1 decode under your budget band — search set to <i class=\"ds-db ds-b-black\"></i><i class=\"ds-db ds-b-green\"></i><span class=\"ds-digits\">1·2·0·0</span>.</p><p class=\"ds-trail\">trail: search_products(budget≤1200, ram≥16) → compare_products → add_to_cart</p><div class=\"ds-actions\"><button class=\"ds-drawer-ghost\">Add Zenbook 14 — $1,099.00</button><a class=\"ds-drawer-yellow\" href=\"/quote\">Review bill →</a></div><p class=\"ds-note\">payment is on the bill page · a yellow control is human-only · the assistant cannot press it</p></section>",
+      "css": ".ds-drawer { background: var(--drawer, #1a1a1a); color: var(--drawer-ink, #f0ece2); border: 1.5px solid var(--ink); border-radius: 8px; padding: 20px; max-width: 420px; } .ds-drawer-title { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.26em; } .ds-drawer-said { margin: 12px 0 0; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 14px; line-height: 1.6; } .ds-db { display: inline-block; width: 7px; height: 12px; border: 1.5px solid #1a1a1a; border-radius: 3px; vertical-align: baseline; } .ds-b-brown { background: var(--color-band-brown); } .ds-b-black { background: var(--color-band-black); } .ds-b-grey { background: var(--color-band-grey); } .ds-b-green { background: var(--color-band-green); } .ds-digits { font-family: var(--font-jetmono, 'JetBrains Mono', monospace); } .ds-trail { margin: 12px 0 0; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(240,236,226,0.6); } .ds-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; } .ds-drawer-ghost { background: transparent; color: var(--drawer-ink, #f0ece2); border: 1.5px solid rgba(240,236,226,0.5); border-radius: 4px; padding: 8px 16px; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; cursor: pointer; } .ds-drawer-ghost:hover { border-color: var(--drawer-ink, #f0ece2); } .ds-drawer-yellow { background: var(--color-band-yellow); color: #1a1a1a; border: 1.5px solid #1a1a1a; border-radius: 4px; padding: 8px 16px; text-decoration: none; font-family: var(--font-archivo, Archivo, system-ui, sans-serif); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; } .ds-drawer-yellow:hover { filter: brightness(1.1); } .ds-note { margin: 12px 0 0; font-family: var(--font-jetmono, 'JetBrains Mono', monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(240,236,226,0.5); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Resistor-Code Bin Wall",
+    "overview": "ShopMind is a working electronics shop that reads like its own inventory. The palette is not a mood board — it is the IEERC ten-band resistor ladder, the same color code every engineer decodes on a component's body. Categories, stock levels, and price digits arrive as band chips on paper label cards, filed in kraft bins, inked in near-black. Depth and hierarchy come from tonal grounds (paper, card, kraft, ink) and hairline-precise borders, never from gradients or shadows. The single most load-bearing fact of the system: exactly one color is not data. Yellow, in filled-control form, is the human-action marker — the visual proof of the Assist invariant that the AI quotes and only a person pays. The type pairing reinforces the fiction: Archivo, a sturdy grotesque worn in tight uppercase caps with wide tracking, does the shelf-label voice; JetBrains Mono, tabular, does every number.",
+    "keyCharacteristics": [
+      "The resistor color ladder *is* the palette; every band carries real data (category, stock, or a price digit).",
+      "Grounds are packaging material — paper, kraft cardstock, ink drawer — not accents.",
+      "One non-data color: yellow as a filled control means \"human only.\"",
+      "Flat by construction: 1.5px solid outlines and tonal steps convey all depth; zero shadows, zero gradients.",
+      "Bands never decode alone: the digits are always printed beside them.",
+      "Dark mode inverts the grounds warm; band colors keep their exact identity."
+    ],
+    "rules": [
+      { "name": "The Ten-Band Rule", "body": "The ladder is the entire accent palette. No new accent colors enter the system; anything that encodes data picks a band, and anything that isn't a band is a ground.", "section": "colors" },
+      { "name": "The Yellow-Is-Human Rule", "body": "Yellow in filled-control form marks actions only a human may take. The assistant's surface may *show* a yellow link (\"Review bill\") but no yellow control may be one the agent can press, and no pay action renders inside chat. The bin-rail legend states this in words; the system states it in color.", "section": "colors" },
+      { "name": "The Ink-On-Band Rule", "body": "Text on any band uses ink (#1a1a1a), with the single exception of category corner tabs, which use card-white on saturated bands (and flip back to ink on band-white). Never white-on-yellow.", "section": "colors" },
+      { "name": "The Digits-Beside-Bands Rule", "body": "Every band encoding prints its digits or a text label alongside the chips — prices show the mono figure under the strip, stock shows a word (\"in bin · 7\"), the legend spells the code out. A band alone is never the only carrier of a value (colorblind fallback, fixed).", "section": "typography" },
+      { "name": "The Tabular Rule", "body": "All money, quantities, and counts render in JetBrains Mono with tabular-nums. Prose never sets numbers in Archivo.", "section": "typography" },
+      { "name": "The Flat-Outline Rule", "body": "Surfaces stack by material color and border weight only. If a screen needs to feel \"above\" another, it changes ground (card on paper, kraft on card) or border color (line → ink), never elevation. Hover deepens borders and brightens fills (brightness), it does not lift.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do encode data only with ladder bands, and print the digits beside every encoding (price strip + mono figure; stock dots + \"in bin · 7\").",
+      "Do keep all 1.5px borders — solid for real edges, dashed for frames, dividers, and awaiting-content states.",
+      "Do reserve yellow filled controls for actions a human must take across the money boundary; surface them in assistant contexts only as links *to* human-only pages.",
+      "Do set every number in JetBrains Mono with tabular-nums, and every label in uppercase Archivo with tracking widened as size drops.",
+      "Do let band colors ride both themes unchanged; only grounds (paper, card, kraft, ink, line, drawer) invert, and the dark inversion stays warm (#17140e ground, #f0ece2 ink), never blue-grey.",
+      "Do use the band-set decode (0.55s, 70ms stagger) only for price strips entering the view; everything else at rest is static.",
+      "Do theme the browser surface with the world: dashed ink focus ring (2px, 3px offset), yellow selection on ink text, red caret, kraft scrollbar track with a brown (light) or line (dark) thumb.",
+      "Do ship loading, empty, error, and partial states on every surface, and let the empty photo plate say \"photo not on file.\""
+    ],
+    "donts": [
+      "Don't put a pay or charge control inside the assistant panel or chat — the capability does not exist in the agent's tool surface and the UI must not fake it.",
+      "Don't reuse one band for two categories, or introduce an accent color outside the ladder and the grounds.",
+      "Don't use shadows, gradients, or glass effects; depth is tonal.",
+      "Don't render white text on yellow, or any band text that isn't ink (the card-white category-tab exception aside).",
+      "Don't show a band encoding without its printed digits — the color carries flavor, never sole meaning.",
+      "Don't rename \"ShopMind\" or spell the world's categories in lowercase; the shelf-label register is fixed."
+    ]
+  }
+}

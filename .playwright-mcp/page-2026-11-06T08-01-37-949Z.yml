@@ -1,0 +1,174 @@
+- generic [active] [ref=f25e1]:
+  - banner [ref=f25e2]:
+    - generic [ref=f25e3]:
+      - link "ShopMind" [ref=f25e4] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f25e6]
+      - generic [ref=f25e7]:
+        - 'generic "Cart: 0 items, total $0.00" [ref=f25e8]': empty
+        - button "Switch to night (dark) theme" [ref=f25e15]
+  - generic [ref=f25e18]:
+    - complementary [ref=f25e19]:
+      - heading "Bins" [level=2] [ref=f25e20]
+      - generic [ref=f25e21]:
+        - button "ALL Every bin" [ref=f25e22]:
+          - generic [ref=f25e23]: ALL
+          - generic [ref=f25e24]: Every bin
+        - button "Laptops A1·41" [ref=f25e25]:
+          - generic [ref=f25e27]: Laptops
+          - generic [ref=f25e28]: A1·41
+        - button "Smartphones B2·33" [ref=f25e29]:
+          - generic [ref=f25e31]: Smartphones
+          - generic [ref=f25e32]: B2·33
+        - button "Audio C3·27" [ref=f25e33]:
+          - generic [ref=f25e35]: Audio
+          - generic [ref=f25e36]: C3·27
+        - button "Displays C5·18" [ref=f25e37]:
+          - generic [ref=f25e39]: Displays
+          - generic [ref=f25e40]: C5·18
+        - button "Components D4·52" [ref=f25e41]:
+          - generic [ref=f25e43]: Components
+          - generic [ref=f25e44]: D4·52
+    - main [ref=f25e45]:
+      - generic [ref=f25e46]:
+        - heading "Bin wall — every bin6 of 6 demo units" [level=1] [ref=f25e47]:
+          - text: Bin wall — every bin
+          - generic [ref=f25e48]: 6 of 6 demo units
+        - generic [ref=f25e49]:
+          - article [ref=f25e50]:
+            - generic [aria-hidden] [ref=f25e51]: lap · A1-02
+            - figure "pl. A1-02" [ref=f25e52]:
+              - img "Zenbook 14 OLED — product photo" [ref=f25e53]
+            - heading "Zenbook 14 OLED" [level=3] [ref=f25e57]
+            - paragraph [ref=f25e58]: model UX3405MA
+            - table [ref=f25e59]:
+              - rowgroup [ref=f25e60]:
+                - row [ref=f25e61]:
+                  - rowheader "Memory" [ref=f25e62]
+                  - cell "16 GB LPDDR5" [ref=f25e63]
+                - row [ref=f25e64]:
+                  - rowheader "Display" [ref=f25e65]
+                  - cell "14\" 3K OLED 120 Hz" [ref=f25e66]
+                - row [ref=f25e67]:
+                  - rowheader "CPU" [ref=f25e68]
+                  - cell "Core Ultra 7 155H" [ref=f25e69]
+            - generic [ref=f25e70]:
+              - generic [ref=f25e71]: $1099.00
+              - generic [ref=f25e78]: low stock · 2
+            - button "Add to bin" [ref=f25e85]
+          - article [ref=f25e88]:
+            - generic [aria-hidden] [ref=f25e89]: lap · A1-01
+            - figure "pl. A1-01" [ref=f25e90]:
+              - img "ThinkPad X1 Carbon — product photo" [ref=f25e91]
+            - heading "ThinkPad X1 Carbon" [level=3] [ref=f25e95]
+            - paragraph [ref=f25e96]: model 21NX
+            - table [ref=f25e97]:
+              - rowgroup [ref=f25e98]:
+                - row [ref=f25e99]:
+                  - rowheader "Memory" [ref=f25e100]
+                  - cell "32 GB LPDDR5X" [ref=f25e101]
+                - row [ref=f25e102]:
+                  - rowheader "Display" [ref=f25e103]
+                  - cell "14\" 2.8K OLED" [ref=f25e104]
+                - row [ref=f25e105]:
+                  - rowheader "CPU" [ref=f25e106]
+                  - cell "Core Ultra 7 156H" [ref=f25e107]
+            - generic [ref=f25e108]:
+              - generic [ref=f25e109]: $1349.00
+              - generic [ref=f25e116]: in bin · 7
+            - button "Add to bin" [ref=f25e123]
+          - article [ref=f25e126]:
+            - generic [aria-hidden] [ref=f25e127]: lap · A1-06
+            - figure "pl. A1-06" [ref=f25e128]:
+              - img "Framework Laptop 16 — product photo" [ref=f25e129]
+            - heading "Framework Laptop 16" [level=3] [ref=f25e133]
+            - paragraph [ref=f25e134]: model FW16
+            - table [ref=f25e135]:
+              - rowgroup [ref=f25e136]:
+                - row [ref=f25e137]:
+                  - rowheader "Memory" [ref=f25e138]
+                  - cell "32 GB DDR5 · 2 slots" [ref=f25e139]
+                - row [ref=f25e140]:
+                  - rowheader "Display" [ref=f25e141]
+                  - cell "16\" 2560×1600" [ref=f25e142]
+                - row [ref=f25e143]:
+                  - rowheader "CPU" [ref=f25e144]
+                  - cell "Ryzen AI 9 HX 370" [ref=f25e145]
+            - generic [ref=f25e146]:
+              - generic [ref=f25e147]: $1467.00
+              - generic [ref=f25e154]: low stock · 3
+            - button "Add to bin" [ref=f25e161]
+          - article [ref=f25e164]:
+            - generic [aria-hidden] [ref=f25e165]: lap · A1-03
+            - figure "pl. A1-03" [ref=f25e166]:
+              - img "MacBook Pro 14 — product photo" [ref=f25e167]
+            - heading "MacBook Pro 14" [level=3] [ref=f25e171]
+            - paragraph [ref=f25e172]: model MRX34
+            - table [ref=f25e173]:
+              - rowgroup [ref=f25e174]:
+                - row [ref=f25e175]:
+                  - rowheader "Memory" [ref=f25e176]
+                  - cell "24 GB unified" [ref=f25e177]
+                - row [ref=f25e178]:
+                  - rowheader "Display" [ref=f25e179]
+                  - cell "14.2\" Liquid XDR" [ref=f25e180]
+                - row [ref=f25e181]:
+                  - rowheader "CPU" [ref=f25e182]
+                  - cell "M4 Pro 12-core" [ref=f25e183]
+            - generic [ref=f25e184]:
+              - generic [ref=f25e185]: $1999.00
+              - generic [ref=f25e192]: low stock · 4
+            - button "Add to bin" [ref=f25e199]
+          - article [ref=f25e202]:
+            - generic [aria-hidden] [ref=f25e203]: aud · C3-12
+            - figure "pl. C3-12" [ref=f25e204]:
+              - img "Sony A7 TS5 Wireless — product photo" [ref=f25e205]
+            - heading "Sony A7 TS5 Wireless" [level=3] [ref=f25e209]
+            - paragraph [ref=f25e210]: model WH-1000XM5
+            - table [ref=f25e211]:
+              - rowgroup [ref=f25e212]:
+                - row [ref=f25e213]:
+                  - rowheader "Feature" [ref=f25e214]
+                  - cell "ANC · 40 h · LDAC" [ref=f25e215]
+                - row [ref=f25e216]:
+                  - rowheader "Driver" [ref=f25e217]
+                  - cell "8.4 mm" [ref=f25e218]
+                - row [ref=f25e219]:
+                  - rowheader "Type" [ref=f25e220]
+                  - cell "Closed · wireless" [ref=f25e221]
+            - generic [ref=f25e222]:
+              - generic [ref=f25e223]: $329.00
+              - generic [ref=f25e229]: in bin · 12
+            - button "Add to bin" [ref=f25e236]
+          - article [ref=f25e239]:
+            - generic [aria-hidden] [ref=f25e240]: pho · B2-07
+            - figure "pl. B2-07" [ref=f25e241]:
+              - img "Pixel 9 Pro — product photo" [ref=f25e242]
+            - heading "Pixel 9 Pro" [level=3] [ref=f25e246]
+            - paragraph [ref=f25e247]: model GTP9S
+            - table [ref=f25e248]:
+              - rowgroup [ref=f25e249]:
+                - row [ref=f25e250]:
+                  - rowheader "Memory" [ref=f25e251]
+                  - cell "16 GB · Tensor G4" [ref=f25e252]
+                - row [ref=f25e253]:
+                  - rowheader "Display" [ref=f25e254]
+                  - cell "6.3\" LTPO 120 Hz" [ref=f25e255]
+                - row [ref=f25e256]:
+                  - rowheader "Radio" [ref=f25e257]
+                  - cell "5G · eSIM" [ref=f25e258]
+            - generic [ref=f25e259]:
+              - generic [ref=f25e260]: $999.00
+              - generic [ref=f25e266]: bin empty · 0
+            - generic [ref=f25e272]:
+              - button "Bin empty" [disabled]
+        - generic [ref=f25e274]:
+          - heading "The assistant · turn 41" [level=2] [ref=f25e275]
+          - paragraph [ref=f25e278]: “Two units in bin A1 decode under your budget band — search set to 1·2·0·0. The Zenbook 14 wins on screen; the Framework on repairability. Prices and stock below came from this turn’s catalog calls, not from my weights.”
+          - paragraph [ref=f25e284]: "trail: search_products(budget≤1200, ram≥16) → get_product ×2 → compare_products → add_to_cart"
+          - generic [ref=f25e285]:
+            - button "Add Zenbook 14 — $1,099.00" [ref=f25e286]
+            - link "Review bill & pay" [ref=f25e287] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f25e290]: yellow = human only · assistant cannot press it
+  - button "Open Next.js Dev Tools" [ref=f25e296] [cursor=pointer]

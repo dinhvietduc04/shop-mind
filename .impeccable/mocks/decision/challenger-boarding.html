@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Pass & Gate Board — ShopMind first viewport</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;overflow:hidden;background:#f4f5f7;color:#16181d;font-family:system-ui,'Segoe UI',Arial,sans-serif}
+.top{position:absolute;top:0;left:0;right:0;height:64px;background:#16181d;color:#fff;display:flex;align-items:center;padding:0 28px;gap:22px;font-size:13px;letter-spacing:.06em}
+.top .b{font-weight:800;letter-spacing:.2em}
+.top .on{color:#0b84d8;font-weight:700}
+.top .r{margin-left:auto;display:flex;gap:18px;align-items:center}
+.top .gate{background:#e8b900;color:#16181d;font-weight:800;padding:7px 12px;border-radius:4px;font-variant-numeric:tabular-nums}
+.pass{position:absolute;left:28px;top:92px;width:560px;background:#fff;border-radius:14px;box-shadow:0 4px 18px rgba(22,24,29,.12);overflow:hidden}
+.pass h4{font-size:11px;letter-spacing:.3em;text-transform:uppercase;padding:16px 22px 0;color:#6b7280}
+.segs{display:flex;padding:14px 22px 18px;gap:18px}
+.seg{border-left:2px solid #e5e7eb;padding-left:12px;font-size:12px}
+.seg:first-child{border-left:0;padding-left:0}
+.seg b{display:block;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.seg span{color:#6b7280;letter-spacing:.14em;text-transform:uppercase;font-size:10px}
+.tear{border-top:2px dashed #cbd2da;position:relative}
+.tear:after,.tear:before{content:'';position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:#f4f5f7}
+.tear:before{left:-10px}.tear:after{right:-10px}
+.scan{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em}
+.barcode{height:38px;background:repeating-linear-gradient(90deg,#16181d 0 2px,#fff 2px 4px,#16181d 4px 5px,#fff 5px 9px,#16181d 9px 12px,#fff 12px 14px)}
+.items{padding:0 22px 16px;font-size:13px}
+.item{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eef0f3;font-variant-numeric:tabular-nums}
+.item .sku{color:#6b7280;font-family:ui-monospace,monospace;font-size:11px}
+.payrow{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:#16181d;color:#fff}
+.payrow .t{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.payrow .btn{background:#e8b900;color:#16181d;font-weight:800;padding:12px 20px;border-radius:8px;letter-spacing:.08em;font-size:13px}
+.passnote{font-size:11px;color:#6b7280;padding:10px 22px}
+.board{position:absolute;right:28px;top:92px;left:632px;bottom:180px;background:#fff;border-radius:14px;box-shadow:0 4px 18px rgba(22,24,29,.1);overflow:hidden}
+.board h4{padding:16px 22px 10px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6b7280;display:flex;justify-content:space-between}
+.board h4 span{font-variant-numeric:tabular-nums;color:#16181d}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6b7280;text-align:left;padding:8px 22px;border-bottom:1px solid #e5e7eb}
+td{padding:12px 22px;border-bottom:1px solid #f1f3f5}
+.st{font-weight:800;font-size:11px;letter-spacing:.1em;padding:5px 10px;border-radius:4px;display:inline-block;text-transform:uppercase}
+.st.paid{background:#0e7a46;color:#fff}.st.proc{background:#0b84d8;color:#fff}
+.st.chg{background:#e8b900;color:#16181d;box-shadow:0 0 0 3px #e8b90040}
+.st.fail{background:#d43d2a;color:#fff}
+tr.lit{background:#fdf6df}
+.agent{position:absolute;right:28px;bottom:24px;left:632px;background:#0b84d8;color:#fff;border-radius:14px;padding:16px 20px;font-size:14px;line-height:1.6}
+.agent b{letter-spacing:.16em;font-size:11px;text-transform:uppercase;opacity:.85}
+.agent .trail{font-family:ui-monospace,monospace;font-size:11px;opacity:.9;margin-top:6px}
+</style></head><body>
+<div class="top"><span class="b">SHOPMIND</span><span class="on">Catalog</span><span>Cart · 2</span><span>Orders</span><span>✦ Assistant</span><div class="r"><span>customer@shopmind.local</span><span class="gate">Q-4417 · 00:18:44</span></div></div>
+<div class="pass">
+  <h4>Quote · one human passenger only</h4>
+  <div class="segs"><div class="seg"><span>Order</span><b>Q-4417</b></div><div class="seg"><span>Prepared</span><b>14:02</b></div><div class="seg"><span>Expires</span><b>14:32</b></div><div class="seg"><span>Gate</span><b>PSP-HOSTED</b></div></div>
+  <div class="tear"></div>
+  <div class="items">
+    <div class="item"><span>Zenbook 14 OLED ×1 <span class="sku">AS-Z14-OLED</span></span><span>$1,099.00</span></div>
+    <div class="item"><span>Sony A7 TS5 ×1 <span class="sku">SN-A7TS5</span></span><span>$329.00</span></div>
+    <div class="item"><span>Subtotal $1,428.00 · Shipping FREE (≥$500)</span><span></span></div>
+  </div>
+  <div class="payrow"><div><div style="font-size:10px;letter-spacing:.24em;opacity:.7">TOTAL · PRICED BY BACKEND</div><div class="t">$1,428.00</div></div><span class="btn">Review &amp; Pay →</span></div>
+  <div class="scan"><div>RES 34902871 · SN Q44172026 · LOT ELEC-026</div><div class="barcode" style="width:220px"></div></div>
+  <div class="passnote">Assistant may create this pass. The yellow gate is human-only: payment happens on the PSP-hosted page.</div>
+</div>
+<div class="board"><h4>Orders — gate board · sorted by time<span>updated 6s ago</span></h4>
+<table><tr><th>Seq</th><th>Items</th><th>Total</th><th>Status</th><th>Changed</th></tr>
+<tr><td>8844</td><td>Zenbook 14 OLED ×1</td><td>$1,099.00</td><td><span class="st proc">Processing</span></td><td>14:20</td></tr>
+<tr class="lit"><td>8843</td><td>Sony A7 TS5 ×2</td><td>$658.00</td><td><span class="st chg">Gate: Shipping → Out for delivery</span></td><td>13:58 · lit until seen</td></tr>
+<tr><td>8842</td><td>ThinkPad X1C ×1</td><td>$1,349.00</td><td><span class="st paid">Paid</span></td><td>13:41</td></tr>
+<tr><td>8841</td><td>Pixel 9 Pro ×1</td><td>$999.00</td><td><span class="st fail">Payment failed</span></td><td>12:02</td></tr>
+<tr><td>8840</td><td>MacBook Pro ×1</td><td>$1,999.00</td><td><span class="st paid">Paid</span></td><td>11:47</td></tr>
+<tr><td>Q-4417</td><td>Your quote · 2 items</td><td>$1,428.00</td><td><span class="st chg">Awaiting human payment</span></td><td>14:02</td></tr></table></div>
+<div class="agent"><b>✦ Assistant · this turn</b><br>“Cart built and quoted. Board shows 8843 just moved — reranked in place, lit until you view it. Totals above come from the backend price recompute.”
+<div class="trail">tool trail: search_products → add_to_cart ×2 → create_quote · figures traceable to these calls</div></div>
+</body></html>

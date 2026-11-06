@@ -1,0 +1,80 @@
+- generic [active] [ref=f23e1]:
+  - banner [ref=f23e2]:
+    - generic [ref=f23e3]:
+      - link "ShopMind cat. elec-026" [ref=f23e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f23e5]: ShopMind
+        - generic [ref=f23e6]: cat. elec-026
+      - navigation [ref=f23e7]:
+        - link "Catalog" [ref=f23e8] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f23e9] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f23e10] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f23e11] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f23e13]
+      - generic [ref=f23e14]:
+        - 'generic "Cart: 0 items, total $0.00" [ref=f23e15]': empty
+        - button "Switch to night (dark) theme" [ref=f23e22]
+  - generic [ref=f23e25]:
+    - complementary [ref=f23e26]:
+      - heading "Bins" [level=2] [ref=f23e27]
+      - generic [ref=f23e28]:
+        - button "ALL Every bin" [ref=f23e29]:
+          - generic [ref=f23e30]: ALL
+          - generic [ref=f23e31]: Every bin
+        - button "Laptops A1·41" [ref=f23e32]:
+          - generic [ref=f23e34]: Laptops
+          - generic [ref=f23e35]: A1·41
+        - button "Smartphones B2·33" [ref=f23e36]:
+          - generic [ref=f23e38]: Smartphones
+          - generic [ref=f23e39]: B2·33
+        - button "Audio C3·27" [ref=f23e40]:
+          - generic [ref=f23e42]: Audio
+          - generic [ref=f23e43]: C3·27
+        - button "Displays C5·18" [ref=f23e44]:
+          - generic [ref=f23e46]: Displays
+          - generic [ref=f23e47]: C5·18
+        - button "Components D4·52" [ref=f23e48]:
+          - generic [ref=f23e50]: Components
+          - generic [ref=f23e51]: D4·52
+      - generic [ref=f23e52]:
+        - generic [ref=f23e53]:
+          - heading "Stock dots" [level=3] [ref=f23e54]
+          - list [ref=f23e55]:
+            - listitem [ref=f23e56]: 5+ in bin
+            - listitem [ref=f23e58]: 1–4 low
+            - listitem [ref=f23e60]: 0 empty
+        - generic [ref=f23e62]:
+          - heading "Value ladder" [level=3] [ref=f23e63]
+          - generic [ref=f23e70]:
+            - generic "0 = black" [ref=f23e71]
+            - generic "1 = brown" [ref=f23e72]
+            - generic "2 = red" [ref=f23e73]
+            - generic "3 = orange" [ref=f23e74]
+            - generic "4 = yellow" [ref=f23e75]
+            - generic "5 = green" [ref=f23e76]
+            - generic "6 = blue" [ref=f23e77]
+            - generic "7 = violet" [ref=f23e78]
+            - generic "8 = grey" [ref=f23e79]
+            - generic "9 = white" [ref=f23e80]
+          - paragraph [ref=f23e81]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f23e82]:
+          - strong [ref=f23e84]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f23e85]:
+      - generic [ref=f23e86]:
+        - heading "The assistant" [level=1] [ref=f23e87]
+        - paragraph [ref=f23e88]: F0 ships the drawer demo below. The full chat surface — streaming replies, attribute-elicitation cards, and per-turn tool trails — lands at FRONTEND_PLAN phase F4, driven through the same contract.
+        - generic [ref=f23e90]:
+          - heading "The assistant · turn 41" [level=2] [ref=f23e91]
+          - paragraph [ref=f23e94]: “Two units in bin A1 decode under your budget band — search set to 1·2·0·0. The Zenbook 14 wins on screen; the Framework on repairability. Prices and stock below came from this turn’s catalog calls, not from my weights.”
+          - paragraph [ref=f23e100]: "trail: search_products(budget≤1200, ram≥16) → get_product ×2 → compare_products → add_to_cart"
+          - generic [ref=f23e101]:
+            - button "Add Zenbook 14 — $1,099.00" [ref=f23e102]
+            - link "Review bill & pay" [ref=f23e103] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f23e106]: yellow = human only · assistant cannot press it
+  - button "Open Next.js Dev Tools" [ref=f23e112] [cursor=pointer]

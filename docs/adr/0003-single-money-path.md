@@ -1,0 +1,3 @@
+# Delete the V1 direct checkout — exactly one money path
+
+V1's `POST /api/checkout` charged synchronously inside the request; the Assist model requires quote → Bill → human pays on a hosted page. We considered keeping the direct endpoint dev-flag-gated as a test convenience, and decided to delete it instead: every order goes through the PaymentSession flow, and the equivalent test convenience comes from FakePsp's Pay/Cancel buttons (dev) and Stripe **test-mode** sessions (CI/staging). A second, test-only money path would punch a hole in the Assist invariant ("no PaymentSucceeded without a human on the hosted page") and double the idempotency, rate-limit, and stock-guard surface.

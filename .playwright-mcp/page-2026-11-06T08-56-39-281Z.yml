@@ -1,0 +1,24 @@
+- generic [active] [ref=f19e1]:
+  - alert [ref=f19e2]
+  - main [ref=f19e3]:
+    - generic [ref=f19e4]:
+      - generic [ref=f19e5]:
+        - generic [ref=f19e6]: FakePsp · hosted session
+        - generic [ref=f19e10]: demo provider
+      - generic [ref=f19e11]:
+        - paragraph [ref=f19e12]: merchant · shopmind · order SM-2026-OY3QQA6G
+        - heading "$1,099.00 due" [level=1] [ref=f19e13]
+        - list [ref=f19e18]:
+          - listitem [ref=f19e19]:
+            - generic [ref=f19e20]: MacBook Air M3 ×1
+            - generic [ref=f19e21]: $1,099.00
+          - listitem [ref=f19e22]:
+            - generic [ref=f19e23]: Shipping
+            - generic [ref=f19e24]: free
+        - generic [ref=f19e35]:
+          - strong [ref=f19e36]: Payment succeeded.
+          - text: Stock committed, cart cleared, order SM-2026-OY3QQA6G is
+          - emphasis [ref=f19e37]: Paid
+          - text: . The webhook consumer in the real build makes this transition once (idempotent).
+          - generic [ref=f19e38]: txn MOCK-TXN-fe0dy65l-ifqcdauv
+        - paragraph [ref=f19e31]: "no card form: this mock confirms instantly (paymentfail mode simulates a decline). real stripe checkout collects the card on stripe's page — card data never touches ShopMind (Assist level)."

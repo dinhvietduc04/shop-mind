@@ -1,0 +1,3 @@
+# Conditional status updates distinguish replay from conflict
+
+Order state transitions are conditional updates (`WHERE status=@expected`), which makes "0 rows affected" ambiguous. We decided on an outcome matrix instead of blanket success-by-once: re-read the status — equal to target → idempotent success; *downstream* on the mainline rank `Pending < Paid < Processing < Shipped < Delivered` → success + warning (never regress); a *conflicting* terminal state (`Cancelled`/`PaymentFailed`, which are side branches, not ranked) receiving `Paid` → **Payment Anomaly**: no transition, a `PaymentAnomalies` row recorded, an outbox alert emitted, and a human decides the refund. Silently succeeding the last case was the tempting simplicity we deliberately gave up.

@@ -1,0 +1,100 @@
+- generic [active] [ref=f18e1]:
+  - alert [ref=f18e2]
+  - banner [ref=f18e3]:
+    - generic [ref=f18e4]:
+      - link "ShopMind cat. elec-026" [ref=f18e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f18e6]: ShopMind
+        - generic [ref=f18e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f18e8]'
+      - navigation [ref=f18e14]:
+        - link "Catalog" [ref=f18e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f18e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f18e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f18e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f18e20]
+      - generic [ref=f18e21]:
+        - 'generic "Cart: 1 items, subtotal $1,099.00 — shipping computed on the bill" [ref=f18e22]': $1,099.00
+        - button "Switch to night (dark) theme" [ref=f18e29]
+  - generic [ref=f18e32]:
+    - complementary [ref=f18e33]:
+      - heading "Bins" [level=2] [ref=f18e34]
+      - generic [ref=f18e35]:
+        - button "ALL Every bin 10" [ref=f18e119]:
+          - generic [ref=f18e37]: ALL
+          - generic [ref=f18e38]: Every bin
+          - generic [ref=f18e39]: "10"
+        - button "Laptops LEN·2" [ref=f18e120]:
+          - generic [ref=f18e122]: Laptops
+          - generic [ref=f18e123]: LEN·2
+        - button "Smartphones SAM·2" [ref=f18e124]:
+          - generic [ref=f18e126]: Smartphones
+          - generic [ref=f18e127]: SAM·2
+        - button "Monitors DEL·1" [ref=f18e128]:
+          - generic [ref=f18e130]: Monitors
+          - generic [ref=f18e131]: DEL·1
+        - button "Keyboards LOG·1" [ref=f18e132]:
+          - generic [ref=f18e134]: Keyboards
+          - generic [ref=f18e135]: LOG·1
+        - button "Mice LOG·1" [ref=f18e136]:
+          - generic [ref=f18e138]: Mice
+          - generic [ref=f18e139]: LOG·1
+        - button "Headphones SNY·1" [ref=f18e140]:
+          - generic [ref=f18e142]: Headphones
+          - generic [ref=f18e143]: SNY·1
+        - button "Components NV-·1" [ref=f18e144]:
+          - generic [ref=f18e146]: Components
+          - generic [ref=f18e147]: NV-·1
+        - button "Accessories ACC·1" [ref=f18e148]:
+          - generic [ref=f18e150]: Accessories
+          - generic [ref=f18e151]: ACC·1
+      - generic [ref=f18e41]:
+        - generic [ref=f18e42]:
+          - heading "Stock dots" [level=3] [ref=f18e43]
+          - list [ref=f18e44]:
+            - listitem [ref=f18e45]: 5+ in bin
+            - listitem [ref=f18e47]: 1–4 low
+            - listitem [ref=f18e49]: 0 empty
+        - generic [ref=f18e51]:
+          - heading "Value ladder" [level=3] [ref=f18e52]
+          - generic [ref=f18e59]:
+            - generic "0 = black" [ref=f18e60]
+            - generic "1 = brown" [ref=f18e61]
+            - generic "2 = red" [ref=f18e62]
+            - generic "3 = orange" [ref=f18e63]
+            - generic "4 = yellow" [ref=f18e64]
+            - generic "5 = green" [ref=f18e65]
+            - generic "6 = blue" [ref=f18e66]
+            - generic "7 = violet" [ref=f18e67]
+            - generic "8 = grey" [ref=f18e68]
+            - generic "9 = white" [ref=f18e69]
+          - paragraph [ref=f18e70]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f18e71]:
+          - strong [ref=f18e73]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f18e74]:
+      - generic [ref=f18e75]:
+        - heading "The bill" [level=1] [ref=f18e76]
+        - article [ref=f18e77]:
+          - generic [ref=f18e78]:
+            - generic [ref=f18e79]: quote SM-2026-OY3QQA6G · stock reserved
+            - generic [ref=f18e80]:
+              - text: expires in
+              - generic [ref=f18e155]: 29:58
+          - generic [ref=f18e156]:
+            - paragraph [ref=f18e157]:
+              - text: Reserved for
+              - strong [ref=f18e158]: Demo Customer
+              - text: ", 123 Catalog Lane, Vienna. Prices were recomputed by the API at quote time — this bill cannot change. If stock sells out before you pay, the reservation releases."
+            - generic [ref=f18e159]:
+              - generic [ref=f18e160]: TOTAL
+              - text: $1,099.00
+          - generic [ref=f18e170]:
+            - link "Pay on hosted page" [ref=f18e171] [cursor=pointer]:
+              - /url: /psp/cn7n1qv2-8dipleuc4j8c9d0z-d80drzn5
+            - generic [ref=f18e175]: human-only · opens the psp session
+          - paragraph [ref=f18e176]: "dev note: the hosted page is the FakePsp provider; Stripe swaps in behind the same IPaymentProvider seam (backend plan B5)"

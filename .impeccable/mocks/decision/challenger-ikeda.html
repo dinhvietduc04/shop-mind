@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Data-matics Field — ShopMind first viewport</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;overflow:hidden;background:#fff;color:#000;font-family:'Courier New',monospace}
+.bars{position:absolute;left:0;right:0;top:0;height:180px;display:flex;align-items:flex-end;gap:2px;padding:0}
+.bars i{width:3px;background:#000;display:block}
+.hdr{position:absolute;top:190px;left:40px;right:40px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.2em;border-top:1px solid #000;border-bottom:1px solid #000;padding:8px 0;text-transform:uppercase}
+.cols{position:absolute;top:230px;left:40px;right:40px;bottom:120px;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#000;border:1px solid #000}
+.c{background:#fff;padding:14px;font-size:11px;line-height:1.7;position:relative}
+.c.focus{background:#000;color:#fff}
+.c .idx{font-size:9px;letter-spacing:.25em}
+.c .n{font-size:15px;margin:8px 0 2px;white-space:nowrap;overflow:hidden}
+.c .d{display:flex;justify-content:space-between}
+.c .p{font-size:18px;letter-spacing:.05em}
+.tick{position:absolute;bottom:8px;left:14px;right:14px;height:14px;display:flex;gap:2px}
+.tick i{width:2px;background:#000}
+.c.focus .tick i{background:#fff}
+.sine{position:absolute;left:0;right:0;bottom:60px;height:40px}
+.sine svg{width:100%;height:100%}
+.foot{position:absolute;left:40px;right:40px;bottom:18px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.3em;text-transform:uppercase;border-top:1px solid #000;padding-top:8px}
+.agent{position:absolute;left:40px;right:40px;bottom:0;height:52px;display:flex;align-items:center;gap:24px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.agent .sel{background:#000;color:#fff;padding:4px 10px}
+</style></head><body>
+<div class="bars">
+<i style="height:120px"></i><i style="height:40px"></i><i style="height:180px"></i><i style="height:60px"></i><i style="height:90px"></i><i style="height:30px"></i><i style="height:150px"></i><i style="height:70px"></i><i style="height:110px"></i><i style="height:45px"></i><i style="height:170px"></i><i style="height:80px"></i><i style="height:55px"></i><i style="height:130px"></i><i style="height:35px"></i><i style="height:95px"></i><i style="height:160px"></i><i style="height:50px"></i><i style="height:100px"></i><i style="height:140px"></i><i style="height:65px"></i><i style="height:175px"></i><i style="height:42px"></i><i style="height:88px"></i><i style="height:126px"></i><i style="height:33px"></i><i style="height:155px"></i><i style="height:77px"></i><i style="height:105px"></i><i style="height:25px"></i><i style="height:145px"></i><i style="height:68px"></i><i style="height:118px"></i><i style="height:58px"></i><i style="height:180px"></i><i style="height:38px"></i><i style="height:98px"></i><i style="height:72px"></i><i style="height:148px"></i><i style="height:52px"></i><i style="height:82px;background:#fff"></i><i style="height:165px"></i><i style="height:28px"></i><i style="height:112px"></i><i style="height:86px"></i><i style="height:138px"></i><i style="height:48px"></i><i style="height:178px"></i><i style="height:62px"></i><i style="height:94px"></i>
+</div>
+<div class="hdr"><span>SHOPMIND // CATALOG.DAT · 171 RECORDS</span><span>FRAME 0042-118 · PRICE INDEX 0.94</span><span>STOCK FIELD ±2σ</span></div>
+<div class="cols">
+  <div class="c"><div class="idx">REC 0001 · LAPTOPS</div><div class="n">THINKPAD X1 CARBON</div><div class="d"><span>RAM</span><span>32GB</span></div><div class="d"><span>STK</span><span>0007</span></div><div class="p">$1,349.00</div><div class="tick"><i></i><i style="height:12px"></i><i></i><i style="height:8px"></i><i></i><i></i><i style="height:10px"></i><i></i></div></div>
+  <div class="c focus"><div class="idx">REC 0002 · LAPTOPS</div><div class="n">ZENBOOK 14 OLED</div><div class="d"><span>RAM</span><span>16GB</span></div><div class="d"><span>STK</span><span>0002</span></div><div class="p">$1,099.00</div><div class="d"><span>BUDGET&nbsp;1200</span><span>MATCH</span></div><div class="tick"><i></i><i></i><i style="height:12px"></i><i></i><i style="height:6px"></i><i></i><i></i><i style="height:10px"></i></div></div>
+  <div class="c"><div class="idx">REC 0003 · LAPTOPS</div><div class="n">MACBOOK PRO 14</div><div class="d"><span>RAM</span><span>24GB</span></div><div class="d"><span>STK</span><span>0004</span></div><div class="p">$1,999.00</div><div class="tick"><i style="height:9px"></i><i></i><i></i><i style="height:12px"></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="c"><div class="idx">REC 0004 · AUDIO</div><div class="n">A7 TS5 WIRELESS</div><div class="d"><span>ANC</span><span>YES</span></div><div class="d"><span>STK</span><span>0012</span></div><div class="p">$329.00</div><div class="tick"><i></i><i style="height:7px"></i><i></i><i></i><i style="height:11px"></i><i></i><i></i><i></i></div></div>
+  <div class="c"><div class="idx">REC 0005 · PHONES</div><div class="n">PIXEL 9 PRO</div><div class="d"><span>PXI</span><span>128GB</span></div><div class="d"><span>STK</span><span>0000</span></div><div class="p">$999.00</div><div class="tick"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</div>
+<div class="sine"><svg viewBox="0 0 1360 40" preserveAspectRatio="none"><path d="M0 20 Q 42 0 85 20 T 170 20 T 255 20 T 340 20 T 425 20 T 510 20 T 595 20 T 680 20 T 765 20 T 850 20 T 935 20 T 1020 20 T 1105 20 T 1190 20 T 1275 20 T 1360 20" fill="none" stroke="#000" stroke-width="1"/></svg></div>
+<div class="foot"><div>AGENT ▸ REC 0002 SELECTED — FIGURES VERIFIED THIS FRAME</div><div class="agent"><span class="sel">ADD_TO_CART</span><span>COMPARE(0001,0002)</span><span class="sel" style="border:1px solid #000;background:#fff;color:#000">HUMAN_PAYS ▸ OUT_OF_FRAME</span></div><div>SHOPMIND.DAT</div></div>
+</body></html>

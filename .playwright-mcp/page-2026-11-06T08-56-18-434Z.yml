@@ -1,0 +1,81 @@
+- generic [active] [ref=f18e1]:
+  - alert [ref=f18e2]
+  - banner [ref=f18e3]:
+    - generic [ref=f18e4]:
+      - link "ShopMind cat. elec-026" [ref=f18e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f18e6]: ShopMind
+        - generic [ref=f18e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f18e8]'
+      - navigation [ref=f18e14]:
+        - link "Catalog" [ref=f18e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f18e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f18e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f18e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f18e20]
+      - generic [ref=f18e21]:
+        - 'generic "Cart: 1 items, subtotal $1,099.00 — shipping computed on the bill" [ref=f18e22]': $1,099.00
+        - button "Switch to night (dark) theme" [ref=f18e29]
+  - generic [ref=f18e32]:
+    - complementary [ref=f18e33]:
+      - heading "Bins" [level=2] [ref=f18e34]
+      - button "ALL Every bin ··" [ref=f18e36]:
+        - generic [ref=f18e37]: ALL
+        - generic [ref=f18e38]: Every bin
+        - generic [ref=f18e39]: ··
+      - generic [ref=f18e41]:
+        - generic [ref=f18e42]:
+          - heading "Stock dots" [level=3] [ref=f18e43]
+          - list [ref=f18e44]:
+            - listitem [ref=f18e45]: 5+ in bin
+            - listitem [ref=f18e47]: 1–4 low
+            - listitem [ref=f18e49]: 0 empty
+        - generic [ref=f18e51]:
+          - heading "Value ladder" [level=3] [ref=f18e52]
+          - generic [ref=f18e59]:
+            - generic "0 = black" [ref=f18e60]
+            - generic "1 = brown" [ref=f18e61]
+            - generic "2 = red" [ref=f18e62]
+            - generic "3 = orange" [ref=f18e63]
+            - generic "4 = yellow" [ref=f18e64]
+            - generic "5 = green" [ref=f18e65]
+            - generic "6 = blue" [ref=f18e66]
+            - generic "7 = violet" [ref=f18e67]
+            - generic "8 = grey" [ref=f18e68]
+            - generic "9 = white" [ref=f18e69]
+          - paragraph [ref=f18e70]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f18e71]:
+          - strong [ref=f18e73]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f18e74]:
+      - generic [ref=f18e75]:
+        - heading "The bill" [level=1] [ref=f18e76]
+        - article [ref=f18e77]:
+          - generic [ref=f18e78]:
+            - generic [ref=f18e79]: cart · 1 lines
+            - generic [ref=f18e80]: priced by the API · free ship ≥ $500.00
+          - list [ref=f18e81]:
+            - listitem [ref=f18e82]:
+              - img "No photo on file for plate APL-MBA-M3" [ref=f18e84]:
+                - generic [ref=f18e89]: pl. APL-MBA-M3 · photo not on file
+              - generic [ref=f18e92]:
+                - generic [ref=f18e93]: MacBook Air M3
+                - generic [ref=f18e94]: APL-MBA-M3 · ×1
+              - generic [ref=f18e105]: $1,099.00
+          - generic [ref=f18e106]:
+            - generic [ref=f18e107]:
+              - term [ref=f18e108]: Subtotal
+              - definition [ref=f18e109]: $1,099.00
+            - generic [ref=f18e110]:
+              - term [ref=f18e111]: Shipping
+              - definition [ref=f18e112]: free
+            - generic [ref=f18e113]:
+              - term [ref=f18e114]: Total
+              - definition [ref=f18e115]: $1,099.00
+          - generic [ref=f18e116]:
+            - button "Create quote — reserve stock" [ref=f18e117]
+            - generic [ref=f18e118]: assistant may press this · yellow may not

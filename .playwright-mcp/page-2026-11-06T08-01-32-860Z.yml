@@ -1,0 +1,91 @@
+- generic [active] [ref=f22e1]:
+  - banner [ref=f22e2]:
+    - generic [ref=f22e3]:
+      - link "ShopMind cat. elec-026" [ref=f22e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f22e5]: ShopMind
+        - generic [ref=f22e6]: cat. elec-026
+      - navigation [ref=f22e7]:
+        - link "Catalog" [ref=f22e8] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f22e9] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f22e10] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f22e11] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f22e13]
+      - generic [ref=f22e14]:
+        - 'generic "Cart: 0 items, total $0.00" [ref=f22e15]': empty
+        - button "Switch to night (dark) theme" [ref=f22e22]
+  - generic [ref=f22e25]:
+    - heading "UI kit" [level=1] [ref=f22e26]
+    - paragraph [ref=f22e27]: Every primitive in the resistor-code world, in every state it can hold. Hover and focus each control — the dashed outline is the focus ring.
+    - generic [ref=f22e28]:
+      - generic [ref=f22e29]:
+        - heading "Band ladder — the whole palette" [level=2] [ref=f22e30]
+        - generic [ref=f22e32]:
+          - generic [ref=f22e33]: black · 0
+          - generic [ref=f22e36]: brown · 1
+          - generic [ref=f22e39]: red · 2
+          - generic [ref=f22e42]: orange · 3
+          - generic [ref=f22e45]: yellow · 4
+          - generic [ref=f22e48]: green · 5
+          - generic [ref=f22e51]: blue · 6
+          - generic [ref=f22e54]: violet · 7
+          - generic [ref=f22e57]: grey · 8
+          - generic [ref=f22e60]: white · 9
+          - generic [ref=f22e63]: gold
+          - generic [ref=f22e66]: silver
+      - generic [ref=f22e69]:
+        - heading "Buttons — add, ghost, and the human-only yellow" [level=2] [ref=f22e70]
+        - generic [ref=f22e71]:
+          - button "Add to bin" [ref=f22e72]
+          - button "Ghost" [ref=f22e73]
+          - button "Review bill & pay" [ref=f22e74]
+          - button "Add (disabled)" [disabled]
+          - button "Ghost (disabled)" [disabled]
+      - generic [ref=f22e75]:
+        - heading "Price bands + stock dots" [level=2] [ref=f22e76]
+        - generic [ref=f22e77]:
+          - generic [ref=f22e78]:
+            - generic [ref=f22e79]: $1,099.00
+            - generic [ref=f22e86]: $329.00
+          - generic [ref=f22e92]:
+            - generic [ref=f22e93]: in bin · 7
+            - generic [ref=f22e99]: low stock · 2
+            - generic [ref=f22e105]: bin empty · 0
+      - generic [ref=f22e111]:
+        - heading "Plate slot — with photo on file, and empty fallback" [level=2] [ref=f22e112]
+        - generic [ref=f22e114]:
+          - figure "pl. A1-01" [ref=f22e115]:
+            - img "ThinkPad X1 Carbon — product photo" [ref=f22e116]
+          - img "No photo on file for plate A1-02" [ref=f22e120]:
+            - generic [ref=f22e125]: pl. A1-02 · photo not on file
+      - generic [ref=f22e128]:
+        - heading "Fields" [level=2] [ref=f22e129]
+        - generic [ref=f22e131]:
+          - generic [ref=f22e132]:
+            - generic [ref=f22e133]: Search
+            - textbox "Search" [ref=f22e134]:
+              - /placeholder: 16 GB laptop
+          - generic [ref=f22e135]:
+            - generic [ref=f22e136]: Budget
+            - textbox "Budget" [ref=f22e137]: "1200"
+          - generic [ref=f22e138]:
+            - generic [ref=f22e139]: Quantity
+            - textbox "Quantity Bin holds 2 — not 5" [ref=f22e140]: "5"
+            - alert [ref=f22e141]: Bin holds 2 — not 5
+      - generic [ref=f22e142]:
+        - heading "States — loading, empty, error" [level=2] [ref=f22e143]
+        - generic [ref=f22e145]:
+          - generic [ref=f22e150]:
+            - heading "No units match this filter" [level=3] [ref=f22e151]
+            - paragraph [ref=f22e153]: Clear a band and try again — the bins will wait.
+          - alert [ref=f22e154]:
+            - generic [ref=f22e156]:
+              - strong [ref=f22e157]: Redis cache offline.
+              - text: Serving from Postgres — reads are slower, prices stay live. No action needed.
+      - link "Back to the catalog" [ref=f22e159] [cursor=pointer]:
+        - /url: /
+  - button "Open Next.js Dev Tools" [ref=f22e167] [cursor=pointer]
