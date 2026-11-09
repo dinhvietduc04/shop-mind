@@ -1,0 +1,247 @@
+- generic [ref=f96e1]:
+  - alert [ref=f96e2]
+  - banner [ref=f96e3]:
+    - generic [ref=f96e4]:
+      - link "ShopMind cat. elec-026" [ref=f96e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f96e6]: ShopMind
+        - generic [ref=f96e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f96e8]'
+      - navigation [ref=f96e14]:
+        - link "Catalog" [ref=f96e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f96e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f96e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f96e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f96e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f96e21]
+      - generic [ref=f96e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f96e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f96e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f96e30]
+  - main [ref=f96e34]:
+    - heading "The assistant" [level=1] [ref=f96e35]
+    - paragraph [ref=f96e36]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f96e37]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f96e38]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f96e40] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f96e42]:
+      - generic [ref=f96e43]:
+        - heading "The assistant" [level=2] [ref=f96e44]
+        - generic [ref=f96e47]:
+          - text: turn 8/8
+          - button "new" [ref=f96e48]
+      - generic [ref=f96e49]:
+        - paragraph [ref=f96e69]: compare laptops under $1600
+        - generic [ref=f96e70]:
+          - paragraph [ref=f96e71]: "Side by side, from this turn's reads (turn 1): MacBook Air M3 $1099.00 vs ThinkPad X1 Carbon Gen 11 $1499.00. Say \"add it\" for the top one, or \"quote\" when the bin looks right."
+          - 'generic "Tools run this turn: search_products, compare_products" [ref=f96e72]':
+            - generic "category=laptops, price<=1600" [ref=f96e73]:
+              - text: search_products
+              - generic [ref=f96e76]: (category=laptops, price<=1600)
+            - generic "APL-MBA-M3 vs LEN-X1C-G11" [ref=f96e77]:
+              - text: compare_products
+              - generic [ref=f96e80]: (APL-MBA-M3 vs LEN-X1C-G11)
+          - table [ref=f96e81]:
+            - rowgroup [ref=f96e82]:
+              - row [ref=f96e83]:
+                - columnheader "attribute" [ref=f96e84]
+                - columnheader [ref=f96e85]:
+                  - text: MacBook Air M3
+                  - generic [ref=f96e86]: $1,099.00
+                - columnheader [ref=f96e88]:
+                  - text: ThinkPad X1 Carbon Gen 11
+                  - generic [ref=f96e89]: $1,499.00
+            - rowgroup [ref=f96e91]:
+              - row [ref=f96e92]:
+                - cell "stock" [ref=f96e93]
+                - cell "19 in bin" [ref=f96e94]
+                - cell "25 in bin" [ref=f96e95]
+              - row [ref=f96e96]:
+                - cell "ram gb" [ref=f96e97]
+                - cell "8" [ref=f96e98]
+                - cell "16" [ref=f96e99]
+              - row [ref=f96e100]:
+                - cell "storage gb" [ref=f96e101]
+                - cell "256" [ref=f96e102]
+                - cell "512" [ref=f96e103]
+              - row [ref=f96e104]:
+                - cell "screen in" [ref=f96e105]
+                - cell "13.6" [ref=f96e106]
+                - cell "14" [ref=f96e107]
+              - row [ref=f96e108]:
+                - cell "cpu" [ref=f96e109]
+                - cell "Apple M3" [ref=f96e110]
+                - cell "Intel Core i7" [ref=f96e111]
+              - row [ref=f96e112]:
+                - cell "weight kg" [ref=f96e113]
+                - cell "1.24" [ref=f96e114]
+                - cell "1.12" [ref=f96e115]
+              - row [ref=f96e116]:
+                - cell "thunderbolt" [ref=f96e117]
+                - cell "—" [ref=f96e118]
+                - cell "true" [ref=f96e119]
+        - paragraph [ref=f96e121]: anything else in the laptop bin?
+        - generic [ref=f96e122]:
+          - paragraph [ref=f96e123]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 2): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e124]':
+            - generic "category=laptops, price<=1600" [ref=f96e125]:
+              - text: search_products
+              - generic [ref=f96e128]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e129]:
+              - text: get_product
+              - generic [ref=f96e132]: (top=APL-MBA-M3)
+          - generic [ref=f96e133]:
+            - generic [ref=f96e134]:
+              - generic [ref=f96e135]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e142] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e143]: $1,099.00
+              - paragraph [ref=f96e154]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e155]
+            - generic [ref=f96e156]:
+              - generic [ref=f96e157]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e164] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e165]: $1,499.00
+              - paragraph [ref=f96e176]: next in deterministic price order
+              - button "have it add this" [ref=f96e177]
+        - paragraph [ref=f96e179]: anything else in the laptop bin?
+        - generic [ref=f96e180]:
+          - paragraph [ref=f96e181]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 3): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e182]':
+            - generic "category=laptops, price<=1600" [ref=f96e183]:
+              - text: search_products
+              - generic [ref=f96e186]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e187]:
+              - text: get_product
+              - generic [ref=f96e190]: (top=APL-MBA-M3)
+          - generic [ref=f96e191]:
+            - generic [ref=f96e192]:
+              - generic [ref=f96e193]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e200] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e201]: $1,099.00
+              - paragraph [ref=f96e212]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e213]
+            - generic [ref=f96e214]:
+              - generic [ref=f96e215]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e222] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e223]: $1,499.00
+              - paragraph [ref=f96e234]: next in deterministic price order
+              - button "have it add this" [ref=f96e235]
+        - paragraph [ref=f96e237]: anything else in the laptop bin?
+        - generic [ref=f96e238]:
+          - paragraph [ref=f96e239]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 4): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e240]':
+            - generic "category=laptops, price<=1600" [ref=f96e241]:
+              - text: search_products
+              - generic [ref=f96e244]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e245]:
+              - text: get_product
+              - generic [ref=f96e248]: (top=APL-MBA-M3)
+          - generic [ref=f96e249]:
+            - generic [ref=f96e250]:
+              - generic [ref=f96e251]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e258] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e259]: $1,099.00
+              - paragraph [ref=f96e270]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e271]
+            - generic [ref=f96e272]:
+              - generic [ref=f96e273]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e280] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e281]: $1,499.00
+              - paragraph [ref=f96e292]: next in deterministic price order
+              - button "have it add this" [ref=f96e293]
+        - paragraph [ref=f96e295]: anything else in the laptop bin?
+        - generic [ref=f96e296]:
+          - paragraph [ref=f96e297]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 5): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e298]':
+            - generic "category=laptops, price<=1600" [ref=f96e299]:
+              - text: search_products
+              - generic [ref=f96e302]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e303]:
+              - text: get_product
+              - generic [ref=f96e306]: (top=APL-MBA-M3)
+          - generic [ref=f96e307]:
+            - generic [ref=f96e308]:
+              - generic [ref=f96e309]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e316] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e317]: $1,099.00
+              - paragraph [ref=f96e328]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e329]
+            - generic [ref=f96e330]:
+              - generic [ref=f96e331]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e338] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e339]: $1,499.00
+              - paragraph [ref=f96e350]: next in deterministic price order
+              - button "have it add this" [ref=f96e351]
+        - paragraph [ref=f96e353]: anything else in the laptop bin?
+        - generic [ref=f96e354]:
+          - paragraph [ref=f96e355]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 6): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e356]':
+            - generic "category=laptops, price<=1600" [ref=f96e357]:
+              - text: search_products
+              - generic [ref=f96e360]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e361]:
+              - text: get_product
+              - generic [ref=f96e364]: (top=APL-MBA-M3)
+          - generic [ref=f96e365]:
+            - generic [ref=f96e366]:
+              - generic [ref=f96e367]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e374] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e375]: $1,099.00
+              - paragraph [ref=f96e386]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e387]
+            - generic [ref=f96e388]:
+              - generic [ref=f96e389]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e396] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e397]: $1,499.00
+              - paragraph [ref=f96e408]: next in deterministic price order
+              - button "have it add this" [ref=f96e409]
+        - paragraph [ref=f96e411]: anything else in the laptop bin?
+        - generic [ref=f96e412]:
+          - paragraph [ref=f96e413]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 7): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f96e414]':
+            - generic "category=laptops, price<=1600" [ref=f96e415]:
+              - text: search_products
+              - generic [ref=f96e418]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f96e419]:
+              - text: get_product
+              - generic [ref=f96e422]: (top=APL-MBA-M3)
+          - generic [ref=f96e423]:
+            - generic [ref=f96e424]:
+              - generic [ref=f96e425]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f96e432] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f96e433]: $1,099.00
+              - paragraph [ref=f96e444]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f96e445]
+            - generic [ref=f96e446]:
+              - generic [ref=f96e447]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f96e454] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f96e455]: $1,499.00
+              - paragraph [ref=f96e466]: next in deterministic price order
+              - button "have it add this" [ref=f96e467]
+      - generic [ref=f96e57]:
+        - textbox "Message the assistant" [active] [ref=f96e58]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

@@ -1,0 +1,22 @@
+- generic [active] [ref=f14e1]:
+  - alert [ref=f14e2]
+  - main [ref=f14e3]:
+    - generic [ref=f14e4]:
+      - generic [ref=f14e5]:
+        - generic [ref=f14e6]: FakePsp · hosted session
+        - generic [ref=f14e10]: demo provider
+      - generic [ref=f14e11]:
+        - paragraph [ref=f14e12]: merchant · shopmind · order SM-2026-MD9TZRDU
+        - heading "$64.99 due" [level=1] [ref=f14e13]
+        - paragraph [ref=f14e14]: reservation held until 10:10:20 AM
+        - list [ref=f14e18]:
+          - listitem [ref=f14e19]:
+            - generic [ref=f14e20]: USB-C Docking Station ×1
+            - generic [ref=f14e21]: $49.99
+          - listitem [ref=f14e22]:
+            - generic [ref=f14e23]: Shipping
+            - generic [ref=f14e24]: $15.00
+        - generic [ref=f14e25]:
+          - button "Pay $64.99" [ref=f14e26]
+          - button "Abandon quote" [ref=f14e27]
+        - paragraph [ref=f14e31]: "no card form: this mock confirms instantly (paymentfail mode simulates a decline). real stripe checkout collects the card on stripe's page — card data never touches ShopMind (Assist level)."

@@ -1,4 +1,5 @@
 import { ApiError, type ProductQuery } from "./types";
+import { whenReady } from "./readyGate";
 
 const BASE = "/api";
 
@@ -13,6 +14,21 @@ export function setToken(t: string | null) {
   else localStorage.removeItem("shopmind.token");
 }
 
+/** Has a session token at all — restore() probes with this instead of
+ *  touching storage itself (this module is the ONLY reader/writer). */
+export const hasToken = () => token() !== null;
+
+/**
+ * The ONLY builder of the Authorization header. `api()` uses it for REST;
+ * raw-fetch callers (the chat transport needs the Response body stream) spread
+ * this record instead of hand-assembling `Bearer ${localStorage...}` — that
+ * duplication is how a token-store change becomes a three-module hunt.
+ */
+export function authHeaders(base?: Record<string, string>): Record<string, string> {
+  const t = token();
+  return { ...(base ?? {}), ...(t ? { Authorization: `Bearer ${t}` } : {}) };
+}
+
 /**
  * F8 swap note: everything the UI knows about the network lives here and in
  * types.ts. Point NEXT_PUBLIC_API_URL at Shop.Api, drop MSW, done.
@@ -21,6 +37,9 @@ export async function api<T>(
   path: string,
   init: RequestInit & { idempotencyKey?: string; query?: Record<string, string | number | boolean | undefined> } = {}
 ): Promise<T> {
+  /* Mock boot decoupling: render does not wait for MSW — requests do.
+     Resolved immediately outside mock mode (zero cost against Shop.Api). */
+  await whenReady();
   const { idempotencyKey, query, ...rest } = init;
   const qs = query
     ? Object.entries(query)
@@ -48,7 +67,7 @@ export function productsQueryToParams(q: ProductQuery): Record<string, string | 
   return {
     search: q.search, category: q.category, brand: q.brand,
     minPrice: q.minPrice, maxPrice: q.maxPrice, inStockOnly: q.inStockOnly,
-    sort: q.sort, page: q.page, pageSize: q.pageSize,
+    specs: q.specs, sort: q.sort, page: q.page, pageSize: q.pageSize,
   };
 }
 

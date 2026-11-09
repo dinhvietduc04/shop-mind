@@ -1,0 +1,77 @@
+- generic [ref=f74e1]:
+  - alert [ref=f74e2]
+  - banner [ref=f74e3]:
+    - generic [ref=f74e4]:
+      - link "ShopMind cat. elec-026" [ref=f74e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f74e6]: ShopMind
+        - generic [ref=f74e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f74e8]'
+      - navigation [ref=f74e14]:
+        - link "Catalog" [ref=f74e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f74e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f74e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f74e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f74e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f74e21]
+      - generic [ref=f74e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f74e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f74e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f74e30]
+  - main [ref=f74e78]:
+    - navigation [ref=f74e79]:
+      - link "← Order ledger" [ref=f74e80] [cursor=pointer]:
+        - /url: /orders
+    - generic [ref=f74e81]:
+      - heading "Order SM-2026-6Z1IGSUE" [level=1] [ref=f74e82]
+      - generic [ref=f74e83]: Pending
+    - article [ref=f74e84]:
+      - generic [ref=f74e85]:
+        - heading "Fulfillment path" [level=2] [ref=f74e86]
+        - generic [ref=f74e87]:
+          - 'list "Order status: Pending" [ref=f74e88]':
+            - listitem [ref=f74e89]:
+              - generic "Pending" [ref=f74e90]
+            - listitem [ref=f74e92]:
+              - generic "Paid" [ref=f74e93]
+            - listitem [ref=f74e95]:
+              - generic "Processing" [ref=f74e96]
+            - listitem [ref=f74e98]:
+              - generic "Shipped" [ref=f74e99]
+            - listitem [ref=f74e101]:
+              - generic "Delivered" [ref=f74e102]
+          - paragraph [ref=f74e103]: Pending
+      - list [ref=f74e104]:
+        - listitem [ref=f74e105]:
+          - generic [ref=f74e106]: WH-1000XM5 Headphones
+          - generic [ref=f74e107]: SNY-WH1000XM5
+          - generic [ref=f74e115]: $349.99 ×1
+          - generic [ref=f74e116]: $349.99
+      - generic [ref=f74e117]:
+        - generic [ref=f74e118]:
+          - term [ref=f74e119]: Subtotal
+          - definition [ref=f74e120]: $349.99
+        - generic [ref=f74e121]:
+          - term [ref=f74e122]: Shipping
+          - definition [ref=f74e123]: $15.00
+        - generic [ref=f74e124]:
+          - term [ref=f74e125]: Total
+          - definition [ref=f74e126]: $364.99
+      - generic [ref=f74e134]:
+        - generic [ref=f74e135]:
+          - heading "Ships to" [level=3] [ref=f74e136]
+          - paragraph [ref=f74e137]: Demo Customer123 Catalog Lane, Vienna+1-555-0100
+        - generic [ref=f74e138]:
+          - heading "Payment" [level=3] [ref=f74e139]
+          - paragraph [ref=f74e140]: Awaiting payment on the hosted page.
+      - generic [ref=f74e141]:
+        - button "Cancel order — release stock" [active] [ref=f74e142]
+        - generic [ref=f74e146]: legal while pending; paid orders route to support
+      - paragraph [ref=f74e148]: Cancelled — reservation released back to the bins.
+    - paragraph [ref=f74e147]: placed 11/6/2026, 4:51:47 PM · mock ledger, no real charge — this record exists because a human pressed Pay on the hosted page

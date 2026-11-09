@@ -1,0 +1,70 @@
+- generic [active] [ref=f17e1]:
+  - alert [ref=f17e2]
+  - banner [ref=f17e3]:
+    - generic [ref=f17e4]:
+      - link "ShopMind cat. elec-026" [ref=f17e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f17e6]: ShopMind
+        - generic [ref=f17e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f17e8]'
+      - navigation [ref=f17e14]:
+        - link "Catalog" [ref=f17e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f17e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f17e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f17e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f17e20]
+      - generic [ref=f17e21]:
+        - 'generic "Cart: 6 items, subtotal $4,996.97 — shipping computed on the bill" [ref=f17e22]': $4,996.97
+        - button "Switch to night (dark) theme" [ref=f17e29]
+  - generic [ref=f17e33]:
+    - heading "The bill" [level=1] [ref=f17e34]
+    - article [ref=f17e35]:
+      - generic [ref=f17e36]:
+        - generic [ref=f17e37]: cart · 4 lines
+        - generic [ref=f17e38]: priced by the API · free ship ≥ $500.00
+      - list [ref=f17e39]:
+        - listitem [ref=f17e40]:
+          - img "No photo on file for plate ACC-USBCDOCK" [ref=f17e42]:
+            - generic [ref=f17e47]: pl. ACC-USBCDOCK · photo not on file
+          - generic [ref=f17e50]:
+            - generic [ref=f17e51]: USB-C Docking Station
+            - generic [ref=f17e52]: ACC-USBCDOCK · ×2
+          - generic [ref=f17e59]: $99.98
+        - listitem [ref=f17e60]:
+          - img "No photo on file for plate SAM-S24U" [ref=f17e62]:
+            - generic [ref=f17e67]: pl. SAM-S24U · photo not on file
+          - generic [ref=f17e70]:
+            - generic [ref=f17e71]: Galaxy S24 Ultra
+            - generic [ref=f17e72]: SAM-S24U · ×1
+          - generic [ref=f17e83]: $1,199.99
+        - listitem [ref=f17e84]:
+          - figure [ref=f17e86]:
+            - img "ThinkPad X1 Carbon Gen 11 — product photo" [ref=f17e87]
+          - generic [ref=f17e88]:
+            - generic [ref=f17e89]: ThinkPad X1 Carbon Gen 11
+            - generic [ref=f17e90]: LEN-X1C-G11 · ×1
+          - generic [ref=f17e101]: $1,499.00
+        - listitem [ref=f17e102]:
+          - img "No photo on file for plate APL-MBA-M3" [ref=f17e104]:
+            - generic [ref=f17e109]: pl. APL-MBA-M3 · photo not on file
+          - generic [ref=f17e112]:
+            - generic [ref=f17e113]: MacBook Air M3
+            - generic [ref=f17e114]: APL-MBA-M3 · ×2
+          - generic [ref=f17e125]: $2,198.00
+      - generic [ref=f17e126]:
+        - generic [ref=f17e127]:
+          - term [ref=f17e128]: Subtotal
+          - definition [ref=f17e129]: $4,996.97
+        - generic [ref=f17e130]:
+          - term [ref=f17e131]: Shipping
+          - definition [ref=f17e132]: free
+        - generic [ref=f17e133]:
+          - term [ref=f17e134]: Total
+          - definition [ref=f17e135]: $4,996.97
+      - generic [ref=f17e136]:
+        - button "Create quote — reserve stock" [ref=f17e137]
+        - generic [ref=f17e138]: assistant may press this · yellow may not

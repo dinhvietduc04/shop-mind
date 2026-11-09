@@ -1,0 +1,115 @@
+- generic [active] [ref=f3e1]:
+  - alert [ref=f3e2]
+  - banner [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - link "ShopMind cat. elec-026" [ref=f3e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e6]: ShopMind
+        - generic [ref=f3e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f3e8]'
+      - searchbox "Search the catalog" [ref=f3e15]
+      - generic [ref=f3e16]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f3e17] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f3e23]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f3e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f3e25]: SA
+          - generic [ref=f3e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f3e27]
+    - navigation "Primary" [ref=f3e30]:
+      - link "Catalog" [ref=f3e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f3e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f3e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f3e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f3e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f3e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f3e38]:
+    - generic [ref=f3e39]:
+      - generic [ref=f3e41]: Admin console
+      - navigation "Admin sections" [ref=f3e42]:
+        - link "Dashboard" [ref=f3e43] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f3e44] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f3e45] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f3e46] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f3e47] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f3e48] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f3e49]:
+      - link "back to catalog" [ref=f3e50] [cursor=pointer]:
+        - /url: /admin/products
+      - generic [ref=f3e53]:
+        - heading "New product" [level=2] [ref=f3e55]
+        - generic [ref=f3e56]:
+          - generic [ref=f3e57]:
+            - generic [ref=f3e58]:
+              - generic [ref=f3e59]: Name *
+              - textbox "Name *" [ref=f3e60]
+            - generic [ref=f3e61]:
+              - generic [ref=f3e62]: Slug (auto from name if blank)
+              - textbox "Slug (auto from name if blank)" [ref=f3e63]:
+                - /placeholder: thinkpad-x1-carbon-gen-11
+            - generic [ref=f3e64]:
+              - generic [ref=f3e65]: SKU *
+              - textbox "SKU *" [ref=f3e66]:
+                - /placeholder: LEN-X1C-G11
+            - generic [ref=f3e67]:
+              - generic [ref=f3e68]: Brand
+              - textbox "Brand" [ref=f3e69]
+            - generic [ref=f3e70]:
+              - generic [ref=f3e71]: Category *
+              - combobox "Category *" [ref=f3e72]:
+                - option "— pick a bin —" [selected]
+                - option "Laptops"
+                - option "Smartphones"
+                - option "Monitors"
+                - option "Keyboards"
+                - option "Mice"
+                - option "Headphones"
+                - option "Components"
+                - option "Accessories"
+            - generic [ref=f3e73]:
+              - generic [ref=f3e74]: Status
+              - combobox "Status" [ref=f3e75]:
+                - option "Active" [selected]
+                - option "Draft"
+                - option "Inactive"
+            - generic [ref=f3e76]:
+              - generic [ref=f3e77]: Price (USD) *
+              - textbox "Price (USD) *" [ref=f3e78]
+            - generic [ref=f3e79]:
+              - generic [ref=f3e80]: Initial stock *
+              - textbox "Initial stock *" [ref=f3e81]: "0"
+            - generic [ref=f3e82]:
+              - generic [ref=f3e83]: Description
+              - textbox "Description" [ref=f3e84]
+          - generic [ref=f3e85]:
+            - paragraph [ref=f3e86]: label preview — as the storefront renders it
+            - generic [ref=f3e87]:
+              - generic [ref=f3e89]: price…
+              - generic [ref=f3e90]: bin empty · 0
+              - generic [ref=f3e96]: Active
+          - heading "Photos" [level=3] [ref=f3e98]
+          - paragraph [ref=f3e99]: URL paths under /products/ (see public/products/PROVENANCE.md) or absolute https.
+          - button "Add photo row" [ref=f3e101]
+          - heading "Specs JSON · feeds facets & the assistant's questions" [level=3] [ref=f3e103]:
+            - text: Specs JSON
+            - generic [ref=f3e104]: · feeds facets & the assistant's questions
+          - textbox "Specs JSON editor" [ref=f3e105]:
+            - /placeholder: "{\"ram_gb\": 16, \"storage_gb\": 512, \"wireless\": true}"
+          - generic [ref=f3e106]:
+            - button "Create product" [ref=f3e107]
+            - link [ref=f3e108] [cursor=pointer]:
+              - /url: /admin/products
+              - button "Cancel" [ref=f3e109]

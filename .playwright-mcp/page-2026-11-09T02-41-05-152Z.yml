@@ -1,0 +1,222 @@
+- generic [active] [ref=f16e1]:
+  - alert [ref=f16e2]
+  - banner [ref=f16e3]:
+    - generic [ref=f16e4]:
+      - link "ShopMind cat. elec-026" [ref=f16e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f16e6]: ShopMind
+        - generic [ref=f16e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f16e8]'
+      - searchbox "Search the catalog" [ref=f16e15]
+      - generic [ref=f16e16]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f16e17] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f16e23]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f16e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f16e25]: SA
+          - generic [ref=f16e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f16e27]
+    - navigation "Primary" [ref=f16e30]:
+      - link "Catalog" [ref=f16e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f16e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f16e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f16e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f16e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f16e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f16e38]:
+    - generic [ref=f16e39]:
+      - generic [ref=f16e41]: Admin console
+      - navigation "Admin sections" [ref=f16e42]:
+        - link "Dashboard" [ref=f16e43] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f16e44] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f16e45] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f16e46] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f16e47] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f16e48] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f16e50]:
+      - generic [ref=f16e51]:
+        - heading "Inventory" [level=2] [ref=f16e52]
+        - textbox "Search inventory" [ref=f16e54]:
+          - /placeholder: filter name / sku
+      - generic [ref=f16e55]:
+        - paragraph [ref=f16e56]:
+          - text: You set
+          - strong [ref=f16e57]: total stock
+          - text: . Reserved is held by open quotes and protected — a write below it is refused, because that would oversell stock a human already committed to at the bill.
+        - table [ref=f16e59]:
+          - rowgroup [ref=f16e60]:
+            - row [ref=f16e61]:
+              - columnheader "Product" [ref=f16e62]
+              - columnheader "SKU" [ref=f16e63]
+              - columnheader "Total" [ref=f16e64]
+              - columnheader "Reserved" [ref=f16e65]
+              - columnheader "Available" [ref=f16e66]
+              - columnheader "Adjust" [ref=f16e67]
+          - rowgroup [ref=f16e68]:
+            - row [ref=f16e69]:
+              - cell "ThinkPad X1 Carbon Gen 11" [ref=f16e70]
+              - cell "LEN-X1C-G11" [ref=f16e71]
+              - cell [ref=f16e72]:
+                - generic [ref=f16e73]:
+                  - textbox "Total stock for ThinkPad X1 Carbon Gen 11" [ref=f16e74]: "25"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e75]
+              - cell "25" [ref=f16e76]
+              - cell [ref=f16e84]:
+                - generic [ref=f16e85]:
+                  - button "+5" [ref=f16e86]
+                  - button "+25" [ref=f16e87]
+                  - button "−5" [ref=f16e88]
+            - row [ref=f16e89]:
+              - cell "MacBook Air M3" [ref=f16e90]
+              - cell "APL-MBA-M3" [ref=f16e91]
+              - cell [ref=f16e92]:
+                - generic [ref=f16e93]:
+                  - textbox "Total stock for MacBook Air M3" [ref=f16e94]: "20"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e95]
+              - cell "20" [ref=f16e96]
+              - cell [ref=f16e104]:
+                - generic [ref=f16e105]:
+                  - button "+5" [ref=f16e106]
+                  - button "+25" [ref=f16e107]
+                  - button "−5" [ref=f16e108]
+            - row [ref=f16e109]:
+              - cell "Galaxy S24 Ultra" [ref=f16e110]
+              - cell "SAM-S24U" [ref=f16e111]
+              - cell [ref=f16e112]:
+                - generic [ref=f16e113]:
+                  - textbox "Total stock for Galaxy S24 Ultra" [ref=f16e114]: "40"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e115]
+              - cell "40" [ref=f16e116]
+              - cell [ref=f16e124]:
+                - generic [ref=f16e125]:
+                  - button "+5" [ref=f16e126]
+                  - button "+25" [ref=f16e127]
+                  - button "−5" [ref=f16e128]
+            - row [ref=f16e129]:
+              - cell "iPhone 15 Pro" [ref=f16e130]
+              - cell "APL-IP15P" [ref=f16e131]
+              - cell [ref=f16e132]:
+                - generic [ref=f16e133]:
+                  - textbox "Total stock for iPhone 15 Pro" [ref=f16e134]: "35"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e135]
+              - cell "35" [ref=f16e136]
+              - cell [ref=f16e144]:
+                - generic [ref=f16e145]:
+                  - button "+5" [ref=f16e146]
+                  - button "+25" [ref=f16e147]
+                  - button "−5" [ref=f16e148]
+            - row [ref=f16e149]:
+              - cell "UltraSharp 27 4K Monitor" [ref=f16e150]
+              - cell "DEL-U2723QE" [ref=f16e151]
+              - cell [ref=f16e152]:
+                - generic [ref=f16e153]:
+                  - textbox "Total stock for UltraSharp 27 4K Monitor" [ref=f16e154]: "15"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e155]
+              - cell "15" [ref=f16e156]
+              - cell [ref=f16e164]:
+                - generic [ref=f16e165]:
+                  - button "+5" [ref=f16e166]
+                  - button "+25" [ref=f16e167]
+                  - button "−5" [ref=f16e168]
+            - row [ref=f16e169]:
+              - cell "MX Keys S Keyboard" [ref=f16e170]
+              - cell "LOG-MXKEYS-S" [ref=f16e171]
+              - cell [ref=f16e172]:
+                - generic [ref=f16e173]:
+                  - textbox "Total stock for MX Keys S Keyboard" [ref=f16e174]: "60"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e175]
+              - cell "60" [ref=f16e176]
+              - cell [ref=f16e184]:
+                - generic [ref=f16e185]:
+                  - button "+5" [ref=f16e186]
+                  - button "+25" [ref=f16e187]
+                  - button "−5" [ref=f16e188]
+            - row [ref=f16e189]:
+              - cell "MX Master 3S Mouse" [ref=f16e190]
+              - cell "LOG-MXM3S" [ref=f16e191]
+              - cell [ref=f16e192]:
+                - generic [ref=f16e193]:
+                  - textbox "Total stock for MX Master 3S Mouse" [ref=f16e194]: "80"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e195]
+              - cell "80" [ref=f16e196]
+              - cell [ref=f16e204]:
+                - generic [ref=f16e205]:
+                  - button "+5" [ref=f16e206]
+                  - button "+25" [ref=f16e207]
+                  - button "−5" [ref=f16e208]
+            - row [ref=f16e209]:
+              - cell "WH-1000XM5 Headphones" [ref=f16e210]
+              - cell "SNY-WH1000XM5" [ref=f16e211]
+              - cell [ref=f16e212]:
+                - generic [ref=f16e213]:
+                  - textbox "Total stock for WH-1000XM5 Headphones" [ref=f16e214]: "30"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e215]
+              - cell "30" [ref=f16e216]
+              - cell [ref=f16e224]:
+                - generic [ref=f16e225]:
+                  - button "+5" [ref=f16e226]
+                  - button "+25" [ref=f16e227]
+                  - button "−5" [ref=f16e228]
+            - row [ref=f16e229]:
+              - cell "RTX 4070 GPU" [ref=f16e230]
+              - cell "NV-RTX4070" [ref=f16e231]
+              - cell [ref=f16e232]:
+                - generic [ref=f16e233]:
+                  - textbox "Total stock for RTX 4070 GPU" [ref=f16e234]: "12"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e235]
+              - cell "12" [ref=f16e236]
+              - cell [ref=f16e244]:
+                - generic [ref=f16e245]:
+                  - button "+5" [ref=f16e246]
+                  - button "+25" [ref=f16e247]
+                  - button "−5" [ref=f16e248]
+            - row [ref=f16e249]:
+              - cell "USB-C Docking Station" [ref=f16e250]
+              - cell "ACC-USBCDOCK" [ref=f16e251]
+              - cell [ref=f16e252]:
+                - generic [ref=f16e253]:
+                  - textbox "Total stock for USB-C Docking Station" [ref=f16e254]: "124"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e255]
+              - cell "124" [ref=f16e256]
+              - cell [ref=f16e264]:
+                - generic [ref=f16e265]:
+                  - button "+5" [ref=f16e266]
+                  - button "+25" [ref=f16e267]
+                  - button "−5" [ref=f16e268]
+            - row [ref=f16e269]:
+              - cell "Test Relay Board" [ref=f16e270]
+              - cell "TST-RELAY-01" [ref=f16e271]
+              - cell [ref=f16e272]:
+                - generic [ref=f16e273]:
+                  - textbox "Total stock for Test Relay Board" [ref=f16e274]: "9"
+                  - button "Set" [disabled]
+              - cell "0" [ref=f16e275]
+              - cell "9" [ref=f16e276]
+              - cell [ref=f16e284]:
+                - generic [ref=f16e285]:
+                  - button "+5" [ref=f16e286]
+                  - button "+25" [ref=f16e287]
+                  - button "−5" [ref=f16e288]

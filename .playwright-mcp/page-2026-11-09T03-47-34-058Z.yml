@@ -1,0 +1,63 @@
+- generic [active] [ref=f123e1]:
+  - alert [ref=f123e2]
+  - link "Skip to content" [ref=f123e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f123e4]:
+    - generic [ref=f123e5]:
+      - link "ShopMind cat. elec-026" [ref=f123e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f123e7]: ShopMind
+        - generic [ref=f123e8]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f123e9]'
+      - navigation [ref=f123e15]:
+        - link "Catalog" [ref=f123e16] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f123e17] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f123e18] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f123e19] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f123e20] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f123e21] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f123e23]
+      - generic [ref=f123e24]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f123e25] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f123e31]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f123e32] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f123e33]: SA
+          - generic [ref=f123e34]: Admin
+        - button "Switch to night (dark) theme" [ref=f123e35]
+  - generic [ref=f123e39]:
+    - generic [ref=f123e40]:
+      - generic [ref=f123e42]: Admin console
+      - navigation "Admin sections" [ref=f123e43]:
+        - link "Dashboard" [ref=f123e44] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f123e45] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f123e46] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f123e47] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f123e48] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f123e49] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f123e51]:
+      - heading "Order ledger · 0" [level=2] [ref=f123e53]
+      - generic [ref=f123e54]:
+        - generic [ref=f123e55]:
+          - button "All" [pressed] [ref=f123e56]
+          - button "Pending" [ref=f123e57]
+          - button "Paid" [ref=f123e58]
+          - button "Processing" [ref=f123e59]
+          - button "Shipped" [ref=f123e60]
+          - button "Delivered" [ref=f123e61]
+          - button "Cancelled" [ref=f123e62]
+          - button "PaymentFailed" [ref=f123e63]
+        - paragraph [ref=f123e64]: No orders with status “All”.

@@ -16,6 +16,17 @@ _Avoid_: pending order (ambiguous — V1 legacy orders were also "Pending")
 The priced breakdown shown to a human for review from a Quote — lines, subtotal, shipping, total, expiry. What the human reads before paying; not itself a payment artifact.
 _Avoid_: invoice, receipt
 
+**Bin**:
+A category shelf on the catalog wall — the storage fiction for one product category (e.g. "bin laptops"). Never the customer's selection.
+_Avoid_: bin for cart, basket, bag
+
+**Cart**:
+The per-user selection of units intended for purchase ("Add to cart", "In cart · 2"). A Quote reserves the units in the Cart; paying commits them.
+_Avoid_: bin, basket, bag
+
+**Payment Outcome**:
+Why a Quote left the money table, visible to every client: *captured* (paid), *failed* (a payment attempt was declined), *expired* (the hold ran out with no attempt). Expired ≠ failed — never inferred from a null transaction id; it is a server-stated fact (`payment.outcome`).
+
 **Reservation / Commit / Release**:
 The three fates of stock set aside for a Quote: *reserve* at quote creation, *commit* on payment success (consumes physical stock), *release* on expiry, payment failure, or cancel (stock returns).
 

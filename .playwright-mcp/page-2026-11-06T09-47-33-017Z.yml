@@ -1,0 +1,62 @@
+- generic [active] [ref=f62e1]:
+  - alert [ref=f62e2]
+  - banner [ref=f62e3]:
+    - generic [ref=f62e4]:
+      - link "ShopMind cat. elec-026" [ref=f62e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f62e6]: ShopMind
+        - generic [ref=f62e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f62e8]'
+      - navigation [ref=f62e14]:
+        - link "Catalog" [ref=f62e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f62e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f62e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f62e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f62e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f62e21]
+      - generic [ref=f62e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f62e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f62e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f62e30]
+  - generic [ref=f62e44]:
+    - heading "The bill" [level=1] [ref=f62e45]
+    - article [ref=f62e46]:
+      - generic [ref=f62e47]:
+        - generic [ref=f62e48]: cart · 1 lines
+        - generic [ref=f62e49]: priced by the API · free ship ≥ $500.00
+      - generic [ref=f62e50]:
+        - progressbar "Free shipping progress" [ref=f62e51]
+        - paragraph [ref=f62e53]: add $150.01 more for free shipping
+      - list [ref=f62e54]:
+        - listitem [ref=f62e55]:
+          - figure [ref=f62e57]:
+            - img "WH-1000XM5 Headphones — product photo" [ref=f62e58]
+          - generic [ref=f62e59]:
+            - link "WH-1000XM5 Headphones" [ref=f62e61] [cursor=pointer]:
+              - /url: /product/p-wh-1000xm5
+            - generic [ref=f62e62]: SNY-WH1000XM5
+            - generic [ref=f62e71]:
+              - button "Decrease WH-1000XM5 Headphones" [disabled] [ref=f62e72]
+              - generic [ref=f62e74]: "1"
+              - button "Increase WH-1000XM5 Headphones" [ref=f62e75]
+              - button "Remove WH-1000XM5 Headphones" [ref=f62e77]: remove
+          - generic [ref=f62e81]: $349.99
+      - generic [ref=f62e82]:
+        - generic [ref=f62e83]:
+          - term [ref=f62e84]: Subtotal
+          - definition [ref=f62e85]: $349.99
+        - generic [ref=f62e86]:
+          - term [ref=f62e87]: Shipping
+          - definition [ref=f62e88]: $15.00
+        - generic [ref=f62e89]:
+          - term [ref=f62e90]: Total
+          - definition [ref=f62e91]: $364.99
+      - generic [ref=f62e92]:
+        - button "Create quote — reserve stock" [ref=f62e93]
+        - generic [ref=f62e94]: assistant may press this · yellow may not

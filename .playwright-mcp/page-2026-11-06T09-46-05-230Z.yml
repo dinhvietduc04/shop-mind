@@ -1,0 +1,37 @@
+- generic [active] [ref=f54e1]:
+  - alert [ref=f54e2]
+  - banner [ref=f54e3]:
+    - generic [ref=f54e4]:
+      - link "ShopMind cat. elec-026" [ref=f54e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f54e6]: ShopMind
+        - generic [ref=f54e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f54e8]'
+      - navigation [ref=f54e14]:
+        - link "Catalog" [ref=f54e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f54e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f54e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f54e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f54e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f54e21]
+      - generic [ref=f54e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f54e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f54e29]: empty
+        - button "Switch to night (dark) theme" [ref=f54e30]
+  - main [ref=f54e34]:
+    - heading "Order ledger" [level=1] [ref=f54e35]
+    - paragraph [ref=f54e36]: every quote you created — paid, expired or abandoned — lands here
+    - list [ref=f54e37]:
+      - listitem [ref=f54e38]:
+        - link "SM-2026-NXH6PG02 Pending 11/6/2026, 4:45:08 PM · 1 line $164.97" [ref=f54e39] [cursor=pointer]:
+          - /url: /orders/o-4nq6rlel
+          - generic [ref=f54e44]: SM-2026-NXH6PG02
+          - generic [ref=f54e45]: Pending
+          - generic [ref=f54e46]: 11/6/2026, 4:45:08 PM · 1 line
+          - generic [ref=f54e47]: $164.97

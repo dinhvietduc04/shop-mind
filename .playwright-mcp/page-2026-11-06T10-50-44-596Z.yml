@@ -1,0 +1,61 @@
+- generic [active] [ref=f26e1]:
+  - alert [ref=f26e2]
+  - banner [ref=f26e35]:
+    - generic [ref=f26e36]:
+      - link "ShopMind cat. elec-026" [ref=f26e37] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f26e38]: ShopMind
+        - generic [ref=f26e39]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f26e40]'
+      - navigation [ref=f26e46]:
+        - link "Catalog" [ref=f26e47] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f26e48] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f26e49] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f26e50] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f26e51] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f26e53]
+      - generic [ref=f26e54]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f26e55] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f26e61]: empty
+        - 'link "Account: test@register.local, role Customer" [ref=f26e62] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f26e63]: TR
+          - generic [ref=f26e64]: Account
+        - button "Switch to night (dark) theme" [ref=f26e65]
+  - main [ref=f26e69]:
+    - heading "My account" [level=1] [ref=f26e70]
+    - generic [ref=f26e71]:
+      - generic [ref=f26e72]:
+        - generic [ref=f26e73]: TR
+        - generic [ref=f26e74]:
+          - paragraph [ref=f26e75]: Test Register
+          - paragraph [ref=f26e76]: test@register.local
+        - generic [ref=f26e77]: role · Customer
+      - generic [ref=f26e79]:
+        - link [ref=f26e80] [cursor=pointer]:
+          - /url: /orders
+          - button "Order ledger" [ref=f26e81]
+        - button "Sign out" [ref=f26e86]
+    - generic [ref=f26e90]:
+      - heading "Shipping preset" [level=2] [ref=f26e91]
+      - paragraph [ref=f26e95]: Quotes are reserved for this address — the bill shows it verbatim. The agent quotes to it as-is; changing it here is a human edit.
+      - generic [ref=f26e96]:
+        - generic [ref=f26e97]:
+          - generic [ref=f26e98]: Full name
+          - textbox "Full name" [ref=f26e99]: Demo Customer
+        - generic [ref=f26e100]:
+          - generic [ref=f26e101]: Phone
+          - textbox "Phone" [ref=f26e102]: +1-555-0100
+        - generic [ref=f26e103]:
+          - generic [ref=f26e104]: Address
+          - textbox "Address" [ref=f26e105]: 123 Catalog Lane
+        - generic [ref=f26e106]:
+          - generic [ref=f26e107]: City
+          - textbox "City" [ref=f26e108]: Vienna
+      - button "Save preset" [ref=f26e110]

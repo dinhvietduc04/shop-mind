@@ -1,0 +1,112 @@
+- generic [active] [ref=f74e1]:
+  - alert [ref=f74e2]
+  - banner [ref=f74e3]:
+    - generic [ref=f74e4]:
+      - link "ShopMind cat. elec-026" [ref=f74e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f74e6]: ShopMind
+        - generic [ref=f74e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f74e8]'
+      - navigation [ref=f74e14]:
+        - link "Catalog" [ref=f74e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f74e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f74e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f74e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f74e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f74e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f74e22]
+      - generic [ref=f74e23]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f74e24] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f74e30]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f74e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f74e32]: SA
+          - generic [ref=f74e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f74e34]
+  - generic [ref=f74e37]:
+    - heading "UI kit" [level=1] [ref=f74e38]
+    - paragraph [ref=f74e39]: Every primitive in the resistor-code world, in every state it can hold. Hover and focus each control — the dashed outline is the focus ring.
+    - generic [ref=f74e40]:
+      - generic [ref=f74e41]:
+        - heading "Band ladder — the whole palette" [level=2] [ref=f74e42]
+        - generic [ref=f74e44]:
+          - generic [ref=f74e45]: black · 0
+          - generic [ref=f74e48]: brown · 1
+          - generic [ref=f74e51]: red · 2
+          - generic [ref=f74e54]: orange · 3
+          - generic [ref=f74e57]: yellow · 4
+          - generic [ref=f74e60]: green · 5
+          - generic [ref=f74e63]: blue · 6
+          - generic [ref=f74e66]: violet · 7
+          - generic [ref=f74e69]: grey · 8
+          - generic [ref=f74e72]: white · 9
+          - generic [ref=f74e75]: gold
+          - generic [ref=f74e78]: silver
+      - generic [ref=f74e81]:
+        - heading "Buttons — add, ghost, and the human-only yellow" [level=2] [ref=f74e82]
+        - generic [ref=f74e83]:
+          - button "Add to bin" [ref=f74e84]
+          - button "Ghost" [ref=f74e85]
+          - button "Review bill & pay" [ref=f74e86]
+          - button "Add (disabled)" [disabled]
+          - button "Ghost (disabled)" [disabled]
+      - generic [ref=f74e87]:
+        - heading "Price magnitude band + stock dots" [level=2] [ref=f74e88]
+        - generic [ref=f74e89]:
+          - paragraph [ref=f74e90]: One stripe per price = the resistor multiplier, encoding magnitude only (×1 … ×100k). The digits beside it are the actual value — the stripe is a glance-anchor, never something to decode.
+          - generic [ref=f74e91]:
+            - generic [ref=f74e92]:
+              - generic [ref=f74e94]: $49.99
+              - generic [ref=f74e95]: tens
+            - generic [ref=f74e96]:
+              - generic [ref=f74e98]: $329.00
+              - generic [ref=f74e99]: hundreds
+            - generic [ref=f74e100]:
+              - generic [ref=f74e102]: $1,099.00
+              - generic [ref=f74e103]: thousands
+          - generic [ref=f74e104]:
+            - generic [ref=f74e105]: in bin · 7
+            - generic [ref=f74e111]: low stock · 2
+            - generic [ref=f74e117]: bin empty · 0
+      - generic [ref=f74e123]:
+        - heading "Plate slot — with photo on file, and empty fallback" [level=2] [ref=f74e124]
+        - generic [ref=f74e126]:
+          - figure "pl. A1-01" [ref=f74e127]:
+            - img "ThinkPad X1 Carbon — product photo" [ref=f74e128]
+          - img "No photo on file for plate A1-02" [ref=f74e132]:
+            - generic [ref=f74e137]: pl. A1-02 · photo not on file
+      - generic [ref=f74e140]:
+        - heading "Fields" [level=2] [ref=f74e141]
+        - generic [ref=f74e143]:
+          - generic [ref=f74e144]:
+            - generic [ref=f74e145]: Search
+            - textbox "Search" [ref=f74e146]:
+              - /placeholder: 16 GB laptop
+          - generic [ref=f74e147]:
+            - generic [ref=f74e148]: Budget
+            - textbox "Budget" [ref=f74e149]: "1200"
+          - generic [ref=f74e150]:
+            - generic [ref=f74e151]: Quantity
+            - textbox "Quantity Bin holds 2 — not 5" [ref=f74e152]: "5"
+            - alert [ref=f74e153]: Bin holds 2 — not 5
+      - generic [ref=f74e154]:
+        - heading "States — loading, empty, error" [level=2] [ref=f74e155]
+        - generic [ref=f74e157]:
+          - generic [ref=f74e162]:
+            - heading "No units match this filter" [level=3] [ref=f74e163]
+            - paragraph [ref=f74e165]: Clear a band and try again — the bins will wait.
+          - alert [ref=f74e166]:
+            - generic [ref=f74e168]:
+              - strong [ref=f74e169]: Redis cache offline.
+              - text: Serving from Postgres — reads are slower, prices stay live. No action needed.
+      - generic [ref=f74e170]:
+        - link "Back to the catalog" [ref=f74e171] [cursor=pointer]:
+          - /url: /
+        - button "Reset demo data" [ref=f74e174]

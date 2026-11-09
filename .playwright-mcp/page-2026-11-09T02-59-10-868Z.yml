@@ -1,0 +1,40 @@
+- generic [active] [ref=f46e1]:
+  - alert [ref=f46e2]
+  - banner [ref=f46e3]:
+    - generic [ref=f46e4]:
+      - link "ShopMind cat. elec-026" [ref=f46e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f46e6]: ShopMind
+        - generic [ref=f46e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f46e8]'
+      - navigation [ref=f46e14]:
+        - link "Catalog" [ref=f46e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f46e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f46e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f46e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f46e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f46e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f46e22]
+      - generic [ref=f46e23]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f46e24] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f46e30]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f46e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f46e32]: SA
+          - generic [ref=f46e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f46e34]
+  - main [ref=f46e38]:
+    - heading "The bill" [level=1] [ref=f46e39]
+    - generic [ref=f46e41]:
+      - heading "No quote open" [level=3] [ref=f46e42]
+      - generic [ref=f46e43]:
+        - paragraph [ref=f46e44]: Add units to a bin, or let the assistant build the cart and prepare a quote for you to review.
+        - link "Back to the catalog" [ref=f46e45] [cursor=pointer]:
+          - /url: /

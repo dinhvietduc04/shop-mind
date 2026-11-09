@@ -1,0 +1,111 @@
+- generic [ref=f16e1]:
+  - alert [ref=f16e2]
+  - banner [ref=f16e3]:
+    - generic [ref=f16e4]:
+      - link "ShopMind cat. elec-026" [ref=f16e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f16e6]: ShopMind
+        - generic [ref=f16e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f16e8]'
+      - navigation [ref=f16e14]:
+        - link "Catalog" [ref=f16e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f16e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f16e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f16e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f16e20]
+      - generic [ref=f16e21]:
+        - 'generic "Cart: 6 items, subtotal $4,996.97 — shipping computed on the bill" [ref=f16e248]': $4,996.97
+        - button "Switch to night (dark) theme" [ref=f16e29]
+  - main [ref=f16e33]:
+    - navigation "Breadcrumb" [ref=f16e34]:
+      - link "Every bin" [ref=f16e35] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f16e36]: /
+      - link "Laptops" [ref=f16e37] [cursor=pointer]:
+        - /url: /category/laptops
+      - generic [aria-hidden] [ref=f16e39]: /
+      - generic [ref=f16e40]: APL-MBA-M3
+    - generic [ref=f16e41]:
+      - generic [ref=f16e42]:
+        - img "No photo on file for plate APL-MBA-M3" [ref=f16e43]:
+          - generic [ref=f16e48]: pl. APL-MBA-M3 · photo not on file
+        - generic [ref=f16e51]:
+          - heading "Bench notes" [level=2] [ref=f16e52]
+          - paragraph [ref=f16e53]: 13" MacBook Air with M3 chip, 8GB RAM, 256GB SSD.
+          - paragraph [ref=f16e54]: Mock pricing — demo data only. Logged 2026-10-02.
+        - generic [ref=f16e55]:
+          - heading "More from Laptops" [level=2] [ref=f16e56]
+          - article [ref=f16e249]:
+            - generic [aria-hidden] [ref=f16e250]: LAP · LEN-X1C-G11
+            - figure "pl. LEN-X1C-G11" [ref=f16e251]:
+              - img "ThinkPad X1 Carbon Gen 11 — product photo" [ref=f16e252]
+            - heading [level=3] [ref=f16e256]:
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f16e257] [cursor=pointer]:
+                - /url: /product/thinkpad-x1-carbon-gen-11
+            - paragraph [ref=f16e258]: Lenovo · gen 11
+            - table [ref=f16e259]:
+              - rowgroup [ref=f16e260]:
+                - row [ref=f16e261]:
+                  - rowheader "ram gb" [ref=f16e262]
+                  - cell "16" [ref=f16e263]
+                - row [ref=f16e264]:
+                  - rowheader "storage gb" [ref=f16e265]
+                  - cell "512" [ref=f16e266]
+                - row [ref=f16e267]:
+                  - rowheader "screen in" [ref=f16e268]
+                  - cell "14" [ref=f16e269]
+            - generic [ref=f16e270]:
+              - generic [ref=f16e271]: $1,499.00
+              - generic [ref=f16e282]: in bin · 25
+            - generic [ref=f16e288]:
+              - button "Remove ThinkPad X1 Carbon Gen 11 from cart" [ref=f16e289]: In bin · 1 — remove
+              - link "Spec sheet →" [ref=f16e291] [cursor=pointer]:
+                - /url: /product/thinkpad-x1-carbon-gen-11
+      - generic [ref=f16e187]:
+        - paragraph [ref=f16e188]: Apple · unit APL-MBA-M3
+        - heading "MacBook Air M3" [level=1] [ref=f16e189]
+        - generic [ref=f16e190]:
+          - generic [ref=f16e191]:
+            - generic [ref=f16e192]: $1,099.00
+            - generic [ref=f16e203]: in bin · 18
+          - paragraph [ref=f16e209]: 18 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f16e210]:
+            - generic [ref=f16e211]:
+              - button "One fewer" [disabled] [ref=f16e212]
+              - generic [ref=f16e214]: "1"
+              - button "One more" [active] [ref=f16e215]
+            - button "Add one to bin" [ref=f16e292]
+            - link "Filed — open the bill →" [ref=f16e293] [cursor=pointer]:
+              - /url: /quote
+          - paragraph [ref=f16e294]: Already in your bin × 2
+        - link "Ask the assistant to vet this" [ref=f16e220] [cursor=pointer]:
+          - /url: /assistant?cat=laptops&q=MacBook%20Air%20M3
+          - generic [aria-hidden] [ref=f16e222]: →
+        - heading "Full specification" [level=2] [ref=f16e223]
+        - table [ref=f16e224]:
+          - rowgroup [ref=f16e225]:
+            - row [ref=f16e226]:
+              - rowheader "SKU" [ref=f16e227]
+              - cell "APL-MBA-M3" [ref=f16e228]
+            - row [ref=f16e229]:
+              - rowheader "Status" [ref=f16e230]
+              - cell "Active" [ref=f16e231]
+            - row [ref=f16e232]:
+              - rowheader "ram gb" [ref=f16e233]
+              - cell "8" [ref=f16e234]
+            - row [ref=f16e235]:
+              - rowheader "storage gb" [ref=f16e236]
+              - cell "256" [ref=f16e237]
+            - row [ref=f16e238]:
+              - rowheader "screen in" [ref=f16e239]
+              - cell "13.6" [ref=f16e240]
+            - row [ref=f16e241]:
+              - rowheader "cpu" [ref=f16e242]
+              - cell "Apple M3" [ref=f16e243]
+            - row [ref=f16e244]:
+              - rowheader "weight kg" [ref=f16e245]
+              - cell "1.24" [ref=f16e246]

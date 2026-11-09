@@ -1,0 +1,30 @@
+- generic [active] [ref=f19e1]:
+  - alert [ref=f19e2]
+  - banner [ref=f19e3]:
+    - generic [ref=f19e4]:
+      - link "ShopMind cat. elec-026" [ref=f19e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f19e6]: ShopMind
+        - generic [ref=f19e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f19e8]'
+      - navigation [ref=f19e14]:
+        - link "Catalog" [ref=f19e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f19e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f19e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f19e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f19e20]
+      - generic [ref=f19e21]:
+        - 'generic "Cart: 6 items, subtotal $4,996.97 — shipping computed on the bill" [ref=f19e22]': $4,996.97
+        - button "Switch to night (dark) theme" [ref=f19e29]
+  - main [ref=f19e33]:
+    - alert [ref=f19e34]:
+      - generic [ref=f19e36]:
+        - strong [ref=f19e37]: "No such bin: “notabin”."
+        - text: The catalog holds eight bins — pick one from the wall.
+        - link [ref=f19e39] [cursor=pointer]:
+          - /url: /
+          - button "Back to every bin" [ref=f19e40]

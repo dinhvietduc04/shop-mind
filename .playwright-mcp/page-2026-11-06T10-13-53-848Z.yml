@@ -1,0 +1,88 @@
+- generic [ref=f91e1]:
+  - generic [ref=f91e95] [cursor=pointer]:
+    - button "Open issues overlay" [ref=f91e96]:
+      - generic [ref=f91e100]:
+        - generic [aria-hidden] [ref=f91e101]: "1"
+        - generic [ref=f91e102]: "2"
+      - generic [ref=f91e103]:
+        - text: Issue
+        - generic [aria-hidden] [ref=f91e104]: s
+    - button "Collapse issues badge" [ref=f91e105]
+  - alert [ref=f91e2]
+  - banner [ref=f91e3]:
+    - generic [ref=f91e4]:
+      - link "ShopMind cat. elec-026" [ref=f91e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f91e6]: ShopMind
+        - generic [ref=f91e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f91e8]'
+      - navigation [ref=f91e14]:
+        - link "Catalog" [ref=f91e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f91e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f91e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f91e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f91e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f91e21]
+      - generic [ref=f91e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f91e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f91e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f91e30]
+  - main [ref=f91e34]:
+    - heading "The assistant" [level=1] [ref=f91e35]
+    - paragraph [ref=f91e36]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f91e37]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f91e38]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f91e40] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f91e42]:
+      - generic [ref=f91e43]:
+        - heading "The assistant" [level=2] [ref=f91e44]
+        - generic [ref=f91e47]:
+          - text: turn 3/8
+          - button "new" [ref=f91e48]
+      - generic [ref=f91e49]:
+        - paragraph [ref=f91e60]: a laptop under $1200 for backend dev
+        - generic [ref=f91e61]:
+          - paragraph [ref=f91e62]: Nothing in laptops matches category=laptops, price<=1200, ram_gb>=16 together. The budget fits MacBook Air M3 ($1099.00) but it reads 8 ram gb — under the 16 you asked for. The 16-class one, ThinkPad X1 Carbon Gen 11, costs $1499.00 — over budget. Which side do you want to give?
+          - 'generic "Tools run this turn: search_products, search_products" [ref=f91e63]':
+            - generic "category=laptops, price<=1200, ram_gb>=16" [ref=f91e64]:
+              - text: search_products
+              - generic [ref=f91e67]: (category=laptops, price<=1200, ram_gb>=16)
+            - 'generic "relaxed: budget dropped" [ref=f91e68]':
+              - text: search_products
+              - generic [ref=f91e71]: "(relaxed: budget dropped)"
+          - generic [ref=f91e72]:
+            - heading "interview · 2 questions" [level=3] [ref=f91e73]
+            - generic [ref=f91e76]:
+              - text: Raise ceiling to $1499.00?
+              - generic [ref=f91e77]:
+                - slider "Budget ceiling" [ref=f91e78]: "1500"
+                - generic [ref=f91e79]: $1,500.00
+            - generic [ref=f91e80]:
+              - text: Relax ram gb
+              - generic [ref=f91e81]:
+                - button "keep" [ref=f91e82]
+                - button "drop" [ref=f91e83]
+            - generic [ref=f91e84]:
+              - button "send answers" [disabled]
+              - generic [ref=f91e85]: answers join the filter set · nothing is stored beyond this conversation
+        - paragraph [ref=f91e87]: just pay it now
+        - paragraph [ref=f91e89]: I can't pay, and it's not a permission I'm lacking — there is no tool that touches a card at this level. The bill page opens the hosted payment page; that click is yours alone.
+        - paragraph [ref=f91e109]: compare laptops under $1600
+        - generic [ref=f91e110]:
+          - paragraph
+          - generic [ref=f91e111]: Cannot read properties of undefined (reading 'name')
+      - generic [ref=f91e57]:
+        - textbox "Message the assistant" [active] [ref=f91e58]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

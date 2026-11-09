@@ -1,0 +1,70 @@
+- generic [active] [ref=f34e1]:
+  - link "Skip to content" [ref=f34e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f34e3]:
+    - generic [ref=f34e4]:
+      - link "ShopMind cat. elec-026" [ref=f34e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f34e6]: ShopMind
+        - generic [ref=f34e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f34e8]'
+      - navigation [ref=f34e14]:
+        - link "Catalog" [ref=f34e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f34e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f34e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f34e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f34e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f34e21]
+      - generic [ref=f34e22]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f34e36] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f34e29]: $599.99
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f34e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f34e38]: DC
+          - generic [ref=f34e39]: Account
+        - button "Switch to night (dark) theme" [ref=f34e31]
+  - main [ref=f34e40]:
+    - heading "The bill" [level=1] [ref=f34e41]
+    - article [ref=f34e42]:
+      - generic [ref=f34e43]:
+        - generic [ref=f34e44]: cart · 1 lines
+        - generic [ref=f34e45]: priced by the API · free ship ≥ $500.00
+      - generic [ref=f34e46]:
+        - progressbar "Free shipping progress" [ref=f34e47]
+        - paragraph [ref=f34e49]: free shipping unlocked
+      - list [ref=f34e50]:
+        - listitem [ref=f34e51]:
+          - img "No photo on file for plate NV-RTX4070" [ref=f34e53]:
+            - generic [ref=f34e58]: pl. NV-RTX4070 · photo not on file
+          - generic [ref=f34e61]:
+            - link "RTX 4070 GPU" [ref=f34e63] [cursor=pointer]:
+              - /url: /product/p-rtx-4070
+            - generic [ref=f34e64]:
+              - generic [ref=f34e65]: NV-RTX4070
+              - generic [ref=f34e66]: $599.99 ea
+            - generic [ref=f34e69]:
+              - button "Decrease RTX 4070 GPU" [disabled] [ref=f34e70]
+              - generic [ref=f34e72]: "1"
+              - button "Increase RTX 4070 GPU" [ref=f34e73]
+              - button "Remove RTX 4070 GPU" [ref=f34e75]: remove
+          - generic [ref=f34e79]: $599.99
+      - generic [ref=f34e80]:
+        - generic [ref=f34e81]:
+          - term [ref=f34e82]: Subtotal
+          - definition [ref=f34e83]: $599.99
+        - generic [ref=f34e84]:
+          - term [ref=f34e85]: Shipping
+          - definition [ref=f34e86]: free
+        - generic [ref=f34e87]:
+          - term [ref=f34e88]: Total
+          - definition [ref=f34e89]: $599.99
+      - generic [ref=f34e90]:
+        - button "Create quote — reserve stock" [ref=f34e91]
+        - generic [ref=f34e92]: assistant may press this · yellow may not
+  - alert [ref=f34e93]

@@ -4,11 +4,14 @@ import { Suspense, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeProvider, useTheme } from "next-themes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Moon, Radio, Search, ShoppingCart, Sun } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { BandChip, Skeleton } from "@/components/ui";
+import { BandChip } from "@/components/ui";
 import { useCart, useCategories, useProducts } from "@/lib/api/hooks";
+import { useSession } from "@/lib/session";
+import { queryClient } from "@/lib/api/queryClient";
+import { beginHold } from "@/lib/api/readyGate";
 import { formatUsd } from "@/lib/api/types";
 import { useShopUI } from "@/lib/ui";
 import { BAND_DIGIT, bandClass, bandForCategory } from "@/lib/bands";
@@ -19,40 +22,35 @@ import dynamic from "next/dynamic";
 
 // ssr:false keeps msw out of the server bundle graph (its browser export
 // refuses Node resolution in msw v3). Children render only after the worker
-// is live, so no query can fire against a missing mock network.
+// is live, so no query can fire against a missing mock network — the boot
+// itself no longer gates rendering (see lib/api/readyGate: pages paint,
+// api() parks requests until the worker answers).
 const MockBootstrapper = dynamic(() => import("@/mocks/Bootstrapper"), {
   ssr: false,
 });
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+  /* Arm the request gate during this render — before any child effect can
+     schedule a fetch. Idempotent; never armed against the real API. */
+  useState(() => {
+    if (mockMode && typeof window !== "undefined") beginHold();
+    return true;
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         {/* cacheComponents: browser-only content (next/dynamic ssr:false →
             browser()) must suspend to a Suspense boundary during prerender. */}
-        {mockMode ? (
-          <Suspense fallback={<MockBootFallback />}>
-            <MockBootstrapper>{children}</MockBootstrapper>
+        {mockMode && (
+          <Suspense fallback={null}>
+            <MockBootstrapper />
           </Suspense>
-        ) : (
-          children
         )}
+        {children}
       </ThemeProvider>
     </QueryClientProvider>
-  );
-}
-
-function MockBootFallback() {
-  return (
-    <div className="mx-auto max-w-[1600px] px-6 py-10">
-      <div className="grid gap-6 md:grid-cols-2">
-        <Skeleton className="h-[420px]" />
-        <Skeleton className="h-[420px]" />
-      </div>
-    </div>
   );
 }
 
@@ -90,25 +88,28 @@ function ThemeToggle() {
 export function Masthead() {
   const { query, setQuery } = useShopUI();
   const pathname = usePathname();
+  const user = useSession((s) => s.user);
   const { data: cart } = useCart();
   const count = cart?.totalQuantity ?? 0;
   const total = cart?.subtotal ?? 0;
   const navItems = [
     { href: "/", label: "Catalog" },
     { href: "/quote", label: "Bill" },
+    { href: "/orders", label: "Orders" },
     { href: "/assistant", label: "Assistant" },
+    ...(user?.role === "Admin" ? [{ href: "/admin", label: "Admin" }] : []),
     { href: "/dev/ui", label: "UI kit" },
   ];
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
   return (
     <header className="sticky top-0 z-20 border-b-[1.5px] border-ink bg-kraft">
-      <div className="mx-auto flex max-w-[1600px] items-center gap-6 px-6 py-3">
-        <Link href="/" className="flex items-baseline gap-3">
-          <span className="text-xl font-extrabold uppercase tracking-[0.3em]">
+      <div className="mx-auto flex max-w-[1600px] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 md:flex-nowrap md:gap-6 md:px-6">
+        <Link href="/" className="flex shrink-0 items-baseline gap-3">
+          <span className="text-lg font-extrabold uppercase tracking-[0.2em] md:text-xl md:tracking-[0.3em]">
             ShopMind
           </span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-ink-soft md:inline">
+          <span className="hidden font-mono text-[11px] uppercase tracking-[0.24em] text-ink-soft md:inline">
             cat. elec-026
           </span>
         </Link>
@@ -135,7 +136,7 @@ export function Masthead() {
             </Link>
           ))}
         </nav>
-        <div className="relative ml-auto w-40 min-w-0 grow max-w-[380px] md:w-full">
+        <div className="relative order-last min-w-0 grow basis-full md:order-none md:ml-auto md:w-40 md:max-w-[380px] md:basis-auto">
           <Search
             size={15}
             aria-hidden
@@ -148,30 +149,54 @@ export function Masthead() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="search bins — “16 GB laptop under $1,200”"
-            className="w-full rounded-[4px] border-[1.5px] border-line bg-card py-2 pl-9 pr-3 font-mono text-[13px] placeholder:text-ink-soft/70 focus:border-ink"
+            className="w-full rounded-[4px] border-[1.5px] border-line bg-card py-2 pl-9 pr-3 font-mono text-[13px] placeholder:text-ink-soft focus:border-ink"
           />
         </div>
-        <div className="flex items-center gap-2">
-          <span
+        <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
+          <Link
+            href="/quote"
             className={cn(
               "flex items-center gap-2 rounded-[4px] border-[1.5px] px-3 py-1.5",
               count > 0
-                ? "border-ink bg-band-yellow font-extrabold text-[#1a1a1a]"
-                : "border-line text-ink-soft"
+                ? "border-ink bg-band-yellow font-extrabold text-[#1a1a1a] hover:brightness-105"
+                : "border-line text-ink-soft hover:border-ink"
             )}
-            aria-label={`Cart: ${count} items, subtotal ${formatUsd(total)} — shipping computed on the bill`}
+            aria-label={`Cart: ${count} items, subtotal ${formatUsd(total)} — open the bill`}
           >
             <ShoppingCart size={15} aria-hidden />
             <span className="font-mono text-[13px] tabular-nums">
               {count > 0 ? formatUsd(total) : "empty"}
             </span>
-          </span>
+          </Link>
+          <Link
+            href={user ? "/account" : `/login?next=${encodeURIComponent(pathname)}`}
+            className={cn(
+              "flex items-center gap-2 rounded-[4px] border-[1.5px] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em]",
+              user
+                ? "border-ink hover:bg-ink/10"
+                : "border-dashed border-line text-ink-soft hover:border-ink hover:text-ink"
+            )}
+            aria-label={user ? `Account: ${user.email}, role ${user.role}` : "Sign in"}
+            title={user ? `${user.firstName} ${user.lastName} · ${user.role}` : "Guest — no session"}
+          >
+            {user ? (
+              <>
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-ink font-mono text-[11px] text-paper">
+                  {user.firstName?.[0]}
+                  {user.lastName?.[0]}
+                </span>
+                <span className="hidden md:inline">{user.role === "Admin" ? "Admin" : "Account"}</span>
+              </>
+            ) : (
+              "Sign in"
+            )}
+          </Link>
           <ThemeToggle />
         </div>
       </div>
       <nav
         aria-label="Primary"
-        className="flex gap-2 overflow-x-auto border-t-[1.5px] border-transparent px-6 pb-2 lg:hidden"
+        className="flex gap-2 overflow-x-auto border-t-[1.5px] border-transparent px-4 pb-2 md:px-6 lg:hidden"
       >
         {navItems.map((n) => (
           <Link
@@ -219,9 +244,9 @@ export function BinRail() {
               : "border-line/70 hover:border-ink"
           )}
         >
-          <span className="font-mono text-[10px] text-ink-soft">ALL</span>
+          <span className="font-mono text-[11px] text-ink-soft">ALL</span>
           <span className="text-[13px] uppercase tracking-[0.08em]">Every bin</span>
-          <span className="ml-auto font-mono text-[10px] text-ink-soft">
+          <span className="ml-auto font-mono text-[11px] text-ink-soft">
             {all?.totalCount ?? "··"}
           </span>
         </button>
@@ -247,7 +272,7 @@ export function BinRail() {
               )}
             />
             <span className="text-[13px] uppercase tracking-[0.08em]">{c.name}</span>
-            <span className="ml-auto font-mono text-[10px] text-ink-soft">
+            <span className="ml-auto font-mono text-[11px] text-ink-soft">
               {code}·{counts.get(c.name) ?? 0}
             </span>
           </button>
@@ -308,9 +333,11 @@ function RailLegend() {
           ))}
         </div>
         <p className="mt-2 leading-relaxed">
-          Price bands read like resistor code:{" "}
-          <span className="font-mono">brown·black·white·white = 1·0·9·9</span>. The
-          digits are always printed too.
+          The stripe beside every price is the resistor{" "}
+          <strong className="font-semibold text-ink">multiplier</strong> band — one
+          colour per order of magnitude: brown ×10, red ×100, orange ×1k. The exact
+          number is always printed beside it; the band is a glance-anchor, not a code
+          to decode.
         </p>
       </div>
       <p className="border-t-[1.5px] border-dashed border-line pt-4 text-ink-soft">

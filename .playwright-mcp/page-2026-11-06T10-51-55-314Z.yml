@@ -1,0 +1,66 @@
+- generic [active] [ref=f38e1]:
+  - alert [ref=f38e2]
+  - banner [ref=f38e3]:
+    - generic [ref=f38e4]:
+      - link "ShopMind cat. elec-026" [ref=f38e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f38e6]: ShopMind
+        - generic [ref=f38e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f38e8]'
+      - navigation [ref=f38e14]:
+        - link "Catalog" [ref=f38e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f38e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f38e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f38e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f38e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f38e21]
+      - generic [ref=f38e22]:
+        - 'link "Cart: 1 items, subtotal $49.99 — open the bill" [ref=f38e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f38e29]: $49.99
+        - 'link "Account: test@register.local, role Customer" [ref=f38e30] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f38e31]: TR
+          - generic [ref=f38e32]: Account
+        - button "Switch to night (dark) theme" [ref=f38e33]
+  - main [ref=f38e37]:
+    - heading "The bill" [level=1] [ref=f38e38]
+    - article [ref=f38e39]:
+      - generic [ref=f38e40]:
+        - generic [ref=f38e41]: cart · 1 lines
+        - generic [ref=f38e42]: priced by the API · free ship ≥ $500.00
+      - generic [ref=f38e43]:
+        - progressbar "Free shipping progress" [ref=f38e44]
+        - paragraph [ref=f38e46]: add $450.01 more for free shipping
+      - list [ref=f38e47]:
+        - listitem [ref=f38e48]:
+          - img "No photo on file for plate ACC-USBCDOCK" [ref=f38e50]:
+            - generic [ref=f38e55]: pl. ACC-USBCDOCK · photo not on file
+          - generic [ref=f38e58]:
+            - link "USB-C Docking Station" [ref=f38e60] [cursor=pointer]:
+              - /url: /product/p-usb-c-dock
+            - generic [ref=f38e61]: ACC-USBCDOCK
+            - generic [ref=f38e68]:
+              - button "Decrease USB-C Docking Station" [disabled] [ref=f38e69]
+              - generic [ref=f38e71]: "1"
+              - button "Increase USB-C Docking Station" [ref=f38e72]
+              - button "Remove USB-C Docking Station" [ref=f38e74]: remove
+          - generic [ref=f38e78]: $49.99
+      - generic [ref=f38e79]:
+        - generic [ref=f38e80]:
+          - term [ref=f38e81]: Subtotal
+          - definition [ref=f38e82]: $49.99
+        - generic [ref=f38e83]:
+          - term [ref=f38e84]: Shipping
+          - definition [ref=f38e85]: $15.00
+        - generic [ref=f38e86]:
+          - term [ref=f38e87]: Total
+          - definition [ref=f38e88]: $64.99
+      - generic [ref=f38e89]:
+        - button "Create quote — reserve stock" [ref=f38e90]
+        - generic [ref=f38e91]: assistant may press this · yellow may not

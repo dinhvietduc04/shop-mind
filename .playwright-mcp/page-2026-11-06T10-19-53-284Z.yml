@@ -1,0 +1,108 @@
+- generic [ref=f100e1]:
+  - alert [ref=f100e2]
+  - banner [ref=f100e3]:
+    - generic [ref=f100e4]:
+      - link "ShopMind cat. elec-026" [ref=f100e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f100e6]: ShopMind
+        - generic [ref=f100e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f100e8]'
+      - navigation [ref=f100e14]:
+        - link "Catalog" [ref=f100e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f100e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f100e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f100e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f100e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f100e21]
+      - generic [ref=f100e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f100e144] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f100e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f100e30]
+  - main [ref=f100e34]:
+    - heading "The assistant" [level=1] [ref=f100e35]
+    - paragraph [ref=f100e36]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f100e37]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f100e38]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f100e40] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f100e42]:
+      - generic [ref=f100e43]:
+        - heading "The assistant" [level=2] [ref=f100e44]
+        - generic [ref=f100e47]:
+          - text: turn 4/8
+          - button "new" [ref=f100e48]
+      - generic [ref=f100e49]:
+        - paragraph [ref=f100e60]: a laptop under $1200 for backend dev
+        - generic [ref=f100e61]:
+          - paragraph [ref=f100e62]: Nothing in laptops matches category=laptops, price<=1200, ram_gb>=16 together. The budget fits MacBook Air M3 ($1099.00) but it reads 8 ram gb — under the 16 you asked for. The 16-class one, ThinkPad X1 Carbon Gen 11, costs $1499.00 — over budget. Which side do you want to give?
+          - 'generic "Tools run this turn: search_products, search_products" [ref=f100e63]':
+            - generic "category=laptops, price<=1200, ram_gb>=16" [ref=f100e64]:
+              - text: search_products
+              - generic [ref=f100e67]: (category=laptops, price<=1200, ram_gb>=16)
+            - 'generic "relaxed: budget dropped" [ref=f100e68]':
+              - text: search_products
+              - generic [ref=f100e71]: "(relaxed: budget dropped)"
+          - generic [ref=f100e72]:
+            - heading "interview · 2 questions" [level=3] [ref=f100e73]
+            - generic [ref=f100e76]:
+              - text: Raise ceiling to $1499.00?
+              - generic [ref=f100e77]:
+                - slider "Budget ceiling" [disabled] [ref=f100e78]: "1500"
+                - generic [ref=f100e79]: $1,500.00
+            - generic [ref=f100e80]:
+              - text: Relax ram gb
+              - generic [ref=f100e81]:
+                - button "keep" [disabled] [ref=f100e82]
+                - button "drop" [disabled] [pressed] [ref=f100e83]
+            - generic [ref=f100e84]:
+              - button "answers sent" [disabled]
+              - generic [ref=f100e85]: answers join the filter set · nothing is stored beyond this conversation
+        - paragraph [ref=f100e87]: budget $1500 · relax ram_gb
+        - generic [ref=f100e88]:
+          - paragraph [ref=f100e89]: "2 match in bin laptops under $1500.00, ranked in-stock then price (turn 2): 1. MacBook Air M3 — $1099.00, 20 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f100e90]':
+            - generic "category=laptops, price<=1500" [ref=f100e91]:
+              - text: search_products
+              - generic [ref=f100e94]: (category=laptops, price<=1500)
+            - generic "top=APL-MBA-M3" [ref=f100e95]:
+              - text: get_product
+              - generic [ref=f100e98]: (top=APL-MBA-M3)
+          - generic [ref=f100e99]:
+            - generic [ref=f100e100]:
+              - generic [ref=f100e101]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f100e108] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f100e109]: $1,099.00
+              - paragraph [ref=f100e120]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f100e121]
+            - generic [ref=f100e122]:
+              - generic [ref=f100e123]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f100e130] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f100e131]: $1,499.00
+              - paragraph [ref=f100e142]: next in deterministic price order
+              - button "have it add this" [ref=f100e143]
+        - paragraph [ref=f100e146]: add MacBook Air M3 to bin
+        - generic [ref=f100e147]:
+          - paragraph [ref=f100e148]: Added MacBook Air M3 — $1099.00. Bin stock read 20 → 20 at the time of the call; quote-time is where the server reserves it for real.
+          - 'generic "Tools run this turn: add_to_cart, get_cart" [ref=f100e149]':
+            - generic "id=p-macbook-air-m3, qty=1" [ref=f100e150]:
+              - text: add_to_cart
+              - generic [ref=f100e153]: (id=p-macbook-air-m3, qty=1)
+            - generic "1 lines" [ref=f100e154]:
+              - text: get_cart
+              - generic [ref=f100e157]: (1 lines)
+      - generic [ref=f100e57]:
+        - textbox "Message the assistant" [active] [ref=f100e58]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

@@ -1,9 +1,11 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Link from "next/link";
 import { BadgeCheck, Hourglass, Lock, ShieldAlert, X } from "lucide-react";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
 import { useCancelPayment, useConfirmPayment, useQuote } from "@/lib/api/hooks";
+import { quoteOutcome } from "@/lib/quotes/intake";
 import { formatUsd } from "@/lib/api/types";
 
 /**
@@ -19,9 +21,10 @@ export default function PspPage() {
   const confirm = useConfirmPayment(token);
   const cancel = useCancelPayment(token);
 
-  const status = quote?.order.status;
-  const expired = status === "PaymentFailed" && !quote?.order.payment?.transactionId;
-  const paid = status === "Paid" || confirm.data?.order.status === "Paid";
+  /* one decode (intake) — expired-vs-declined comes from payment.outcome */
+  const outcome = quote ? quoteOutcome(quote.order) : null;
+  const expired = outcome === "expired";
+  const paid = outcome === "paid" || outcome === "fulfilled" || (confirm.data ? quoteOutcome(confirm.data.order) === "paid" : false);
   const view = paid ? confirm.data?.order ?? quote?.order : quote?.order;
 
   return (
@@ -31,7 +34,7 @@ export default function PspPage() {
           <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.24em]">
             <Lock size={13} aria-hidden /> FakePsp · hosted session
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-70">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] opacity-70">
             demo provider
           </span>
         </div>
@@ -50,13 +53,13 @@ export default function PspPage() {
           </div>
         ) : (
           <div className="p-5">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-soft">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
               merchant · shopmind · order {view.orderNumber}
             </p>
             <h1 className="mt-1 text-xl font-extrabold uppercase">
               {formatUsd(view.totalAmount)} due
             </h1>
-            {status === "Pending" && (
+            {outcome === "open" && (
               <p className="mt-1 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
                 <Hourglass size={12} aria-hidden /> reservation held until{" "}
                 {new Date(quote.expiresAt).toLocaleTimeString()}
@@ -83,9 +86,15 @@ export default function PspPage() {
                   <strong>Payment succeeded.</strong> Stock committed, cart cleared,
                   order {view.orderNumber} is <em>Paid</em>. The webhook consumer in the
                   real build makes this transition once (idempotent).
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
                     txn {view.payment?.transactionId}
                   </div>
+                  <Link
+                    href={`/checkout/success?session=${token}`}
+                    className="mt-2 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.14em] underline underline-offset-4"
+                  >
+                    Return to shop →
+                  </Link>
                 </div>
               </div>
             ) : expired ? (
@@ -94,9 +103,17 @@ export default function PspPage() {
                 <div><strong>Reservation released.</strong> The quote expired — stock
                   returned to the bins. Create a new quote from the bill page.</div>
               </div>
-            ) : status === "Cancelled" ? (
+            ) : outcome === "abandoned" ? (
               <div className="rounded-[4px] border-[1.5px] border-line p-4 text-[13px]">
                 <strong>Quote abandoned.</strong> Reservation released. No charge.
+                <div className="mt-2">
+                  <Link
+                    href={`/checkout/cancel?session=${token}`}
+                    className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] underline underline-offset-4"
+                  >
+                    Return to shop →
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className="flex flex-wrap gap-3">
@@ -123,7 +140,7 @@ export default function PspPage() {
               </div>
             )}
 
-            <p className="mt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-ink-soft">
+            <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-ink-soft">
               no card form: this mock confirms instantly (paymentfail mode simulates a
               decline). real stripe checkout collects the card on stripe&apos;s page —
               card data never touches ShopMind (Assist level).

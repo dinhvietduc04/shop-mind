@@ -1,0 +1,49 @@
+- generic [active] [ref=f9e1]:
+  - alert [ref=f9e2]
+  - banner [ref=f9e3]:
+    - generic [ref=f9e4]:
+      - link "ShopMind cat. elec-026" [ref=f9e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e6]: ShopMind
+        - generic [ref=f9e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f9e8]'
+      - navigation [ref=f9e14]:
+        - link "Catalog" [ref=f9e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f9e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f9e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f9e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f9e20]
+      - generic [ref=f9e21]:
+        - 'generic "Cart: 2 items, subtotal $99.98 — shipping computed on the bill" [ref=f9e22]': $99.98
+        - button "Switch to night (dark) theme" [ref=f9e29]
+  - generic [ref=f9e33]:
+    - heading "The bill" [level=1] [ref=f9e34]
+    - article [ref=f9e35]:
+      - generic [ref=f9e36]:
+        - generic [ref=f9e37]: cart · 1 lines
+        - generic [ref=f9e38]: priced by the API · free ship ≥ $500.00
+      - list [ref=f9e39]:
+        - listitem [ref=f9e40]:
+          - img "No photo on file for plate ACC-USBCDOCK" [ref=f9e42]:
+            - generic [ref=f9e47]: pl. ACC-USBCDOCK · photo not on file
+          - generic [ref=f9e50]:
+            - generic [ref=f9e51]: USB-C Docking Station
+            - generic [ref=f9e52]: ACC-USBCDOCK · ×2
+          - generic [ref=f9e59]: $99.98
+      - generic [ref=f9e60]:
+        - generic [ref=f9e61]:
+          - term [ref=f9e62]: Subtotal
+          - definition [ref=f9e63]: $99.98
+        - generic [ref=f9e64]:
+          - term [ref=f9e65]: Shipping
+          - definition [ref=f9e66]: $15.00
+        - generic [ref=f9e67]:
+          - term [ref=f9e68]: Total
+          - definition [ref=f9e69]: $114.98
+      - generic [ref=f9e70]:
+        - button "Create quote — reserve stock" [ref=f9e71]
+        - generic [ref=f9e72]: assistant may press this · yellow may not

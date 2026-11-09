@@ -1,0 +1,76 @@
+- generic [active] [ref=f51e1]:
+  - alert [ref=f51e2]: ShopMind — bin catalog
+  - banner [ref=f51e109]:
+    - generic [ref=f51e110]:
+      - link "ShopMind cat. elec-026" [ref=f51e111] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f51e112]: ShopMind
+        - generic [ref=f51e113]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f51e114]'
+      - navigation [ref=f51e120]:
+        - link "Catalog" [ref=f51e121] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f51e122] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f51e123] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f51e124] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f51e125] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f51e127]
+      - generic [ref=f51e128]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f51e129] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f51e135]: empty
+        - button "Switch to night (dark) theme" [ref=f51e136]
+  - main [ref=f51e177]:
+    - navigation [ref=f51e178]:
+      - link "← Order ledger" [ref=f51e179] [cursor=pointer]:
+        - /url: /orders
+    - generic [ref=f51e180]:
+      - heading "Order SM-2026-NXH6PG02" [level=1] [ref=f51e181]
+      - generic [ref=f51e182]: Pending
+    - article [ref=f51e183]:
+      - generic [ref=f51e184]:
+        - heading "Fulfillment path" [level=2] [ref=f51e185]
+        - generic [ref=f51e186]:
+          - 'list "Order status: Pending" [ref=f51e187]':
+            - listitem [ref=f51e188]:
+              - generic "Pending" [ref=f51e189]
+            - listitem [ref=f51e191]:
+              - generic "Paid" [ref=f51e192]
+            - listitem [ref=f51e194]:
+              - generic "Processing" [ref=f51e195]
+            - listitem [ref=f51e197]:
+              - generic "Shipped" [ref=f51e198]
+            - listitem [ref=f51e200]:
+              - generic "Delivered" [ref=f51e201]
+          - paragraph [ref=f51e202]: Pending
+      - list [ref=f51e203]:
+        - listitem [ref=f51e204]:
+          - generic [ref=f51e205]: USB-C Docking Station
+          - generic [ref=f51e206]: ACC-USBCDOCK
+          - generic [ref=f51e212]: $49.99 ×3
+          - generic [ref=f51e213]: $149.97
+      - generic [ref=f51e214]:
+        - generic [ref=f51e215]:
+          - term [ref=f51e216]: Subtotal
+          - definition [ref=f51e217]: $149.97
+        - generic [ref=f51e218]:
+          - term [ref=f51e219]: Shipping
+          - definition [ref=f51e220]: $15.00
+        - generic [ref=f51e221]:
+          - term [ref=f51e222]: Total
+          - definition [ref=f51e223]: $164.97
+      - generic [ref=f51e231]:
+        - generic [ref=f51e232]:
+          - heading "Ships to" [level=3] [ref=f51e233]
+          - paragraph [ref=f51e234]: Demo Customer123 Catalog Lane, Vienna+1-555-0100
+        - generic [ref=f51e235]:
+          - heading "Payment" [level=3] [ref=f51e236]
+          - paragraph [ref=f51e237]: Awaiting payment on the hosted page.
+      - generic [ref=f51e238]:
+        - button "Cancel order — release stock" [ref=f51e239]
+        - generic [ref=f51e243]: legal while pending; paid orders route to support
+    - paragraph [ref=f51e244]: placed 11/6/2026, 4:45:08 PM · mock ledger, no real charge — this record exists because a human pressed Pay on the hosted page

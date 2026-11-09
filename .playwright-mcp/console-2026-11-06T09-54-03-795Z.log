@@ -1,0 +1,790 @@
+[     133ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[     151ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[     561ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[     579ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  334899ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  334929ms] [LOG] [Fast Refresh] done in 10ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  345386ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  345415ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  433062ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  455678ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  463461ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  491146ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  492050ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  493960ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  535299ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  535326ms] [LOG] [Fast Refresh] done in 7ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  537715ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  537747ms] [LOG] [Fast Refresh] done in 51ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  580897ms] [LOG] [Fast Refresh] done in 51ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  584097ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  584132ms] [ERROR] ./src/components/shell.tsx:29:9
+Error: the name `mockMode` is defined multiple times
+  27 | export function Providers({ children }: { children: React.ReactNode }) {
+  28 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  30 |
+  31 |   return (
+  32 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  611259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  611389ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  624667ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  624732ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  633726ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  633806ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  642547ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  644502ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  644559ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  651537ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  651595ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  661927ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  661990ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  673247ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  673326ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  674627ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  698825ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  725789ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  727396ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  729748ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  729823ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  733905ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  733974ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  742344ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  742404ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  797099ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  797175ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  817792ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  817793ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  824719ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  824753ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  847787ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  850642ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  850702ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  868845ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  924249ms] [ERROR] ./src/components/shell.tsx:30:9
+Error: the name `mockMode` is defined multiple times
+  28 | export function Providers({ children }: { children: React.ReactNode }) {
+  29 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+> 30 |   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
+     |         ^^^^^^^^
+  31 |
+  32 |   return (
+  33 |     <QueryClientProvider client={queryClient}>
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/(shop)/layout.tsx
+
+  #2 [Server Component]:
+    ./src/components/shell.tsx
+    ./src/app/layout.tsx
+
+  #3 [Client Component Browser]:
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/catalog-view.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Client Component Browser]
+    ./src/app/(shop)/page.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/catalog-view.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Client Component SSR]
+    ./src/app/(shop)/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  924323ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  925895ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  925928ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  925967ms] [LOG] [Fast Refresh] done in 101ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  926207ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  926227ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  944785ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  944815ms] [LOG] [Fast Refresh] done in 10ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  945435ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  945464ms] [LOG] [Fast Refresh] done in 17ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  953060ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  953089ms] [LOG] [Fast Refresh] done in 8ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  955205ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  955233ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  963642ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  964489ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  976236ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[ 1002363ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[ 1002388ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[ 1014484ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760

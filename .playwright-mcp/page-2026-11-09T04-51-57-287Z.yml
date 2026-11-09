@@ -1,0 +1,63 @@
+- generic [active] [ref=f12e1]:
+  - link "Skip to content" [ref=f12e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f12e3]:
+    - generic [ref=f12e4]:
+      - link "ShopMind cat. elec-026" [ref=f12e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f12e6]: ShopMind
+        - generic [ref=f12e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f12e8]'
+      - navigation [ref=f12e14]:
+        - link "Catalog" [ref=f12e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f12e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f12e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f12e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f12e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f12e21]
+      - generic [ref=f12e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f12e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f12e29]: empty
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f12e36] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f12e37]: DC
+          - generic [ref=f12e38]: Account
+        - button "Switch to night (dark) theme" [ref=f12e31]
+  - main [ref=f12e39]:
+    - heading "My account" [level=1] [ref=f12e40]
+    - generic [ref=f12e41]:
+      - generic [ref=f12e42]:
+        - generic [ref=f12e43]: DC
+        - generic [ref=f12e44]:
+          - paragraph [ref=f12e45]: Demo Customer
+          - paragraph [ref=f12e46]: customer@shopmind.local
+        - generic [ref=f12e47]: role · Customer
+      - generic [ref=f12e49]:
+        - link [ref=f12e50] [cursor=pointer]:
+          - /url: /orders
+          - button "Order ledger" [ref=f12e51]
+        - button "Sign out" [ref=f12e56]
+    - generic [ref=f12e60]:
+      - heading "Shipping preset" [level=2] [ref=f12e61]
+      - paragraph [ref=f12e65]: Quotes are reserved for this address — the bill shows it verbatim. The agent quotes to it as-is; changing it here is a human edit.
+      - generic [ref=f12e66]:
+        - generic [ref=f12e67]:
+          - generic [ref=f12e68]: Full name
+          - textbox "Full name" [ref=f12e69]: Demo Customer
+        - generic [ref=f12e70]:
+          - generic [ref=f12e71]: Phone
+          - textbox "Phone" [ref=f12e72]: +1-555-0100
+        - generic [ref=f12e73]:
+          - generic [ref=f12e74]: Address
+          - textbox "Address" [ref=f12e75]: 123 Catalog Lane
+        - generic [ref=f12e76]:
+          - generic [ref=f12e77]: City
+          - textbox "City" [ref=f12e78]: Vienna
+      - button "Save preset" [ref=f12e80]
+  - alert [ref=f12e81]

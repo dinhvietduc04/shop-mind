@@ -1,0 +1,76 @@
+- generic [ref=f48e1]:
+  - alert [ref=f48e2]
+  - banner [ref=f48e3]:
+    - generic [ref=f48e4]:
+      - link "ShopMind cat. elec-026" [ref=f48e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f48e6]: ShopMind
+        - generic [ref=f48e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f48e8]'
+      - navigation [ref=f48e14]:
+        - link "Catalog" [ref=f48e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f48e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f48e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f48e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f48e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f48e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f48e22]
+      - generic [ref=f48e23]:
+        - 'link "Cart: 2 items, subtotal $219.98 — open the bill" [ref=f48e63] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f48e30]: $219.98
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f48e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f48e32]: SA
+          - generic [ref=f48e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f48e34]
+  - main [ref=f48e38]:
+    - heading "The assistant" [level=1] [ref=f48e39]
+    - paragraph [ref=f48e40]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f48e41]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f48e42]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f48e44] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f48e46]:
+      - generic [ref=f48e47]:
+        - heading "The assistant" [level=2] [ref=f48e48]
+        - generic [ref=f48e51]:
+          - text: turn 2/8
+          - button "new" [ref=f48e52]
+      - generic [ref=f48e53]:
+        - paragraph [ref=f48e65]: quote it
+        - generic [ref=f48e66]:
+          - paragraph [ref=f48e67]: "Quote SM-2026-5ISH6JUE is open: 1 line, total $234.98, stock reserved until the countdown ends. Review the bill and pay on the hosted page — I stop here by design."
+          - 'generic "Tools run this turn: create_quote" [ref=f48e68]':
+            - generic "1 lines, atomically reserved" [ref=f48e69]:
+              - text: create_quote
+              - generic [ref=f48e72]: (1 lines, atomically reserved)
+          - generic [ref=f48e73]:
+            - generic [ref=f48e74]:
+              - generic [ref=f48e75]: quote SM-2026-5ISH6JUE
+              - generic [ref=f48e76]: reserved until 10:29:49 AM
+            - generic [ref=f48e80]:
+              - generic [ref=f48e81]:
+                - generic [ref=f48e82]: 1 line · stock held
+                - generic [ref=f48e83]: $234.98
+              - generic [ref=f48e91]:
+                - link "Review & Pay on the bill" [ref=f48e92] [cursor=pointer]:
+                  - /url: /quote
+                - link [ref=f48e95] [cursor=pointer]:
+                  - /url: /quote
+                  - button "Edit cart instead" [ref=f48e96]
+              - paragraph [ref=f48e97]: there is no pay control in this panel — the money boundary is the bill page
+      - generic [ref=f48e61]:
+        - textbox "Message the assistant" [active] [ref=f48e62]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

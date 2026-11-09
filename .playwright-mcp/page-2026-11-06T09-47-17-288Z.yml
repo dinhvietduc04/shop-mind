@@ -1,0 +1,35 @@
+- generic [active] [ref=f58e1]:
+  - alert [ref=f58e2]
+  - banner [ref=f58e3]:
+    - generic [ref=f58e4]:
+      - link "ShopMind cat. elec-026" [ref=f58e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f58e6]: ShopMind
+        - generic [ref=f58e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f58e8]'
+      - navigation [ref=f58e14]:
+        - link "Catalog" [ref=f58e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f58e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f58e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f58e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f58e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f58e21]
+      - generic [ref=f58e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f58e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f58e29]: empty
+        - button "Switch to night (dark) theme" [ref=f58e30]
+  - main [ref=f58e34]:
+    - heading "Order ledger" [level=1] [ref=f58e35]
+    - paragraph [ref=f58e36]: every quote you created — paid, expired or abandoned — lands here
+    - generic [ref=f58e38]:
+      - heading "No orders yet" [level=3] [ref=f58e39]
+      - generic [ref=f58e40]:
+        - paragraph [ref=f58e41]: Pay a quote on the hosted page and it appears here with its full status timeline.
+        - link "Back to the catalog" [ref=f58e42] [cursor=pointer]:
+          - /url: /

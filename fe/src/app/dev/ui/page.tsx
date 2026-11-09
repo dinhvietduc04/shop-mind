@@ -4,16 +4,17 @@ import Link from "next/link";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import {
   BandChip,
-  BandStrip,
   Button,
   EmptyState,
   ErrorNote,
   Field,
+  MagnitudeTick,
   PhotoPlate,
   Skeleton,
   StockDots,
 } from "@/components/ui";
-import { BAND_DIGIT, priceToBands } from "@/lib/bands";
+import { BAND_DIGIT, MAGNITUDE_LABEL, magnitudeBand } from "@/lib/bands";
+import { formatUsd } from "@/lib/api/types";
 
 const LADDER = Object.entries(BAND_DIGIT) as [keyof typeof BAND_DIGIT, number | null][];
 
@@ -41,7 +42,7 @@ export default function UiKitPage() {
             {LADDER.map(([band, digit]) => (
               <div key={band} className="flex flex-col items-center gap-1.5">
                 <BandChip band={band} size="lg" title={band} />
-                <span className="font-mono text-[10px] uppercase text-ink-soft">
+                <span className="font-mono text-[11px] uppercase text-ink-soft">
                   {band}
                   {digit !== null ? ` · ${digit}` : ""}
                 </span>
@@ -51,7 +52,7 @@ export default function UiKitPage() {
         </Section>
 
         <Section title="Buttons — add, ghost, and the human-only yellow">
-          <Button variant="add">Add to bin</Button>
+          <Button variant="add">Add to cart</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="human">Review bill &amp; pay</Button>
           <Button variant="add" disabled>
@@ -62,18 +63,24 @@ export default function UiKitPage() {
           </Button>
         </Section>
 
-        <Section title="Price bands + stock dots">
+        <Section title="Price magnitude band + stock dots">
+          <p className="-mt-1 mb-3 max-w-[62ch] text-[12px] leading-relaxed text-ink-soft">
+            One stripe per price = the resistor multiplier, encoding magnitude only
+            (×1 … ×100k). The digits beside it are the actual value — the stripe is
+            a glance-anchor, never something to decode.
+          </p>
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <BandStrip bands={priceToBands(1099)} />
-              <span className="font-mono text-sm font-bold tabular-nums">$1,099.00</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <BandStrip bands={priceToBands(329)} />
-              <span className="font-mono text-sm font-bold tabular-nums">$329.00</span>
-            </div>
+            {[49.99, 329, 1099].map((v) => (
+              <div key={v} className="flex items-center gap-3">
+                <MagnitudeTick value={v} />
+                <span className="font-mono text-sm font-bold tabular-nums">{formatUsd(v)}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
+                  {MAGNITUDE_LABEL[magnitudeBand(v)]}
+                </span>
+              </div>
+            ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="mt-4 flex flex-col gap-2">
             <StockDots qty={7} />
             <StockDots qty={2} />
             <StockDots qty={0} />

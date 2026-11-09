@@ -97,23 +97,6 @@ input, textarea {
   background: var(--line);
 }
 
-/* Authored motion: band strips decode digit-by-digit on mount,
-   exponential ease-out, content visible by default after the pass. */
-@keyframes band-set {
-  from {
-    opacity: 0;
-    transform: translateY(7px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.band-in {
-  animation: band-set 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

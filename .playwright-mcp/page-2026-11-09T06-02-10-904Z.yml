@@ -1,0 +1,99 @@
+- generic [active] [ref=f37e1]:
+  - link "Skip to content" [ref=f37e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f37e3]:
+    - generic [ref=f37e4]:
+      - link "ShopMind cat. elec-026" [ref=f37e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f37e6]: ShopMind
+        - generic [ref=f37e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f37e8]'
+      - navigation [ref=f37e14]:
+        - link "Catalog" [ref=f37e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f37e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f37e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f37e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f37e36] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f37e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f37e21]
+      - generic [ref=f37e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f37e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f37e29]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f37e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f37e38]: SA
+          - generic [ref=f37e39]: Admin
+        - button "Switch to night (dark) theme" [ref=f37e31]
+  - generic [ref=f37e40]:
+    - generic [ref=f37e41]:
+      - generic [ref=f37e43]: Admin console
+      - navigation "Admin sections" [ref=f37e44]:
+        - link "Dashboard" [ref=f37e45] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f37e46] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f37e47] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f37e48] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f37e49] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f37e50] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f37e52]:
+      - heading "Order ledger · 2" [level=2] [ref=f37e54]
+      - generic [ref=f37e55]:
+        - generic [ref=f37e56]:
+          - button "All" [pressed] [ref=f37e57]
+          - button "Pending" [ref=f37e58]
+          - button "Paid" [ref=f37e59]
+          - button "Processing" [ref=f37e60]
+          - button "Shipped" [ref=f37e61]
+          - button "Delivered" [ref=f37e62]
+          - button "Cancelled" [ref=f37e63]
+          - button "PaymentFailed" [ref=f37e64]
+        - table [ref=f37e66]:
+          - rowgroup [ref=f37e67]:
+            - row [ref=f37e68]:
+              - columnheader "Order" [ref=f37e69]
+              - columnheader "Filed" [ref=f37e70]
+              - columnheader "Ship to" [ref=f37e71]
+              - columnheader "Lines" [ref=f37e72]
+              - columnheader "Total" [ref=f37e73]
+              - columnheader "Status" [ref=f37e74]
+              - columnheader "Open" [ref=f37e75]
+          - rowgroup [ref=f37e76]:
+            - row [ref=f37e77]:
+              - cell "SM-2026-I6HCDP7N" [ref=f37e78]
+              - cell "11/9/2026, 1:01:33 PM" [ref=f37e79]
+              - cell "Demo Customer 123 Catalog Lane, Vienna" [ref=f37e80]:
+                - text: Demo Customer
+                - generic [ref=f37e81]: 123 Catalog Lane, Vienna
+              - cell "1" [ref=f37e82]
+              - cell "$599.99" [ref=f37e83]
+              - cell "PaymentFailed" [ref=f37e84]
+              - cell [ref=f37e86]:
+                - link [ref=f37e87] [cursor=pointer]:
+                  - /url: /admin/orders/o-o17ubbrh
+                  - button "Ledger card →" [ref=f37e88]
+            - row [ref=f37e89]:
+              - cell "SM-2026-FL47SIU9" [ref=f37e90]
+              - cell "11/9/2026, 12:58:36 PM" [ref=f37e91]
+              - cell "Demo Customer 123 Catalog Lane, Vienna" [ref=f37e92]:
+                - text: Demo Customer
+                - generic [ref=f37e93]: 123 Catalog Lane, Vienna
+              - cell "1" [ref=f37e94]
+              - cell "$549.99" [ref=f37e95]
+              - cell "Paid" [ref=f37e96]
+              - cell [ref=f37e98]:
+                - link [ref=f37e99] [cursor=pointer]:
+                  - /url: /admin/orders/o-89vsgdwa
+                  - button "Ledger card →" [ref=f37e100]
+  - alert [ref=f37e101]

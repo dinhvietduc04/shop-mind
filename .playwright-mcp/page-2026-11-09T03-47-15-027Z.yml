@@ -1,0 +1,61 @@
+- generic [active] [ref=f118e1]:
+  - alert [ref=f118e2]
+  - link "Skip to content" [ref=f118e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f118e4]:
+    - generic [ref=f118e5]:
+      - link "ShopMind" [ref=f118e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f118e9]
+      - generic [ref=f118e10]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f118e11] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f118e17]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f118e18] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f118e19]: SA
+        - button "Switch to night (dark) theme" [ref=f118e20]
+    - navigation "Primary" [ref=f118e23]:
+      - link "Catalog" [ref=f118e24] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f118e25] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f118e26] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f118e27] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f118e28] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f118e29] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f118e31]:
+    - heading "My account" [level=1] [ref=f118e32]
+    - generic [ref=f118e33]:
+      - generic [ref=f118e34]:
+        - generic [ref=f118e35]: SA
+        - generic [ref=f118e36]:
+          - paragraph [ref=f118e37]: Shop Admin
+          - paragraph [ref=f118e38]: admin@shopmind.local
+        - generic [ref=f118e39]: role · Admin
+      - generic [ref=f118e41]:
+        - link [ref=f118e42] [cursor=pointer]:
+          - /url: /orders
+          - button "Order ledger" [ref=f118e43]
+        - button "Sign out" [ref=f118e48]
+    - generic [ref=f118e52]:
+      - heading "Shipping preset" [level=2] [ref=f118e53]
+      - paragraph [ref=f118e57]: Quotes are reserved for this address — the bill shows it verbatim. The agent quotes to it as-is; changing it here is a human edit.
+      - generic [ref=f118e58]:
+        - generic [ref=f118e59]:
+          - generic [ref=f118e60]: Full name
+          - textbox "Full name" [ref=f118e61]: Demo Customer
+        - generic [ref=f118e62]:
+          - generic [ref=f118e63]: Phone
+          - textbox "Phone" [ref=f118e64]: +1-555-0100
+        - generic [ref=f118e65]:
+          - generic [ref=f118e66]: Address
+          - textbox "Address" [ref=f118e67]: 123 Catalog Lane
+        - generic [ref=f118e68]:
+          - generic [ref=f118e69]: City
+          - textbox "City" [ref=f118e70]: Vienna
+      - button "Save preset" [ref=f118e72]

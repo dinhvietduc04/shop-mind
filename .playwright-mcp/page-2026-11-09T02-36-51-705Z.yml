@@ -1,0 +1,90 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e2]
+  - banner [ref=f1e27]:
+    - generic [ref=f1e28]:
+      - link "ShopMind cat. elec-026" [ref=f1e29] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f1e30]: ShopMind
+        - generic [ref=f1e31]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f1e32]'
+      - searchbox "Search the catalog" [ref=f1e39]
+      - generic [ref=f1e40]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f1e41] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f1e47]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f1e48] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f1e49]: SA
+          - generic [ref=f1e50]: Admin
+        - button "Switch to night (dark) theme" [ref=f1e51]
+    - navigation "Primary" [ref=f1e54]:
+      - link "Catalog" [ref=f1e55] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f1e56] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f1e57] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f1e58] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f1e59] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f1e60] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f1e62]:
+    - generic [ref=f1e63]:
+      - generic [ref=f1e65]: Admin console
+      - navigation "Admin sections" [ref=f1e66]:
+        - link "Dashboard" [ref=f1e67] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f1e68] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f1e69] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f1e70] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f1e71] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f1e72] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f1e73]:
+      - paragraph [ref=f1e74]: signed in as admin@shopmind.local — the console writes to the same bin the customer storefront reads.
+      - generic [ref=f1e75]:
+        - generic [ref=f1e76]:
+          - paragraph [ref=f1e77]: Orders filed
+          - paragraph [ref=f1e79]: "0"
+          - paragraph [ref=f1e80]: 0 quote(s) still open
+        - generic [ref=f1e81]:
+          - paragraph [ref=f1e82]: Revenue
+          - paragraph [ref=f1e84]: $0.00
+          - paragraph [ref=f1e85]: settled at the hosted page
+        - generic [ref=f1e86]:
+          - paragraph [ref=f1e87]: Low stock
+          - paragraph [ref=f1e89]: "0"
+          - paragraph [ref=f1e90]: 0 sold out · restock below
+        - generic [ref=f1e91]:
+          - paragraph [ref=f1e92]: Open quotes
+          - paragraph [ref=f1e94]: "0"
+          - paragraph [ref=f1e95]: reservations held against stock
+        - generic [ref=f1e96]:
+          - paragraph [ref=f1e97]: AI calls today
+          - paragraph [ref=f1e99]: "0"
+          - paragraph [ref=f1e100]: 0 rejected / disabled
+        - generic [ref=f1e101]:
+          - paragraph [ref=f1e102]: Queue / DLQ
+          - paragraph [ref=f1e104]: not wired
+          - paragraph [ref=f1e105]: B2 background queues land server-side — placeholder per plan
+      - generic [ref=f1e106]:
+        - generic [ref=f1e107]:
+          - generic [ref=f1e108]:
+            - heading "Restock bench" [level=2] [ref=f1e109]
+            - link [ref=f1e111] [cursor=pointer]:
+              - /url: /admin/inventory
+              - button "Inventory →" [ref=f1e112]
+          - paragraph [ref=f1e114]: Every bin reads healthy — nothing at or below 5 units.
+        - generic [ref=f1e115]:
+          - generic [ref=f1e116]:
+            - heading "Latest orders" [level=2] [ref=f1e117]
+            - link [ref=f1e119] [cursor=pointer]:
+              - /url: /admin/orders
+              - button "Order ledger →" [ref=f1e120]
+          - paragraph [ref=f1e122]: No orders yet — quote and pay from the storefront to see this move.

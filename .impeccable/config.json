@@ -1,3 +1,29 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [
+      "cream-palette"
+    ],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "fe/**"
+        ],
+        "createdAt": "2026-11-09T03:45:02.480Z",
+        "reason": "Resistor-Code packaging world: paper/kraft/ink grounds are the documented design system (DESIGN.md), not a reflex cream palette."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "http://localhost*"
+        ],
+        "createdAt": "2026-11-09T03:45:45.140Z",
+        "reason": "Resistor-Code packaging world - documented paper/kraft/ink grounds, not a reflex cream palette"
+      }
+    ]
+  }
 }

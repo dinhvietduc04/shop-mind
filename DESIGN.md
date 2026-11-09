@@ -115,7 +115,7 @@ ShopMind is a working electronics shop that reads like its own inventory. The pa
 The type pairing reinforces the fiction: Archivo, a sturdy grotesque worn in tight uppercase caps with wide tracking, does the shelf-label voice; JetBrains Mono, tabular, does every number — prices, quantities, SKUs, bin codes. Numbers in this world are always mono and always `tabular-nums`; a price that jitters is a price that lies. Where the direction contract proposed slightly different grounds (`#F8F5EC` paper, `#141210` dark base), the build shipped `#f6f2e7` and `#17140e`; the built values are normative.
 
 **Key Characteristics:**
-- The resistor color ladder *is* the palette; every band carries real data (category, stock, or a price digit).
+- The resistor color ladder *is* the palette; every band carries real data (category, stock, or a price's order of magnitude).
 - Grounds are packaging material — paper, kraft cardstock, ink drawer — not accents.
 - One non-data color: yellow as a filled control means "human only."
 - Flat by construction: 1.5px solid outlines and tonal steps convey all depth; zero shadows, zero gradients.
@@ -127,14 +127,14 @@ The type pairing reinforces the fiction: Archivo, a sturdy grotesque worn in tig
 The palette is two families: packaging grounds that flex between themes, and the band ladder that never does. Text placed on a band always uses ink — never white-on-yellow.
 
 ### Primary
-- **Resistor Red** (`band-red`): The add control ("Add to bin"), error borders and error dots, and the text caret in every input. Red is action-and-fault, the shop's "grab / wrong" signal.
+- **Resistor Red** (`band-red`): The add control ("Add to cart"), error borders and error dots, and the text caret in every input. Red is action-and-fault, the shop's "grab / wrong" signal.
 
 ### Secondary
 - **Human Yellow** (`band-yellow`): The system's only non-data color when it appears as a filled control — pay/bill review, the cart chip once it holds items, the text-selection highlight. The same hue also appears as *data* in miniature (low-stock chip/dot, the gold tolerance band); form disambiguates: yellow as a filled control with ink text is always a human action; yellow as a small chip or dot is always stock data. The assistant surfaces yellow links for humans but never a control it can press itself.
 
 ### Tertiary — the encoding ladder
 - **Band Brown / Orange / Green / Blue / Violet**: the five fixed category identities (laptops/phones/audio/displays/components). A band is never reused for two categories. Green additionally means "in bin" in the stock trio.
-- **Band Black / Grey / White** plus brown→violet: the digit ladder 0–9 (`black`=0 … `white`=9); **Gold / Silver** are tolerance metals with no digit value. These appear in price strips, the masthead's five-chip category sequence, legends, and the ten-rung value ladder.
+- **Band Black / Grey / White** plus brown→violet: the digit ladder 0–9 (`black`=0 … `white`=9); **Gold / Silver** are tolerance metals with no digit value. Its multiplier reading (10^digit) governs the single price tick — brown ×10, red ×100, orange ×1k, yellow ×10k, green ×100k. The full ten-rung ladder still appears in legends and the masthead's five-chip category sequence; per-digit price strips were retired as ornament wearing data's clothes — the printed price already carries the value.
 
 ### Neutral
 - **Paper** (`paper`): page ground — warm packing paper.
@@ -156,19 +156,19 @@ The palette is two families: packaging grounds that flex between themes, and the
 **Body Font:** Archivo, 400
 **Label/Mono Font:** JetBrains Mono, weights 400 and 700
 
-**Character:** Archivo in tight uppercase caps with heavy tracking reads like stenciled bin labels — industrial, patient, legible at 10px. JetBrains Mono is the ledger voice: it carries every number and every machine trace, and it never sets prose.
+**Character:** Archivo in tight uppercase caps with heavy tracking reads like stenciled bin labels — industrial, patient, legible at 11px. JetBrains Mono is the ledger voice: it carries every number and every machine trace, and it never sets prose.
 
 ### Hierarchy
 - **Display** (800, 24px, uppercase, tracking 0.04em): page headlines ("Bin wall — every bin"). Count-suffix rides inline in mono 14px normal-case `ink-soft`.
-- **Wordmark** (800, 20px, uppercase, tracking 0.3em): the "ShopMind" masthead mark; its catalog-code tail is mono 10px tracking 0.24em.
+- **Wordmark** (800, 20px, uppercase, tracking 0.3em): the "ShopMind" masthead mark; its catalog-code tail is mono 11px tracking 0.24em.
 - **Title** (800, 17px, uppercase, tracking 0.03em): product names on label cards; section titles in the UI kit run Archivo 800 18px tracking 0.08em.
 - **Body** (400, 14px, line-height ~1.6): prose, assistant dialogue, empty-state copy. Max width ~62–65ch where paragraphs run long.
-- **Label** (700–800, 10–12px, uppercase, tracking 0.08em–0.26em): nav items, field labels, rail headings ("Bins", "Stock dots", "Value ladder"), buttons (12px, tracking 0.14em). Tracking widens as type shrinks.
-- **Mono/Data** (JetBrains Mono 400, 10–13px): SKUs, bin counts, model lines, search input, tool-trail, plate captions.
-- **Price Figure** (JetBrains Mono 700, 19px, line-height 1, `tabular-nums`): the printed number beneath every price band strip; smaller money (cart total, UI-kit figures) uses mono 13–14px 400–700 `tabular-nums`.
+- **Label** (700–800, 11–12px, uppercase, tracking 0.08em–0.26em): nav items, field labels, rail headings ("Bins", "Stock dots", "Value ladder"), buttons (12px, tracking 0.14em). Tracking widens as type shrinks. 11px is the legibility floor for functional text — nothing readable lives below it.
+- **Mono/Data** (JetBrains Mono 400, 11–13px): SKUs, bin counts, model lines, search input, tool-trail, plate captions.
+- **Price Figure** (JetBrains Mono 700, 19px, line-height 1, `tabular-nums`): the printed number beside every price's magnitude tick; smaller money (cart total, UI-kit figures) uses mono 13–14px 400–700 `tabular-nums`.
 
 ### Named Rules
-**The Digits-Beside-Bands Rule.** Every band encoding prints its digits or a text label alongside the chips — prices show the mono figure under the strip, stock shows a word ("in bin · 7"), the legend spells the code out. A band alone is never the only carrier of a value (colorblind fallback, fixed).
+**The Digits-Beside-Bands Rule.** Every band encoding prints its digits or a text label alongside the chips — prices show the mono figure beside the magnitude tick, stock shows a word ("in bin · 7"), the legend spells the code out. A band alone is never the only carrier of a value (colorblind fallback, fixed).
 **The Tabular Rule.** All money, quantities, and counts render in JetBrains Mono with `tabular-nums`. Prose never sets numbers in Archivo.
 
 ## Layout
@@ -199,7 +199,7 @@ Flat by construction. There are no box-shadows and no gradients anywhere in the 
 ### Buttons
 **Shape:** crisp 4px radius, 1.5px border, 12px extrabold uppercase, tracking 0.14em, padding 8px 16px, icon slot at 13px.
 - **Add (primary action):** resistor-red fill, card-white text, red border; hover brightens ~10%; disabled drops to 40% opacity with pointer events off. This is the "grab this part" control — never rendered inside the assistant's own action set as a pay control.
-- **Ghost:** card fill, ink text, line border; hover shifts border to ink and fills kraft. Carries secondary actions (remove-from-bin, clear filter, disabled "Bin empty").
+- **Ghost:** card fill, ink text, line border; hover shifts border to ink and fills kraft. Carries secondary actions (remove-from-cart, clear filter, disabled "Bin empty").
 - **Human (yellow):** resistor-yellow fill, ink text, ink border; hover brightens ~8%. Reserved exclusively for actions that cross the money boundary — "Review bill & pay." It must never be used for assistant-side or purely navigational emphasis.
 - **Focus (all):** 2px dashed ink outline, 3px offset, 2px radius — browser-wide via `*:focus-visible`.
 
@@ -213,13 +213,13 @@ Three 9px circles, 4px gaps, 1.5px ink border. Filled count reads as level: 3 fu
 150px slot, 1.5px border. **Empty state (honest):** dashed line border on kraft at 50%, registration corners, a small category chip and mono caption "PL. {sku} · photo not on file." **Filled state:** solid border, image contained with 8px inset, figcaption chip-over-card at 90% opacity with plate number. Photos ship with local provenance files; an absent photo is a stated condition, not a lie.
 
 ### Product Label Card
-8px radius, 1.5px ink border, card fill, 20px padding. A category tab straddles the top-right edge (−9px): band-filled, ink-bordered, card-white mono text, `CAT · SKU`. Inside: plate slot, extrabold name, mono model line, a kraft-key spec table with 1px line rows, then the money row — band strip over its printed mono price on the left, stock dots on the right, controls below.
+8px radius, 1.5px ink border, card fill, 20px padding. A category tab straddles the top-right edge (−9px): band-filled, ink-bordered, card-white mono text, `CAT · SKU`. Inside: plate slot, extrabold name, mono model line, a kraft-key spec table with 1px line rows, then the money row — magnitude tick beside its printed mono price on the left, stock dots on the right, controls below.
 
 ### Field / Input
 4px radius, 1.5px line border, card fill, 14px text, 8px 12px padding; floating 11px uppercase tracking-0.22em label above. Focus: border deepens to ink (plus the global dashed ring). Error: border and message turn resistor-red, message `role="alert"` at 12px semibold. Disabled: 40% opacity. Red caret browser-wide.
 
 ### Assistant Drawer (signature)
-Black drawer card (8px radius, 1.5px ink border, drawer fill, drawer-ink text, 20px padding). Header line "The assistant · turn {n}" in 13px extrabold uppercase tracking 0.26em with icon. Dialogue quotes inline band chips (sm) with the digit string printed beside them; a mono 11px tool-trail line lists every call that produced the numbers. Actions row: ghost-style "add" button on drawer borders, a yellow human-only "Review bill" link, and a standing mono footnote: payment is on the bill page · a yellow control is human-only · the assistant cannot press it. Collapsed variant renders as a fixed bottom-right pill.
+Black drawer card (8px radius, 1.5px ink border, drawer fill, drawer-ink text, 20px padding). Header line "The assistant · turn {n}" in 13px extrabold uppercase tracking 0.26em with icon. Dialogue quotes the exact price and count in mono beside each tile's magnitude tick; a mono 11px tool-trail line lists every call that produced the numbers. Actions row: ghost-style "add" button on drawer borders, a yellow human-only "Review bill" link, and a standing mono footnote: payment is on the bill page · a yellow control is human-only · the assistant cannot press it. Collapsed variant renders as a fixed bottom-right pill.
 
 ### Rail Legend
 Dashed-topped block in the bin rail with the stock-dot trio, the ten-rung value ladder (16px strip, full-width segments, `0 = black` tooltips), the worked decode example ("brown·black·white·white = 1·0·9·9"), and the written Yellow-Is-Human clause. The legend is not decoration — it is the system's self-teaching surface and ships on every catalog view.
@@ -233,12 +233,12 @@ Kraft bar, 1.5px ink bottom border. Active nav item inverts to ink fill with pap
 ## Do's and Don'ts
 
 ### Do:
-- **Do** encode data only with ladder bands, and print the digits beside every encoding (price strip + mono figure; stock dots + "in bin · 7").
+- **Do** encode data only with ladder bands, and print the digits beside every encoding (magnitude tick + mono figure; stock dots + "in bin · 7").
 - **Do** keep all 1.5px borders — solid for real edges, dashed for frames, dividers, and awaiting-content states.
 - **Do** reserve yellow filled controls for actions a human must take across the money boundary; surface them in assistant contexts only as links *to* human-only pages.
 - **Do** set every number in JetBrains Mono with `tabular-nums`, and every label in uppercase Archivo with tracking widened as size drops.
 - **Do** let band colors ride both themes unchanged; only grounds (`paper`, `card`, `kraft`, `ink`, `line`, `drawer`) invert, and the dark inversion stays warm (`#17140e` ground, `#f0ece2` ink), never blue-grey.
-- **Do** use the band-set decode (0.55s, 70ms stagger) only for price strips entering the view; everything else at rest is static.
+- **Do** keep money static at rest — the digit-by-digit price-strip decode left with the strips; motion is reserved for live state (typing dots, expiry countdowns).
 - **Do** theme the browser surface with the world: dashed ink focus ring (2px, 3px offset), yellow selection on ink text, red caret, kraft scrollbar track with a brown (light) or line (dark) thumb.
 - **Do** ship loading, empty, error, and partial states on every surface, and let the empty photo plate say "photo not on file."
 

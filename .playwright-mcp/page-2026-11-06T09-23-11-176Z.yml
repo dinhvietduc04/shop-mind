@@ -1,0 +1,78 @@
+- generic [active] [ref=f21e1]:
+  - alert [ref=f21e2]
+  - banner [ref=f21e3]:
+    - generic [ref=f21e4]:
+      - link "ShopMind cat. elec-026" [ref=f21e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f21e6]: ShopMind
+        - generic [ref=f21e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f21e8]'
+      - navigation [ref=f21e14]:
+        - link "Catalog" [ref=f21e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f21e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f21e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f21e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f21e20]
+      - generic [ref=f21e21]:
+        - 'generic "Cart: 6 items, subtotal $4,996.97 — shipping computed on the bill" [ref=f21e22]': $4,996.97
+        - button "Switch to night (dark) theme" [ref=f21e29]
+  - generic [ref=f21e33]:
+    - complementary [ref=f21e34]:
+      - heading "Bins" [level=2] [ref=f21e35]
+      - button "ALL Every bin ··" [ref=f21e37]:
+        - generic [ref=f21e38]: ALL
+        - generic [ref=f21e39]: Every bin
+        - generic [ref=f21e40]: ··
+      - generic [ref=f21e42]:
+        - generic [ref=f21e43]:
+          - heading "Stock dots" [level=3] [ref=f21e44]
+          - list [ref=f21e45]:
+            - listitem [ref=f21e46]: 5+ in bin
+            - listitem [ref=f21e48]: 1–4 low
+            - listitem [ref=f21e50]: 0 empty
+        - generic [ref=f21e52]:
+          - heading "Value ladder" [level=3] [ref=f21e53]
+          - generic [ref=f21e60]:
+            - generic "0 = black" [ref=f21e61]
+            - generic "1 = brown" [ref=f21e62]
+            - generic "2 = red" [ref=f21e63]
+            - generic "3 = orange" [ref=f21e64]
+            - generic "4 = yellow" [ref=f21e65]
+            - generic "5 = green" [ref=f21e66]
+            - generic "6 = blue" [ref=f21e67]
+            - generic "7 = violet" [ref=f21e68]
+            - generic "8 = grey" [ref=f21e69]
+            - generic "9 = white" [ref=f21e70]
+          - paragraph [ref=f21e71]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f21e72]:
+          - strong [ref=f21e74]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f21e75]:
+      - generic [ref=f21e76]:
+        - generic [ref=f21e77]:
+          - heading "Bin wall — every binquerying bins…" [level=1] [ref=f21e78]
+          - generic [ref=f21e79]:
+            - generic [ref=f21e80]:
+              - text: Sort
+              - combobox "Sort" [ref=f21e81]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f21e82] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f21e83]
+              - text: In stock only
+        - generic [ref=f21e90]:
+          - heading "The assistant · turn 41" [level=2] [ref=f21e91]
+          - paragraph [ref=f21e94]: "“One unit in bin laptops decodes under your budget band — search set to 1·2·0·0: the MacBook Air M3 at $1,099.00. The ThinkPad X1 Carbon is $1,499.00 — out of band but stronger RAM. Prices and stock came from this turn’s catalog calls, not from my weights.”"
+          - paragraph [ref=f21e100]: "trail: search_products(category=laptops, ram_gb≥8, maxPrice=1200) → get_product → add_to_cart"
+          - generic [ref=f21e101]:
+            - button "Add MacBook Air M3 — $1,099.00" [ref=f21e102]
+            - link "Review bill" [ref=f21e103] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f21e106]: payment is on the bill page · a yellow control is human-only · the assistant cannot press it

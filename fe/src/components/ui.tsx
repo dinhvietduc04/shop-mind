@@ -2,6 +2,8 @@ import { type ReactNode } from "react";
 import {
   type BandName,
   bandClass,
+  magnitudeBand,
+  MAGNITUDE_LABEL,
   STOCK_BAND,
   STOCK_LABEL,
   stockState,
@@ -71,19 +73,28 @@ export function BandChip({
   );
 }
 
-export function BandStrip({ bands }: { bands: BandName[] }) {
+/** The price's multiplier band, kept small and next to the number — a visual
+ *  anchor for order of magnitude, not a code to decode. Digits always carry
+ *  the real value; the tick is aria-hidden (screen readers get the price,
+ *  and one decorative stripe must not announce itself as data). */
+export function MagnitudeTick({
+  value,
+  className,
+}: {
+  value: number;
+  className?: string;
+}) {
+  const band = magnitudeBand(value);
   return (
-    <span className="inline-flex items-end gap-[3px]">
-      {bands.map((b, i) => (
-        <span
-          key={i}
-          className="band-in inline-flex"
-          style={{ animationDelay: `${i * 70}ms` }}
-        >
-          <BandChip band={b} />
-        </span>
-      ))}
-    </span>
+    <span
+      aria-hidden
+      title={`${MAGNITUDE_LABEL[band] ?? band} band`}
+      className={cn(
+        "inline-block h-[18px] w-[5px] shrink-0 rounded-[2px] border-[1.5px] border-[#1a1a1a] dark:border-[#8a8068]",
+        bandClass(band),
+        className
+      )}
+    />
   );
 }
 
@@ -157,7 +168,7 @@ export function PhotoPlate({
         {!compact && (
           <figcaption className="absolute bottom-1 left-2 flex items-center gap-1.5 rounded-[3px] bg-card/90 px-1.5 py-0.5">
             <BandChip band={band} size="sm" title={band} />
-            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft">
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">
               pl. {sku}
             </span>
           </figcaption>
@@ -178,7 +189,7 @@ export function PhotoPlate({
       <span aria-hidden className={cn("bottom-2 right-2 border-b-[1.5px] border-r-[1.5px]", corner)} />
       <span className="flex items-center gap-2.5">
         <BandChip band={band} size="sm" title={band} />
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-soft">
+        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
           pl. {sku} · photo not on file
         </span>
       </span>
@@ -206,7 +217,7 @@ export function Field({
         suppressHydrationWarning
         className={cn(
           "w-full rounded-[4px] border-[1.5px] bg-card px-3 py-2 text-[14px] text-ink",
-          "placeholder:text-ink-soft/70 disabled:opacity-40",
+          "placeholder:text-ink-soft disabled:opacity-40",
           error ? "border-band-red" : "border-line focus:border-ink"
         )}
         {...props}

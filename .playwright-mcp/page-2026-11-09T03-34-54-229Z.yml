@@ -1,0 +1,104 @@
+- generic [active] [ref=f80e1]:
+  - alert [ref=f80e2]
+  - link "Skip to content" [ref=f80e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f80e4]:
+    - generic [ref=f80e5]:
+      - link "ShopMind cat. elec-026" [ref=f80e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f80e7]: ShopMind
+        - generic [ref=f80e8]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f80e9]'
+      - navigation [ref=f80e15]:
+        - link "Catalog" [ref=f80e16] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f80e17] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f80e18] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f80e19] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f80e20] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f80e21] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f80e23]
+      - generic [ref=f80e24]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f80e25] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f80e31]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f80e32] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f80e33]: SA
+          - generic [ref=f80e34]: Admin
+        - button "Switch to night (dark) theme" [ref=f80e35]
+  - generic [ref=f80e39]:
+    - complementary [ref=f80e40]:
+      - heading "Bins" [level=2] [ref=f80e41]
+      - button "ALL Every bin ··" [ref=f80e43]:
+        - generic [ref=f80e44]: ALL
+        - generic [ref=f80e45]: Every bin
+        - generic [ref=f80e46]: ··
+      - generic [ref=f80e48]:
+        - generic [ref=f80e49]:
+          - heading "Stock dots" [level=3] [ref=f80e50]
+          - list [ref=f80e51]:
+            - listitem [ref=f80e52]: 5+ in bin
+            - listitem [ref=f80e54]: 1–4 low
+            - listitem [ref=f80e56]: 0 empty
+        - generic [ref=f80e58]:
+          - heading "Value ladder" [level=3] [ref=f80e59]
+          - generic [ref=f80e66]:
+            - generic "0 = black" [ref=f80e67]
+            - generic "1 = brown" [ref=f80e68]
+            - generic "2 = red" [ref=f80e69]
+            - generic "3 = orange" [ref=f80e70]
+            - generic "4 = yellow" [ref=f80e71]
+            - generic "5 = green" [ref=f80e72]
+            - generic "6 = blue" [ref=f80e73]
+            - generic "7 = violet" [ref=f80e74]
+            - generic "8 = grey" [ref=f80e75]
+            - generic "9 = white" [ref=f80e76]
+          - paragraph [ref=f80e77]:
+            - text: The stripe beside every price is the resistor
+            - strong [ref=f80e78]: multiplier
+            - text: "band — one colour per order of magnitude: brown ×10, red ×100, orange ×1k. The exact number is always printed beside it; the band is a glance-anchor, not a code to decode."
+        - paragraph [ref=f80e79]:
+          - strong [ref=f80e81]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f80e82]:
+      - generic [ref=f80e83]:
+        - generic [ref=f80e84]:
+          - heading "Bin wall — every binquerying bins…" [level=1] [ref=f80e85]
+          - generic [ref=f80e86]:
+            - generic [ref=f80e87]:
+              - text: Sort
+              - combobox "Sort" [ref=f80e88]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f80e89] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f80e90]
+              - text: In stock only
+        - region "Assistant chat" [ref=f80e97]:
+          - status [ref=f80e98]
+          - generic [ref=f80e99]:
+            - heading "The assistant" [level=2] [ref=f80e100]
+            - generic [ref=f80e103]:
+              - text: turn 1/8
+              - button "new" [ref=f80e104]
+          - generic [ref=f80e106]:
+            - paragraph [ref=f80e107]:
+              - text: Ask for something. I search the bins, read live stock, and ask up to three pointed questions before I filter — every price or count I say came from a tool call this turn. I can quote;
+              - strong [ref=f80e108]: paying is yours
+              - text: ", on the bill page."
+            - generic [ref=f80e109]:
+              - button "“a laptop under $1200 for backend dev”" [ref=f80e110]
+              - button "“help me pick headphones”" [ref=f80e111]
+              - button "“what's in my bin?”" [ref=f80e112]
+          - generic [ref=f80e113]:
+            - textbox "Message the assistant" [ref=f80e114]:
+              - /placeholder: what do you need? (try a budget, a spec, a use case)
+            - button "send" [disabled]

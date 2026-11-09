@@ -1,0 +1,213 @@
+- generic [active] [ref=f26e1]:
+  - alert [ref=f26e2]
+  - banner [ref=f26e3]:
+    - generic [ref=f26e4]:
+      - link "ShopMind cat. elec-026" [ref=f26e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f26e6]: ShopMind
+        - generic [ref=f26e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f26e8]'
+      - navigation [ref=f26e14]:
+        - link "Catalog" [ref=f26e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f26e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f26e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f26e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f26e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f26e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f26e22]
+      - generic [ref=f26e23]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f26e24] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f26e30]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f26e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f26e32]: SA
+          - generic [ref=f26e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f26e34]
+  - generic [ref=f26e38]:
+    - generic [ref=f26e39]:
+      - generic [ref=f26e41]: Admin console
+      - navigation "Admin sections" [ref=f26e42]:
+        - link "Dashboard" [ref=f26e43] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f26e44] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f26e45] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f26e46] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f26e47] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f26e48] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f26e49]:
+      - generic [ref=f26e50]:
+        - generic [ref=f26e51]:
+          - heading "Kill switch" [level=2] [ref=f26e53]
+          - generic [ref=f26e54]:
+            - generic [ref=f26e55]:
+              - switch "Ai:Enabled" [ref=f26e56]
+              - generic [ref=f26e58]:
+                - generic [ref=f26e59]: Ai:EnabledOFF
+                - generic [ref=f26e60]: Chat answers 503 AI_NOT_CONFIGURED. The storefront, bins and bill are untouched.
+            - generic [ref=f26e61]:
+              - paragraph [ref=f26e62]: per-tool · §B3 surface
+              - generic [ref=f26e63]:
+                - switch "search_products" [checked] [disabled] [ref=f26e64]
+                - generic [ref=f26e66]:
+                  - generic [ref=f26e67]: search_productsON
+                  - generic [ref=f26e68]: the bins — off means no recommendations at all
+              - generic [ref=f26e69]:
+                - switch "get_product" [checked] [disabled] [ref=f26e70]
+                - generic [ref=f26e72]:
+                  - generic [ref=f26e73]: get_productON
+                  - generic [ref=f26e74]: spec-sheet read behind the top pick
+              - generic [ref=f26e75]:
+                - switch "get_product_facets" [checked] [disabled] [ref=f26e76]
+                - generic [ref=f26e78]:
+                  - generic [ref=f26e79]: get_product_facetsON
+                  - generic [ref=f26e80]: attribute questions in the interview
+              - generic [ref=f26e81]:
+                - switch "compare_products" [checked] [disabled] [ref=f26e82]
+                - generic [ref=f26e84]:
+                  - generic [ref=f26e85]: compare_productsON
+                  - generic [ref=f26e86]: the side-by-side table
+              - generic [ref=f26e87]:
+                - switch "get_cart" [checked] [disabled] [ref=f26e88]
+                - generic [ref=f26e90]:
+                  - generic [ref=f26e91]: get_cartON
+                  - generic [ref=f26e92]: reading the customer's bin
+              - generic [ref=f26e93]:
+                - switch "add_to_cart" [checked] [disabled] [ref=f26e94]
+                - generic [ref=f26e96]:
+                  - generic [ref=f26e97]: add_to_cartON
+                  - generic [ref=f26e98]: writing bin lines (still never pays)
+              - generic [ref=f26e99]:
+                - switch "create_quote" [checked] [disabled] [ref=f26e100]
+                - generic [ref=f26e102]:
+                  - generic [ref=f26e103]: create_quoteON
+                  - generic [ref=f26e104]: opening reservations — the Assist boundary
+        - generic [ref=f26e105]:
+          - heading "Conversations · 2" [level=2] [ref=f26e107]
+          - table [ref=f26e110]:
+            - rowgroup [ref=f26e111]:
+              - row [ref=f26e112]:
+                - columnheader "Conversation" [ref=f26e113]
+                - columnheader "Turns" [ref=f26e114]
+                - columnheader "Tool calls" [ref=f26e115]
+                - columnheader "Last activity" [ref=f26e116]
+            - rowgroup [ref=f26e117]:
+              - row [ref=f26e118]:
+                - cell "conv-p78thehj" [ref=f26e119]
+                - cell "2" [ref=f26e120]
+                - cell "4" [ref=f26e121]
+                - cell "9:43:47 AM" [ref=f26e122]
+              - row [ref=f26e123]:
+                - cell "conv-oh60l1mo" [ref=f26e124]
+                - cell "2" [ref=f26e125]
+                - cell "4" [ref=f26e126]
+                - cell "9:43:11 AM" [ref=f26e127]
+      - generic [ref=f26e128]:
+        - heading "Tool-call ledger" [level=2] [ref=f26e130]
+        - generic [ref=f26e131]:
+          - table [ref=f26e133]:
+            - rowgroup [ref=f26e134]:
+              - row [ref=f26e135]:
+                - columnheader "Time" [ref=f26e136]
+                - columnheader "Conversation" [ref=f26e137]
+                - columnheader "Tool / call" [ref=f26e138]
+                - columnheader "Status" [ref=f26e139]
+                - columnheader "Duration" [ref=f26e140]
+                - columnheader "Tokens" [ref=f26e141]
+            - rowgroup [ref=f26e142]:
+              - row [ref=f26e143]:
+                - cell "9:43:47 AM" [ref=f26e144]
+                - cell "conv-p78thehj" [ref=f26e145]
+                - cell "llm · model turn" [ref=f26e146]
+                - cell "ok" [ref=f26e147]
+                - cell "0 ms" [ref=f26e150]
+                - cell "90" [ref=f26e151]
+              - row [ref=f26e152]:
+                - cell "9:43:47 AM" [ref=f26e153]
+                - cell "conv-p78thehj" [ref=f26e154]
+                - cell "mcp · search_products" [ref=f26e155]
+                - cell "ok" [ref=f26e156]
+                - cell "140 ms" [ref=f26e159]
+                - cell "—" [ref=f26e160]
+              - row [ref=f26e161]:
+                - cell "9:43:47 AM" [ref=f26e162]
+                - cell "conv-p78thehj" [ref=f26e163]
+                - cell "mcp · get_product" [ref=f26e164]
+                - cell "ok" [ref=f26e165]
+                - cell "45 ms" [ref=f26e168]
+                - cell "—" [ref=f26e169]
+              - row [ref=f26e170]:
+                - cell "9:43:29 AM" [ref=f26e171]
+                - cell "conv-p78thehj" [ref=f26e172]
+                - cell "llm · model turn" [ref=f26e173]
+                - cell "ok" [ref=f26e174]
+                - cell "1 ms" [ref=f26e177]
+                - cell "79" [ref=f26e178]
+              - row [ref=f26e179]:
+                - cell "9:43:29 AM" [ref=f26e180]
+                - cell "conv-p78thehj" [ref=f26e181]
+                - cell "mcp · search_products" [ref=f26e182]
+                - cell "ok" [ref=f26e183]
+                - cell "140 ms" [ref=f26e186]
+                - cell "—" [ref=f26e187]
+              - row [ref=f26e188]:
+                - cell "9:43:29 AM" [ref=f26e189]
+                - cell "conv-p78thehj" [ref=f26e190]
+                - cell "mcp · search_products" [ref=f26e191]
+                - cell "ok" [ref=f26e192]
+                - cell "140 ms" [ref=f26e195]
+                - cell "—" [ref=f26e196]
+              - row [ref=f26e197]:
+                - cell "9:43:11 AM" [ref=f26e198]
+                - cell "conv-oh60l1mo" [ref=f26e199]
+                - cell "llm · model turn" [ref=f26e200]
+                - cell "ok" [ref=f26e201]
+                - cell "11 ms" [ref=f26e204]
+                - cell "68" [ref=f26e205]
+              - row [ref=f26e206]:
+                - cell "9:43:11 AM" [ref=f26e207]
+                - cell "conv-oh60l1mo" [ref=f26e208]
+                - cell "mcp · search_products" [ref=f26e209]
+                - cell "ok" [ref=f26e210]
+                - cell "140 ms" [ref=f26e213]
+                - cell "—" [ref=f26e214]
+              - row [ref=f26e215]:
+                - cell "9:43:11 AM" [ref=f26e216]
+                - cell "conv-oh60l1mo" [ref=f26e217]
+                - cell "mcp · search_products" [ref=f26e218]
+                - cell "ok" [ref=f26e219]
+                - cell "140 ms" [ref=f26e222]
+                - cell "—" [ref=f26e223]
+              - row [ref=f26e224]:
+                - cell "9:42:52 AM" [ref=f26e225]
+                - cell "conv-oh60l1mo" [ref=f26e226]
+                - cell "llm · model turn" [ref=f26e227]
+                - cell "ok" [ref=f26e228]
+                - cell "2 ms" [ref=f26e231]
+                - cell "79" [ref=f26e232]
+              - row [ref=f26e233]:
+                - cell "9:42:52 AM" [ref=f26e234]
+                - cell "conv-oh60l1mo" [ref=f26e235]
+                - cell "mcp · search_products" [ref=f26e236]
+                - cell "ok" [ref=f26e237]
+                - cell "140 ms" [ref=f26e240]
+                - cell "—" [ref=f26e241]
+              - row [ref=f26e242]:
+                - cell "9:42:52 AM" [ref=f26e243]
+                - cell "conv-oh60l1mo" [ref=f26e244]
+                - cell "mcp · search_products" [ref=f26e245]
+                - cell "ok" [ref=f26e246]
+                - cell "140 ms" [ref=f26e249]
+                - cell "—" [ref=f26e250]
+          - paragraph [ref=f26e251]: Every price and stock number the assistant quotes traces to one of these rows — that is the §A7 transparency rule the chat UI leans on (each tool chip maps to a call against the same database this table reads). The engine here is the deterministic FakeAiProvider; the real provider fills the same ledger shape.

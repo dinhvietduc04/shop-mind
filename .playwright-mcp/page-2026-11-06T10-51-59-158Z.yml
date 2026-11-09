@@ -1,0 +1,37 @@
+- generic [active] [ref=f39e1]:
+  - alert [ref=f39e2]
+  - banner [ref=f39e3]:
+    - generic [ref=f39e4]:
+      - link "ShopMind cat. elec-026" [ref=f39e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f39e6]: ShopMind
+        - generic [ref=f39e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f39e8]'
+      - navigation [ref=f39e14]:
+        - link "Catalog" [ref=f39e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f39e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f39e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f39e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f39e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f39e21]
+      - generic [ref=f39e22]:
+        - 'link "Cart: 1 items, subtotal $49.99 — open the bill" [ref=f39e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f39e29]: $49.99
+        - 'link "Account: test@register.local, role Customer" [ref=f39e30] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f39e31]: TR
+          - generic [ref=f39e32]: Account
+        - button "Switch to night (dark) theme" [ref=f39e33]
+  - main [ref=f39e37]:
+    - generic [ref=f39e38]:
+      - heading "403 — Admin only" [level=1] [ref=f39e39]
+      - paragraph [ref=f39e40]:
+        - text: You are signed in as
+        - strong [ref=f39e41]: test@register.local
+        - text: with role Customer. This surface reads the admin contract; the demo admin account is admin@shopmind.local.

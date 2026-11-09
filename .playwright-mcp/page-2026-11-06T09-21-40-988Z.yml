@@ -1,0 +1,77 @@
+- generic [active] [ref=f14e1]:
+  - alert [ref=f14e2]
+  - banner [ref=f14e3]:
+    - generic [ref=f14e4]:
+      - link "ShopMind cat. elec-026" [ref=f14e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f14e6]: ShopMind
+        - generic [ref=f14e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f14e8]'
+      - navigation [ref=f14e14]:
+        - link "Catalog" [ref=f14e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f14e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f14e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f14e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f14e20]
+      - generic [ref=f14e21]:
+        - 'generic "Cart: 2 items, subtotal $99.98 — shipping computed on the bill" [ref=f14e22]': $99.98
+        - button "Switch to night (dark) theme" [ref=f14e29]
+  - main [ref=f14e655]:
+    - navigation "Breadcrumb" [ref=f14e656]:
+      - link "Every bin" [ref=f14e657] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f14e658]: /
+      - link "Smartphones" [ref=f14e659] [cursor=pointer]:
+        - /url: /category/smartphones
+      - generic [aria-hidden] [ref=f14e661]: /
+      - generic [ref=f14e662]: APL-IP15P
+    - generic [ref=f14e663]:
+      - generic [ref=f14e664]:
+        - img "No photo on file for plate APL-IP15P" [ref=f14e665]:
+          - generic [ref=f14e670]: pl. APL-IP15P · photo not on file
+        - generic [ref=f14e673]:
+          - heading "Bench notes" [level=2] [ref=f14e674]
+          - paragraph [ref=f14e675]: 6.1" iPhone 15 Pro, A17 Pro.
+          - paragraph [ref=f14e676]: Mock pricing — demo data only. Logged 2026-10-04.
+      - generic [ref=f14e677]:
+        - paragraph [ref=f14e678]: Apple · unit APL-IP15P
+        - heading "iPhone 15 Pro" [level=1] [ref=f14e679]
+        - generic [ref=f14e680]:
+          - generic [ref=f14e681]:
+            - generic [ref=f14e682]: $999.00
+            - generic [ref=f14e691]: in bin · 35
+          - paragraph [ref=f14e697]: 35 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f14e698]:
+            - generic [ref=f14e699]:
+              - button "One fewer" [disabled] [ref=f14e700]
+              - generic [ref=f14e702]: "1"
+              - button "One more" [ref=f14e703]
+            - button "Add one to bin" [ref=f14e705]
+        - link "Ask the assistant to vet this" [ref=f14e708] [cursor=pointer]:
+          - /url: /assistant?cat=smartphones&q=iPhone%2015%20Pro
+          - generic [aria-hidden] [ref=f14e710]: →
+        - heading "Full specification" [level=2] [ref=f14e711]
+        - table [ref=f14e712]:
+          - rowgroup [ref=f14e713]:
+            - row [ref=f14e714]:
+              - rowheader "SKU" [ref=f14e715]
+              - cell "APL-IP15P" [ref=f14e716]
+            - row [ref=f14e717]:
+              - rowheader "Status" [ref=f14e718]
+              - cell "Active" [ref=f14e719]
+            - row [ref=f14e720]:
+              - rowheader "ram gb" [ref=f14e721]
+              - cell "8" [ref=f14e722]
+            - row [ref=f14e723]:
+              - rowheader "storage gb" [ref=f14e724]
+              - cell "128" [ref=f14e725]
+            - row [ref=f14e726]:
+              - rowheader "screen in" [ref=f14e727]
+              - cell "6.1" [ref=f14e728]
+            - row [ref=f14e729]:
+              - rowheader "cpu" [ref=f14e730]
+              - cell "A17 Pro" [ref=f14e731]

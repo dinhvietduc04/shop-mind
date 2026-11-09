@@ -1,0 +1,161 @@
+- generic [ref=f15e1]:
+  - alert [ref=f15e2]
+  - banner [ref=f15e3]:
+    - generic [ref=f15e4]:
+      - link "ShopMind cat. elec-026" [ref=f15e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f15e6]: ShopMind
+        - generic [ref=f15e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f15e8]'
+      - navigation [ref=f15e14]:
+        - link "Catalog" [ref=f15e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f15e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f15e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f15e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f15e20]
+      - generic [ref=f15e21]:
+        - 'generic "Cart: 3 items, subtotal $1,299.97 — shipping computed on the bill" [ref=f15e22]': $1,299.97
+        - button "Switch to night (dark) theme" [ref=f15e29]
+  - main [ref=f15e33]:
+    - navigation "Breadcrumb" [ref=f15e34]:
+      - link "Every bin" [ref=f15e35] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f15e36]: /
+      - link "Laptops" [ref=f15e37] [cursor=pointer]:
+        - /url: /category/laptops
+      - generic [aria-hidden] [ref=f15e39]: /
+      - generic [ref=f15e40]: APL-MBA-M3
+    - generic [ref=f15e41]:
+      - generic [ref=f15e42]:
+        - img "No photo on file for plate APL-MBA-M3" [ref=f15e43]:
+          - generic [ref=f15e48]: pl. APL-MBA-M3 · photo not on file
+        - generic [ref=f15e51]:
+          - heading "Bench notes" [level=2] [ref=f15e52]
+          - paragraph [ref=f15e53]: 13" MacBook Air with M3 chip, 8GB RAM, 256GB SSD.
+          - paragraph [ref=f15e54]: Mock pricing — demo data only. Logged 2026-10-02.
+        - generic [ref=f15e55]:
+          - heading "More from Laptops" [level=2] [ref=f15e56]
+          - generic [ref=f15e57]:
+            - article [ref=f15e58]:
+              - generic [aria-hidden] [ref=f15e59]: ACC · ACC-USBCDOCK
+              - img "No photo on file for plate ACC-USBCDOCK" [ref=f15e60]:
+                - generic [ref=f15e65]: pl. ACC-USBCDOCK · photo not on file
+              - heading [level=3] [ref=f15e68]:
+                - link "USB-C Docking Station" [ref=f15e69] [cursor=pointer]:
+                  - /url: /product/usb-c-dock
+              - paragraph [ref=f15e70]: Anker · c dock
+              - table [ref=f15e71]:
+                - rowgroup [ref=f15e72]:
+                  - row [ref=f15e73]:
+                    - rowheader "ports" [ref=f15e74]
+                    - cell "7" [ref=f15e75]
+                  - row [ref=f15e76]:
+                    - rowheader "4k hdmi" [ref=f15e77]
+                    - cell "true" [ref=f15e78]
+                  - row [ref=f15e79]:
+                    - rowheader "pd w" [ref=f15e80]
+                    - cell "100" [ref=f15e81]
+              - generic [ref=f15e82]:
+                - generic [ref=f15e83]: $49.99
+                - generic [ref=f15e90]: in bin · 100
+              - generic [ref=f15e96]:
+                - button "Remove USB-C Docking Station from cart" [ref=f15e97]: In bin · 2 — remove
+                - link "Spec sheet →" [ref=f15e99] [cursor=pointer]:
+                  - /url: /product/usb-c-dock
+            - article [ref=f15e100]:
+              - generic [aria-hidden] [ref=f15e101]: COM · NV-RTX4070
+              - img "No photo on file for plate NV-RTX4070" [ref=f15e102]:
+                - generic [ref=f15e107]: pl. NV-RTX4070 · photo not on file
+              - heading [level=3] [ref=f15e110]:
+                - link "RTX 4070 GPU" [ref=f15e111] [cursor=pointer]:
+                  - /url: /product/rtx-4070
+              - paragraph [ref=f15e112]: NVIDIA · rtx 4070
+              - table [ref=f15e113]:
+                - rowgroup [ref=f15e114]:
+                  - row [ref=f15e115]:
+                    - rowheader "vram gb" [ref=f15e116]
+                    - cell "12" [ref=f15e117]
+                  - row [ref=f15e118]:
+                    - rowheader "interface" [ref=f15e119]
+                    - cell "PCIe 4.0" [ref=f15e120]
+                  - row [ref=f15e121]:
+                    - rowheader "tdp w" [ref=f15e122]
+                    - cell "200" [ref=f15e123]
+              - generic [ref=f15e124]:
+                - generic [ref=f15e125]: $599.99
+                - generic [ref=f15e134]: in bin · 10
+              - generic [ref=f15e140]:
+                - button "Add to bin" [ref=f15e141]
+                - link "Spec sheet →" [ref=f15e144] [cursor=pointer]:
+                  - /url: /product/rtx-4070
+            - article [ref=f15e145]:
+              - generic [aria-hidden] [ref=f15e146]: HEA · SNY-WH1000XM5
+              - figure "pl. SNY-WH1000XM5" [ref=f15e147]:
+                - img "WH-1000XM5 Headphones — product photo" [ref=f15e148]
+              - heading [level=3] [ref=f15e152]:
+                - link "WH-1000XM5 Headphones" [ref=f15e153] [cursor=pointer]:
+                  - /url: /product/wh-1000xm5
+              - paragraph [ref=f15e154]: Sony · wh 1000xm5
+              - table [ref=f15e155]:
+                - rowgroup [ref=f15e156]:
+                  - row [ref=f15e157]:
+                    - rowheader "anc" [ref=f15e158]
+                    - cell "true" [ref=f15e159]
+                  - row [ref=f15e160]:
+                    - rowheader "battery h" [ref=f15e161]
+                    - cell "30" [ref=f15e162]
+                  - row [ref=f15e163]:
+                    - rowheader "wireless" [ref=f15e164]
+                    - cell "true" [ref=f15e165]
+              - generic [ref=f15e166]:
+                - generic [ref=f15e167]: $349.99
+                - generic [ref=f15e176]: in bin · 29
+              - generic [ref=f15e182]:
+                - button "Add to bin" [ref=f15e183]
+                - link "Spec sheet →" [ref=f15e186] [cursor=pointer]:
+                  - /url: /product/wh-1000xm5
+      - generic [ref=f15e187]:
+        - paragraph [ref=f15e188]: Apple · unit APL-MBA-M3
+        - heading "MacBook Air M3" [level=1] [ref=f15e189]
+        - generic [ref=f15e190]:
+          - generic [ref=f15e191]:
+            - generic [ref=f15e192]: $1,099.00
+            - generic [ref=f15e203]: in bin · 18
+          - paragraph [ref=f15e209]: 18 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f15e210]:
+            - generic [ref=f15e211]:
+              - button "One fewer" [ref=f15e212]
+              - generic [ref=f15e214]: "2"
+              - button "One more" [active] [ref=f15e215]
+            - button "Add 2 to bin" [ref=f15e247]
+        - link "Ask the assistant to vet this" [ref=f15e220] [cursor=pointer]:
+          - /url: /assistant?cat=laptops&q=MacBook%20Air%20M3
+          - generic [aria-hidden] [ref=f15e222]: →
+        - heading "Full specification" [level=2] [ref=f15e223]
+        - table [ref=f15e224]:
+          - rowgroup [ref=f15e225]:
+            - row [ref=f15e226]:
+              - rowheader "SKU" [ref=f15e227]
+              - cell "APL-MBA-M3" [ref=f15e228]
+            - row [ref=f15e229]:
+              - rowheader "Status" [ref=f15e230]
+              - cell "Active" [ref=f15e231]
+            - row [ref=f15e232]:
+              - rowheader "ram gb" [ref=f15e233]
+              - cell "8" [ref=f15e234]
+            - row [ref=f15e235]:
+              - rowheader "storage gb" [ref=f15e236]
+              - cell "256" [ref=f15e237]
+            - row [ref=f15e238]:
+              - rowheader "screen in" [ref=f15e239]
+              - cell "13.6" [ref=f15e240]
+            - row [ref=f15e241]:
+              - rowheader "cpu" [ref=f15e242]
+              - cell "Apple M3" [ref=f15e243]
+            - row [ref=f15e244]:
+              - rowheader "weight kg" [ref=f15e245]
+              - cell "1.24" [ref=f15e246]

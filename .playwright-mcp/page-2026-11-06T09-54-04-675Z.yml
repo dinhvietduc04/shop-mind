@@ -1,0 +1,75 @@
+- generic [active] [ref=f84e1]:
+  - alert [ref=f84e2]
+  - banner [ref=f84e3]:
+    - generic [ref=f84e4]:
+      - link "ShopMind cat. elec-026" [ref=f84e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f84e6]: ShopMind
+        - generic [ref=f84e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f84e8]'
+      - navigation [ref=f84e14]:
+        - link "Catalog" [ref=f84e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f84e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f84e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f84e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f84e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f84e21]
+      - generic [ref=f84e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f84e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f84e29]: empty
+        - button "Switch to night (dark) theme" [ref=f84e30]
+  - main [ref=f84e34]:
+    - navigation [ref=f84e35]:
+      - link "← Order ledger" [ref=f84e36] [cursor=pointer]:
+        - /url: /orders
+    - generic [ref=f84e37]:
+      - heading "Order SM-2026-UGECP6SL" [level=1] [ref=f84e38]
+      - generic [ref=f84e39]: Paid
+    - article [ref=f84e40]:
+      - generic [ref=f84e41]:
+        - heading "Fulfillment path" [level=2] [ref=f84e42]
+        - generic [ref=f84e43]:
+          - 'list "Order status: Paid" [ref=f84e44]':
+            - listitem [ref=f84e45]:
+              - generic "Pending" [ref=f84e46]
+            - listitem [ref=f84e48]:
+              - generic "Paid" [ref=f84e49]
+            - listitem [ref=f84e51]:
+              - generic "Processing" [ref=f84e52]
+            - listitem [ref=f84e54]:
+              - generic "Shipped" [ref=f84e55]
+            - listitem [ref=f84e57]:
+              - generic "Delivered" [ref=f84e58]
+          - paragraph [ref=f84e59]: Paid
+      - list [ref=f84e60]:
+        - listitem [ref=f84e61]:
+          - generic [ref=f84e62]: USB-C Docking Station
+          - generic [ref=f84e63]: ACC-USBCDOCK
+          - generic [ref=f84e69]: $49.99 ×1
+          - generic [ref=f84e70]: $49.99
+      - generic [ref=f84e71]:
+        - generic [ref=f84e72]:
+          - term [ref=f84e73]: Subtotal
+          - definition [ref=f84e74]: $49.99
+        - generic [ref=f84e75]:
+          - term [ref=f84e76]: Shipping
+          - definition [ref=f84e77]: $15.00
+        - generic [ref=f84e78]:
+          - term [ref=f84e79]: Total
+          - definition [ref=f84e80]: $64.99
+      - generic [ref=f84e86]:
+        - generic [ref=f84e87]:
+          - heading "Ships to" [level=3] [ref=f84e88]
+          - paragraph [ref=f84e89]: Demo Customer123 Catalog Lane, Vienna+1-555-0100
+        - generic [ref=f84e90]:
+          - heading "Payment" [level=3] [ref=f84e91]
+          - paragraph [ref=f84e92]:
+            - strong [ref=f84e93]: Succeeded
+            - text: — $64.99MOCK-TXN-c7kq5wwn-4qwj6b1k
+    - paragraph [ref=f84e94]: placed 11/6/2026, 4:53:35 PM · mock ledger, no real charge — this record exists because a human pressed Pay on the hosted page

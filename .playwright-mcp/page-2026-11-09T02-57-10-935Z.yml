@@ -1,0 +1,39 @@
+- generic [active] [ref=f45e1]:
+  - alert [ref=f45e2]
+  - banner [ref=f45e3]:
+    - generic [ref=f45e4]:
+      - link "ShopMind cat. elec-026" [ref=f45e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f45e6]: ShopMind
+        - generic [ref=f45e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f45e8]'
+      - navigation [ref=f45e14]:
+        - link "Catalog" [ref=f45e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f45e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f45e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f45e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f45e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f45e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f45e22]
+      - generic [ref=f45e23]:
+        - 'link "Cart: 1 items, subtotal $1,499.00 — open the bill" [ref=f45e24] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f45e30]: $1,499.00
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f45e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f45e32]: SA
+          - generic [ref=f45e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f45e34]
+  - main [ref=f45e38]:
+    - heading "The bill" [level=1] [ref=f45e39]
+    - alert [ref=f45e41]:
+      - generic [ref=f45e43]:
+        - strong [ref=f45e44]: That session no longer exists on the server.
+        - text: The demo state may have been reset. Nothing was charged.
+        - button "Discard the dead session" [ref=f45e46]

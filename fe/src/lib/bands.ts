@@ -40,11 +40,28 @@ export function bandClass(band: BandName): string {
   return BAND_BG[band];
 }
 
-/** Encode a price's integer digits as bands, e.g. 1099 -> brown black white white. */
-export function priceToBands(priceUsd: number): BandName[] {
-  const digits = Math.round(priceUsd).toString().split("");
-  return digits.map((d) => DIGIT_BAND[Number(d)] ?? "grey");
+/** The resistor metaphor kept honest: ONE multiplier band per price — the
+ *  stripe a real resistor actually uses for magnitude — not a stripe per
+ *  digit (that was ornament wearing data's clothes: the digits are printed
+ *  regardless, and no shopper decodes them). ×1 black … ×100k green. */
+export function magnitudeBand(priceUsd: number): BandName {
+  if (!(priceUsd > 0)) return "black";
+  if (priceUsd < 10) return "black";
+  if (priceUsd < 100) return "brown";
+  if (priceUsd < 1000) return "red";
+  if (priceUsd < 10000) return "orange";
+  if (priceUsd < 100000) return "yellow";
+  return "green";
 }
+
+export const MAGNITUDE_LABEL: Partial<Record<BandName, string>> = {
+  black: "single dollars",
+  brown: "tens",
+  red: "hundreds",
+  orange: "thousands",
+  yellow: "ten-thousands",
+  green: "hundred-thousands",
+};
 
 export type StockState = "in" | "low" | "out";
 
