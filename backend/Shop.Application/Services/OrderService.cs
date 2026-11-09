@@ -9,10 +9,16 @@ using Shop.Domain.Rules;
 
 namespace Shop.Application.Services;
 
-public class OrderService(IAppDbContext db) : IOrderService
+public class OrderService(IAppDbContext db, IEventPublisher events) : IOrderService
 {
     private IQueryable<Domain.Entities.Order> BaseQuery()
         => db.Orders.Include(o => o.Items).Include(o => o.Payment).AsQueryable();
+
+    /// <summary>
+    /// M10: distinguishes a real state change from an ADR-0005 replay — events
+    /// fire only on <see cref="Transitioned"/>.
+    /// </summary>
+    private enum TransitionOutcome { Transitioned, Replayed }
 
     /// <summary>
     /// B1: a status transition is ONE conditional statement
@@ -24,9 +30,9 @@ public class OrderService(IAppDbContext db) : IOrderService
     /// (Mainline-downstream and PaymentAnomaly outcomes land with B5's webhook path.)
     /// Rules still come only from OrderTransitions.
     /// </summary>
-    private async Task ApplyTransitionAsync(Guid orderId, OrderStatus from, OrderStatus to, CancellationToken ct)
+    private async Task<TransitionOutcome> ApplyTransitionAsync(Guid orderId, OrderStatus from, OrderStatus to, CancellationToken ct)
     {
-        if (from == to) return; // replay of the same state: idempotent success
+        if (from == to) return TransitionOutcome.Replayed; // replay of the same state: idempotent success
         if (!OrderTransitions.IsValidTransition(from, to))
             throw new InvalidOrderStateException(orderId, from, to);
 
@@ -43,9 +49,10 @@ public class OrderService(IAppDbContext db) : IOrderService
                 .Select(o => (OrderStatus?)o.Status)
                 .FirstOrDefaultAsync(ct)
                 ?? throw new OrderNotFoundException(orderId);
-            if (current == to) return; // raced with an identical outcome: idempotent success
+            if (current == to) return TransitionOutcome.Replayed; // raced with an identical outcome
             throw new InvalidOrderStateException(orderId, current, to);
         }
+        return TransitionOutcome.Transitioned;
     }
 
     public async Task<PagedResult<OrderDto>> ListMineAsync(Guid userId, int page, int pageSize, CancellationToken ct = default)
@@ -84,22 +91,32 @@ public class OrderService(IAppDbContext db) : IOrderService
         // Status guard + inventory restore are one transaction: either the order is
         // cancelled (and its stock returned) or nothing changes.
         await using var tx = await db.BeginTransactionAsync(ct);
-        await ApplyTransitionAsync(orderId, previous, OrderStatus.Cancelled, ct);
+        var outcome = await ApplyTransitionAsync(orderId, previous, OrderStatus.Cancelled, ct);
 
-        // Restore inventory if stock was decremented (Paid -> Cancelled).
-        // Pending orders in V1 never reserve stock, so only restore when previously Paid.
-        if (previous == OrderStatus.Paid)
+        // M10/B1 fix: a REPLAYED cancel (concurrent cancel already won) must have no
+        // side effects — otherwise the loser would restore stock a second time and
+        // re-fire the event. Business work happens only on a real transition.
+        if (outcome == TransitionOutcome.Transitioned)
         {
-            var productIds = o.Items.Select(i => i.ProductId).ToList();
-            var inventories = await db.Inventories.Where(i => productIds.Contains(i.ProductId)).ToDictionaryAsync(i => i.ProductId, ct);
-            foreach (var item in o.Items)
-                if (inventories.TryGetValue(item.ProductId, out var inv))
-                {
-                    inv.Quantity += item.Quantity;
-                    inv.UpdatedAt = DateTime.UtcNow;
-                }
-            await db.SaveChangesAsync(ct);
+            // Restore inventory if stock was decremented (Paid -> Cancelled).
+            // Pending orders in V1 never reserve stock, so only restore when previously Paid.
+            if (previous == OrderStatus.Paid)
+            {
+                var productIds = o.Items.Select(i => i.ProductId).ToList();
+                var inventories = await db.Inventories.Where(i => productIds.Contains(i.ProductId)).ToDictionaryAsync(i => i.ProductId, ct);
+                foreach (var item in o.Items)
+                    if (inventories.TryGetValue(item.ProductId, out var inv))
+                    {
+                        inv.Quantity += item.Quantity;
+                        inv.UpdatedAt = DateTime.UtcNow;
+                    }
+            }
+
+            // order.cancelled enqueued inside the SAME transaction as the status
+            // guard + stock restore; SaveChanges flushes outbox and business rows together.
+            await events.EnqueueAsync(new Shop.Domain.Events.OrderCancelledEvent(orderId, o.UserId), ct);
         }
+        await db.SaveChangesAsync(ct);
         await tx.CommitAsync(ct);
 
         return await GetMineByIdAsync(userId, orderId, ct);
@@ -128,7 +145,36 @@ public class OrderService(IAppDbContext db) : IOrderService
     {
         var o = await db.Orders.AsNoTracking().FirstOrDefaultAsync(x => x.Id == orderId, ct)
             ?? throw new OrderNotFoundException(orderId);
-        await ApplyTransitionAsync(orderId, o.Status, status, ct);
+
+        // M10: transaction spans the conditional transition + its catalog event,
+        // so a committed status change always has its outbox row (and vice versa).
+        await using var tx = await db.BeginTransactionAsync(ct);
+        var outcome = await ApplyTransitionAsync(orderId, o.Status, status, ct);
+        if (outcome == TransitionOutcome.Transitioned)
+        {
+            Shop.Domain.Events.IDomainEvent? domainEvent = status switch
+            {
+                OrderStatus.Paid => await PaidEventAsync(orderId, o, ct),
+                OrderStatus.Shipped => new Shop.Domain.Events.OrderShippedEvent(orderId, o.UserId),
+                OrderStatus.Delivered => new Shop.Domain.Events.OrderDeliveredEvent(orderId, o.UserId),
+                OrderStatus.Cancelled => new Shop.Domain.Events.OrderCancelledEvent(orderId, o.UserId, "admin"),
+                _ => null, // Processing / PaymentFailed-by-admin: no catalog event (payment.failed arrives with B5's webhook flow)
+            };
+            if (domainEvent is not null)
+                await events.EnqueueAsync(domainEvent, ct);
+            await db.SaveChangesAsync(ct);
+        }
+        await tx.CommitAsync(ct);
         return await GetAdminByIdAsync(orderId, ct);
+    }
+
+    private async Task<Shop.Domain.Events.OrderPaidEvent> PaidEventAsync(
+        Guid orderId, Domain.Entities.Order order, CancellationToken ct)
+    {
+        var transactionId = await db.Payments.AsNoTracking()
+            .Where(p => p.OrderId == orderId)
+            .Select(p => p.TransactionId)
+            .FirstOrDefaultAsync(ct);
+        return new Shop.Domain.Events.OrderPaidEvent(orderId, order.UserId, order.TotalAmount, transactionId);
     }
 }

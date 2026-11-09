@@ -266,6 +266,48 @@ namespace Shop.Infrastructure.Persistence.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("Shop.Domain.Entities.OutboxMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AggregateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AggregateType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("OccurredAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<DateTime?>("PublishedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Status", "OccurredAt");
+
+                    b.ToTable("OutboxMessages");
+                });
+
             modelBuilder.Entity("Shop.Domain.Entities.Payment", b =>
                 {
                     b.Property<Guid>("Id")

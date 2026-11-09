@@ -16,6 +16,7 @@ public interface IAppDbContext
     DbSet<Order> Orders { get; }
     DbSet<OrderItem> OrderItems { get; }
     DbSet<Payment> Payments { get; }
+    DbSet<OutboxMessage> OutboxMessages { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default);

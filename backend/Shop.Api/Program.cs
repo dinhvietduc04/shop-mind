@@ -68,6 +68,9 @@ builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
 
 var app = builder.Build();
 
+// M10: correlation id first — everything downstream (logs, exception handling,
+// rate limiting, idempotency, outbox payloads) runs inside its scope.
+app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())

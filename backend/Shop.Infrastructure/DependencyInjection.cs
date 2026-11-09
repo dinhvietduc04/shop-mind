@@ -50,6 +50,7 @@ public static class DependencyInjection
         services.AddScoped<ICheckoutService, CheckoutService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IInventoryService, InventoryService>();
+        services.AddScoped<IEventPublisher, EventPublisher>(); // M10
 
         return services;
     }

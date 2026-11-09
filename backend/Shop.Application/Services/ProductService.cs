@@ -11,7 +11,7 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Services;
 
-public class ProductService(IAppDbContext db, ICacheService cache) : IProductService
+public class ProductService(IAppDbContext db, ICacheService cache, IEventPublisher events) : IProductService
 {
     public async Task<PagedResult<ProductDto>> QueryAsync(ProductQueryParams query, CancellationToken ct = default)
     {
@@ -126,7 +126,8 @@ public class ProductService(IAppDbContext db, ICacheService cache) : IProductSer
                 product.Images.Add(new ProductImage { ProductId = product.Id, Url = img.Url.Trim(), AltText = img.AltText?.Trim(), DisplayOrder = img.DisplayOrder });
         product.Inventory = new Inventory { ProductId = product.Id, Quantity = request.InitialStock, ReservedQuantity = 0 };
         db.Products.Add(product);
-        await db.SaveChangesAsync(ct);
+        await events.EnqueueAsync(new Shop.Domain.Events.ProductCreatedEvent(product.Id, product.SKU, product.Price, product.Status), ct);
+        await db.SaveChangesAsync(ct); // M10: product rows + outbox event commit as one unit
         await EvictProductCacheAsync(product.Id, ct);
         return await GetByIdAsync(product.Id, true, ct);
     }
@@ -162,7 +163,8 @@ public class ProductService(IAppDbContext db, ICacheService cache) : IProductSer
             foreach (var img in request.Images.OrderBy(i => i.DisplayOrder))
                 product.Images.Add(new ProductImage { ProductId = product.Id, Url = img.Url.Trim(), AltText = img.AltText?.Trim(), DisplayOrder = img.DisplayOrder });
         }
-        await db.SaveChangesAsync(ct);
+        await events.EnqueueAsync(new Shop.Domain.Events.ProductUpdatedEvent(product.Id, product.SKU, product.Price, product.Status), ct);
+        await db.SaveChangesAsync(ct); // M10: edits + outbox event commit as one unit
         await EvictProductCacheAsync(product.Id, ct);
         return await GetByIdAsync(product.Id, true, ct);
     }
