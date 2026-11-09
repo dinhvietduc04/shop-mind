@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/Shop.Worker/Shop.Worker.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="backend/Shop.Api/Shop.Api.csproj" />
     <Project Path="backend/Shop.Application/Shop.Application.csproj" />

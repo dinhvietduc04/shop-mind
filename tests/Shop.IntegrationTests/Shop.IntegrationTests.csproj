@@ -13,7 +13,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageReference Include="SSH.NET" Version="2026.0.0" />
     <PackageReference Include="Testcontainers.PostgreSql" Version="4.2.0" />
+    <PackageReference Include="Testcontainers.RabbitMq" Version="4.2.0" />
     <PackageReference Include="Testcontainers.Redis" Version="4.2.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
@@ -28,6 +30,7 @@
     <ProjectReference Include="..\..\backend\Shop.Application\Shop.Application.csproj" />
     <ProjectReference Include="..\..\backend\Shop.Infrastructure\Shop.Infrastructure.csproj" />
     <ProjectReference Include="..\..\backend\Shop.Api\Shop.Api.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Worker\Shop.Worker.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,28 +16,6 @@ services:
       timeout: 5s
       retries: 10
 
-  api:
-    build:
-      context: .
-      dockerfile: src/Shop.Api/Dockerfile
-    container_name: shopmind-api
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=shopmind;Username=postgres;Password=postgres"
-      Jwt__Secret: "shopmind-dev-secret-key-change-me-please-32chars!"
-      Jwt__Issuer: "ShopMind"
-      Jwt__Audience: "ShopMind"
-      Redis__ConnectionString: "redis:6379"
-      Redis__Enabled: "true"
-      Redis__DefaultTtlSeconds: "90"
-    ports:
-      - "5000:8080"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_started
-
   redis:
     image: redis:7-alpine
     container_name: shopmind-redis
@@ -52,6 +30,59 @@ services:
       timeout: 3s
       retries: 10
 
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: shopmind-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitdata:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Shop.Api/Dockerfile
+    container_name: shopmind-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=shopmind;Username=postgres;Password=postgres"
+      Jwt__Secret: "shopmind-dev-secret-key-change-me-please-32chars!"
+      Jwt__Issuer: "ShopMind"
+      Jwt__Audience: "ShopMind"
+      Redis__ConnectionString: "redis:6379"
+      Redis__Enabled: "true"
+      Redis__DefaultTtlSeconds: "90"
+      Idempotency__ConnectionString: "redis:6379"
+      RateLimit__ConnectionString: "redis:6379"
+    ports:
+      - "5000:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Shop.Worker/Dockerfile
+    container_name: shopmind-worker
+    environment:
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=shopmind;Username=postgres;Password=postgres"
+      RabbitMq__Url: "amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
 volumes:
   pgdata:
   redisdata:
+  rabbitdata:
