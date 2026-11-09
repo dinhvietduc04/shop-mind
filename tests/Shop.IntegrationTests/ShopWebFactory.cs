@@ -97,6 +97,17 @@ public class ShopWebFactory : WebApplicationFactory<Program>, IAsyncLifetime
         // the disposable test Redis with this factory's unique key namespace.
         builder.UseSetting("Idempotency:ConnectionString", Redis.ConnectionString);
         builder.UseSetting("Idempotency:KeyPrefix", Redis.KeyPrefix);
+        // B3-L1: buckets default to effectively-unlimited so unrelated suites never
+        // trip; dedicated RateLimit* factories open one bucket small. Counter keys
+        // live under this factory's namespaced Redis prefix (purged on dispose).
+        // Dead-Redis subclasses deliberately point both at the unreachable store.
+        builder.UseSetting("RateLimit:ConnectionString", Redis.ConnectionString);
+        builder.UseSetting("RateLimit:KeyPrefix", Redis.KeyPrefix + "rl:");
+        builder.UseSetting("RateLimit:GlobalPerMinute", "100000");
+        builder.UseSetting("RateLimit:AuthPerMinute", "100000");
+        builder.UseSetting("RateLimit:CatalogPerMinute", "100000");
+        builder.UseSetting("RateLimit:CartWritePerMinute", "100000");
+        builder.UseSetting("RateLimit:CheckoutPerMinute", "100000");
     }
 
     public new async Task DisposeAsync()

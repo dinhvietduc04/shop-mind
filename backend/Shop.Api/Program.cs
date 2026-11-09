@@ -79,6 +79,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
+// B3-L1: bucket table (429 + Retry-After + X-RateLimit-*); fail-closed on store outage.
+app.UseMiddleware<Shop.Api.RateLimiting.RateLimitMiddleware>();
 // B2 (ADR-0004): guards endpoints marked [RequireIdempotency]; fail-closed on money paths.
 app.UseMiddleware<Shop.Api.Idempotency.IdempotencyMiddleware>();
 app.MapControllers();

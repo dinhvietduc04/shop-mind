@@ -11,6 +11,7 @@ using Shop.Infrastructure.Caching;
 using Shop.Infrastructure.Idempotency;
 using Shop.Infrastructure.Payments;
 using Shop.Infrastructure.Persistence;
+using Shop.Infrastructure.RateLimiting;
 
 namespace Shop.Infrastructure;
 
@@ -32,6 +33,11 @@ public static class DependencyInjection
         services.Configure<IdempotencyOptions>(config.GetSection("Idempotency"));
         services.AddSingleton<IIdempotencyStore>(sp => new RedisIdempotencyStore(
             sp.GetRequiredService<IOptions<IdempotencyOptions>>().Value));
+
+        // B3-L1 (ADR-0004): rate limiting is fail-closed too — same Redis, deny on outage.
+        services.Configure<RateLimitOptions>(config.GetSection("RateLimit"));
+        services.AddSingleton(sp => new RedisRateLimitCounter(
+            sp.GetRequiredService<IOptions<RateLimitOptions>>().Value));
 
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
