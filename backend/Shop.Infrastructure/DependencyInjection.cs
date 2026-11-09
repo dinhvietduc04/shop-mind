@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Shop.Application.Caching;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
 using Shop.Application.Services;
 using Shop.Infrastructure.Auth;
 using Shop.Infrastructure.Caching;
+using Shop.Infrastructure.Idempotency;
 using Shop.Infrastructure.Payments;
 using Shop.Infrastructure.Persistence;
 
@@ -24,6 +26,13 @@ public static class DependencyInjection
         services.Configure<JwtOptions>(config.GetSection("Jwt"));
         services.Configure<RedisOptions>(config.GetSection("Redis"));
         services.AddSingleton<ICacheService, RedisCacheService>();
+
+        // B2 (ADR-0004): idempotency is fail-closed and independent of the cache
+        // kill-switch — money endpoints refuse to run when the store can't answer.
+        services.Configure<IdempotencyOptions>(config.GetSection("Idempotency"));
+        services.AddSingleton<IIdempotencyStore>(sp => new RedisIdempotencyStore(
+            sp.GetRequiredService<IOptions<IdempotencyOptions>>().Value));
+
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IFakePaymentService, FakePaymentService>();

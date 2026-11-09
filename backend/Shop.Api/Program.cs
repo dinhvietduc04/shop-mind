@@ -79,6 +79,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
+// B2 (ADR-0004): guards endpoints marked [RequireIdempotency]; fail-closed on money paths.
+app.UseMiddleware<Shop.Api.Idempotency.IdempotencyMiddleware>();
 app.MapControllers();
 
 // Auto-migrate + seed in Development (and when APPLY_MIGRATIONS=true)

@@ -84,6 +84,71 @@ public interface IInventoryService
     Task<bool> TryReleaseReservationAsync(Guid productId, int quantity, CancellationToken ct = default);
 }
 
+/// <summary>
+/// B2 (ADR-0004): idempotency record as a renewing Redis lease. A key is one of
+/// absent | InProgress (held via a short lease the owner alone can renew or
+/// complete) | Done (finished response, kept for replay). An abandoned lease
+/// simply expires, making the key re-acquirable.
+/// </summary>
+public interface IIdempotencyStore
+{
+    /// <summary>
+    /// Try to become the lease holder of <paramref name="key"/> (SET NX semantics).
+    /// Returns Acquired with a lease token, or reports what already exists
+    /// (InProgress / Done with matching or mismatched request hash).
+    /// Throws <c>IdempotencyUnavailableException</c> when the
+    /// store cannot answer — money paths fail closed, never run un-deduplicated.
+    /// </summary>
+    Task<IdempotencyAcquisition> TryAcquireAsync(string key, string requestHash, CancellationToken ct = default);
+
+    /// <summary>
+    /// Lua compare-and-renew: extends the lease ONLY while the caller is still the
+    /// recorded holder. False = not (or no longer) the holder; stop working.
+    /// </summary>
+    Task<bool> RenewLeaseAsync(string key, string leaseToken, CancellationToken ct = default);
+
+    /// <summary>
+    /// Owner-checked compare-and-set InProgress → Done with the response payload.
+    /// Returns false when the lease was stolen or already Done — a zombie holder
+    /// can never overwrite the takeover result.
+    /// </summary>
+    Task<bool> CompleteAsync(string key, string leaseToken, StoredIdempotentResponse response, CancellationToken ct = default);
+
+    /// <summary>Owner-checked delete so an errored (never-completed) attempt can be retried at once.</summary>
+    Task<bool> ReleaseAsync(string key, string leaseToken, CancellationToken ct = default);
+
+    /// <summary>Current record, or null when absent / lease expired.</summary>
+    Task<IdempotencyRecord?> GetAsync(string key, CancellationToken ct = default);
+}
+
+public enum IdempotencyAcquisitionResult
+{
+    Acquired,
+    /// <summary>Someone else holds the lease right now → 409 + Retry-After.</summary>
+    InProgress,
+    /// <summary>Done, same request hash → replay the stored response.</summary>
+    Replay,
+    /// <summary>Done, different payload for the same key → 409 Conflict.</summary>
+    PayloadMismatch,
+}
+
+public sealed record IdempotencyAcquisition(
+    IdempotencyAcquisitionResult Result,
+    string? LeaseToken = null,
+    int? RetryAfterSeconds = null,
+    StoredIdempotentResponse? StoredResponse = null);
+
+public enum IdempotencyState { InProgress, Done }
+
+public sealed record IdempotencyRecord(
+    string LeaseHolderToken,
+    string RequestHash,
+    IdempotencyState State,
+    DateTimeOffset CreatedAt,
+    StoredIdempotentResponse? Response = null);
+
+public sealed record StoredIdempotentResponse(int StatusCode, string ContentType, string Body);
+
 public interface IPasswordHasher
 {
     string Hash(string password);

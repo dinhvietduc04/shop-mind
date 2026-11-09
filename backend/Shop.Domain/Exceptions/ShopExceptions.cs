@@ -104,6 +104,13 @@ public class InactiveProductException : ShopDomainException
         : base("InactiveProduct", $"Product '{productId}' is not available for purchase.") { }
 }
 
+public class IdempotencyUnavailableException : ShopDomainException
+{
+    public IdempotencyUnavailableException(string reason)
+        : base("IdempotencyUnavailable",
+            $"Idempotency store is unavailable; the request was NOT executed. Retry later. ({reason})") { }
+}
+
 public class EmptyCartException : ShopDomainException
 {
     public EmptyCartException()

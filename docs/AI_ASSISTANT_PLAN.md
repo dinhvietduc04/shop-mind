@@ -200,6 +200,15 @@ PSP webhook → POST /api/payments/webhook (per-adapter signature verify, event-
 
 **Exit criteria:** scripted e2e (integration test): quote → reservation visible (`ReservedQuantity` moved, `AvailableQuantity` dropped) → human confirm on fake hosted page → Paid + stock committed + cart cleared; expire path → Cancelled + reservation released; webhook replay ×3 → single transition.
 
+### B5+ — Client-facing forward contracts (settled in the frontend architecture review, 2026-11-09)
+
+Drafted from contracts already exercised end-to-end behind the `fe/` mocks — F8 conformance becomes a check, not a redesign.
+
+1. **`payment.outcome`** — client-visible discriminator on `PaymentDto`: `captured | failed | expired | null`, set by the same webhook/sweeper transitions that move OrderStatus. Rule: no client may infer "expired" from a null transaction id or an elapsed `expiresAt`; the Bill, PSP page and order detail read the outcome as truth (closes the `!transactionId` heuristic — review candidate C1).
+2. **Canonical quote read shape + discovery** — `{items, subtotal, shipping, total}` is a *view* of the Order; both quote responses return the order-embedded DTO: `POST /api/checkout/quote → 201 {order: OrderDto, hostedPayUrl, expiresAt}`, plus new **`GET /api/checkout/quote`** (human JWT; `scope=agent` 403) → `{order, hostedPayUrl, expiresAt} | null` for the active Open Quote — the honest backend capability behind "the bill survives reload / a second tab". The session token is delivered as its own field (`order.payment.sessionToken` or the URL), and **clients must never decompose `hostedPayUrl`** (prod = cross-origin Stripe; the mock's `/psp/<token>` route is dev-only).
+3. **Chat streaming contract (A5 response)** — `POST /api/agent/chat` streams SSE frames `{type:"delta", text}` … `{type:"turn", result}` or `{type:"error", code, message}`; non-stream failures use the standard envelope `{code, message, correlationId, retryable}`. Rate limit = honest HTTP `429 + Retry-After` **and** `code:"RATE_LIMITED"` (client convenience). `AgentTurnResult` carries `turnCap` + `turnsUsed` (server-enforced per-conversation cap) so the UI renders "turn x/N" without hardcoding. `X-Correlation-Id` echoed on the response.
+4. **REST spec filter grammar (A3)** — `?specs=<key>:<op>:<value>` clauses joined by `;`; `op ∈ gte|lte|eq|in` (`in` values pipe-separated). Mirrors the MCP `specs: [{key, op, value}]` shape one-to-one. Unregistered key or malformed clause → `400`, **fail-closed** — never silently ignored. Facets DTO: `[{key, label, type: range|enum, unit, values?, min?, max?, count}]` (`count` = additive front-end need).
+
 ### B6 — Cross-cutting resilience (small)
 
 - Polly (or manual wrappers) for: PSP HTTP calls (retry ×2 + circuit breaker), AI provider (retry on 429/5xx w/ jitter, 20s timeout), Redis & RabbitMQ (fail-open for cache, fail-safe for limiter = **deny if Redis down for rate/idempotency counters**, log + `/health/ready` red).
@@ -273,8 +282,8 @@ NEVER:  pay, refund, cancel_order (cancel stays human-only at Assist), any admin
 
 | # | Milestone | = old plan | Depends | Exit artifact |
 |---|---|---|---|---|
-| 1 | **B1** race-safe stock & cart (xmin + atomic guarded updates + transition guards) | *new (fix)* | M9 | parallel-checkout test green |
-| 2 | **B2** idempotency store + `Idempotency-Key` on checkout/quote paths | *new* | M9 | replay tests green |
+| 1 | **B1** race-safe stock & cart (xmin + atomic guarded updates + transition guards) | *new (fix)* | M9 | ✅ **done 2026-11-09** — xmin tokens on Products/Orders/Inventories/Carts/CartItems + migration; guarded `TryReserve/TryCommit/TryRelease` primitives; checkout decrement is one guarded statement per line; transitions are conditional updates with ADR-0005 replay resolution; cart add is reload-and-retry. Green: `StockReservationTests` (oversell storm, commit/release race — exactly one wins), `CartConcurrencyTests` (10 parallel adds → qty 10), `ConcurrencyTokenTests`, `OrderTransitionConcurrencyTests` (typed loser + idempotent replays), `CheckoutConcurrencyTests` (**exit criterion**: 5 users / 3 units → exactly 3 Paid + 2×409, stock 0), 41 unit + 29 integration |
+| 2 | **B2** idempotency store + `Idempotency-Key` on checkout/quote paths | *new* | M9 | ✅ **done 2026-11-09** — `IIdempotencyStore` renewing-lease store in Redis (ADR-0004): SET-NX acquire, holder-only Lua compare-and-renew, owner-checked CAS→Done (stolen-lease zombie cannot overwrite takeover), expired leases re-acquirable, fail-closed `IdempotencyUnavailableException`. `IdempotencyMiddleware` + `[RequireIdempotency]`: UUIDv4 header (400), replay ×3 → one execution + `Idempotent-Replay`, mismatch 409, in-progress 409 + Retry-After, crash releases lease, store-down 503 + Retry-After with zero executions. 19 new tests (`IdempotencyStoreTests`, `IdempotencyHttpTests` + probe; quote itself gets the attribute at B5); `SHOPMIND_TEST_REDIS` seam + per-factory key-prefix purge. Green: 41 unit + 48 integration |
 | 3 | **B3-L1** REST rate limiting middleware (Redis partitioner) | *new, was M20* | — | 429/Retry-After tests |
 | 4 | **M10** outbox + events + correlation id | M10 | — | outbox rows on flows |
 | 5 | **B4** RabbitMQ + `Shop.Worker` + DLQ + dedupe consumers | M11 | 4 | broker-down test |
