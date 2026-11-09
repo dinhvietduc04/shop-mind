@@ -8,7 +8,7 @@ public static class ClaimsPrincipalExtensions
     {
         var id = user.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? user.FindFirstValue("sub")
-            ?? throw new UnauthorizedAccessException("Missing user id claim.");
+            ?? throw new UnauthorizedAccessException("Missing user id claim. Maybe login needed.");
         return Guid.Parse(id);
     }
 }

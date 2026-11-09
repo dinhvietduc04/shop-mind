@@ -26,4 +26,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default)
         => Database.BeginTransactionAsync(ct);
+
+    public void ClearChangeTracker() => ChangeTracker.Clear();
 }

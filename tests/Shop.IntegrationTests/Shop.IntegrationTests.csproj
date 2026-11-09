@@ -23,10 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Shop.Domain\Shop.Domain.csproj" />
-    <ProjectReference Include="..\..\src\Shop.Application\Shop.Application.csproj" />
-    <ProjectReference Include="..\..\src\Shop.Infrastructure\Shop.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\Shop.Api\Shop.Api.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Domain\Shop.Domain.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Application\Shop.Application.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Api\Shop.Api.csproj" />
   </ItemGroup>
 
 </Project>

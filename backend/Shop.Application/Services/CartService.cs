@@ -44,6 +44,45 @@ public class CartService(IAppDbContext db) : ICartService
     {
         if (request.Quantity <= 0) throw new DomainValidationException("Quantity must be greater than zero.");
 
+        // B1: concurrent same-user adds collide on xmin (or on unique constraints when
+        // two attempts insert the same row); reload-and-retry keeps the read-modify-write
+        // below from dropping quantities (agent retries hammer this path).
+        // Budget sized for the plan's exit-criterion storm (10 parallel adds, each
+        // colliding on CartItem AND Cart header).
+        const int maxRetries = 8;
+        for (var attempt = 0; ; attempt++)
+        {
+            try
+            {
+                return await AddItemOnceAsync(userId, request, ct);
+            }
+            catch (DbUpdateConcurrencyException) when (attempt < maxRetries)
+            {
+                await BackoffAsync(attempt, ct);
+                db.ClearChangeTracker(); // next read sees database truth
+            }
+            catch (DbUpdateException ex) when (attempt < maxRetries && ex is not DbUpdateConcurrencyException)
+            {
+                // Lost an insert race (unique constraint): the row now exists —
+                // re-read and apply this add on top of it.
+                await BackoffAsync(attempt, ct);
+                db.ClearChangeTracker();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DomainValidationException(
+                    "Cart was modified concurrently, please retry.");
+            }
+        }
+    }
+
+    // Hot-loop retries immediately re-collide under a storm; exponential + jittered
+    // backoff lets the writers serialize.
+    private static Task BackoffAsync(int attempt, CancellationToken ct)
+        => Task.Delay(TimeSpan.FromMilliseconds(5 * Math.Pow(2, attempt) + Random.Shared.Next(10)), ct);
+
+    private async Task<CartDto> AddItemOnceAsync(Guid userId, AddCartItemRequest request, CancellationToken ct)
+    {
         var product = await db.Products.AsNoTracking()
             .Include(p => p.Inventory)
             .FirstOrDefaultAsync(p => p.Id == request.ProductId, ct)
@@ -78,15 +117,7 @@ public class CartService(IAppDbContext db) : ICartService
         }
 
         cart.UpdatedAt = DateTime.UtcNow;
-        try
-        {
-            await db.SaveChangesAsync(ct);
-        }
-        catch (DbUpdateConcurrencyException ex)
-        {
-            throw new DomainValidationException(
-                $"Cart was modified concurrently, please retry. Details: {ex.Message}");
-        }
+        await db.SaveChangesAsync(ct);
 
         return await LoadDtoAsync(userId, ct);
     }

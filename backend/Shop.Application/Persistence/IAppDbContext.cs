@@ -19,4 +19,11 @@ public interface IAppDbContext
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default);
+
+    /// <summary>
+    /// B1: drop tracked entities so the next read sees database truth. Used by
+    /// reload-and-retry loops handling DbUpdateConcurrencyException — the tracked
+    /// instances held by a failed attempt carry stale values and stale xmin tokens.
+    /// </summary>
+    void ClearChangeTracker();
 }

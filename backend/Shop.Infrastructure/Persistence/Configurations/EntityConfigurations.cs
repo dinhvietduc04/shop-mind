@@ -39,6 +39,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     public void Configure(EntityTypeBuilder<Product> b)
     {
         b.HasKey(x => x.Id);
+        b.Property<uint>("xmin").IsRowVersion(); // B1: Postgres row version for optimistic concurrency
         b.Property(x => x.Name).IsRequired().HasMaxLength(300);
         b.Property(x => x.Slug).IsRequired().HasMaxLength(300);
         b.Property(x => x.SKU).IsRequired().HasMaxLength(100);
@@ -72,6 +73,7 @@ public class InventoryConfiguration : IEntityTypeConfiguration<Inventory>
     public void Configure(EntityTypeBuilder<Inventory> b)
     {
         b.HasKey(x => x.Id);
+        b.Property<uint>("xmin").IsRowVersion(); // B1
         b.HasIndex(x => x.ProductId).IsUnique();
         b.Property(x => x.Quantity).IsRequired();
         b.Property(x => x.ReservedQuantity).IsRequired();
@@ -89,6 +91,7 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
     public void Configure(EntityTypeBuilder<Cart> b)
     {
         b.HasKey(x => x.Id);
+        b.Property<uint>("xmin").IsRowVersion(); // B1
         b.HasIndex(x => x.UserId).IsUnique();
         b.HasMany(x => x.Items).WithOne(i => i.Cart).HasForeignKey(i => i.CartId).OnDelete(DeleteBehavior.Cascade);
         b.HasIndex(x => x.UserId);
@@ -100,6 +103,7 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
     public void Configure(EntityTypeBuilder<CartItem> b)
     {
         b.HasKey(x => x.Id);
+        b.Property<uint>("xmin").IsRowVersion(); // B1
         b.HasIndex(x => new { x.CartId, x.ProductId }).IsUnique();
         b.HasIndex(x => x.CartId);
         b.Property(x => x.UnitPrice).HasPrecision(18, 2);
@@ -112,6 +116,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> b)
     {
         b.HasKey(x => x.Id);
+        b.Property<uint>("xmin").IsRowVersion(); // B1
         b.Property(x => x.OrderNumber).IsRequired().HasMaxLength(50);
         b.HasIndex(x => x.OrderNumber).IsUnique();
         b.Property(x => x.Subtotal).HasPrecision(18, 2);

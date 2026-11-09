@@ -99,11 +99,27 @@ public class CheckoutService(IAppDbContext db, IFakePaymentService payments) : I
             order.Status = OrderStatus.Paid;
             order.UpdatedAt = DateTime.UtcNow;
 
-            // Update inventory (most important validation already done; decrement atomically)
+            // B1: decrement is ONE guarded statement per line —
+            // UPDATE inventories SET quantity = quantity - q
+            //   WHERE product_id = @p AND quantity - reserved_quantity >= q.
+            // Racing checkouts for the last units serialize at the row: the winner's
+            // guard passes, the loser re-evaluates the predicate after the lock and
+            // sees 0 rows → typed InsufficientStock + rollback. Never oversold,
+            // never a silent lost update (the pre-check above stays as fast path;
+            // the database is the arbiter).
             foreach (var item in cart.Items)
             {
-                var product = products[item.ProductId];
-                product.Inventory!.DecreaseStock(item.Quantity);
+                var updated = await db.Inventories
+                    .Where(i => i.ProductId == item.ProductId
+                        && i.Quantity - i.ReservedQuantity >= item.Quantity)
+                    .ExecuteUpdateAsync(s => s
+                        .SetProperty(i => i.Quantity, i => i.Quantity - item.Quantity)
+                        .SetProperty(i => i.UpdatedAt, DateTime.UtcNow), ct);
+                if (updated == 1) continue;
+                var inv = await db.Inventories.AsNoTracking()
+                    .FirstOrDefaultAsync(i => i.ProductId == item.ProductId, ct);
+                throw new InsufficientStockException(item.ProductId,
+                    inv is null ? 0 : inv.Quantity - inv.ReservedQuantity, item.Quantity);
             }
 
             // Clear cart

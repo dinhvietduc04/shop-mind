@@ -47,4 +47,50 @@ public class InventoryService(IAppDbContext db, ICacheService cache) : IInventor
         await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
         return inv.ToDto();
     }
+
+    public async Task<bool> TryReserveAsync(Guid productId, int quantity, CancellationToken ct = default)
+    {
+        if (quantity <= 0)
+            throw new DomainValidationException("Quantity must be greater than zero.");
+        // B1: check and write are ONE statement — concurrent callers can never
+        // interleave read-then-reserve and oversell. 0 rows = guard rejected.
+        var updated = await db.Inventories
+            .Where(i => i.ProductId == productId && i.Quantity - i.ReservedQuantity >= quantity)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(i => i.ReservedQuantity, i => i.ReservedQuantity + quantity)
+                .SetProperty(i => i.UpdatedAt, DateTime.UtcNow), ct);
+        return updated == 1;
+    }
+
+    public async Task<bool> TryCommitReservationAsync(Guid productId, int quantity, CancellationToken ct = default)
+    {
+        if (quantity <= 0)
+            throw new DomainValidationException("Quantity must be greater than zero.");
+        // Payment succeeded: consume physical stock AND the reservation in ONE
+        // statement, guarded so reserved can never go negative or exceed quantity.
+        var updated = await db.Inventories
+            .Where(i => i.ProductId == productId
+                && i.ReservedQuantity >= quantity
+                && i.Quantity >= quantity)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(i => i.Quantity, i => i.Quantity - quantity)
+                .SetProperty(i => i.ReservedQuantity, i => i.ReservedQuantity - quantity)
+                .SetProperty(i => i.UpdatedAt, DateTime.UtcNow), ct);
+        return updated == 1;
+    }
+
+    public async Task<bool> TryReleaseReservationAsync(Guid productId, int quantity, CancellationToken ct = default)
+    {
+        if (quantity <= 0)
+            throw new DomainValidationException("Quantity must be greater than zero.");
+        // Expiry/failure/cancel: return reserved stock to available, guarded so a
+        // release can never exceed what is actually reserved (racing a late commit:
+        // first transition wins, the other sees the guard reject).
+        var updated = await db.Inventories
+            .Where(i => i.ProductId == productId && i.ReservedQuantity >= quantity)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(i => i.ReservedQuantity, i => i.ReservedQuantity - quantity)
+                .SetProperty(i => i.UpdatedAt, DateTime.UtcNow), ct);
+        return updated == 1;
+    }
 }
