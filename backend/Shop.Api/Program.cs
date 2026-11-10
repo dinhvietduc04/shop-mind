@@ -42,6 +42,7 @@ var jwtSection = builder.Configuration.GetSection("Jwt");
 var jwtSecret = jwtSection.GetValue<string>("Secret") ?? "shopmind-dev-secret-key-change-me-please-32chars!";
 var jwtIssuer = jwtSection.GetValue<string>("Issuer") ?? "ShopMind";
 var jwtAudience = jwtSection.GetValue<string>("Audience") ?? "ShopMind";
+var mcpAudience = builder.Configuration["Mcp:Audience"] ?? "Shop.Mcp";
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
@@ -53,7 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = jwtIssuer,
-            ValidAudience = jwtAudience,
+            ValidAudiences = [jwtAudience, mcpAudience],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
             ClockSkew = TimeSpan.FromMinutes(1),
             RoleClaimType = System.Security.Claims.ClaimTypes.Role,
@@ -83,6 +84,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 app.UseAuthentication();
+// A1 / ADR-0006: scope=agent tokens authenticate for the hosted pay page but
+// are forbidden on every /api route.
+app.UseMiddleware<AgentScopeRestGuardMiddleware>();
 app.UseAuthorization();
 // B3-L1: bucket table (429 + Retry-After + X-RateLimit-*); fail-closed on store outage.
 app.UseMiddleware<Shop.Api.RateLimiting.RateLimitMiddleware>();

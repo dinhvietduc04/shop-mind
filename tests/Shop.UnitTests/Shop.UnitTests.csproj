@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\backend\Shop.Application\Shop.Application.csproj" />
     <ProjectReference Include="..\..\backend\Shop.Infrastructure\Shop.Infrastructure.csproj" />
     <ProjectReference Include="..\..\backend\Shop.Api\Shop.Api.csproj" />
+    <ProjectReference Include="..\..\backend\Shop.Mcp\Shop.Mcp.csproj" />
   </ItemGroup>
 
 </Project>

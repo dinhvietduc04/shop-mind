@@ -82,13 +82,13 @@ Paid → Cancelled (terminal)
 | Queue | RabbitMQ via `RabbitMQ.Client` | New in M11; topic exchange `shop.events` |
 | Workers | `Shop.Worker` BackgroundService | New in M11; outbox publisher + event consumers |
 | MCP | Official MCP .NET SDK (`Shop.Mcp` project) | New in M12; transports: Streamable HTTP/SSE; no direct DB |
-| AI providers | `IAiProvider` → `GeminiProvider` + `OpenRouterProvider` | New in M14; provider selected by config |
+| AI providers | `IAiProvider` → one `OpenAiCompatibleProvider` (presets: OpenCode Go, DeepSeek, OpenRouter, OpenAI, Groq, Ollama) + `FakeAiProvider` | New in M14; provider selected by config |
 | Embeddings | Provider embeddings → `pgvector` | New in M17; dim 768 or 1536 fixed per model, HNSW index |
 | Frontend | Next.js App Router in `fe/` (mock-first, MSW) — see `docs/FRONTEND_PLAN.md`; legacy vanilla `frontend/` superseded | F0–F7 built UI-first on mocks; F8 wires MSW → Shop.Api milestone-by-milestone |
 | Tests | xUnit + Testcontainers (Postgres) | Current; extend per milestone |
 | Observability | Serilog + OpenTelemetry + health checks | Hardened in M19–M20 |
 
-Current infra (this repo): `docker-compose.yml` has only `postgres` + `api`. M9/M11/M17 extend it with `redis`, `rabbitmq`, `pgvector` image.
+Current infra (this repo): `docker-compose.yml` has `postgres`, `redis`, `rabbitmq`, `api`, `worker`, and the A1 `mcp` service. M17 adds the `pgvector` image.
 
 ## 4. Repo map — current vs target
 
@@ -115,7 +115,7 @@ src/Shop.Application/       + Caching/ICacheService, Events/IEventPublisher, Age
 src/Shop.Infrastructure/    + Caching/RedisCacheService, Events/OutboxPublisher, Embeddings/*, AiProviders/*
 src/Shop.Api/               + Controllers/AgentController, ActionsController, SearchController, Health
 src/Shop.Worker/            NEW: OutboxPublisherWorker, RabbitMq consumers (Email, Analytics, Recommendation, Embedding)
-src/Shop.Mcp/               NEW: McpServer, Tools/*, Auth/McpAuthContext, Middleware
+backend/Shop.Mcp/           NEW: McpProgram, Tools/*, Auth/McpToolContextAccessor, Tooling/*
 tests/                      + per-milestone integration tests (cache, outbox, workers, MCP, agent, search)
 docker-compose.yml          postgres(pgvector) + redis + rabbitmq + api + worker + mcp
 docker-compose.prod.yml     NEW
@@ -411,11 +411,11 @@ Failures → retry exp backoff (3x) → shop.events.dlq + OutboxMessages.Status=
 
 **Deliverable / Exit.** Reliable async pipeline: HTTP never blocks on side effects; demo `checkout → RabbitMQ management UI shows routing → worker logs`.
 
-## M12 — MCP Foundation — ⬜
+## M12 — MCP Foundation — 🟡 A1 foundation done; A2 adds writes
 
 **Goal.** Expose ShopMind to AI through a standard MCP server with auth, validation, logging, and zero direct DB access.
 
-**Baseline.** No MCP project; AI cannot call the backend.
+**Baseline.** A1 foundation exists (`backend/Shop.Mcp`, four read tools); A2 adds the write/compare/quote toolset.
 
 **Architecture.**
 
@@ -429,28 +429,28 @@ AI (agent) → MCP Client → Shop.Mcp (STDIO + Streamable HTTP)
 
 **Tasks.**
 
-- [ ] New project `src/Shop.Mcp/` on official MCP .NET SDK. Transports: STDIO (local dev) + Streamable HTTP (`/mcp`, JWT bearer) for hosted agent.
-- [ ] `McpToolContext`: `UserId, Role, CorrelationId, IdempotencyKey?`; built from JWT in HTTP mode, from env/test principal in STDIO dev mode. Reject anonymous for all cart/order/tools except pure public catalog search (decide: public search allowed anonymous, everything else requires JWT — document).
-- [ ] Guard layer per tool call: authz check (role + ownership) → FluentValidation of args → service call → map exceptions to MCP error codes (`INVALID_ARGS, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, UPSTREAM_ERROR`) → structured log (`tool, userIdHash, durationMs, status`).
-- [ ] Tool manifest + JSON schemas auto-generated from DTOs; `docs/mcp-tools.md` generated (or section in PLAN appendix — keep in code as `README` of `Shop.Mcp`).
-- [ ] Local dev script: `dotnet run --project src/Shop.Mcp -- --transport stdio` + Inspector test.
-- [ ] Add `mcp` service to compose (shares API config; no DB connection string needed beyond what Application services use — Mcp hosts services via same DI, not raw SQL).
+- [x] New project `backend/Shop.Mcp/` on official MCP .NET SDK (`ModelContextProtocol.AspNetCore` 2.4.0). Transports: STDIO (local dev) + stateless Streamable HTTP (`/mcp`, JWT bearer) for hosted agent.
+- [x] `McpToolContext`: `UserId, Role, Scope, CorrelationId, IdempotencyKey?`; built from JWT in HTTP mode, from env/test principal in STDIO dev mode. Public catalog reads (`search_products`, `get_product`, `get_product_facets`) are anonymous; `get_cart` and everything else requires a delegated agent JWT.
+- [x] Guard layer per tool call: authz check → strict arg validation (unknown fields rejected) → Redis sliding-window budget → service call → map exceptions to MCP error codes (`INVALID_ARGS, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, UPSTREAM_ERROR, RATE_LIMITED, RESULT_TOO_LARGE, TOOL_NOT_FOUND`) → structured log (`tool, userIdHash, durationMs, status, correlationId`). Args ≤4KB, results ≤32KB, pageSize ≤50.
+- [x] Tool manifest + JSON schemas auto-generated from the tool methods; policy/kill-switch filtering in `backend/Shop.Mcp/README.md`.
+- [x] Local dev command: `dotnet run --project backend/Shop.Mcp -- --transport stdio` + real-process STDIO integration test; HTTP Inspector instructions in `backend/Shop.Mcp/README.md`.
+- [x] Add `mcp` service to compose (shares API config; hosts Application services via the same DI, never raw SQL).
 
 **Contracts.** Error envelope: `{ code, message, correlationId, retryable:bool }`. All tool args validated; unknown fields rejected (strict).
 
-**Rules.** §2 principles #4–#5 enforced by code review checklist + an architecture test (no `DbContext`/`Npgsql` reference in `Shop.Mcp.csproj` — assert via test scanning assemblies).
+**Rules.** §2 principles #4–#5 enforced by code review checklist + an architecture test: `Shop.Mcp` source has no EF/Npgsql usage and the csproj has no direct EF/Npgsql package reference (it composes Infrastructure only for DI). A tool method without a policy entry fails the test.
 
 **Acceptance Criteria.**
 
-- [ ] MCP Inspector lists tools, calls `search_products` anonymously OK, calls `get_cart` without JWT → `UNAUTHORIZED`.
-- [ ] `add_to_cart` as user A cannot touch user B cart (ownership test via two JWTs).
-- [ ] Architecture test fails if `Shop.Mcp` references EF/Npgsql.
+- [x] MCP client lists tools, calls `search_products` anonymously OK, calls `get_cart` without JWT → `UNAUTHORIZED` (integration test; Inspector command in README).
+- [ ] `add_to_cart` as user A cannot touch user B cart (ownership test via two JWTs) — lands with A2's write toolset; A1 proves `get_cart` ownership with two tokens.
+- [x] Architecture test fails if `Shop.Mcp` source/direct packages reference EF/Npgsql.
 
-**Test Plan.** Unit: authz matrix per tool. Integration: boot MCP + API services in-memory, drive tools via MCP client, assert same results as REST.
+**Test Plan.** Unit: policy/context/guard/authz matrix/architecture. Integration: boot the MCP HTTP + STDIO hosts, drive tools via the official MCP client, assert manifest, seed-data results, cart ownership, strict args, budgets, and REST agent-scope rejection.
 
 **Risks.** SDK version drift → pin version, wrap SDK in thin adapter. Token leakage in logs → log `userIdHash` only, never JWT.
 
-**Deliverable / Exit.** Running MCP server exposing at least `search_products`, `get_product`, `get_cart` behind auth with validated schemas.
+**Deliverable / Exit.** ✅ A1: running MCP server exposing `search_products`, `get_product`, `get_product_facets`, and `get_cart` behind auth with validated schemas; A2 adds the write/compare/quote toolset.
 
 ## M13 — MCP Business Tools — ⬜
 
@@ -491,7 +491,7 @@ Write (all user-scoped):
 
 ## M14 — AI Provider Abstraction — ⬜
 
-**Goal.** Swap Gemini ↔ OpenRouter without touching agent logic.
+**Goal.** Swap AI providers by changing configuration only, without touching agent logic.
 
 **Baseline.** No AI calls.
 
@@ -503,18 +503,20 @@ Write (all user-scoped):
   // AiRequest{Messages[Role,Content], Tools[Name,Schema], Temperature, MaxTokens, StopWhen?}
   // AiResponse{Text?, ToolCalls[{Name, ArgumentsJson, CallId}], Usage{InputTokens,OutputTokens}, Model, DurationMs}
   ```
-- [ ] `GeminiProvider` (Google Generative Language REST) + `OpenRouterProvider` (OpenAI-compatible `/chat/completions` with `tools`). Config `Ai:Provider (Gemini|OpenRouter)`, `Ai:Model`, `Ai:ApiKey` (env only, never appsettings commit), `Ai:BaseUrl?`, timeout 20s, retry 2x on 429/5xx with jitter.
-- [ ] Function-calling adapter: normalize both providers to internal `ToolCalls[]`; argument JSON validated against MCP tool schemas before dispatch.
+- [ ] One `OpenAiCompatibleProvider` for any provider that speaks OpenAI Chat Completions (`/chat/completions` with `tools`). Built-in presets: `opencode-go` (dev default; base URL `https://opencode.ai/inference/go/openai/v1`), `deepseek`, `openrouter`, `openai`, `groq`, `ollama`; each preset supplies a default base URL and model, and `Ai:BaseUrl` / `Ai:Model` override them. Config `Ai:Provider`, `Ai:ApiKey` (env only, never appsettings commit), `Ai:Model?`, `Ai:BaseUrl?`; env form `Ai__Provider` / `Ai__ApiKey` / `Ai__Model` / `Ai__BaseUrl`. `opencode-go` also sends `x-opencode-session` and a descriptive `User-Agent`. Timeout 20s, retry 2x on 429/5xx with jitter.
+- [ ] Dev default: `opencode-go` + `deepseek-v4.1-flash`. OpenCode Go is a coding-agent subscription — suitable for local/demo; production switches to direct `deepseek` or `openrouter` by config. Verify OpenAI-style `tools`/`tool_calls` with a live smoke test before A5.
+- [ ] Function-calling adapter: normalize OpenAI-compatible `tool_calls` to internal `ToolCalls[]`; argument JSON validated against MCP tool schemas before dispatch.
 - [ ] Token/cost guard: `MaxTokens` default 1024, truncate history (keep system + last 10), strip PII (emails, addresses) from prompts unless needed for checkout summary (then only last-4/totals).
 - [ ] Dev stub `FakeAiProvider` (deterministic scripted responses) for tests without API keys.
 
 **Acceptance Criteria.**
 
-- [ ] Switch `Ai:Provider` + `Ai:Model` only → same `AiRequest` yields normalized `AiResponse` from both backends (record two cassettes in test).
+- [ ] Switch `Ai:Provider` + the key only (model defaults per preset) → same `AiRequest` yields normalized `AiResponse` from at least two presets (record cassettes in test; e.g. `opencode-go` and `deepseek`).
+- [ ] `opencode-go` requests carry `x-opencode-session` and a non-generic `User-Agent`; a live tool-call smoke test passes before A5.
 - [ ] No API key in repo/logs; missing key → clear `AI_NOT_CONFIGURED` error, API still serves non-AI routes.
 - [ ] 429 from provider → retried then surfaced as `retryable:true`.
 
-**Test Plan.** Unit with `HttpMessageHandler` mocks per provider (tool-call parsing, usage parsing, error mapping). Integration (manual, keyed): one prompt through each provider, snapshot normalized shape.
+**Test Plan.** Unit with `HttpMessageHandler` mocks for the common provider (preset resolution, session header, tool-call parsing, usage parsing, error mapping). Integration (manual, keyed): one prompt through OpenCode Go and one through a second preset, snapshot normalized shape; one tool-calling smoke test against `deepseek-v4.1-flash` before A5.
 
 **Deliverable / Exit.** Agent code (M15) depends only on `IAiProvider`.
 
@@ -591,7 +593,7 @@ POST /api/agent/chat { message, conversationId? }
 **Architecture.**
 
 ```text
-Product write → outbox product.* → EmbeddingWorker → IAiProvider.Embed → pgvector
+Product write → outbox product.* → EmbeddingWorker → IEmbeddingProvider.Embed → pgvector
 Query: filters (category/brand/price) + keyword score + vector cosine → fused rank → paged
 ```
 
@@ -717,7 +719,7 @@ Internet → Frontend (Vercel/static) → ASP.NET Core API (Render/Fly/Azure)
 
 **Tasks.**
 
-- [ ] Dockerfiles: `src/Shop.Api/Dockerfile` (exists — verify multistage, non-root, `ASPNETCORE_URLS=8080`), new `src/Shop.Worker/Dockerfile`, `src/Shop.Mcp/Dockerfile` (or combined `--project` targets). `.dockerignore` (bin/obj/.git).
+- [ ] Dockerfiles: `backend/Shop.Api/Dockerfile` (exists — verify multistage, non-root, `ASPNETCORE_URLS=8080`), `backend/Shop.Worker/Dockerfile` (exists), `backend/Shop.Mcp/Dockerfile` (A1). `.dockerignore` (bin/obj/.git).
 - [ ] `docker-compose.prod.yml`: api+worker+mcp profiles, env-only secrets, pgvector image for self-host option, resource limits.
 - [ ] Migrations strategy: run `dotnet ef database update` via init container/job on deploy (never auto-seed prod data; seed only demo catalog behind `SEED_DEMO=true`).
 - [ ] Env matrix documented: `ConnectionStrings__Default, Redis__ConnectionString, RabbitMq__*, Jwt__Secret/Issuer/Audience, Ai__Provider/Model/ApiKey, OTEL_EXPORTER_OTLP_ENDPOINT, SEED_DEMO, ApplyMigrations`.
@@ -776,7 +778,7 @@ Cache: `categories:all` 10m, `product:{id}` 5m, `products:q:*` 1–2m, `hybrid:*
 
 ## F. Open questions (resolve when entering milestone, not now)
 
-- M14: Gemini vs OpenRouter default model + embedding dim (locks M17 dim) — decide at M14 kickoff.
+- M14: default chat provider/model (planned: OpenCode Go + `deepseek-v4.1-flash`) and embedding provider/dim (separate from the chat provider; locks M17 dim) — decide at M14 kickoff.
 - M11 prod RabbitMQ: managed vs self-hosted on same VM (cost vs ops).
 - M18: behavior retention 12m vs shorter for GDPR posture.
 - M20: refresh-token vs sliding JWT-only (decide before implementation).

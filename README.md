@@ -43,6 +43,7 @@ Requires Docker Desktop running.
 ```bash
 docker compose up --build
 # API: http://localhost:5000/swagger (via container)
+# MCP (A1): http://localhost:5001/mcp
 # Postgres: localhost:5432
 ```
 
@@ -56,8 +57,29 @@ docker compose up --build
 - `POST /api/checkout`
 - `GET /api/orders, GET /api/orders/{id}, POST /api/orders/{id}/cancel`
 - `GET/POST/GET/PUT/DELETE /api/admin/products…`, `/api/admin/categories…`, `/api/admin/inventory…`, `/api/admin/orders…`
+- `POST /mcp` — MCP Streamable HTTP (A1; tools, auth, budgets in `backend/Shop.Mcp/README.md`)
 
 See Swagger for full docs. Validation errors return `{ title, status, errors }`.
+
+## MCP server (A1)
+
+`backend/Shop.Mcp` exposes the A1 read tools (`search_products`, `get_product`,
+`get_product_facets`, `get_cart`) over Streamable HTTP and STDIO. Run it locally:
+
+```bash
+dotnet run --project backend/Shop.Mcp
+# Streamable HTTP: http://localhost:5122/mcp
+# Health:          http://localhost:5122/health
+
+dotnet run --project backend/Shop.Mcp -- --transport stdio
+```
+
+The tool manifest is generated from `Shop.Application.Mcp.IToolRiskPolicy` and
+the `Tools:{name}:Enabled` kill switches. Anonymous callers get the three public
+catalog reads; `get_cart` needs a delegated agent JWT (`aud=Shop.Mcp`,
+`scope=agent`). `Shop.Api` rejects `scope=agent` tokens on every `/api/*` route
+with `403 AgentScopeForbidden`. Redis sliding-window budgets and the strict error
+envelope are covered in `backend/Shop.Mcp/README.md`.
 
 ## Caching (M9 — Redis)
 

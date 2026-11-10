@@ -7,6 +7,7 @@
     <Project Path="backend/Shop.Application/Shop.Application.csproj" />
     <Project Path="backend/Shop.Domain/Shop.Domain.csproj" />
     <Project Path="backend/Shop.Infrastructure/Shop.Infrastructure.csproj" />
+    <Project Path="backend/Shop.Mcp/Shop.Mcp.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Shop.IntegrationTests/Shop.IntegrationTests.csproj" />

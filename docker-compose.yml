@@ -55,6 +55,7 @@ services:
       Jwt__Secret: "shopmind-dev-secret-key-change-me-please-32chars!"
       Jwt__Issuer: "ShopMind"
       Jwt__Audience: "ShopMind"
+      Mcp__Audience: "Shop.Mcp"
       Redis__ConnectionString: "redis:6379"
       Redis__Enabled: "true"
       Redis__DefaultTtlSeconds: "90"
@@ -67,6 +68,33 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+
+  mcp:
+    build:
+      context: .
+      dockerfile: backend/Shop.Mcp/Dockerfile
+    container_name: shopmind-mcp
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=shopmind;Username=postgres;Password=postgres"
+      Jwt__Secret: "shopmind-dev-secret-key-change-me-please-32chars!"
+      Jwt__Issuer: "ShopMind"
+      Jwt__Audience: "ShopMind"
+      Mcp__Audience: "Shop.Mcp"
+      Redis__ConnectionString: "redis:6379"
+      Redis__Enabled: "true"
+      Mcp__KeyPrefix: "shop:mcp:rl:"
+      Idempotency__ConnectionString: "redis:6379"
+      RateLimit__ConnectionString: "redis:6379"
+    ports:
+      - "5001:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_started
 
   worker:
     build:
