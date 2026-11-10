@@ -1,0 +1,34 @@
+- generic [ref=f15e1]:
+  - alert [ref=f15e2]: SIGN IN
+  - main [ref=f15e486]:
+    - paragraph [ref=f15e487]: shopmind · turnstile
+    - heading "Sign in" [level=1] [ref=f15e488]
+    - generic [ref=f15e489]:
+      - generic [ref=f15e490]:
+        - generic [ref=f15e491]:
+          - generic [ref=f15e492]: Email
+          - textbox "Email" [ref=f15e493]:
+            - /placeholder: you@example.com
+            - text: customer@shopmind.local
+        - generic [ref=f15e494]:
+          - generic [ref=f15e495]: Password
+          - textbox "Password" [active] [ref=f15e496]:
+            - /placeholder: ••••••••
+            - text: WrongPassword
+        - alert [ref=f15e510]:
+          - generic [ref=f15e512]:
+            - strong [ref=f15e513]: Invalid email or password.
+            - text: The mock shop holds two seeded accounts — one click each below signs in honestly.
+        - button "Sign in" [ref=f15e497]
+      - generic [ref=f15e501]:
+        - paragraph [ref=f15e502]: one-click demo identities
+        - generic [ref=f15e503]:
+          - button "Demo customer" [ref=f15e504]
+          - button "Demo admin" [ref=f15e505]
+      - paragraph [ref=f15e506]:
+        - text: no account?
+        - link "create one" [ref=f15e507] [cursor=pointer]:
+          - /url: /register
+      - paragraph [ref=f15e508]:
+        - link "continue as guest — browse the bins" [ref=f15e509] [cursor=pointer]:
+          - /url: /

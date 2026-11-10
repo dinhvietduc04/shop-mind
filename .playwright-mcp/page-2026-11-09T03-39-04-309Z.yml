@@ -1,0 +1,68 @@
+- generic [active] [ref=f96e1]:
+  - alert [ref=f96e2]
+  - link "Skip to content" [ref=f96e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f96e4]:
+    - generic [ref=f96e5]:
+      - link "ShopMind" [ref=f96e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f96e9]
+      - generic [ref=f96e10]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f96e11] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f96e17]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f96e18] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f96e19]: SA
+        - button "Switch to night (dark) theme" [ref=f96e20]
+    - navigation "Primary" [ref=f96e23]:
+      - link "Catalog" [ref=f96e24] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f96e25] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f96e26] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f96e27] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f96e28] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f96e29] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f96e31]:
+    - heading "The bill" [level=1] [ref=f96e32]
+    - article [ref=f96e33]:
+      - generic [ref=f96e34]:
+        - generic [ref=f96e35]: cart · 1 lines
+        - generic [ref=f96e36]: priced by the API · free ship ≥ $500.00
+      - generic [ref=f96e37]:
+        - progressbar "Free shipping progress" [ref=f96e38]
+        - paragraph [ref=f96e40]: free shipping unlocked
+      - list [ref=f96e41]:
+        - listitem [ref=f96e42]:
+          - img "No photo on file for plate NV-RTX4070" [ref=f96e44]:
+            - generic [ref=f96e49]: pl. NV-RTX4070 · photo not on file
+          - generic [ref=f96e52]:
+            - link "RTX 4070 GPU" [ref=f96e54] [cursor=pointer]:
+              - /url: /product/p-rtx-4070
+            - generic [ref=f96e55]:
+              - generic [ref=f96e56]: NV-RTX4070
+              - generic [ref=f96e57]: $599.99 ea
+            - generic [ref=f96e60]:
+              - button "Decrease RTX 4070 GPU" [disabled] [ref=f96e61]
+              - generic [ref=f96e63]: "1"
+              - button "Increase RTX 4070 GPU" [ref=f96e64]
+              - button "Remove RTX 4070 GPU" [ref=f96e66]: remove
+          - generic [ref=f96e70]: $599.99
+      - generic [ref=f96e71]:
+        - generic [ref=f96e72]:
+          - term [ref=f96e73]: Subtotal
+          - definition [ref=f96e74]: $599.99
+        - generic [ref=f96e75]:
+          - term [ref=f96e76]: Shipping
+          - definition [ref=f96e77]: free
+        - generic [ref=f96e78]:
+          - term [ref=f96e79]: Total
+          - definition [ref=f96e80]: $599.99
+      - generic [ref=f96e81]:
+        - button "Create quote — reserve stock" [ref=f96e82]
+        - generic [ref=f96e83]: assistant may press this · yellow may not

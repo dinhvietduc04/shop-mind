@@ -84,7 +84,7 @@ Paid → Cancelled (terminal)
 | MCP | Official MCP .NET SDK (`Shop.Mcp` project) | New in M12; transports: Streamable HTTP/SSE; no direct DB |
 | AI providers | `IAiProvider` → `GeminiProvider` + `OpenRouterProvider` | New in M14; provider selected by config |
 | Embeddings | Provider embeddings → `pgvector` | New in M17; dim 768 or 1536 fixed per model, HNSW index |
-| Frontend | Vanilla JS SPA in `frontend/` | Keep for V1; no framework migration in this plan |
+| Frontend | Next.js App Router in `fe/` (mock-first, MSW) — see `docs/FRONTEND_PLAN.md`; legacy vanilla `frontend/` superseded | F0–F7 built UI-first on mocks; F8 wires MSW → Shop.Api milestone-by-milestone |
 | Tests | xUnit + Testcontainers (Postgres) | Current; extend per milestone |
 | Observability | Serilog + OpenTelemetry + health checks | Hardened in M19–M20 |
 
@@ -102,7 +102,8 @@ src/Shop.Infrastructure/    Persistence/AppDbContext + Configurations + Migratio
 src/Shop.Api/               Program.cs, Controllers/*, Middleware/ExceptionHandlingMiddleware, Extensions/ClaimsPrincipalExtensions
 tests/Shop.UnitTests/       CartTests, InventoryTests, OrderTransitionsTests, ValidatorTests
 tests/Shop.IntegrationTests/ ShopWebFactory, IntegrationTestBase, AuthFlowTests, CartCheckoutTests
-frontend/                   index.html, app.js, styles.css (vanilla SPA)
+fe/                         Next.js App Router frontend (mock-first: MSW + localStorage fake server) — docs/FRONTEND_PLAN.md
+frontend/                   index.html, app.js, styles.css (legacy vanilla SPA, superseded by fe/)
 docker-compose.yml          postgres + api only
 ```
 

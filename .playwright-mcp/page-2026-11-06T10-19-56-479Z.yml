@@ -1,0 +1,55 @@
+- generic [active] [ref=f101e1]:
+  - alert [ref=f101e2]
+  - banner [ref=f101e3]:
+    - generic [ref=f101e4]:
+      - link "ShopMind cat. elec-026" [ref=f101e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f101e6]: ShopMind
+        - generic [ref=f101e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f101e8]'
+      - navigation [ref=f101e14]:
+        - link "Catalog" [ref=f101e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f101e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f101e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f101e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f101e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f101e21]
+      - generic [ref=f101e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f101e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f101e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f101e30]
+  - main [ref=f101e34]:
+    - heading "The bill Pending" [level=1] [ref=f101e35]:
+      - text: The bill
+      - generic [ref=f101e36]: Pending
+    - article [ref=f101e37]:
+      - generic [ref=f101e38]:
+        - generic [ref=f101e39]: quote SM-2026-K0IO5WLI · stock reserved
+        - generic [ref=f101e40]:
+          - text: expires in
+          - generic [ref=f101e44]: 29:57
+      - list [ref=f101e45]:
+        - listitem [ref=f101e46]:
+          - generic [ref=f101e47]:
+            - text: MacBook Air M3
+            - generic [ref=f101e48]: ×1
+          - generic [ref=f101e49]: $1,099.00
+      - generic [ref=f101e50]:
+        - paragraph [ref=f101e51]:
+          - text: Reserved for
+          - strong [ref=f101e52]: Demo Customer
+          - text: ", 123 Catalog Lane, Vienna. Prices were recomputed by the API at quote time — this bill cannot change. If stock sells out before you pay, the reservation releases."
+        - generic [ref=f101e53]:
+          - generic [ref=f101e54]: TOTAL
+          - text: $1,099.00
+      - generic [ref=f101e64]:
+        - link "Pay on hosted page" [ref=f101e65] [cursor=pointer]:
+          - /url: /psp/xkq5nuqy-4k24kipda6phg6j4-zax4yjke
+        - button "Abandon quote" [ref=f101e69]
+        - generic [ref=f101e73]: pay is human-only · abandon releases the hold, keeps your bin

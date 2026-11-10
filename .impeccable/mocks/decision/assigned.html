@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Rating Plate — ShopMind first viewport</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;overflow:hidden;background:#e7e9ea;color:#1e2226;font-family:'Arial Narrow',Arial,Helvetica,sans-serif}
+.mast{position:absolute;top:0;left:0;right:0;height:86px;background:linear-gradient(#d3d7da,#c0c6ca);border-bottom:2px solid #1e2226;display:flex;align-items:center;padding:0 30px;gap:26px}
+.rivet{width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#8d949a 70%);border:1px solid #6d747a;flex:none}
+.platebrand{font-size:21px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;border-left:2px solid #1e2226;border-right:2px solid #1e2226;padding:8px 18px}
+.mast .links{display:flex;gap:2px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.mast .links span{padding:8px 14px;border:1px solid transparent}
+.mast .links .on{background:#1e2226;color:#eef0f0}
+.mast .search{margin-left:auto;background:#eef0f0;border:2px solid #1e2226;font-size:13px;padding:9px 14px;color:#5c6468;width:330px}
+.cart{background:#f2b705;border:2px solid #1e2226;font-size:13px;font-weight:800;letter-spacing:.1em;padding:9px 16px;text-transform:uppercase}
+.rail{position:absolute;left:0;top:86px;bottom:0;width:210px;background:#dcdfe1;border-right:2px solid #1e2226;padding:20px 16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.rail h5{font-size:11px;color:#5c6468;border-bottom:1px solid #9aa2a8;margin:20px 0 8px;padding-bottom:4px}
+.rail .f{padding:6px 2px}
+.rail .f.on{background:#1e2226;color:#eef0f0;padding-left:8px}
+.legend{position:absolute;left:16px;right:16px;bottom:16px;border:1px solid #1e2226;background:#eef0f0;padding:10px;font-size:10px;letter-spacing:.1em;line-height:2}
+.legend i{display:inline-block;width:10px;height:10px;border:1px solid #1e2226;margin-right:6px;vertical-align:-1px}
+.legend .b{background:#2b5aa0}.legend .y{background:#f2b705}
+.grid{position:absolute;left:210px;top:86px;right:0;bottom:0;padding:22px 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;grid-auto-rows:238px}
+.plate{background:linear-gradient(#f4f5f5,#dfe3e5);border:2px solid #1e2226;border-radius:10px;padding:10px 14px;position:relative;font-size:12px}
+.plate .rr{position:absolute;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#8d949a);border:1px solid #6d747a}
+.plate .rr.a{left:5px;top:5px}.plate .rr.b{right:5px;top:5px}.plate .rr.c{left:5px;bottom:5px}.plate .rr.d{right:5px;bottom:5px}
+.hdr{display:flex;justify-content:space-between;border-bottom:2px solid #1e2226;padding-bottom:6px;margin-bottom:8px}
+.hdr .n{font-size:17px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.hdr .s{font-size:10px;letter-spacing:.2em;color:#5c6468;text-align:right}
+table{width:100%;border-collapse:collapse;font-size:11px;letter-spacing:.04em}
+td{border:1px solid #9aa2a8;padding:4px 7px}
+td.k{background:#d6dadd;font-weight:700;text-transform:uppercase;width:88px;font-size:10px;letter-spacing:.12em}
+td.p{font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+.stamp{position:absolute;right:12px;bottom:10px;border:2px solid;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:800;letter-spacing:.22em;transform:rotate(-4deg)}
+.st.ok{color:#2f6a35;border-color:#2f6a35}
+.st.low{color:#c94f2a;border-color:#c94f2a}
+.st.blue{color:#2b5aa0;border-color:#2b5aa0;font-size:9px;transform:rotate(3deg)}
+.acts{position:absolute;left:14px;bottom:10px;display:flex;gap:8px}
+.acts .y{background:#f2b705;border:2px solid #1e2226;font-weight:800;font-size:11px;letter-spacing:.12em;padding:5px 12px;text-transform:uppercase}
+.acts .g{border:1px solid #5c6468;color:#5c6468;font-size:11px;letter-spacing:.12em;padding:5px 10px;text-transform:uppercase}
+.assist{position:absolute;right:28px;bottom:20px;width:380px;background:#eef0f0;border:2px solid #1e2226;box-shadow:6px 6px 0 #1e222640;padding:14px 16px;font-size:13px;line-height:1.55}
+.assist h6{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#2b5aa0;border-bottom:2px solid #1e2226;padding-bottom:6px;margin-bottom:8px}
+.assist .insp{color:#2b5aa0;font-weight:700}
+.assist .pay{display:inline-block;margin-top:8px;background:#f2b705;border:2px solid #1e2226;font-weight:800;letter-spacing:.14em;padding:7px 14px;font-size:11px;text-transform:uppercase}
+.assist .bluechip{display:inline-block;border:1px solid #2b5aa0;color:#2b5aa0;font-size:10px;letter-spacing:.14em;padding:3px 8px;margin-top:8px}
+</style></head><body>
+<div class="mast">
+  <span class="rivet"></span><span class="platebrand">ShopMind · Cat. ELEC-026</span><span class="rivet"></span>
+  <div class="links"><span class="on">Catalog</span><span>Cart</span><span>Orders</span><span>Assistant</span><span>Service Desk</span></div>
+  <div class="search">INSPECT CATALOG: “laptop under $1,200 for backend work”</div>
+  <span class="rivet"></span><div class="cart">Cart · 2 · $2,448</div>
+</div>
+<div class="rail">
+  <h5>Divisions</h5><div class="f on">Laptops — 41</div><div class="f">Smartphones — 33</div><div class="f">Audio — 27</div><div class="f">Displays — 18</div><div class="f">Components — 52</div>
+  <h5>Ratings</h5><div class="f">≤ $1,200 ✓</div><div class="f">RAM ≥ 16 GB ✓</div><div class="f">In stock</div>
+  <div class="legend"><b>Stamp code</b><div><i class="b"></i>blue = assistant’s ink (annotations only)</div><div><i class="y"></i>yellow = human action, press to act</div><div>green = passed · orange = stock low</div></div>
+</div>
+<div class="grid">
+  <div class="plate"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">Zenbook 14 OLED</span><span class="s">MODEL UX3405MA<br>SN 2026-0002</span></div>
+    <table><tr><td class="k">Memory</td><td>16 GB LPDDR5</td><td class="k">Price</td><td class="p">$1,099.00</td></tr>
+    <tr><td class="k">Display</td><td>14″ 3K OLED 120 Hz</td><td class="k">Stock</td><td class="p" style="color:#c94f2a">2</td></tr>
+    <tr><td class="k">CPU</td><td>Core Ultra 7 155H</td><td class="k">Cat.</td><td>LAP-0002</td></tr></table>
+    <div class="acts"><span class="y">Add to cart</span><span class="g">Inspect</span></div>
+    <span class="stamp low">STOCK LOW · 2</span>
+  </div>
+  <div class="plate"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">ThinkPad X1 Carbon</span><span class="s">MODEL 21NX<br>SN 2026-0001</span></div>
+    <table><tr><td class="k">Memory</td><td>32 GB LPDDR5X</td><td class="k">Price</td><td class="p">$1,349.00</td></tr>
+    <tr><td class="k">Display</td><td>14″ 2.8K OLED</td><td class="k">Stock</td><td class="p" style="color:#2f6a35">7</td></tr>
+    <tr><td class="k">CPU</td><td>Core Ultra 7 156H</td><td class="k">Cat.</td><td>LAP-0001</td></tr></table>
+    <div class="acts"><span class="y">Add to cart</span><span class="g">Inspect</span></div>
+    <span class="stamp ok">PASSED · IN STOCK</span>
+  </div>
+  <div class="plate"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">Framework 16</span><span class="s">MODEL FW16<br>SN 2026-0006</span></div>
+    <table><tr><td class="k">Memory</td><td>32 GB DDR5 · 2 slots</td><td class="k">Price</td><td class="p">$1,467.00</td></tr>
+    <tr><td class="k">Display</td><td>16″ 2560×1600</td><td class="k">Stock</td><td class="p" style="color:#2f6a35">3</td></tr>
+    <tr><td class="k">CPU</td><td>Ryzen AI 9 HX 370</td><td class="k">Cat.</td><td>LAP-0006</td></tr></table>
+    <div class="acts"><span class="y">Add to cart</span><span class="g">Inspect</span></div>
+    <span class="stamp blue">MATCHES BUDGET ±12%</span>
+  </div>
+  <div class="plate"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">MacBook Pro 14</span><span class="s">MODEL MRX34<br>SN 2026-0003</span></div>
+    <table><tr><td class="k">Memory</td><td>24 GB unified</td><td class="k">Price</td><td class="p">$1,999.00</td></tr>
+    <tr><td class="k">Display</td><td>14.2″ Liquid XDR</td><td class="k">Stock</td><td class="p" style="color:#2f6a35">4</td></tr>
+    <tr><td class="k">CPU</td><td>M4 Pro 12-core</td><td class="k">Cat.</td><td>LAP-0003</td></tr></table>
+    <div class="acts"><span class="y">Add to cart</span><span class="g">Inspect</span></div>
+    <span class="stamp ok">PASSED · IN STOCK</span>
+  </div>
+  <div class="plate"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">Sony A7 TS5</span><span class="s">MODEL WH1000X5<br>SN 2026-0012</span></div>
+    <table><tr><td class="k">Feature</td><td>ANC · 40 h · LDAC</td><td class="k">Price</td><td class="p">$329.00</td></tr>
+    <tr><td class="k">Driver</td><td>8.4 mm</td><td class="k">Stock</td><td class="p" style="color:#2f6a35">12</td></tr>
+    <tr><td class="k">Type</td><td>Closed wireless</td><td class="k">Cat.</td><td>AUD-0012</td></tr></table>
+    <div class="acts"><span class="y">Add to cart</span><span class="g">Inspect</span></div>
+    <span class="stamp ok">PASSED · IN STOCK</span>
+  </div>
+  <div class="plate" style="background:linear-gradient(#e4e6e8,#d0d4d7);color:#8d949a"><i class="rr a"></i><i class="rr b"></i><i class="rr c"></i><i class="rr d"></i>
+    <div class="hdr"><span class="n">Pixel 9 Pro</span><span class="s">MODEL GTP9S<br>SN 2026-0007</span></div>
+    <table><tr><td class="k" style="color:#8d949a">Memory</td><td>16 GB · Tensor G4</td><td class="k" style="color:#8d949a">Price</td><td class="p">$999.00</td></tr>
+    <tr><td class="k" style="color:#8d949a">Display</td><td>6.3″ LTPO 120 Hz</td><td class="k" style="color:#8d949a">Stock</td><td class="p" style="color:#c94f2a">0</td></tr>
+    <tr><td class="k" style="color:#8d949a">Radio</td><td>5G · eSIM</td><td class="k" style="color:#8d949a">Cat.</td><td>PON-0007</td></tr></table>
+    <div class="acts"><span class="g">Notify on restock</span></div>
+    <span class="stamp low">OUT OF STOCK</span>
+  </div>
+</div>
+<div class="assist">
+  <h6>✦ The Assistant · inspection report no. 41</h6>
+  “<span class="insp">2 of 12 inspected units meet your ratings ($1,200 / RAM 16 GB+): Zenbook 14 & Framework 16.</span> Cart built. Quote plate ready —”
+  <div><span class="pay">Review bill &amp; pay →</span> <span class="bluechip">assistant cannot press yellow</span></div>
+</div>
+</body></html>

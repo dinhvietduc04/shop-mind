@@ -1,0 +1,125 @@
+- generic [active] [ref=f109e1]:
+  - alert [ref=f109e2]
+  - link "Skip to content" [ref=f109e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f109e4]:
+    - generic [ref=f109e5]:
+      - link "ShopMind" [ref=f109e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f109e9]
+      - generic [ref=f109e10]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f109e11] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f109e17]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f109e18] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f109e19]: SA
+        - button "Switch to night (dark) theme" [ref=f109e20]
+    - navigation "Primary" [ref=f109e23]:
+      - link "Catalog" [ref=f109e24] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f109e25] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f109e26] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f109e27] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f109e28] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f109e29] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f109e32]:
+    - generic [ref=f109e34]:
+      - heading [level=1] [ref=f109e35]:
+        - text: Bin wall — laptops
+        - link "leave this bin" [ref=f109e36] [cursor=pointer]:
+          - /url: /
+        - text: 2 units
+      - paragraph [ref=f109e37]: Laptops and notebooks
+      - generic [ref=f109e39]:
+        - link "Laptops" [ref=f109e40] [cursor=pointer]:
+          - /url: /
+        - link "Smartphones" [ref=f109e42] [cursor=pointer]:
+          - /url: /category/smartphones
+        - link "Monitors" [ref=f109e44] [cursor=pointer]:
+          - /url: /category/monitors
+        - link "Keyboards" [ref=f109e46] [cursor=pointer]:
+          - /url: /category/keyboards
+        - link "Mice" [ref=f109e48] [cursor=pointer]:
+          - /url: /category/mice
+        - link "Headphones" [ref=f109e50] [cursor=pointer]:
+          - /url: /category/headphones
+        - link "Components" [ref=f109e52] [cursor=pointer]:
+          - /url: /category/components
+        - link "Accessories" [ref=f109e54] [cursor=pointer]:
+          - /url: /category/accessories
+      - generic [ref=f109e56]:
+        - generic [ref=f109e57]:
+          - text: Sort
+          - combobox "Sort" [ref=f109e58]:
+            - option "newest first" [selected]
+            - option "price ↑"
+            - option "price ↓"
+            - option "name A–Z"
+            - option "name Z–A"
+        - generic [ref=f109e59] [cursor=pointer]:
+          - checkbox "In stock only" [ref=f109e60]
+          - text: In stock only
+        - button "Clear filters" [ref=f109e61]
+      - generic [ref=f109e66]:
+        - generic [ref=f109e67]: cpu
+        - button "Intel Core i7" [ref=f109e68]
+        - button "Apple M3" [ref=f109e69]
+      - generic [ref=f109e70]:
+        - article [ref=f109e71]:
+          - generic [aria-hidden] [ref=f109e72]: LAP · APL-MBA-M3
+          - img "No photo on file for plate APL-MBA-M3" [ref=f109e73]:
+            - generic [ref=f109e78]: pl. APL-MBA-M3 · photo not on file
+          - heading [level=3] [ref=f109e81]:
+            - link "MacBook Air M3" [ref=f109e82] [cursor=pointer]:
+              - /url: /product/macbook-air-m3
+          - paragraph [ref=f109e83]: Apple · air m3
+          - table [ref=f109e84]:
+            - rowgroup [ref=f109e85]:
+              - row [ref=f109e86]:
+                - rowheader "ram gb" [ref=f109e87]
+                - cell "8" [ref=f109e88]
+              - row [ref=f109e89]:
+                - rowheader "storage gb" [ref=f109e90]
+                - cell "256" [ref=f109e91]
+              - row [ref=f109e92]:
+                - rowheader "screen in" [ref=f109e93]
+                - cell "13.6" [ref=f109e94]
+          - generic [ref=f109e95]:
+            - generic [ref=f109e96]: $1,099.00
+            - generic [ref=f109e100]: in bin · 20
+          - generic [ref=f109e106]:
+            - button "Add to bin" [ref=f109e107]
+            - link "Spec sheet →" [ref=f109e110] [cursor=pointer]:
+              - /url: /product/macbook-air-m3
+        - article [ref=f109e111]:
+          - generic [aria-hidden] [ref=f109e112]: LAP · LEN-X1C-G11
+          - figure "pl. LEN-X1C-G11" [ref=f109e113]:
+            - img "ThinkPad X1 Carbon Gen 11 — product photo" [ref=f109e114]
+          - heading [level=3] [ref=f109e118]:
+            - link "ThinkPad X1 Carbon Gen 11" [ref=f109e119] [cursor=pointer]:
+              - /url: /product/thinkpad-x1-carbon-gen-11
+          - paragraph [ref=f109e120]: Lenovo · gen 11
+          - table [ref=f109e121]:
+            - rowgroup [ref=f109e122]:
+              - row [ref=f109e123]:
+                - rowheader "ram gb" [ref=f109e124]
+                - cell "16" [ref=f109e125]
+              - row [ref=f109e126]:
+                - rowheader "storage gb" [ref=f109e127]
+                - cell "512" [ref=f109e128]
+              - row [ref=f109e129]:
+                - rowheader "screen in" [ref=f109e130]
+                - cell "14" [ref=f109e131]
+          - generic [ref=f109e132]:
+            - generic [ref=f109e133]: $1,499.00
+            - generic [ref=f109e137]: in bin · 25
+          - generic [ref=f109e143]:
+            - button "Add to bin" [ref=f109e144]
+            - link "Spec sheet →" [ref=f109e147] [cursor=pointer]:
+              - /url: /product/thinkpad-x1-carbon-gen-11

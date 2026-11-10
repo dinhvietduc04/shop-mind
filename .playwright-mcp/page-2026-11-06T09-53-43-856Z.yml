@@ -1,0 +1,58 @@
+- generic [active] [ref=f80e1]:
+  - alert [ref=f80e2]: PAYMENT RECEIVED
+  - banner [ref=f80e161]:
+    - generic [ref=f80e162]:
+      - link "ShopMind cat. elec-026" [ref=f80e163] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f80e164]: ShopMind
+        - generic [ref=f80e165]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f80e166]'
+      - navigation [ref=f80e172]:
+        - link "Catalog" [ref=f80e173] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f80e174] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f80e175] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f80e176] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f80e177] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f80e179]
+      - generic [ref=f80e180]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f80e181] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f80e187]: empty
+        - button "Switch to night (dark) theme" [ref=f80e188]
+  - main [ref=f80e192]:
+    - generic [ref=f80e193]:
+      - heading "Payment received" [level=1] [ref=f80e198]
+      - article [ref=f80e199]:
+        - generic [ref=f80e200]:
+          - generic [ref=f80e201]: SM-2026-UGECP6SL
+          - generic [ref=f80e202]: Paid
+        - generic [ref=f80e203]:
+          - generic [ref=f80e204]:
+            - 'list "Order status: Paid" [ref=f80e205]':
+              - listitem [ref=f80e206]:
+                - generic "Pending" [ref=f80e207]
+              - listitem [ref=f80e209]:
+                - generic "Paid" [ref=f80e210]
+              - listitem [ref=f80e212]:
+                - generic "Processing" [ref=f80e213]
+              - listitem [ref=f80e215]:
+                - generic "Shipped" [ref=f80e216]
+              - listitem [ref=f80e218]:
+                - generic "Delivered" [ref=f80e219]
+            - paragraph [ref=f80e220]: Paid
+          - paragraph [ref=f80e221]:
+            - text: $64.99 paid
+            - generic [ref=f80e222]: txn MOCK-TXN-c7kq5wwn-4qwj6b1k
+          - paragraph [ref=f80e223]: Stock committed, bin cleared. The confirmation you would get by e-mail in the real build is this page plus the ledger entry.
+          - generic [ref=f80e224]:
+            - link [ref=f80e225] [cursor=pointer]:
+              - /url: /orders/o-trz6pfjf
+              - button "View in order ledger →" [ref=f80e226]
+            - link [ref=f80e227] [cursor=pointer]:
+              - /url: /
+              - button "Keep shopping" [ref=f80e228]

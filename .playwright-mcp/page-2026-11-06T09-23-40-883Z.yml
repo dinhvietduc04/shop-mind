@@ -1,0 +1,60 @@
+- generic [active] [ref=f27e1]:
+  - alert [ref=f27e2]
+  - banner [ref=f27e3]:
+    - generic [ref=f27e4]:
+      - link "ShopMind cat. elec-026" [ref=f27e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f27e6]: ShopMind
+        - generic [ref=f27e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f27e8]'
+      - navigation [ref=f27e14]:
+        - link "Catalog" [ref=f27e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f27e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f27e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f27e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f27e20]
+      - generic [ref=f27e21]:
+        - 'generic "Cart: 0 items, subtotal $0.00 — shipping computed on the bill" [ref=f27e22]': empty
+        - button "Switch to night (dark) theme" [ref=f27e29]
+  - main [ref=f27e34]:
+    - generic [ref=f27e36]:
+      - heading [level=1] [ref=f27e37]:
+        - text: Bin wall — mice
+        - link "leave this bin" [ref=f27e38] [cursor=pointer]:
+          - /url: /
+        - text: querying bins…
+      - paragraph [ref=f27e39]: Mice and pointing devices
+      - generic [ref=f27e41]:
+        - link "Laptops" [ref=f27e42] [cursor=pointer]:
+          - /url: /category/laptops
+        - link "Smartphones" [ref=f27e44] [cursor=pointer]:
+          - /url: /category/smartphones
+        - link "Monitors" [ref=f27e46] [cursor=pointer]:
+          - /url: /category/monitors
+        - link "Keyboards" [ref=f27e48] [cursor=pointer]:
+          - /url: /category/keyboards
+        - link "Mice" [ref=f27e50] [cursor=pointer]:
+          - /url: /
+        - link "Headphones" [ref=f27e52] [cursor=pointer]:
+          - /url: /category/headphones
+        - link "Components" [ref=f27e54] [cursor=pointer]:
+          - /url: /category/components
+        - link "Accessories" [ref=f27e56] [cursor=pointer]:
+          - /url: /category/accessories
+      - generic [ref=f27e58]:
+        - generic [ref=f27e59]:
+          - text: Sort
+          - combobox "Sort" [ref=f27e60]:
+            - option "newest first" [selected]
+            - option "price ↑"
+            - option "price ↓"
+            - option "name A–Z"
+            - option "name Z–A"
+        - generic [ref=f27e61] [cursor=pointer]:
+          - checkbox "In stock only" [ref=f27e62]
+          - text: In stock only
+        - button "Clear filters" [ref=f27e63]

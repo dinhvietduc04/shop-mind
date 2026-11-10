@@ -1,0 +1,84 @@
+- generic [active] [ref=f19e1]:
+  - alert [ref=f19e2]
+  - banner [ref=f19e3]:
+    - generic [ref=f19e4]:
+      - link "ShopMind cat. elec-026" [ref=f19e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f19e6]: ShopMind
+        - generic [ref=f19e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f19e8]'
+      - searchbox "Search the catalog" [ref=f19e15]
+      - generic [ref=f19e16]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f19e17] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f19e23]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f19e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f19e25]: SA
+          - generic [ref=f19e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f19e27]
+    - navigation "Primary" [ref=f19e30]:
+      - link "Catalog" [ref=f19e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f19e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f19e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f19e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f19e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f19e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f19e38]:
+    - navigation "Breadcrumb" [ref=f19e39]:
+      - link "Every bin" [ref=f19e40] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f19e41]: /
+      - link "Components" [ref=f19e42] [cursor=pointer]:
+        - /url: /category/components
+      - generic [aria-hidden] [ref=f19e44]: /
+      - generic [ref=f19e45]: NV-RTX4070
+    - generic [ref=f19e46]:
+      - generic [ref=f19e47]:
+        - img "No photo on file for plate NV-RTX4070" [ref=f19e48]:
+          - generic [ref=f19e53]: pl. NV-RTX4070 · photo not on file
+        - generic [ref=f19e56]:
+          - heading "Bench notes" [level=2] [ref=f19e57]
+          - paragraph [ref=f19e58]: 12GB GDDR6X graphics card.
+          - paragraph [ref=f19e59]: Mock pricing — demo data only. Logged 2026-10-09.
+      - generic [ref=f19e60]:
+        - paragraph [ref=f19e61]: NVIDIA · unit NV-RTX4070
+        - heading "RTX 4070 GPU" [level=1] [ref=f19e62]
+        - generic [ref=f19e63]:
+          - generic [ref=f19e64]:
+            - generic [ref=f19e65]: $599.99
+            - generic [ref=f19e74]: in bin · 12
+          - paragraph [ref=f19e80]: 12 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f19e81]:
+            - generic [ref=f19e82]:
+              - button "One fewer" [disabled] [ref=f19e83]
+              - generic [ref=f19e85]: "1"
+              - button "One more" [ref=f19e86]
+            - button "Add one to bin" [ref=f19e88]
+        - link "Ask the assistant to vet this" [ref=f19e91] [cursor=pointer]:
+          - /url: /assistant?cat=components&q=RTX%204070%20GPU
+          - generic [aria-hidden] [ref=f19e93]: →
+        - heading "Full specification" [level=2] [ref=f19e94]
+        - table [ref=f19e95]:
+          - rowgroup [ref=f19e96]:
+            - row [ref=f19e97]:
+              - rowheader "SKU" [ref=f19e98]
+              - cell "NV-RTX4070" [ref=f19e99]
+            - row [ref=f19e100]:
+              - rowheader "Status" [ref=f19e101]
+              - cell "Active" [ref=f19e102]
+            - row [ref=f19e103]:
+              - rowheader "vram gb" [ref=f19e104]
+              - cell "12" [ref=f19e105]
+            - row [ref=f19e106]:
+              - rowheader "interface" [ref=f19e107]
+              - cell "PCIe 4.0" [ref=f19e108]
+            - row [ref=f19e109]:
+              - rowheader "tdp w" [ref=f19e110]
+              - cell "200" [ref=f19e111]

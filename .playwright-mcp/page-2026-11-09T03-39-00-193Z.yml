@@ -1,0 +1,85 @@
+- generic [active] [ref=f95e1]:
+  - alert [ref=f95e2]
+  - link "Skip to content" [ref=f95e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f95e4]:
+    - generic [ref=f95e5]:
+      - link "ShopMind" [ref=f95e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f95e9]
+      - generic [ref=f95e10]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f95e11] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f95e17]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f95e18] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f95e19]: SA
+        - button "Switch to night (dark) theme" [ref=f95e20]
+    - navigation "Primary" [ref=f95e23]:
+      - link "Catalog" [ref=f95e24] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f95e25] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f95e26] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f95e27] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f95e28] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f95e29] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f95e31]:
+    - navigation "Breadcrumb" [ref=f95e32]:
+      - link "Every bin" [ref=f95e33] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f95e34]: /
+      - link "Monitors" [ref=f95e35] [cursor=pointer]:
+        - /url: /category/monitors
+      - generic [aria-hidden] [ref=f95e37]: /
+      - generic [ref=f95e38]: DEL-U2723QE
+    - generic [ref=f95e39]:
+      - generic [ref=f95e40]:
+        - img "No photo on file for plate DEL-U2723QE" [ref=f95e41]:
+          - generic [ref=f95e46]: pl. DEL-U2723QE · photo not on file
+        - generic [ref=f95e49]:
+          - heading "Bench notes" [level=2] [ref=f95e50]
+          - paragraph [ref=f95e51]: 27" 4K USB-C monitor.
+          - paragraph [ref=f95e52]: Mock pricing — demo data only. Logged 2026-10-05.
+      - generic [ref=f95e53]:
+        - paragraph [ref=f95e54]: Dell · unit DEL-U2723QE
+        - heading "UltraSharp 27 4K Monitor" [level=1] [ref=f95e55]
+        - generic [ref=f95e56]:
+          - generic [ref=f95e57]:
+            - generic [ref=f95e58]: $549.99
+            - generic [ref=f95e62]: in bin · 15
+          - paragraph [ref=f95e68]: 15 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f95e69]:
+            - generic [ref=f95e70]:
+              - button "One fewer" [disabled] [ref=f95e71]
+              - generic [ref=f95e73]: "1"
+              - button "One more" [ref=f95e74]
+            - button "Add one to bin" [ref=f95e76]
+        - link "Ask the assistant to vet this" [ref=f95e79] [cursor=pointer]:
+          - /url: /assistant?cat=monitors&q=UltraSharp%2027%204K%20Monitor
+          - generic [aria-hidden] [ref=f95e81]: →
+        - heading "Full specification" [level=2] [ref=f95e82]
+        - table [ref=f95e83]:
+          - rowgroup [ref=f95e84]:
+            - row [ref=f95e85]:
+              - rowheader "SKU" [ref=f95e86]
+              - cell "DEL-U2723QE" [ref=f95e87]
+            - row [ref=f95e88]:
+              - rowheader "Status" [ref=f95e89]
+              - cell "Active" [ref=f95e90]
+            - row [ref=f95e91]:
+              - rowheader "screen in" [ref=f95e92]
+              - cell "27" [ref=f95e93]
+            - row [ref=f95e94]:
+              - rowheader "resolution" [ref=f95e95]
+              - cell "3840x2160" [ref=f95e96]
+            - row [ref=f95e97]:
+              - rowheader "usb c" [ref=f95e98]
+              - cell "yes" [ref=f95e99]
+            - row [ref=f95e100]:
+              - rowheader "panel" [ref=f95e101]
+              - cell "IPS" [ref=f95e102]

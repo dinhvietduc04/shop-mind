@@ -1,0 +1,28 @@
+- generic [active] [ref=f43e1]:
+  - alert [ref=f43e2]: SIGN IN
+  - main [ref=f43e3]:
+    - paragraph [ref=f43e4]: shopmind · turnstile
+    - heading "Sign in" [level=1] [ref=f43e5]
+    - generic [ref=f43e6]:
+      - generic [ref=f43e7]:
+        - generic [ref=f43e8]:
+          - generic [ref=f43e9]: Email
+          - textbox "Email" [ref=f43e10]:
+            - /placeholder: you@example.com
+        - generic [ref=f43e11]:
+          - generic [ref=f43e12]: Password
+          - textbox "Password" [ref=f43e13]:
+            - /placeholder: ••••••••
+        - button "Sign in" [ref=f43e14]
+      - generic [ref=f43e18]:
+        - paragraph [ref=f43e19]: one-click demo identities
+        - generic [ref=f43e20]:
+          - button "Demo customer" [ref=f43e21]
+          - button "Demo admin" [ref=f43e22]
+      - paragraph [ref=f43e23]:
+        - text: no account?
+        - link "create one" [ref=f43e24] [cursor=pointer]:
+          - /url: /register
+      - paragraph [ref=f43e25]:
+        - link "continue as guest — browse the bins" [ref=f43e26] [cursor=pointer]:
+          - /url: /

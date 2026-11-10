@@ -1,0 +1,122 @@
+- generic [ref=f90e1]:
+  - alert [ref=f90e2]
+  - banner [ref=f90e3]:
+    - generic [ref=f90e4]:
+      - link "ShopMind cat. elec-026" [ref=f90e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f90e6]: ShopMind
+        - generic [ref=f90e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f90e8]'
+      - navigation [ref=f90e14]:
+        - link "Catalog" [ref=f90e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f90e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f90e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f90e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f90e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f90e21]
+      - generic [ref=f90e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f90e59] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f90e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f90e30]
+  - main [ref=f90e34]:
+    - heading "The assistant" [level=1] [ref=f90e35]
+    - paragraph [ref=f90e36]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f90e37]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f90e38]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f90e40] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f90e42]:
+      - generic [ref=f90e43]:
+        - heading "The assistant" [level=2] [ref=f90e44]
+        - generic [ref=f90e47]:
+          - text: turn 3/8
+          - button "new" [ref=f90e48]
+      - generic [ref=f90e49]:
+        - paragraph [ref=f90e61]: compare laptops under $1600
+        - generic [ref=f90e62]:
+          - paragraph [ref=f90e63]: "Side by side, from this turn's reads (turn 1): MacBook Air M3 $1099.00 vs ThinkPad X1 Carbon Gen 11 $1499.00. Say \"add it\" for the top one, or \"quote\" when the bin looks right."
+          - 'generic "Tools run this turn: search_products, compare_products" [ref=f90e64]':
+            - generic "category=laptops, price<=1600" [ref=f90e65]:
+              - text: search_products
+              - generic [ref=f90e68]: (category=laptops, price<=1600)
+            - generic "APL-MBA-M3 vs LEN-X1C-G11" [ref=f90e69]:
+              - text: compare_products
+              - generic [ref=f90e72]: (APL-MBA-M3 vs LEN-X1C-G11)
+          - table [ref=f90e73]:
+            - rowgroup [ref=f90e74]:
+              - row [ref=f90e75]:
+                - columnheader "attribute" [ref=f90e76]
+                - columnheader [ref=f90e77]:
+                  - text: MacBook Air M3
+                  - generic [ref=f90e78]: $1,099.00
+                - columnheader [ref=f90e80]:
+                  - text: ThinkPad X1 Carbon Gen 11
+                  - generic [ref=f90e81]: $1,499.00
+            - rowgroup [ref=f90e83]:
+              - row [ref=f90e84]:
+                - cell "stock" [ref=f90e85]
+                - cell "19 in bin" [ref=f90e86]
+                - cell "25 in bin" [ref=f90e87]
+              - row [ref=f90e88]:
+                - cell "ram gb" [ref=f90e89]
+                - cell "8" [ref=f90e90]
+                - cell "16" [ref=f90e91]
+              - row [ref=f90e92]:
+                - cell "storage gb" [ref=f90e93]
+                - cell "256" [ref=f90e94]
+                - cell "512" [ref=f90e95]
+              - row [ref=f90e96]:
+                - cell "screen in" [ref=f90e97]
+                - cell "13.6" [ref=f90e98]
+                - cell "14" [ref=f90e99]
+              - row [ref=f90e100]:
+                - cell "cpu" [ref=f90e101]
+                - cell "Apple M3" [ref=f90e102]
+                - cell "Intel Core i7" [ref=f90e103]
+              - row [ref=f90e104]:
+                - cell "weight kg" [ref=f90e105]
+                - cell "1.24" [ref=f90e106]
+                - cell "1.12" [ref=f90e107]
+              - row [ref=f90e108]:
+                - cell "thunderbolt" [ref=f90e109]
+                - cell "—" [ref=f90e110]
+                - cell "true" [ref=f90e111]
+        - paragraph [ref=f90e113]: just pay it now
+        - generic [ref=f90e114]:
+          - paragraph [ref=f90e115]: "2 match in bin laptops under $1600.00, ranked in-stock then price (turn 2): 1. MacBook Air M3 — $1099.00, 19 in bin (Apple) 2. ThinkPad X1 Carbon Gen 11 — $1499.00, 25 in bin (Lenovo) My pick: MacBook Air M3. \"add it\" puts it in your bin; \"compare\" shows the top two side by side."
+          - 'generic "Tools run this turn: search_products, get_product" [ref=f90e116]':
+            - generic "category=laptops, price<=1600" [ref=f90e117]:
+              - text: search_products
+              - generic [ref=f90e120]: (category=laptops, price<=1600)
+            - generic "top=APL-MBA-M3" [ref=f90e121]:
+              - text: get_product
+              - generic [ref=f90e124]: (top=APL-MBA-M3)
+          - generic [ref=f90e125]:
+            - generic [ref=f90e126]:
+              - generic [ref=f90e127]: APL-MBA-M3
+              - link "MacBook Air M3" [ref=f90e134] [cursor=pointer]:
+                - /url: /product/p-macbook-air-m3
+              - generic [ref=f90e135]: $1,099.00
+              - paragraph [ref=f90e146]: cheapest in stock matching all filters
+              - button "have it add this" [ref=f90e147]
+            - generic [ref=f90e148]:
+              - generic [ref=f90e149]: LEN-X1C-G11
+              - link "ThinkPad X1 Carbon Gen 11" [ref=f90e156] [cursor=pointer]:
+                - /url: /product/p-thinkpad-x1-carbon-gen-11
+              - generic [ref=f90e157]: $1,499.00
+              - paragraph [ref=f90e168]: next in deterministic price order
+              - button "have it add this" [ref=f90e169]
+      - generic [ref=f90e57]:
+        - textbox "Message the assistant" [active] [ref=f90e58]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

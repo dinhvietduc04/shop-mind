@@ -1,0 +1,47 @@
+- generic [active] [ref=f27e1]:
+  - link "Skip to content" [ref=f27e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f27e3]:
+    - generic [ref=f27e4]:
+      - link "ShopMind cat. elec-026" [ref=f27e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f27e6]: ShopMind
+        - generic [ref=f27e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f27e8]'
+      - navigation [ref=f27e14]:
+        - link "Catalog" [ref=f27e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f27e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f27e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f27e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f27e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f27e21]
+      - generic [ref=f27e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f27e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f27e29]: empty
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f27e36] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f27e37]: DC
+          - generic [ref=f27e38]: Account
+        - button "Switch to night (dark) theme" [ref=f27e31]
+  - main [ref=f27e39]:
+    - heading "Paid — thank you" [level=1] [ref=f27e40]
+    - article [ref=f27e41]:
+      - generic [ref=f27e43]:
+        - paragraph [ref=f27e44]:
+          - text: Order
+          - strong [ref=f27e45]: SM-2026-FL47SIU9
+          - text: settled at the hosted page. Stock committed, bin cleared — the ledger has the full trail.
+        - generic [ref=f27e46]:
+          - link [ref=f27e47] [cursor=pointer]:
+            - /url: /orders/o-89vsgdwa
+            - button "Order ledger →" [ref=f27e48]
+          - link [ref=f27e49] [cursor=pointer]:
+            - /url: /
+            - button "New shopping session" [ref=f27e50]
+  - alert [ref=f27e51]

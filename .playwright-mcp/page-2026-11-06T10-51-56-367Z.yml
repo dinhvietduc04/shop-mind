@@ -1,0 +1,59 @@
+- generic [active] [ref=f38e1]:
+  - alert [ref=f38e2]
+  - banner [ref=f38e3]:
+    - generic [ref=f38e4]:
+      - link "ShopMind cat. elec-026" [ref=f38e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f38e6]: ShopMind
+        - generic [ref=f38e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f38e8]'
+      - navigation [ref=f38e14]:
+        - link "Catalog" [ref=f38e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f38e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f38e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f38e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f38e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f38e21]
+      - generic [ref=f38e22]:
+        - 'link "Cart: 1 items, subtotal $49.99 — open the bill" [ref=f38e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f38e29]: $49.99
+        - 'link "Account: test@register.local, role Customer" [ref=f38e30] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f38e31]: TR
+          - generic [ref=f38e32]: Account
+        - button "Switch to night (dark) theme" [ref=f38e33]
+  - main [ref=f38e37]:
+    - heading "The bill Pending" [level=1] [ref=f38e92]:
+      - text: The bill
+      - generic [ref=f38e93]: Pending
+    - article [ref=f38e94]:
+      - generic [ref=f38e95]:
+        - generic [ref=f38e96]: quote SM-2026-FMQSJ3BI · stock reserved
+        - generic [ref=f38e97]:
+          - text: expires in
+          - generic [ref=f38e101]: 29:58
+      - list [ref=f38e102]:
+        - listitem [ref=f38e103]:
+          - generic [ref=f38e104]:
+            - text: USB-C Docking Station
+            - generic [ref=f38e105]: ×1
+          - generic [ref=f38e106]: $49.99
+      - generic [ref=f38e107]:
+        - paragraph [ref=f38e108]:
+          - text: Reserved for
+          - strong [ref=f38e109]: Test Register
+          - text: ", 9 Relay Row, Boston. Prices were recomputed by the API at quote time — this bill cannot change. If stock sells out before you pay, the reservation releases."
+        - generic [ref=f38e110]:
+          - generic [ref=f38e111]: TOTAL
+          - text: $64.99
+      - generic [ref=f38e117]:
+        - link "Pay on hosted page" [ref=f38e118] [cursor=pointer]:
+          - /url: /psp/v1cxjjj4-k3bivsit90xhxzlc-rj872b9c
+        - button "Abandon quote" [ref=f38e122]
+        - generic [ref=f38e126]: pay is human-only · abandon releases the hold, keeps your bin

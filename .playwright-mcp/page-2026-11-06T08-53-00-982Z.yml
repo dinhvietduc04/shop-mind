@@ -1,0 +1,62 @@
+- generic [active] [ref=f13e1]:
+  - alert [ref=f13e2]
+  - banner [ref=f13e3]:
+    - generic [ref=f13e4]:
+      - link "ShopMind cat. elec-026" [ref=f13e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f13e6]: ShopMind
+        - generic [ref=f13e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f13e8]'
+      - navigation [ref=f13e14]:
+        - link "Catalog" [ref=f13e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f13e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f13e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f13e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f13e20]
+      - generic [ref=f13e21]:
+        - 'generic "Cart: 0 items, subtotal $0.00 — shipping computed on the bill" [ref=f13e22]': empty
+        - button "Switch to night (dark) theme" [ref=f13e29]
+  - generic [ref=f13e32]:
+    - complementary [ref=f13e33]:
+      - heading "Bins" [level=2] [ref=f13e34]
+      - button "ALL Every bin ··" [ref=f13e36]:
+        - generic [ref=f13e37]: ALL
+        - generic [ref=f13e38]: Every bin
+        - generic [ref=f13e39]: ··
+      - generic [ref=f13e41]:
+        - generic [ref=f13e42]:
+          - heading "Stock dots" [level=3] [ref=f13e43]
+          - list [ref=f13e44]:
+            - listitem [ref=f13e45]: 5+ in bin
+            - listitem [ref=f13e47]: 1–4 low
+            - listitem [ref=f13e49]: 0 empty
+        - generic [ref=f13e51]:
+          - heading "Value ladder" [level=3] [ref=f13e52]
+          - generic [ref=f13e59]:
+            - generic "0 = black" [ref=f13e60]
+            - generic "1 = brown" [ref=f13e61]
+            - generic "2 = red" [ref=f13e62]
+            - generic "3 = orange" [ref=f13e63]
+            - generic "4 = yellow" [ref=f13e64]
+            - generic "5 = green" [ref=f13e65]
+            - generic "6 = blue" [ref=f13e66]
+            - generic "7 = violet" [ref=f13e67]
+            - generic "8 = grey" [ref=f13e68]
+            - generic "9 = white" [ref=f13e69]
+          - paragraph [ref=f13e70]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f13e71]:
+          - strong [ref=f13e73]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f13e74]:
+      - generic [ref=f13e75]:
+        - heading "The bill" [level=1] [ref=f13e76]
+        - generic [ref=f13e78]:
+          - heading "No quote open" [level=3] [ref=f13e79]
+          - generic [ref=f13e80]:
+            - paragraph [ref=f13e81]: Add units to a bin, or let the assistant build the cart and prepare a quote for you to review.
+            - link "Back to the catalog" [ref=f13e82] [cursor=pointer]:
+              - /url: /

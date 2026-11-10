@@ -1,0 +1,182 @@
+- generic [active] [ref=f8e1]:
+  - alert [ref=f8e2]
+  - banner [ref=f8e3]:
+    - generic [ref=f8e4]:
+      - link "ShopMind cat. elec-026" [ref=f8e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f8e6]: ShopMind
+        - generic [ref=f8e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f8e8]'
+      - searchbox "Search the catalog" [ref=f8e15]
+      - generic [ref=f8e16]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f8e17] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f8e23]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f8e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f8e25]: SA
+          - generic [ref=f8e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f8e27]
+    - navigation "Primary" [ref=f8e30]:
+      - link "Catalog" [ref=f8e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f8e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f8e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f8e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f8e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f8e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f8e38]:
+    - generic [ref=f8e39]:
+      - generic [ref=f8e41]: Admin console
+      - navigation "Admin sections" [ref=f8e42]:
+        - link "Dashboard" [ref=f8e43] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f8e44] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f8e45] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f8e46] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f8e47] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f8e48] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f8e50]:
+      - generic [ref=f8e51]:
+        - heading "Categories · 8" [level=2] [ref=f8e52]
+        - button "New category" [ref=f8e54]
+      - table [ref=f8e58]:
+        - rowgroup [ref=f8e59]:
+          - row [ref=f8e60]:
+            - columnheader "Band" [ref=f8e61]
+            - columnheader "Name" [ref=f8e62]
+            - columnheader "Slug" [ref=f8e63]
+            - columnheader "Description" [ref=f8e64]
+            - columnheader "Active" [ref=f8e65]
+            - columnheader "Actions" [ref=f8e66]
+        - rowgroup [ref=f8e67]:
+          - row [ref=f8e68]:
+            - cell [ref=f8e69]
+            - cell [ref=f8e71]:
+              - textbox "Name of Laptops" [ref=f8e72]: Laptops
+            - cell [ref=f8e73]:
+              - textbox "Slug of Laptops" [ref=f8e74]: laptops
+            - cell [ref=f8e75]:
+              - textbox "Description of Laptops" [ref=f8e76]: Laptops and notebooks
+            - cell [ref=f8e77]:
+              - switch "Laptops active" [checked] [ref=f8e78]:
+                - generic [ref=f8e79]: Active
+            - cell [ref=f8e81]:
+              - generic [ref=f8e82]:
+                - button "Saved" [disabled]
+                - button "Delete Laptops" [ref=f8e83]
+          - row [ref=f8e87]:
+            - cell [ref=f8e88]
+            - cell [ref=f8e90]:
+              - textbox "Name of Smartphones" [ref=f8e91]: Smartphones
+            - cell [ref=f8e92]:
+              - textbox "Slug of Smartphones" [ref=f8e93]: smartphones
+            - cell [ref=f8e94]:
+              - textbox "Description of Smartphones" [ref=f8e95]: Smartphones and mobiles
+            - cell [ref=f8e96]:
+              - switch "Smartphones active" [checked] [ref=f8e97]:
+                - generic [ref=f8e98]: Active
+            - cell [ref=f8e100]:
+              - generic [ref=f8e101]:
+                - button "Saved" [disabled]
+                - button "Delete Smartphones" [ref=f8e102]
+          - row [ref=f8e106]:
+            - cell [ref=f8e107]
+            - cell [ref=f8e109]:
+              - textbox "Name of Monitors" [ref=f8e110]: Monitors
+            - cell [ref=f8e111]:
+              - textbox "Slug of Monitors" [ref=f8e112]: monitors
+            - cell [ref=f8e113]:
+              - textbox "Description of Monitors" [ref=f8e114]: Monitors and displays
+            - cell [ref=f8e115]:
+              - switch "Monitors active" [checked] [ref=f8e116]:
+                - generic [ref=f8e117]: Active
+            - cell [ref=f8e119]:
+              - generic [ref=f8e120]:
+                - button "Saved" [disabled]
+                - button "Delete Monitors" [ref=f8e121]
+          - row [ref=f8e125]:
+            - cell [ref=f8e126]
+            - cell [ref=f8e128]:
+              - textbox "Name of Keyboards" [ref=f8e129]: Keyboards
+            - cell [ref=f8e130]:
+              - textbox "Slug of Keyboards" [ref=f8e131]: keyboards
+            - cell [ref=f8e132]:
+              - textbox "Description of Keyboards" [ref=f8e133]: Keyboards
+            - cell [ref=f8e134]:
+              - switch "Keyboards active" [checked] [ref=f8e135]:
+                - generic [ref=f8e136]: Active
+            - cell [ref=f8e138]:
+              - generic [ref=f8e139]:
+                - button "Saved" [disabled]
+                - button "Delete Keyboards" [ref=f8e140]
+          - row [ref=f8e144]:
+            - cell [ref=f8e145]
+            - cell [ref=f8e147]:
+              - textbox "Name of Mice" [ref=f8e148]: Mice
+            - cell [ref=f8e149]:
+              - textbox "Slug of Mice" [ref=f8e150]: mice
+            - cell [ref=f8e151]:
+              - textbox "Description of Mice" [ref=f8e152]: Mice and pointing devices
+            - cell [ref=f8e153]:
+              - switch "Mice active" [checked] [ref=f8e154]:
+                - generic [ref=f8e155]: Active
+            - cell [ref=f8e157]:
+              - generic [ref=f8e158]:
+                - button "Saved" [disabled]
+                - button "Delete Mice" [ref=f8e159]
+          - row [ref=f8e163]:
+            - cell [ref=f8e164]
+            - cell [ref=f8e166]:
+              - textbox "Name of Headphones" [ref=f8e167]: Headphones
+            - cell [ref=f8e168]:
+              - textbox "Slug of Headphones" [ref=f8e169]: headphones
+            - cell [ref=f8e170]:
+              - textbox "Description of Headphones" [ref=f8e171]: Headphones and audio
+            - cell [ref=f8e172]:
+              - switch "Headphones active" [checked] [ref=f8e173]:
+                - generic [ref=f8e174]: Active
+            - cell [ref=f8e176]:
+              - generic [ref=f8e177]:
+                - button "Saved" [disabled]
+                - button "Delete Headphones" [ref=f8e178]
+          - row [ref=f8e182]:
+            - cell [ref=f8e183]
+            - cell [ref=f8e185]:
+              - textbox "Name of Components" [ref=f8e186]: Components
+            - cell [ref=f8e187]:
+              - textbox "Slug of Components" [ref=f8e188]: components
+            - cell [ref=f8e189]:
+              - textbox "Description of Components" [ref=f8e190]: PC components
+            - cell [ref=f8e191]:
+              - switch "Components active" [checked] [ref=f8e192]:
+                - generic [ref=f8e193]: Active
+            - cell [ref=f8e195]:
+              - generic [ref=f8e196]:
+                - button "Saved" [disabled]
+                - button "Delete Components" [ref=f8e197]
+          - row [ref=f8e201]:
+            - cell [ref=f8e202]
+            - cell [ref=f8e204]:
+              - textbox "Name of Accessories" [ref=f8e205]: Accessories
+            - cell [ref=f8e206]:
+              - textbox "Slug of Accessories" [ref=f8e207]: accessories
+            - cell [ref=f8e208]:
+              - textbox "Description of Accessories" [ref=f8e209]: Accessories
+            - cell [ref=f8e210]:
+              - switch "Accessories active" [checked] [ref=f8e211]:
+                - generic [ref=f8e212]: Active
+            - cell [ref=f8e214]:
+              - generic [ref=f8e215]:
+                - button "Saved" [disabled]
+                - button "Delete Accessories" [ref=f8e216]

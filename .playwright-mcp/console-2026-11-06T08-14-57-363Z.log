@@ -1,0 +1,66 @@
+[     217ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:760
+[     241ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:760
+[     315ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/dev/ui" tree={[...]} params={{}} renderTree={{...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="dev/ui/pag...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function UiKitPage} serverProvidedParams={null}>
+            <UiKitPage params={Promise} searchParams={Promise}>
+              <div className="mx-auto ma...">
+                <h1>
+                <p>
+                <div className="mt-8">
+                  <Section>
+                  <Section>
+                  <Section>
+                  <Section>
+                  <Section title="Fields">
+                    <section className="border-b-[...">
+                      <h2>
+                      <div className="mt-5 flex ...">
+                        <div className="grid w-ful...">
+                          <Field id="f1" label="Search" placeholder="16 GB laptop">
+                            <label htmlFor="f1" className="block">
+                              <span>
+                              <input
+                                id="f1"
+                                className="w-full rounded-[4px] border-[1.5px] bg-card px-3 py-2 text-[14px] text-ink ..."
+                                placeholder="16 GB laptop"
+-                               style={{caret-color:"transparent"}}
+                              >
+                          <Field id="f2" label="Budget" defaultValue="1200">
+                            <label htmlFor="f2" className="block">
+                              <span>
+                              <input
+                                id="f2"
+                                className="w-full rounded-[4px] border-[1.5px] bg-card px-3 py-2 text-[14px] text-ink ..."
+                                defaultValue="1200"
+-                               style={{caret-color:"transparent"}}
+                              >
+                          <Field id="f3" label="Quantity" error="Bin holds ..." defaultValue="5">
+                            <label htmlFor="f3" className="block">
+                              <span>
+                              <input
+                                id="f3"
+                                className="w-full rounded-[4px] border-[1.5px] bg-card px-3 py-2 text-[14px] text-ink ..."
+                                defaultValue="5"
+-                               style={{caret-color:"transparent"}}
+                              >
+                              ...
+                  ...
+        ...
+      ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1036

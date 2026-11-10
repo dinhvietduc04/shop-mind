@@ -1,0 +1,60 @@
+- generic [active] [ref=f44e1]:
+  - alert [ref=f44e2]
+  - banner [ref=f44e27]:
+    - generic [ref=f44e28]:
+      - link "ShopMind cat. elec-026" [ref=f44e29] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f44e30]: ShopMind
+        - generic [ref=f44e31]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f44e32]'
+      - navigation [ref=f44e38]:
+        - link "Catalog" [ref=f44e39] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f44e40] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f44e41] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f44e42] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f44e43] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f44e45]
+      - generic [ref=f44e46]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f44e47] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f44e53]: empty
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f44e54] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f44e55]: DC
+          - generic [ref=f44e56]: Account
+        - button "Switch to night (dark) theme" [ref=f44e57]
+  - main [ref=f44e61]:
+    - heading "The assistant" [level=1] [ref=f44e62]
+    - paragraph [ref=f44e63]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f44e64]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f44e65]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f44e67] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f44e69]:
+      - generic [ref=f44e70]:
+        - heading "The assistant" [level=2] [ref=f44e71]
+        - generic [ref=f44e74]:
+          - text: turn 1/8
+          - button "new" [ref=f44e75]
+      - generic [ref=f44e77]:
+        - paragraph [ref=f44e78]:
+          - text: Ask for something. I search the bins, read live stock, and ask up to three pointed questions before I filter — every price or count I say came from a tool call this turn. I can quote;
+          - strong [ref=f44e79]: paying is yours
+          - text: ", on the bill page."
+        - generic [ref=f44e80]:
+          - button "“a laptop under $1200 for backend dev”" [ref=f44e81]
+          - button "“help me pick headphones”" [ref=f44e82]
+          - button "“what's in my bin?”" [ref=f44e83]
+      - generic [ref=f44e84]:
+        - textbox "Message the assistant" [ref=f44e85]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

@@ -1,0 +1,116 @@
+- generic [active] [ref=f39e1]:
+  - link "Skip to content" [ref=f39e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f39e3]:
+    - generic [ref=f39e4]:
+      - link "ShopMind cat. elec-026" [ref=f39e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f39e6]: ShopMind
+        - generic [ref=f39e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f39e8]'
+      - navigation [ref=f39e14]:
+        - link "Catalog" [ref=f39e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f39e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f39e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f39e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f39e36] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f39e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f39e21]
+      - generic [ref=f39e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f39e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f39e29]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f39e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f39e38]: SA
+          - generic [ref=f39e39]: Admin
+        - button "Switch to night (dark) theme" [ref=f39e31]
+  - generic [ref=f39e40]:
+    - generic [ref=f39e41]:
+      - generic [ref=f39e43]: Admin console
+      - navigation "Admin sections" [ref=f39e44]:
+        - link "Dashboard" [ref=f39e45] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f39e46] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f39e47] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f39e48] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f39e49] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f39e50] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f39e51]:
+      - link "back to the ledger" [ref=f39e52] [cursor=pointer]:
+        - /url: /admin/orders
+      - generic [ref=f39e55]:
+        - generic [ref=f39e56]:
+          - heading "Order SM-2026-FL47SIU9" [level=2] [ref=f39e57]
+          - generic [ref=f39e58]: Shipped
+        - generic [ref=f39e60]:
+          - generic [ref=f39e61]:
+            - generic [ref=f39e63]:
+              - generic [ref=f39e64]:
+                - term [ref=f39e65]: Filed
+                - definition [ref=f39e66]: 11/9/2026, 12:58:36 PM
+              - generic [ref=f39e67]:
+                - term [ref=f39e68]: Ship to
+                - definition [ref=f39e69]: Demo Customer · +1-555-0100
+              - generic [ref=f39e70]:
+                - term [ref=f39e71]: Address
+                - definition [ref=f39e72]: 123 Catalog Lane, Vienna
+              - generic [ref=f39e73]:
+                - term [ref=f39e74]: Payment
+                - definition [ref=f39e75]:
+                  - text: Succeeded · $549.99
+                  - generic [ref=f39e76]: · MOCK-TXN-kjgsvnr3-izhmqnks
+            - generic [ref=f39e78]:
+              - 'list "Order status: Shipped" [ref=f39e126]':
+                - listitem [ref=f39e80]:
+                  - generic "Pending" [ref=f39e81]
+                - listitem [ref=f39e83]:
+                  - generic "Paid" [ref=f39e84]
+                - listitem [ref=f39e86]:
+                  - generic "Processing" [ref=f39e87]
+                - listitem [ref=f39e89]:
+                  - generic "Shipped" [ref=f39e90]
+                - listitem [ref=f39e92]:
+                  - generic "Delivered" [ref=f39e93]
+              - paragraph [ref=f39e94]: Shipped
+          - generic [ref=f39e95]:
+            - table [ref=f39e97]:
+              - rowgroup [ref=f39e98]:
+                - row [ref=f39e99]:
+                  - columnheader "Product" [ref=f39e100]
+                  - columnheader "SKU" [ref=f39e101]
+                  - columnheader "Qty" [ref=f39e102]
+                  - columnheader "Unit" [ref=f39e103]
+                  - columnheader "Line" [ref=f39e104]
+              - rowgroup [ref=f39e105]:
+                - row [ref=f39e106]:
+                  - cell "UltraSharp 27 4K Monitor" [ref=f39e107]
+                  - cell "DEL-U2723QE" [ref=f39e108]
+                  - cell "1" [ref=f39e109]
+                  - cell "$549.99" [ref=f39e110]
+                  - cell "$549.99" [ref=f39e111]
+            - paragraph [ref=f39e112]:
+              - text: subtotal $549.99 · shipping $0.00 ·
+              - strong [ref=f39e113]: $549.99
+      - generic [ref=f39e114]:
+        - heading "Fulfillment desk" [level=2] [ref=f39e116]
+        - generic [ref=f39e118]:
+          - generic [ref=f39e119]:
+            - generic [ref=f39e120]: Shipped →
+            - combobox "Next status" [ref=f39e121]:
+              - option "— pick a legal target —"
+              - option "Delivered" [selected]
+          - button "Apply transition" [ref=f39e124]
+          - paragraph [ref=f39e122]: Yellow = a human decision. A Pending order moving through this desk runs the same guarded settle as the payment page — reservations commit or release honestly.
+  - alert [ref=f39e123]

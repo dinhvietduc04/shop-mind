@@ -1,0 +1,82 @@
+- generic [ref=f81e1]:
+  - alert [ref=f81e2]
+  - link "Skip to content" [ref=f81e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f81e4]:
+    - generic [ref=f81e5]:
+      - link "ShopMind cat. elec-026" [ref=f81e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f81e7]: ShopMind
+        - generic [ref=f81e8]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f81e9]'
+      - navigation [ref=f81e15]:
+        - link "Catalog" [ref=f81e16] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f81e17] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f81e18] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f81e19] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f81e20] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f81e21] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f81e23]
+      - generic [ref=f81e24]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f81e65] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f81e31]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f81e32] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f81e33]: SA
+          - generic [ref=f81e34]: Admin
+        - button "Switch to night (dark) theme" [ref=f81e35]
+  - main [ref=f81e39]:
+    - heading "The assistant" [level=1] [ref=f81e40]
+    - paragraph [ref=f81e41]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f81e42]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f81e43]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f81e45] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f81e47]:
+      - status [ref=f81e48]: Nothing in laptops matches category=laptops, price<=1200, ram_gb>=16 together. The budget fits MacBook Air M3 ($1099.00) but it reads 8 ram gb — under the 16 you asked for. The 16-class one, ThinkPad X1 Carbon Gen 11, costs $1499.00 — over budget. Which side do you want to give?
+      - generic [ref=f81e49]:
+        - heading "The assistant" [level=2] [ref=f81e50]
+        - generic [ref=f81e53]:
+          - text: turn 2/8
+          - button "new" [ref=f81e54]
+      - generic [ref=f81e55]:
+        - paragraph [ref=f81e67]: a laptop under $1200 for backend dev
+        - generic [ref=f81e68]:
+          - paragraph [ref=f81e69]: Nothing in laptops matches category=laptops, price<=1200, ram_gb>=16 together. The budget fits MacBook Air M3 ($1099.00) but it reads 8 ram gb — under the 16 you asked for. The 16-class one, ThinkPad X1 Carbon Gen 11, costs $1499.00 — over budget. Which side do you want to give?
+          - 'generic "Tools run this turn: search_products, search_products" [ref=f81e70]':
+            - generic "category=laptops, price<=1200, ram_gb>=16" [ref=f81e71]:
+              - text: search_products
+              - generic [ref=f81e74]: (category=laptops, price<=1200, ram_gb>=16)
+            - 'generic "relaxed: budget dropped" [ref=f81e75]':
+              - text: search_products
+              - generic [ref=f81e78]: "(relaxed: budget dropped)"
+          - generic [ref=f81e79]:
+            - heading "interview · 2 questions" [level=3] [ref=f81e80]
+            - generic [ref=f81e83]:
+              - text: Change the price range
+              - generic [ref=f81e84]:
+                - slider "Budget ceiling" [ref=f81e85]: "1500"
+                - generic [ref=f81e86]: $1,500.00
+            - generic [ref=f81e87]:
+              - text: Relax ram gb
+              - generic [ref=f81e88]:
+                - button "keep" [ref=f81e89]
+                - button "drop" [ref=f81e90]
+            - generic [ref=f81e91]:
+              - button "send answers" [disabled]
+              - generic [ref=f81e92]: answers join the filter set · nothing is stored beyond this conversation
+      - generic [ref=f81e63]:
+        - textbox "Message the assistant" [active] [ref=f81e64]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

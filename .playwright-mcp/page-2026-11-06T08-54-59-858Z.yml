@@ -1,0 +1,95 @@
+- generic [active] [ref=f17e1]:
+  - alert [ref=f17e2]
+  - banner [ref=f17e3]:
+    - generic [ref=f17e4]:
+      - link "ShopMind cat. elec-026" [ref=f17e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f17e6]: ShopMind
+        - generic [ref=f17e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f17e8]'
+      - navigation [ref=f17e14]:
+        - link "Catalog" [ref=f17e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f17e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f17e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f17e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f17e20]
+      - generic [ref=f17e21]:
+        - 'generic "Cart: 3 items, subtotal $2,048.98 — shipping computed on the bill" [ref=f17e22]': $2,048.98
+        - button "Switch to night (dark) theme" [ref=f17e29]
+  - generic [ref=f17e32]:
+    - complementary [ref=f17e33]:
+      - heading "Bins" [level=2] [ref=f17e34]
+      - button "ALL Every bin ··" [ref=f17e36]:
+        - generic [ref=f17e37]: ALL
+        - generic [ref=f17e38]: Every bin
+        - generic [ref=f17e39]: ··
+      - generic [ref=f17e41]:
+        - generic [ref=f17e42]:
+          - heading "Stock dots" [level=3] [ref=f17e43]
+          - list [ref=f17e44]:
+            - listitem [ref=f17e45]: 5+ in bin
+            - listitem [ref=f17e47]: 1–4 low
+            - listitem [ref=f17e49]: 0 empty
+        - generic [ref=f17e51]:
+          - heading "Value ladder" [level=3] [ref=f17e52]
+          - generic [ref=f17e59]:
+            - generic "0 = black" [ref=f17e60]
+            - generic "1 = brown" [ref=f17e61]
+            - generic "2 = red" [ref=f17e62]
+            - generic "3 = orange" [ref=f17e63]
+            - generic "4 = yellow" [ref=f17e64]
+            - generic "5 = green" [ref=f17e65]
+            - generic "6 = blue" [ref=f17e66]
+            - generic "7 = violet" [ref=f17e67]
+            - generic "8 = grey" [ref=f17e68]
+            - generic "9 = white" [ref=f17e69]
+          - paragraph [ref=f17e70]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f17e71]:
+          - strong [ref=f17e73]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f17e74]:
+      - generic [ref=f17e75]:
+        - heading "The bill" [level=1] [ref=f17e76]
+        - article [ref=f17e77]:
+          - generic [ref=f17e78]:
+            - generic [ref=f17e79]: cart · 3 lines
+            - generic [ref=f17e80]: priced by the API · free ship ≥ $500.00
+          - list [ref=f17e81]:
+            - listitem [ref=f17e82]:
+              - img "No photo on file for plate NV-RTX4070" [ref=f17e84]:
+                - generic [ref=f17e89]: pl. NV-RTX4070 · photo not on file
+              - generic [ref=f17e92]:
+                - generic [ref=f17e93]: RTX 4070 GPU
+                - generic [ref=f17e94]: NV-RTX4070 · ×1
+              - generic [ref=f17e103]: $599.99
+            - listitem [ref=f17e104]:
+              - img "No photo on file for plate APL-MBA-M3" [ref=f17e106]:
+                - generic [ref=f17e111]: pl. APL-MBA-M3 · photo not on file
+              - generic [ref=f17e114]:
+                - generic [ref=f17e115]: MacBook Air M3
+                - generic [ref=f17e116]: APL-MBA-M3 · ×1
+              - generic [ref=f17e127]: $1,099.00
+            - listitem [ref=f17e128]:
+              - figure [ref=f17e130]:
+                - img "WH-1000XM5 Headphones — product photo" [ref=f17e131]
+              - generic [ref=f17e132]:
+                - generic [ref=f17e133]: WH-1000XM5 Headphones
+                - generic [ref=f17e134]: SNY-WH1000XM5 · ×1
+              - generic [ref=f17e143]: $349.99
+          - generic [ref=f17e144]:
+            - generic [ref=f17e145]:
+              - term [ref=f17e146]: Subtotal
+              - definition [ref=f17e147]: $2,048.98
+            - generic [ref=f17e148]:
+              - term [ref=f17e149]: Shipping
+              - definition [ref=f17e150]: free
+            - generic [ref=f17e151]:
+              - term [ref=f17e152]: Total
+              - definition [ref=f17e153]: $2,048.98
+          - generic [ref=f17e154]:
+            - button "Create quote — reserve stock" [ref=f17e155]
+            - generic [ref=f17e156]: assistant may press this · yellow may not

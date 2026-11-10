@@ -1,0 +1,6382 @@
+[    1070ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    1088ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   26576ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:3000/api/products?specs=battery_years:gte:5:0
+[   28264ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:3000/api/products?specs=ram_gb%3E=16:0
+[  198562ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  198733ms] [ERROR] ./src/mocks/db.ts:40:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+  38 | } from "./server/inventory";
+  39 |
+> 40 | export {
+     | ^^^^^^^
+> 41 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 43 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 44 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 45 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 46 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 47 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 48 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 49 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 50 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 51 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 52 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 53 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 54 |   slugify,
+     | ^^^^^^^^^^
+> 55 | } from "./server/catalog";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 |
+  57 | export {
+  58 |   activeQuoteFor,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/server/catalog.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/db.ts [Client Component Browser]
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  198733ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 29 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 30 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 31 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 32 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 33 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 34 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 35 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 36 |   getCart,
+     | ^^^^^^^^^^
+> 37 |   getQuote,
+     | ^^^^^^^^^^^
+> 38 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 39 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 40 |   orderFor,
+     | ^^^^^^^^^^^
+> 41 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 42 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 43 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 44 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 45 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 46 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 47 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 48 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  49 | import type {
+  50 |   AgentTurnResult,
+  51 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/server/catalog.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216014ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 29 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 30 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 31 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 32 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 33 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 34 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 35 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 36 |   getCart,
+     | ^^^^^^^^^^
+> 37 |   getQuote,
+     | ^^^^^^^^^^^
+> 38 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 39 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 40 |   orderFor,
+     | ^^^^^^^^^^^
+> 41 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 42 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 43 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 44 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 45 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 46 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 47 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 48 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  49 | import type {
+  50 |   AgentTurnResult,
+  51 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216014ms] [ERROR] ./src/mocks/db.ts:57:1
+Error: Export cartHolds doesn't exist in target module
+  55 | } from "./server/catalog";
+  56 |
+> 57 | export {
+     | ^^^^^^^
+> 58 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 59 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 60 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 61 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 62 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 63 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 64 |   findTokenFor,
+     | ^^^^^^^^^^^^^^^
+> 65 |   getCart,
+     | ^^^^^^^^^^
+> 66 |   getQuote,
+     | ^^^^^^^^^^^
+> 67 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 68 |   orderFor,
+     | ^^^^^^^^^^^
+> 69 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 70 |   QUOTE_EXPIRED_REASON,
+     | ^^^^^^^^^^^^^^^^^^^^^^^
+> 71 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 72 |   type QuoteRecord,
+     | ^^^^^^^^^^^^^^^^^^^
+> 73 | } from "./server/quotes";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+  74 |
+  75 | export {
+  76 |   cartAdd,
+
+The export cartHolds was not found in module [project]/src/mocks/server/quotes.ts [app-client] (ecmascript).
+Did you mean to import openQuoteHolds?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/db.ts [Client Component Browser]
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216014ms] [ERROR] ./src/mocks/agent.ts:1:1
+Error: Export getCart doesn't exist in target module
+>  1 | import {
+     | ^^^^^^^
+>  2 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+>  3 |   allProducts,
+     | ^^^^^^^^^^^^^^
+>  4 |   available,
+     | ^^^^^^^^^^^^
+>  5 |   cartAdd,
+     | ^^^^^^^^^^
+>  6 |   createQuote,
+     | ^^^^^^^^^^^^^^
+>  7 |   getCart,
+     | ^^^^^^^^^^
+>  8 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+>  9 |   toolEnabled,
+     | ^^^^^^^^^^^^^^
+> 10 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  11 | import type {
+  12 |   AgentTurnResult,
+  13 |   ChatProductRef,
+
+The export getCart was not found in module [project]/src/mocks/server/quotes.ts [app-client] (ecmascript).
+Did you mean to import getQuote?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/agent.ts [Client Component Browser]
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216015ms] [ERROR] ./src/mocks/db.ts:57:1
+Error: Export getCart doesn't exist in target module
+  55 | } from "./server/catalog";
+  56 |
+> 57 | export {
+     | ^^^^^^^
+> 58 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 59 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 60 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 61 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 62 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 63 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 64 |   findTokenFor,
+     | ^^^^^^^^^^^^^^^
+> 65 |   getCart,
+     | ^^^^^^^^^^
+> 66 |   getQuote,
+     | ^^^^^^^^^^^
+> 67 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 68 |   orderFor,
+     | ^^^^^^^^^^^
+> 69 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 70 |   QUOTE_EXPIRED_REASON,
+     | ^^^^^^^^^^^^^^^^^^^^^^^
+> 71 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 72 |   type QuoteRecord,
+     | ^^^^^^^^^^^^^^^^^^^
+> 73 | } from "./server/quotes";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+  74 |
+  75 | export {
+  76 |   cartAdd,
+
+The export getCart was not found in module [project]/src/mocks/server/quotes.ts [app-client] (ecmascript).
+Did you mean to import getQuote?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/db.ts [Client Component Browser]
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216015ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export getCart doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 29 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 30 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 31 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 32 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 33 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 34 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 35 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 36 |   getCart,
+     | ^^^^^^^^^^
+> 37 |   getQuote,
+     | ^^^^^^^^^^^
+> 38 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 39 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 40 |   orderFor,
+     | ^^^^^^^^^^^
+> 41 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 42 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 43 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 44 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 45 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 46 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 47 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 48 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  49 | import type {
+  50 |   AgentTurnResult,
+  51 |   ChatSseFrame,
+
+The export getCart was not found in module [project]/src/mocks/server/quotes.ts [app-client] (ecmascript).
+Did you mean to import getQuote?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  216100ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  230390ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  230446ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 29 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 30 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 31 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 32 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 33 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 34 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 35 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 36 |   getCart,
+     | ^^^^^^^^^^
+> 37 |   getQuote,
+     | ^^^^^^^^^^^
+> 38 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 39 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 40 |   orderFor,
+     | ^^^^^^^^^^^
+> 41 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 42 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 43 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 44 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 45 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 46 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 47 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 48 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  49 | import type {
+  50 |   AgentTurnResult,
+  51 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  283287ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   orderFor,
+     | ^^^^^^^^^^^
+> 42 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 43 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 44 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 45 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 47 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 48 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 49 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  50 | import type {
+  51 |   AgentTurnResult,
+  52 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  283396ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  283620ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  284924ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  284937ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  298100ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  298160ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  298787ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  298859ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  299416ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  299481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  299863ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  299921ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  300221ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  300286ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  306756ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  306814ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  307619ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  307699ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  309020ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  309099ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  309687ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  309757ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  310267ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  310338ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  311085ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  311158ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  319606ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  319671ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  320654ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  320719ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  322561ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  322635ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  324250ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  324319ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  331441ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  331505ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  332722ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  332796ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  333686ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  333757ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  334741ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  334820ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  341057ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  341138ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  341936ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  342019ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  343219ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  343296ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  344078ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  344162ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  359689ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  360681ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  360683ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  378558ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  392660ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  393158ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  443262ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  448320ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  456639ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  467765ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  467835ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  481679ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  481920ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  482680ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  482751ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  483753ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  483834ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  484237ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  492719ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  492834ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  493904ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  494017ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  510283ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  516985ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  523815ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  552051ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  552100ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  552758ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  552837ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  553915ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  553978ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  554585ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  561550ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  565134ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  579201ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  589433ms] [ERROR] ./src/mocks/handlers.ts:7:1
+Error: Export adminSetOrderStatus doesn't exist in target module
+   5 | import { facetPool, specLabel } from "@/lib/attributes/registry";
+   6 | import { type FixtureProduct } from "./fixtures";
+>  7 | import {
+     | ^^^^^^^
+>  8 |   activeProducts,
+     | ^^^^^^^^^^^^^^^^^
+>  9 |   adminCreateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 10 |   adminCreateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 11 |   adminDeleteCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 12 |   adminDeleteProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 13 |   adminListOrders,
+     | ^^^^^^^^^^^^^^^^^^
+> 14 |   adminSetOrderStatus,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   adminSetStock,
+     | ^^^^^^^^^^^^^^^^
+> 16 |   adminUpdateCategory,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 17 |   adminUpdateProduct,
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 18 |   aiConversationsList,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   aiKillSwitchOn,
+     | ^^^^^^^^^^^^^^^^^
+> 20 |   aiLedgerList,
+     | ^^^^^^^^^^^^^^^
+> 21 |   activeQuoteFor,
+     | ^^^^^^^^^^^^^^^^^
+> 22 |   allCategories,
+     | ^^^^^^^^^^^^^^^^
+> 23 |   allProducts,
+     | ^^^^^^^^^^^^^^
+> 24 |   available,
+     | ^^^^^^^^^^^^
+> 25 |   cancelOrder,
+     | ^^^^^^^^^^^^^^
+> 26 |   cartAdd,
+     | ^^^^^^^^^^
+> 27 |   cartClear,
+     | ^^^^^^^^^^^^
+> 28 |   cartHolds,
+     | ^^^^^^^^^^^^
+> 29 |   cartRemove,
+     | ^^^^^^^^^^^^^
+> 30 |   cartUpdate,
+     | ^^^^^^^^^^^^^
+> 31 |   createQuote,
+     | ^^^^^^^^^^^^^^
+> 32 |   expirePendingQuotes,
+     | ^^^^^^^^^^^^^^^^^^^^^^
+> 33 |   findProduct,
+     | ^^^^^^^^^^^^^^
+> 34 |   findUserRecord,
+     | ^^^^^^^^^^^^^^^^^
+> 35 |   getAddress,
+     | ^^^^^^^^^^^^^
+> 36 |   getAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 37 |   getCart,
+     | ^^^^^^^^^^
+> 38 |   getQuote,
+     | ^^^^^^^^^^^
+> 39 |   inventoryFor,
+     | ^^^^^^^^^^^^^^^
+> 40 |   liveProduct,
+     | ^^^^^^^^^^^^^^
+> 41 |   openQuoteHolds,
+     | ^^^^^^^^^^^^^^^^^
+> 42 |   orderFor,
+     | ^^^^^^^^^^^
+> 43 |   ordersFor,
+     | ^^^^^^^^^^^^
+> 44 |   persist,
+     | ^^^^^^^^^^
+> 45 |   recordAiCalls,
+     | ^^^^^^^^^^^^^^^^
+> 46 |   registerUser,
+     | ^^^^^^^^^^^^^^^
+> 47 |   setAiSettings,
+     | ^^^^^^^^^^^^^^^^
+> 48 |   setAddress,
+     | ^^^^^^^^^^^^^
+> 49 |   settleQuote,
+     | ^^^^^^^^^^^^^^
+> 50 |   userByToken,
+     | ^^^^^^^^^^^^^^
+> 51 | } from "./db";
+     | ^^^^^^^^^^^^^^
+  52 | import type {
+  53 |   AgentTurnResult,
+  54 |   ChatSseFrame,
+
+The export adminSetOrderStatus was not found in module [project]/src/mocks/db.ts [app-client] (ecmascript).
+Did you mean to import adminCreateProduct?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Client Component Browser:
+    ./src/mocks/handlers.ts [Client Component Browser]
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/mocks/Bootstrapper.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:1036
+[  589499ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  590069ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  590452ms] [LOG] [Fast Refresh] done in 480ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  590668ms] [LOG] [Fast Refresh] done in 480ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  590884ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  590952ms] [LOG] [Fast Refresh] done in 179ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760

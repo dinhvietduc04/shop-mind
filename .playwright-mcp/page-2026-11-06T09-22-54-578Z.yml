@@ -1,0 +1,32 @@
+- generic [active] [ref=f20e1]:
+  - alert [ref=f20e2]
+  - banner [ref=f20e3]:
+    - generic [ref=f20e4]:
+      - link "ShopMind cat. elec-026" [ref=f20e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f20e6]: ShopMind
+        - generic [ref=f20e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f20e8]'
+      - navigation [ref=f20e14]:
+        - link "Catalog" [ref=f20e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f20e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f20e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f20e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f20e20]
+      - generic [ref=f20e21]:
+        - 'generic "Cart: 6 items, subtotal $4,996.97 — shipping computed on the bill" [ref=f20e22]': $4,996.97
+        - button "Switch to night (dark) theme" [ref=f20e29]
+  - main [ref=f20e33]:
+    - alert [ref=f20e34]:
+      - generic [ref=f20e36]:
+        - strong [ref=f20e37]: No unit on file with code “ghost-unit”.
+        - text: It may have been delisted — the bin wall always holds what is live.
+        - generic [ref=f20e38]:
+          - button "Re-read sheet" [ref=f20e39]
+          - link [ref=f20e43] [cursor=pointer]:
+            - /url: /
+            - button "Back to every bin" [ref=f20e44]

@@ -1,0 +1,22 @@
+- generic [active] [ref=f51e1]:
+  - alert [ref=f51e2]: $164.97 DUE
+  - main [ref=f51e72]:
+    - generic [ref=f51e73]:
+      - generic [ref=f51e74]:
+        - generic [ref=f51e75]: FakePsp · hosted session
+        - generic [ref=f51e79]: demo provider
+      - generic [ref=f51e80]:
+        - paragraph [ref=f51e81]: merchant · shopmind · order SM-2026-NXH6PG02
+        - heading "$164.97 due" [level=1] [ref=f51e82]
+        - paragraph [ref=f51e83]: reservation held until 5:15:08 PM
+        - list [ref=f51e87]:
+          - listitem [ref=f51e88]:
+            - generic [ref=f51e89]: USB-C Docking Station ×3
+            - generic [ref=f51e90]: $149.97
+          - listitem [ref=f51e91]:
+            - generic [ref=f51e92]: Shipping
+            - generic [ref=f51e93]: $15.00
+        - generic [ref=f51e94]:
+          - button "Pay $164.97" [ref=f51e95]
+          - button "Abandon quote" [ref=f51e96]
+        - paragraph [ref=f51e100]: "no card form: this mock confirms instantly (paymentfail mode simulates a decline). real stripe checkout collects the card on stripe's page — card data never touches ShopMind (Assist level)."

@@ -1,0 +1,57 @@
+- generic [ref=f105e1]:
+  - alert [ref=f105e2]
+  - banner [ref=f105e3]:
+    - generic [ref=f105e4]:
+      - link "ShopMind cat. elec-026" [ref=f105e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f105e6]: ShopMind
+        - generic [ref=f105e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f105e8]'
+      - navigation [ref=f105e14]:
+        - link "Catalog" [ref=f105e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f105e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f105e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f105e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f105e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f105e21]
+      - generic [ref=f105e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f105e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f105e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f105e30]
+  - main [ref=f105e34]:
+    - heading "The assistant" [level=1] [ref=f105e35]
+    - paragraph [ref=f105e36]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f105e37]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f105e38]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f105e40] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f105e42]:
+      - generic [ref=f105e43]:
+        - heading "The assistant" [level=2] [ref=f105e44]
+        - generic [ref=f105e47]:
+          - text: turn 1/8
+          - button "new" [ref=f105e48]
+      - generic [ref=f105e49]:
+        - paragraph [ref=f105e60]: a laptop under $1200
+        - generic [ref=f105e61]:
+          - paragraph
+          - generic [ref=f105e62]:
+            - strong [ref=f105e63]: The assistant is unavailable
+            - text: "— No provider key on this deployment.. Everything else in the shop keeps working:"
+            - link "browse the bins manually" [ref=f105e64] [cursor=pointer]:
+              - /url: /
+            - text: .AI_NOT_CONFIGURED
+      - generic [ref=f105e57]:
+        - textbox "Message the assistant" [active] [ref=f105e58]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

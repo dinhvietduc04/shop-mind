@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --paper: #f6f2e7;
+  --card: #fffdf7;
+  --kraft: #e4ddcc;
+  --kraft-deep: #d6cdb6;
+  --ink: #1a1a1a;
+  --ink-soft: #514c41;
+  --line: #6b6250;
+  --drawer: #1a1a1a;
+  --drawer-ink: #f0ece2;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #17140e;
+  --card: #201c14;
+  --kraft: #241f15;
+  --kraft-deep: #2c261a;
+  --ink: #f0ece2;
+  --ink-soft: #b4ac97;
+  --line: #8a8068;
+  --drawer: #0d0b07;
+  --drawer-ink: #f0ece2;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-kraft: var(--kraft);
+  --color-kraft-deep: var(--kraft-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-drawer: var(--drawer);
+  --color-drawer-ink: var(--drawer-ink);
+
+  --font-sans: var(--font-archivo);
+  --font-mono: var(--font-jetmono);
+
+  /* Band colors are the IEERC ladder and keep their identity in both themes.
+     Text placed on bands always uses ink (never white-on-yellow). */
+  --color-band-black: #1a1a1a;
+  --color-band-brown: #7a4a1e;
+  --color-band-red: #d9342b;
+  --color-band-orange: #c8631f;
+  --color-band-yellow: #e0a800;
+  --color-band-green: #2f7d3b;
+  --color-band-blue: #2b5aa0;
+  --color-band-violet: #6b3fa0;
+  --color-band-grey: #83878d;
+  --color-band-white: #fdfcf8;
+  --color-band-gold: #c8a24a;
+  --color-band-silver: #b8bdc4;
+
+  --radius-label: 8px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-band-yellow);
+  color: #1a1a1a;
+}
+
+input, textarea {
+  caret-color: var(--color-band-red);
+}
+
+*:focus-visible {
+  outline: 2px dashed var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--kraft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-band-brown);
+  border: 3px solid var(--kraft);
+  border-radius: 8px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

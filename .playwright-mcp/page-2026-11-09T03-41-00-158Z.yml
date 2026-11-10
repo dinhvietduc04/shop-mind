@@ -1,0 +1,34 @@
+- generic [active] [ref=f110e1]:
+  - alert [ref=f110e2]
+  - main [ref=f110e3]:
+    - paragraph [ref=f110e4]: shopmind · new card
+    - heading "Create account" [level=1] [ref=f110e5]
+    - generic [ref=f110e7]:
+      - generic [ref=f110e8]:
+        - generic [ref=f110e9]:
+          - generic [ref=f110e10]: First name
+          - textbox "First name" [ref=f110e11]
+        - generic [ref=f110e12]:
+          - generic [ref=f110e13]: Last name
+          - textbox "Last name" [ref=f110e14]
+      - generic [ref=f110e15]:
+        - generic [ref=f110e16]: Email
+        - textbox "Email" [ref=f110e17]:
+          - /placeholder: you@example.com
+      - generic [ref=f110e18]:
+        - generic [ref=f110e19]: Phone (optional)
+        - textbox "Phone (optional)" [ref=f110e20]:
+          - /placeholder: +1-555-…
+      - generic [ref=f110e21]:
+        - generic [ref=f110e22]:
+          - generic [ref=f110e23]: Password
+          - textbox "Password" [ref=f110e24]
+        - generic [ref=f110e25]:
+          - generic [ref=f110e26]: Confirm
+          - textbox "Confirm" [ref=f110e27]
+      - button "Create account & sign in" [ref=f110e28]
+      - paragraph [ref=f110e32]:
+        - text: already keyed in?
+        - link "sign in" [ref=f110e33] [cursor=pointer]:
+          - /url: /login
+    - paragraph [ref=f110e34]: "mock note: accounts persist in this browser's fake-server state until demo reset — the real build posts the same RegisterRequest to Shop.Api."

@@ -1,0 +1,59 @@
+- generic [active] [ref=f100e1]:
+  - alert [ref=f100e2]
+  - link "Skip to content" [ref=f100e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f100e4]:
+    - generic [ref=f100e5]:
+      - link "ShopMind" [ref=f100e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f100e9]
+      - generic [ref=f100e10]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f100e11] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f100e17]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f100e18] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f100e19]: SA
+        - button "Switch to night (dark) theme" [ref=f100e20]
+    - navigation "Primary" [ref=f100e23]:
+      - link "Catalog" [ref=f100e24] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f100e25] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f100e26] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f100e27] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f100e28] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f100e29] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f100e31]:
+    - generic [ref=f100e32]:
+      - generic [ref=f100e34]: Admin console
+      - navigation "Admin sections" [ref=f100e35]:
+        - link "Dashboard" [ref=f100e36] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f100e37] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f100e38] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f100e39] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f100e40] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f100e41] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f100e43]:
+      - heading "Order ledger · 0" [level=2] [ref=f100e45]
+      - generic [ref=f100e46]:
+        - generic [ref=f100e47]:
+          - button "All" [pressed] [ref=f100e48]
+          - button "Pending" [ref=f100e49]
+          - button "Paid" [ref=f100e50]
+          - button "Processing" [ref=f100e51]
+          - button "Shipped" [ref=f100e52]
+          - button "Delivered" [ref=f100e53]
+          - button "Cancelled" [ref=f100e54]
+          - button "PaymentFailed" [ref=f100e55]
+        - paragraph [ref=f100e56]: No orders with status “All”.

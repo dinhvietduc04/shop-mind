@@ -1,0 +1,61 @@
+- generic [active] [ref=f43e1]:
+  - link "Skip to content" [ref=f43e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f43e3]:
+    - generic [ref=f43e4]:
+      - link "ShopMind cat. elec-026" [ref=f43e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f43e6]: ShopMind
+        - generic [ref=f43e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f43e8]'
+      - navigation [ref=f43e14]:
+        - link "Catalog" [ref=f43e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f43e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f43e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f43e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f43e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f43e21]
+      - generic [ref=f43e22]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f43e36] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f43e29]: $599.99
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f43e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f43e38]: DC
+          - generic [ref=f43e39]: Account
+        - button "Switch to night (dark) theme" [ref=f43e31]
+  - main [ref=f43e40]:
+    - heading "The bill Pending" [level=1] [ref=f43e41]:
+      - text: The bill
+      - generic [ref=f43e42]: Pending
+    - article [ref=f43e43]:
+      - generic [ref=f43e44]:
+        - generic [ref=f43e45]: quote SM-2026-HUM33GPN · stock reserved
+        - generic [ref=f43e46]:
+          - text: expires in
+          - generic [ref=f43e50]: 29:57
+      - list [ref=f43e51]:
+        - listitem [ref=f43e52]:
+          - generic [ref=f43e53]:
+            - text: RTX 4070 GPU
+            - generic [ref=f43e54]: ×1
+          - generic [ref=f43e55]: $599.99
+      - generic [ref=f43e56]:
+        - paragraph [ref=f43e57]:
+          - text: Reserved for
+          - strong [ref=f43e58]: Demo Customer
+          - text: ", 123 Catalog Lane, Vienna. Prices were recomputed by the API at quote time — this bill cannot change. If stock sells out before you pay, the reservation releases."
+        - generic [ref=f43e59]:
+          - generic [ref=f43e60]: TOTAL
+          - text: $599.99
+      - generic [ref=f43e62]:
+        - link "Pay on hosted page" [ref=f43e63] [cursor=pointer]:
+          - /url: /psp/aa289ssu-8xk2u1hof9gjw9ai-7xiwjr7e
+        - button "Abandon quote" [ref=f43e67]
+        - generic [ref=f43e71]: pay is human-only · abandon releases the hold, keeps your bin
+  - alert [ref=f43e72]

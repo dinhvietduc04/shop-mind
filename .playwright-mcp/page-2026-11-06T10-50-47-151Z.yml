@@ -1,0 +1,40 @@
+- generic [ref=f27e1]:
+  - alert [ref=f27e2]
+  - main [ref=f27e3]:
+    - paragraph [ref=f27e4]: shopmind · new card
+    - heading "Create account" [level=1] [ref=f27e5]
+    - generic [ref=f27e7]:
+      - generic [ref=f27e8]:
+        - generic [ref=f27e9]:
+          - generic [ref=f27e10]: First name
+          - textbox "First name" [ref=f27e11]: x
+        - generic [ref=f27e12]:
+          - generic [ref=f27e13]: Last name
+          - textbox "Last name" [ref=f27e14]: "y"
+      - generic [ref=f27e15]:
+        - generic [ref=f27e16]: Email
+        - textbox "Email Email already registered." [active] [ref=f27e39]:
+          - /placeholder: you@example.com
+          - text: test@register.local
+        - alert [ref=f27e40]: Email already registered.
+      - generic [ref=f27e18]:
+        - generic [ref=f27e19]: Phone (optional)
+        - textbox "Phone (optional)" [ref=f27e20]:
+          - /placeholder: +1-555-…
+      - generic [ref=f27e21]:
+        - generic [ref=f27e22]:
+          - generic [ref=f27e23]: Password
+          - textbox "Password" [ref=f27e41]: Register123!
+        - generic [ref=f27e25]:
+          - generic [ref=f27e26]: Confirm
+          - textbox "Confirm" [ref=f27e42]: Register123!
+      - alert [ref=f27e43]:
+        - generic [ref=f27e45]:
+          - strong [ref=f27e46]: Email already registered.
+          - text: Try signing in instead.
+      - button "Create account & sign in" [ref=f27e28]
+      - paragraph [ref=f27e32]:
+        - text: already keyed in?
+        - link "sign in" [ref=f27e33] [cursor=pointer]:
+          - /url: /login
+    - paragraph [ref=f27e34]: "mock note: accounts persist in this browser's fake-server state until demo reset — the real build posts the same RegisterRequest to Shop.Api."

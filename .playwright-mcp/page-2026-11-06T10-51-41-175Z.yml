@@ -1,0 +1,82 @@
+- generic [active] [ref=f30e1]:
+  - alert [ref=f30e2]
+  - banner [ref=f30e514]:
+    - generic [ref=f30e515]:
+      - link "ShopMind cat. elec-026" [ref=f30e516] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f30e517]: ShopMind
+        - generic [ref=f30e518]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f30e519]'
+      - navigation [ref=f30e525]:
+        - link "Catalog" [ref=f30e526] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f30e527] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f30e528] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f30e529] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f30e530] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f30e532]
+      - generic [ref=f30e533]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f30e534] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f30e540]: empty
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f30e541] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f30e542]: DC
+          - generic [ref=f30e543]: Account
+        - button "Switch to night (dark) theme" [ref=f30e544]
+  - main [ref=f30e548]:
+    - navigation "Breadcrumb" [ref=f30e549]:
+      - link "Every bin" [ref=f30e550] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f30e551]: /
+      - link "Accessories" [ref=f30e552] [cursor=pointer]:
+        - /url: /category/accessories
+      - generic [aria-hidden] [ref=f30e554]: /
+      - generic [ref=f30e555]: ACC-USBCDOCK
+    - generic [ref=f30e556]:
+      - generic [ref=f30e557]:
+        - img "No photo on file for plate ACC-USBCDOCK" [ref=f30e558]:
+          - generic [ref=f30e563]: pl. ACC-USBCDOCK · photo not on file
+        - generic [ref=f30e566]:
+          - heading "Bench notes" [level=2] [ref=f30e567]
+          - paragraph [ref=f30e568]: 7-in-1 USB-C hub.
+          - paragraph [ref=f30e569]: Mock pricing — demo data only. Logged 2026-10-10.
+      - generic [ref=f30e570]:
+        - paragraph [ref=f30e571]: Anker · unit ACC-USBCDOCK
+        - heading "USB-C Docking Station" [level=1] [ref=f30e572]
+        - generic [ref=f30e573]:
+          - generic [ref=f30e574]:
+            - generic [ref=f30e575]: $49.99
+            - generic [ref=f30e582]: in bin · 100
+          - paragraph [ref=f30e588]: 100 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f30e589]:
+            - generic [ref=f30e590]:
+              - button "One fewer" [disabled] [ref=f30e591]
+              - generic [ref=f30e593]: "1"
+              - button "One more" [ref=f30e594]
+            - button "Add one to bin" [ref=f30e596]
+        - link "Ask the assistant to vet this" [ref=f30e599] [cursor=pointer]:
+          - /url: /assistant?cat=accessories&q=USB-C%20Docking%20Station
+          - generic [aria-hidden] [ref=f30e601]: →
+        - heading "Full specification" [level=2] [ref=f30e602]
+        - table [ref=f30e603]:
+          - rowgroup [ref=f30e604]:
+            - row [ref=f30e605]:
+              - rowheader "SKU" [ref=f30e606]
+              - cell "ACC-USBCDOCK" [ref=f30e607]
+            - row [ref=f30e608]:
+              - rowheader "Status" [ref=f30e609]
+              - cell "Active" [ref=f30e610]
+            - row [ref=f30e611]:
+              - rowheader "ports" [ref=f30e612]
+              - cell "7" [ref=f30e613]
+            - row [ref=f30e614]:
+              - rowheader "4k hdmi" [ref=f30e615]
+              - cell "yes" [ref=f30e616]
+            - row [ref=f30e617]:
+              - rowheader "pd w" [ref=f30e618]
+              - cell "100" [ref=f30e619]

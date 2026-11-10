@@ -1,0 +1,290 @@
+- generic [active] [ref=f45e1]:
+  - alert [ref=f45e26]: BIN WALL — EVERY BINquerying bins…
+  - link "Skip to content" [ref=f45e27] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f45e28]:
+    - generic [ref=f45e29]:
+      - link "ShopMind cat. elec-026" [ref=f45e30] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f45e31]: ShopMind
+        - generic [ref=f45e32]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f45e33]'
+      - navigation [ref=f45e39]:
+        - link "Catalog" [ref=f45e40] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f45e41] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f45e42] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f45e43] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f45e44] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f45e45] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f45e47]
+      - generic [ref=f45e48]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f45e49] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f45e55]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f45e56] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f45e57]: SA
+          - generic [ref=f45e58]: Admin
+        - button "Switch to night (dark) theme" [ref=f45e59]
+  - generic [ref=f45e63]:
+    - complementary [ref=f45e64]:
+      - heading "Bins" [level=2] [ref=f45e65]
+      - generic [ref=f45e66]:
+        - button "ALL Every bin 10" [ref=f45e67]:
+          - generic [ref=f45e68]: ALL
+          - generic [ref=f45e69]: Every bin
+          - generic [ref=f45e70]: "10"
+        - button "Laptops LEN·2" [ref=f45e71]:
+          - generic [ref=f45e73]: Laptops
+          - generic [ref=f45e74]: LEN·2
+        - button "Smartphones SAM·2" [ref=f45e75]:
+          - generic [ref=f45e77]: Smartphones
+          - generic [ref=f45e78]: SAM·2
+        - button "Monitors DEL·1" [ref=f45e79]:
+          - generic [ref=f45e81]: Monitors
+          - generic [ref=f45e82]: DEL·1
+        - button "Keyboards LOG·1" [ref=f45e83]:
+          - generic [ref=f45e85]: Keyboards
+          - generic [ref=f45e86]: LOG·1
+        - button "Mice LOG·1" [ref=f45e87]:
+          - generic [ref=f45e89]: Mice
+          - generic [ref=f45e90]: LOG·1
+        - button "Headphones SNY·1" [ref=f45e91]:
+          - generic [ref=f45e93]: Headphones
+          - generic [ref=f45e94]: SNY·1
+        - button "Components NV-·1" [ref=f45e95]:
+          - generic [ref=f45e97]: Components
+          - generic [ref=f45e98]: NV-·1
+        - button "Accessories ACC·1" [ref=f45e99]:
+          - generic [ref=f45e101]: Accessories
+          - generic [ref=f45e102]: ACC·1
+      - generic [ref=f45e104]:
+        - generic [ref=f45e105]:
+          - heading "Stock dots" [level=3] [ref=f45e106]
+          - list [ref=f45e107]:
+            - listitem [ref=f45e108]: 5+ in bin
+            - listitem [ref=f45e110]: 1–4 low
+            - listitem [ref=f45e112]: 0 empty
+        - generic [ref=f45e114]:
+          - heading "Value ladder" [level=3] [ref=f45e115]
+          - generic [ref=f45e122]:
+            - generic "0 = black" [ref=f45e123]
+            - generic "1 = brown" [ref=f45e124]
+            - generic "2 = red" [ref=f45e125]
+            - generic "3 = orange" [ref=f45e126]
+            - generic "4 = yellow" [ref=f45e127]
+            - generic "5 = green" [ref=f45e128]
+            - generic "6 = blue" [ref=f45e129]
+            - generic "7 = violet" [ref=f45e130]
+            - generic "8 = grey" [ref=f45e131]
+            - generic "9 = white" [ref=f45e132]
+          - paragraph [ref=f45e133]:
+            - text: The stripe beside every price is the resistor
+            - strong [ref=f45e134]: multiplier
+            - text: "band — one colour per order of magnitude: brown ×10, red ×100, orange ×1k. The exact number is always printed beside it; the band is a glance-anchor, not a code to decode."
+        - paragraph [ref=f45e135]:
+          - strong [ref=f45e137]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f45e138]:
+      - generic [ref=f45e139]:
+        - generic [ref=f45e140]:
+          - heading "Bin wall — every bin10 units" [level=1] [ref=f45e141]
+          - generic [ref=f45e142]:
+            - generic [ref=f45e143]:
+              - text: Sort
+              - combobox "Sort" [ref=f45e144]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f45e145] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f45e146]
+              - text: In stock only
+          - generic [ref=f45e147]:
+            - article [ref=f45e148]:
+              - generic [aria-hidden] [ref=f45e149]: ACC · ACC-USBCDOCK
+              - img "No photo on file for plate ACC-USBCDOCK" [ref=f45e150]:
+                - generic [ref=f45e155]: pl. ACC-USBCDOCK · photo not on file
+              - heading [level=2] [ref=f45e158]:
+                - link "USB-C Docking Station" [ref=f45e159] [cursor=pointer]:
+                  - /url: /product/usb-c-dock
+              - paragraph [ref=f45e160]: Anker · c dock
+              - table [ref=f45e161]:
+                - rowgroup [ref=f45e162]:
+                  - row [ref=f45e163]:
+                    - rowheader "Ports" [ref=f45e164]
+                    - cell "7" [ref=f45e165]
+                  - row [ref=f45e166]:
+                    - rowheader "4K HDMI" [ref=f45e167]
+                    - cell "true" [ref=f45e168]
+                  - row [ref=f45e169]:
+                    - rowheader "Power delivery (W)" [ref=f45e170]
+                    - cell "100" [ref=f45e171]
+              - generic [ref=f45e172]:
+                - generic [ref=f45e173]: $49.99
+                - generic [ref=f45e177]: in bin · 100
+              - generic [ref=f45e183]:
+                - button "Add to bin" [ref=f45e184]
+                - link "Spec sheet →" [ref=f45e187] [cursor=pointer]:
+                  - /url: /product/usb-c-dock
+            - article [ref=f45e188]:
+              - generic [aria-hidden] [ref=f45e189]: COM · NV-RTX4070
+              - img "No photo on file for plate NV-RTX4070" [ref=f45e190]:
+                - generic [ref=f45e195]: pl. NV-RTX4070 · photo not on file
+              - heading [level=2] [ref=f45e198]:
+                - link "RTX 4070 GPU" [ref=f45e199] [cursor=pointer]:
+                  - /url: /product/rtx-4070
+              - paragraph [ref=f45e200]: NVIDIA · rtx 4070
+              - table [ref=f45e201]:
+                - rowgroup [ref=f45e202]:
+                  - row [ref=f45e203]:
+                    - rowheader "VRAM (GB)" [ref=f45e204]
+                    - cell "12" [ref=f45e205]
+                  - row [ref=f45e206]:
+                    - rowheader "Interface" [ref=f45e207]
+                    - cell "PCIe 4.0" [ref=f45e208]
+                  - row [ref=f45e209]:
+                    - rowheader "TDP (W)" [ref=f45e210]
+                    - cell "200" [ref=f45e211]
+              - generic [ref=f45e212]:
+                - generic [ref=f45e213]: $599.99
+                - generic [ref=f45e217]: in bin · 12
+              - generic [ref=f45e223]:
+                - button "Add to bin" [ref=f45e224]
+                - link "Spec sheet →" [ref=f45e227] [cursor=pointer]:
+                  - /url: /product/rtx-4070
+            - article [ref=f45e228]:
+              - generic [aria-hidden] [ref=f45e229]: HEA · SNY-WH1000XM5
+              - figure "pl. SNY-WH1000XM5" [ref=f45e230]:
+                - img "WH-1000XM5 Headphones — product photo" [ref=f45e231]
+              - heading [level=2] [ref=f45e235]:
+                - link "WH-1000XM5 Headphones" [ref=f45e236] [cursor=pointer]:
+                  - /url: /product/wh-1000xm5
+              - paragraph [ref=f45e237]: Sony · wh 1000xm5
+              - table [ref=f45e238]:
+                - rowgroup [ref=f45e239]:
+                  - row [ref=f45e240]:
+                    - rowheader "Noise cancelling" [ref=f45e241]
+                    - cell "true" [ref=f45e242]
+                  - row [ref=f45e243]:
+                    - rowheader "Battery (h)" [ref=f45e244]
+                    - cell "30" [ref=f45e245]
+                  - row [ref=f45e246]:
+                    - rowheader "Wireless" [ref=f45e247]
+                    - cell "true" [ref=f45e248]
+              - generic [ref=f45e249]:
+                - generic [ref=f45e250]: $349.99
+                - generic [ref=f45e254]: in bin · 30
+              - generic [ref=f45e260]:
+                - button "Add to bin" [ref=f45e261]
+                - link "Spec sheet →" [ref=f45e264] [cursor=pointer]:
+                  - /url: /product/wh-1000xm5
+            - article [ref=f45e265]:
+              - generic [aria-hidden] [ref=f45e266]: MIC · LOG-MXM3S
+              - img "No photo on file for plate LOG-MXM3S" [ref=f45e267]:
+                - generic [ref=f45e272]: pl. LOG-MXM3S · photo not on file
+              - heading [level=2] [ref=f45e275]:
+                - link "MX Master 3S Mouse" [ref=f45e276] [cursor=pointer]:
+                  - /url: /product/mx-master-3s
+              - paragraph [ref=f45e277]: Logitech · master 3s
+              - table [ref=f45e278]:
+                - rowgroup [ref=f45e279]:
+                  - row [ref=f45e280]:
+                    - rowheader "Wireless" [ref=f45e281]
+                    - cell "true" [ref=f45e282]
+                  - row [ref=f45e283]:
+                    - rowheader "Max DPI" [ref=f45e284]
+                    - cell "8000" [ref=f45e285]
+                  - row [ref=f45e286]:
+                    - rowheader "Buttons" [ref=f45e287]
+                    - cell "7" [ref=f45e288]
+              - generic [ref=f45e289]:
+                - generic [ref=f45e290]: $99.99
+                - generic [ref=f45e294]: in bin · 80
+              - generic [ref=f45e300]:
+                - button "Add to bin" [ref=f45e301]
+                - link "Spec sheet →" [ref=f45e304] [cursor=pointer]:
+                  - /url: /product/mx-master-3s
+            - article [ref=f45e305]:
+              - generic [aria-hidden] [ref=f45e306]: KEY · LOG-MXKEYS-S
+              - img "No photo on file for plate LOG-MXKEYS-S" [ref=f45e307]:
+                - generic [ref=f45e312]: pl. LOG-MXKEYS-S · photo not on file
+              - heading [level=2] [ref=f45e315]:
+                - link "MX Keys S Keyboard" [ref=f45e316] [cursor=pointer]:
+                  - /url: /product/mx-keys-s
+              - paragraph [ref=f45e317]: Logitech · keys s
+              - table [ref=f45e318]:
+                - rowgroup [ref=f45e319]:
+                  - row [ref=f45e320]:
+                    - rowheader "Wireless" [ref=f45e321]
+                    - cell "true" [ref=f45e322]
+                  - row [ref=f45e323]:
+                    - rowheader "Backlit" [ref=f45e324]
+                    - cell "true" [ref=f45e325]
+                  - row [ref=f45e326]:
+                    - rowheader "Layout" [ref=f45e327]
+                    - cell "full" [ref=f45e328]
+              - generic [ref=f45e329]:
+                - generic [ref=f45e330]: $109.99
+                - generic [ref=f45e334]: in bin · 60
+              - generic [ref=f45e340]:
+                - button "Add to bin" [ref=f45e341]
+                - link "Spec sheet →" [ref=f45e344] [cursor=pointer]:
+                  - /url: /product/mx-keys-s
+            - article [ref=f45e345]:
+              - generic [aria-hidden] [ref=f45e346]: MON · DEL-U2723QE
+              - img "No photo on file for plate DEL-U2723QE" [ref=f45e347]:
+                - generic [ref=f45e352]: pl. DEL-U2723QE · photo not on file
+              - heading [level=2] [ref=f45e355]:
+                - link "UltraSharp 27 4K Monitor" [ref=f45e356] [cursor=pointer]:
+                  - /url: /product/ultrasharp-27-4k
+              - paragraph [ref=f45e357]: Dell · 27 4k
+              - table [ref=f45e358]:
+                - rowgroup [ref=f45e359]:
+                  - row [ref=f45e360]:
+                    - rowheader "Screen (in)" [ref=f45e361]
+                    - cell "27" [ref=f45e362]
+                  - row [ref=f45e363]:
+                    - rowheader "Resolution" [ref=f45e364]
+                    - cell "3840x2160" [ref=f45e365]
+                  - row [ref=f45e366]:
+                    - rowheader "USB-C" [ref=f45e367]
+                    - cell "true" [ref=f45e368]
+              - generic [ref=f45e369]:
+                - generic [ref=f45e370]: $549.99
+                - generic [ref=f45e374]: in bin · 14
+              - generic [ref=f45e380]:
+                - button "Add to bin" [ref=f45e381]
+                - link "Spec sheet →" [ref=f45e384] [cursor=pointer]:
+                  - /url: /product/ultrasharp-27-4k
+          - navigation "Pagination" [ref=f45e385]:
+            - button "Prev" [disabled]
+            - generic [ref=f45e386]: page 1 · of 2
+            - button "Next" [ref=f45e387]
+        - region "Assistant chat" [ref=f45e391]:
+          - status [ref=f45e392]
+          - generic [ref=f45e393]:
+            - heading "The assistant" [level=2] [ref=f45e394]
+            - generic [ref=f45e397]:
+              - text: new session
+              - button "new" [ref=f45e398]
+          - generic [ref=f45e400]:
+            - paragraph [ref=f45e401]:
+              - text: Ask for something. I search the bins, read live stock, and ask up to three pointed questions before I filter — every price or count I say came from a tool call this turn. I can quote;
+              - strong [ref=f45e402]: paying is yours
+              - text: ", on the bill page."
+            - generic [ref=f45e403]:
+              - button "“a laptop under $1200 for backend dev”" [ref=f45e404]
+              - button "“help me pick headphones”" [ref=f45e405]
+              - button "“what's in my bin?”" [ref=f45e406]
+          - generic [ref=f45e407]:
+            - textbox "Message the assistant" [ref=f45e408]:
+              - /placeholder: what do you need? (try a budget, a spec, a use case)
+            - button "send" [disabled]

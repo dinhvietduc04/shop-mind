@@ -1,0 +1,87 @@
+- generic [active] [ref=f12e1]:
+  - alert [ref=f12e2]
+  - banner [ref=f12e3]:
+    - generic [ref=f12e4]:
+      - link "ShopMind cat. elec-026" [ref=f12e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f12e6]: ShopMind
+        - generic [ref=f12e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f12e8]'
+      - searchbox "Search the catalog" [ref=f12e15]
+      - generic [ref=f12e16]:
+        - 'link "Cart: 1 items, subtotal $49.99 — open the bill" [ref=f12e110] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f12e23]: $49.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f12e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f12e25]: SA
+          - generic [ref=f12e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f12e27]
+    - navigation "Primary" [ref=f12e30]:
+      - link "Catalog" [ref=f12e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f12e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f12e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f12e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f12e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f12e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - main [ref=f12e38]:
+    - navigation "Breadcrumb" [ref=f12e39]:
+      - link "Every bin" [ref=f12e40] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f12e41]: /
+      - link "Accessories" [ref=f12e42] [cursor=pointer]:
+        - /url: /category/accessories
+      - generic [aria-hidden] [ref=f12e44]: /
+      - generic [ref=f12e45]: ACC-USBCDOCK
+    - generic [ref=f12e46]:
+      - generic [ref=f12e47]:
+        - img "No photo on file for plate ACC-USBCDOCK" [ref=f12e48]:
+          - generic [ref=f12e53]: pl. ACC-USBCDOCK · photo not on file
+        - generic [ref=f12e56]:
+          - heading "Bench notes" [level=2] [ref=f12e57]
+          - paragraph [ref=f12e58]: 7-in-1 USB-C hub.
+          - paragraph [ref=f12e59]: Mock pricing — demo data only. Logged 2026-10-10.
+      - generic [ref=f12e60]:
+        - paragraph [ref=f12e61]: Anker · unit ACC-USBCDOCK
+        - heading "USB-C Docking Station" [level=1] [ref=f12e62]
+        - generic [ref=f12e63]:
+          - generic [ref=f12e64]:
+            - generic [ref=f12e65]: $49.99
+            - generic [ref=f12e72]: in bin · 125
+          - paragraph [ref=f12e78]: 125 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f12e79]:
+            - generic [ref=f12e80]:
+              - button "One fewer" [disabled] [ref=f12e81]
+              - generic [ref=f12e83]: "1"
+              - button "One more" [ref=f12e84]
+            - button "Add one to bin" [ref=f12e86]
+            - link "Filed — open the bill →" [ref=f12e111] [cursor=pointer]:
+              - /url: /quote
+          - paragraph [ref=f12e112]: Already in your bin × 1
+        - link "Ask the assistant to vet this" [ref=f12e89] [cursor=pointer]:
+          - /url: /assistant?cat=accessories&q=USB-C%20Docking%20Station
+          - generic [aria-hidden] [ref=f12e91]: →
+        - heading "Full specification" [level=2] [ref=f12e92]
+        - table [ref=f12e93]:
+          - rowgroup [ref=f12e94]:
+            - row [ref=f12e95]:
+              - rowheader "SKU" [ref=f12e96]
+              - cell "ACC-USBCDOCK" [ref=f12e97]
+            - row [ref=f12e98]:
+              - rowheader "Status" [ref=f12e99]
+              - cell "Active" [ref=f12e100]
+            - row [ref=f12e101]:
+              - rowheader "ports" [ref=f12e102]
+              - cell "7" [ref=f12e103]
+            - row [ref=f12e104]:
+              - rowheader "4k hdmi" [ref=f12e105]
+              - cell "yes" [ref=f12e106]
+            - row [ref=f12e107]:
+              - rowheader "pd w" [ref=f12e108]
+              - cell "100" [ref=f12e109]

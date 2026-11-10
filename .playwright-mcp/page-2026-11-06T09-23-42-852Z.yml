@@ -1,0 +1,30 @@
+- generic [active] [ref=f28e1]:
+  - alert [ref=f28e2]
+  - banner [ref=f28e3]:
+    - generic [ref=f28e4]:
+      - link "ShopMind cat. elec-026" [ref=f28e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f28e6]: ShopMind
+        - generic [ref=f28e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f28e8]'
+      - navigation [ref=f28e14]:
+        - link "Catalog" [ref=f28e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f28e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f28e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f28e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f28e20]
+      - generic [ref=f28e21]:
+        - 'generic "Cart: 0 items, subtotal $0.00 — shipping computed on the bill" [ref=f28e22]': empty
+        - button "Switch to night (dark) theme" [ref=f28e29]
+  - generic [ref=f28e33]:
+    - heading "The bill" [level=1] [ref=f28e34]
+    - generic [ref=f28e36]:
+      - heading "No quote open" [level=3] [ref=f28e37]
+      - generic [ref=f28e38]:
+        - paragraph [ref=f28e39]: Add units to a bin, or let the assistant build the cart and prepare a quote for you to review.
+        - link "Back to the catalog" [ref=f28e40] [cursor=pointer]:
+          - /url: /

@@ -1,0 +1,143 @@
+[     342ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[     400ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  133924ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  133929ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  134932ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  134934ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  135948ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  135950ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  136957ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  136960ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  137968ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  137997ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  139010ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  139015ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  140024ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  140027ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  141033ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  141039ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  142055ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  142057ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  143070ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  143072ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  144088ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  144089ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  145098ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  145101ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  146110ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  146112ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  147120ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  147130ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  148136ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  148138ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  149143ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  149172ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  150175ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  150180ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  151191ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  151196ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  152203ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  152207ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  153221ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  153224ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  154231ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  154232ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  155236ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  155244ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  156257ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  156259ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  157261ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  157263ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  158288ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  158328ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  159332ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  159339ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  160358ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  160414ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  161430ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  161433ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  162446ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  162459ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  163461ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  163466ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  164470ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  164473ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  165490ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  165495ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  166512ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  166514ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  167521ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  167524ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  168536ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  168539ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  169554ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  169557ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  170565ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  170567ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  171574ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  171575ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  172589ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  172590ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  173596ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  173597ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  174601ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  174605ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  175613ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  175615ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  176616ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  176617ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  177620ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  177622ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  178627ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  178633ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  179646ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  179648ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  180655ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  180657ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  181672ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  181674ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  182683ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  182689ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  183692ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  183693ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  184695ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  184703ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  185706ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  185723ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  186736ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  186754ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  187766ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  187814ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  188822ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  188888ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  189889ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  189972ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  190980ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  191075ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  192079ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  192329ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  193339ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  193916ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  194923ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  197129ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  198142ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  202611ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  203619ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  205283ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  206296ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  210005ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  211008ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  212272ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  213287ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  216497ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  217510ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  221662ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  222668ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  227688ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  228692ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  232745ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  233750ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  237901ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  238923ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  241222ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=wr_DApXNMRq9ASyrJ_EyI' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2895
+[  242233ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760

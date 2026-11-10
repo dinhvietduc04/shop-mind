@@ -1,0 +1,279 @@
+- generic [active] [ref=f48e1]:
+  - link "Skip to content" [ref=f48e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f48e3]:
+    - generic [ref=f48e4]:
+      - link "ShopMind cat. elec-026" [ref=f48e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f48e6]: ShopMind
+        - generic [ref=f48e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f48e8]'
+      - navigation [ref=f48e14]:
+        - link "Catalog" [ref=f48e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f48e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f48e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f48e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f48e36] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f48e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f48e21]
+      - generic [ref=f48e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f48e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f48e29]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f48e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f48e38]: SA
+          - generic [ref=f48e39]: Admin
+        - button "Switch to night (dark) theme" [ref=f48e31]
+  - generic [ref=f48e40]:
+    - generic [ref=f48e41]:
+      - generic [ref=f48e43]: Admin console
+      - navigation "Admin sections" [ref=f48e44]:
+        - link "Dashboard" [ref=f48e45] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f48e46] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f48e47] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f48e48] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f48e49] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f48e50] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f48e52]:
+      - generic [ref=f48e53]:
+        - heading "Catalog · 11" [level=2] [ref=f48e54]
+        - generic [ref=f48e55]:
+          - textbox "Search products" [ref=f48e56]:
+            - /placeholder: search name / sku / brand
+          - link [ref=f48e57] [cursor=pointer]:
+            - /url: /admin/products/new
+            - button "New product" [ref=f48e58]
+      - table [ref=f48e62]:
+        - rowgroup [ref=f48e63]:
+          - row [ref=f48e64]:
+            - columnheader "Product" [ref=f48e65]
+            - columnheader "SKU" [ref=f48e66]
+            - columnheader "Bin" [ref=f48e67]
+            - columnheader "Price" [ref=f48e68]
+            - columnheader "Stock" [ref=f48e69]
+            - columnheader "Status" [ref=f48e70]
+            - columnheader "Actions" [ref=f48e71]
+        - rowgroup [ref=f48e72]:
+          - row [ref=f48e73]:
+            - cell "Persist Probe 9000—" [ref=f48e74]
+            - cell "PRB-9000" [ref=f48e75]
+            - cell "Accessories" [ref=f48e76]
+            - cell "$42.00" [ref=f48e79]
+            - cell "7/7" [ref=f48e83]:
+              - generic [ref=f48e90]:
+                - text: "7"
+                - generic [ref=f48e91]: /7
+            - cell "Active" [ref=f48e92]
+            - cell [ref=f48e95]:
+              - generic [ref=f48e96]:
+                - link [ref=f48e97] [cursor=pointer]:
+                  - /url: /product/persist-probe-9000
+                  - button "View" [ref=f48e98]
+                - link [ref=f48e99] [cursor=pointer]:
+                  - /url: /admin/products/p-ramk0yvd-y0b4gkqx/edit
+                  - button "Edit" [ref=f48e100]
+                - button "Delete Persist Probe 9000" [ref=f48e101]: Delete
+          - row [ref=f48e105]:
+            - cell "USB-C Docking StationAnker" [ref=f48e106]
+            - cell "ACC-USBCDOCK" [ref=f48e107]
+            - cell "Accessories" [ref=f48e108]
+            - cell "$49.99" [ref=f48e111]
+            - cell "100/100" [ref=f48e115]:
+              - generic [ref=f48e122]:
+                - text: "100"
+                - generic [ref=f48e123]: /100
+            - cell "Active" [ref=f48e124]
+            - cell [ref=f48e127]:
+              - generic [ref=f48e128]:
+                - link [ref=f48e129] [cursor=pointer]:
+                  - /url: /product/usb-c-dock
+                  - button "View" [ref=f48e130]
+                - link [ref=f48e131] [cursor=pointer]:
+                  - /url: /admin/products/p-usb-c-dock/edit
+                  - button "Edit" [ref=f48e132]
+                - button "Delete USB-C Docking Station" [ref=f48e133]: Delete
+          - row [ref=f48e137]:
+            - cell "RTX 4070 GPUNVIDIA" [ref=f48e138]
+            - cell "NV-RTX4070" [ref=f48e139]
+            - cell "Components" [ref=f48e140]
+            - cell "$599.99" [ref=f48e143]
+            - cell "12/12" [ref=f48e147]:
+              - generic [ref=f48e154]:
+                - text: "12"
+                - generic [ref=f48e155]: /12
+            - cell "Active" [ref=f48e156]
+            - cell [ref=f48e159]:
+              - generic [ref=f48e160]:
+                - link [ref=f48e161] [cursor=pointer]:
+                  - /url: /product/rtx-4070
+                  - button "View" [ref=f48e162]
+                - link [ref=f48e163] [cursor=pointer]:
+                  - /url: /admin/products/p-rtx-4070/edit
+                  - button "Edit" [ref=f48e164]
+                - button "Delete RTX 4070 GPU" [ref=f48e165]: Delete
+          - row [ref=f48e169]:
+            - cell "WH-1000XM5 HeadphonesSony" [ref=f48e170]
+            - cell "SNY-WH1000XM5" [ref=f48e171]
+            - cell "Headphones" [ref=f48e172]
+            - cell "$349.99" [ref=f48e175]
+            - cell "30/30" [ref=f48e179]:
+              - generic [ref=f48e186]:
+                - text: "30"
+                - generic [ref=f48e187]: /30
+            - cell "Active" [ref=f48e188]
+            - cell [ref=f48e191]:
+              - generic [ref=f48e192]:
+                - link [ref=f48e193] [cursor=pointer]:
+                  - /url: /product/wh-1000xm5
+                  - button "View" [ref=f48e194]
+                - link [ref=f48e195] [cursor=pointer]:
+                  - /url: /admin/products/p-wh-1000xm5/edit
+                  - button "Edit" [ref=f48e196]
+                - button "Delete WH-1000XM5 Headphones" [ref=f48e197]: Delete
+          - row [ref=f48e201]:
+            - cell "MX Master 3S MouseLogitech" [ref=f48e202]
+            - cell "LOG-MXM3S" [ref=f48e203]
+            - cell "Mice" [ref=f48e204]
+            - cell "$99.99" [ref=f48e207]
+            - cell "80/80" [ref=f48e211]:
+              - generic [ref=f48e218]:
+                - text: "80"
+                - generic [ref=f48e219]: /80
+            - cell "Active" [ref=f48e220]
+            - cell [ref=f48e223]:
+              - generic [ref=f48e224]:
+                - link [ref=f48e225] [cursor=pointer]:
+                  - /url: /product/mx-master-3s
+                  - button "View" [ref=f48e226]
+                - link [ref=f48e227] [cursor=pointer]:
+                  - /url: /admin/products/p-mx-master-3s/edit
+                  - button "Edit" [ref=f48e228]
+                - button "Delete MX Master 3S Mouse" [ref=f48e229]: Delete
+          - row [ref=f48e233]:
+            - cell "MX Keys S KeyboardLogitech" [ref=f48e234]
+            - cell "LOG-MXKEYS-S" [ref=f48e235]
+            - cell "Keyboards" [ref=f48e236]
+            - cell "$109.99" [ref=f48e239]
+            - cell "60/60" [ref=f48e243]:
+              - generic [ref=f48e250]:
+                - text: "60"
+                - generic [ref=f48e251]: /60
+            - cell "Active" [ref=f48e252]
+            - cell [ref=f48e255]:
+              - generic [ref=f48e256]:
+                - link [ref=f48e257] [cursor=pointer]:
+                  - /url: /product/mx-keys-s
+                  - button "View" [ref=f48e258]
+                - link [ref=f48e259] [cursor=pointer]:
+                  - /url: /admin/products/p-mx-keys-s/edit
+                  - button "Edit" [ref=f48e260]
+                - button "Delete MX Keys S Keyboard" [ref=f48e261]: Delete
+          - row [ref=f48e265]:
+            - cell "UltraSharp 27 4K MonitorDell" [ref=f48e266]
+            - cell "DEL-U2723QE" [ref=f48e267]
+            - cell "Monitors" [ref=f48e268]
+            - cell "$549.99" [ref=f48e271]
+            - cell "14/15" [ref=f48e275]:
+              - generic [ref=f48e282]:
+                - text: "14"
+                - generic [ref=f48e283]: /15
+            - cell "Active" [ref=f48e284]
+            - cell [ref=f48e287]:
+              - generic [ref=f48e288]:
+                - link [ref=f48e289] [cursor=pointer]:
+                  - /url: /product/ultrasharp-27-4k
+                  - button "View" [ref=f48e290]
+                - link [ref=f48e291] [cursor=pointer]:
+                  - /url: /admin/products/p-ultrasharp-27-4k/edit
+                  - button "Edit" [ref=f48e292]
+                - button "Delete UltraSharp 27 4K Monitor" [ref=f48e293]: Delete
+          - row [ref=f48e297]:
+            - cell "iPhone 15 ProApple" [ref=f48e298]
+            - cell "APL-IP15P" [ref=f48e299]
+            - cell "Smartphones" [ref=f48e300]
+            - cell "$999.00" [ref=f48e303]
+            - cell "35/35" [ref=f48e307]:
+              - generic [ref=f48e314]:
+                - text: "35"
+                - generic [ref=f48e315]: /35
+            - cell "Active" [ref=f48e316]
+            - cell [ref=f48e319]:
+              - generic [ref=f48e320]:
+                - link [ref=f48e321] [cursor=pointer]:
+                  - /url: /product/iphone-15-pro
+                  - button "View" [ref=f48e322]
+                - link [ref=f48e323] [cursor=pointer]:
+                  - /url: /admin/products/p-iphone-15-pro/edit
+                  - button "Edit" [ref=f48e324]
+                - button "Delete iPhone 15 Pro" [ref=f48e325]: Delete
+          - row [ref=f48e329]:
+            - cell "Galaxy S24 UltraSamsung" [ref=f48e330]
+            - cell "SAM-S24U" [ref=f48e331]
+            - cell "Smartphones" [ref=f48e332]
+            - cell "$1,199.99" [ref=f48e335]
+            - cell "65/40" [ref=f48e339]:
+              - generic [ref=f48e346]:
+                - text: "65"
+                - generic [ref=f48e347]: /40
+            - cell "Active" [ref=f48e348]
+            - cell [ref=f48e351]:
+              - generic [ref=f48e352]:
+                - link [ref=f48e353] [cursor=pointer]:
+                  - /url: /product/galaxy-s24-ultra
+                  - button "View" [ref=f48e354]
+                - link [ref=f48e355] [cursor=pointer]:
+                  - /url: /admin/products/p-galaxy-s24-ultra/edit
+                  - button "Edit" [ref=f48e356]
+                - button "Delete Galaxy S24 Ultra" [ref=f48e357]: Delete
+          - row [ref=f48e361]:
+            - cell "MacBook Air M3Apple" [ref=f48e362]
+            - cell "APL-MBA-M3" [ref=f48e363]
+            - cell "Laptops" [ref=f48e364]
+            - cell "$1,099.00" [ref=f48e367]
+            - cell "20/20" [ref=f48e371]:
+              - generic [ref=f48e378]:
+                - text: "20"
+                - generic [ref=f48e379]: /20
+            - cell "Active" [ref=f48e380]
+            - cell [ref=f48e383]:
+              - generic [ref=f48e384]:
+                - link [ref=f48e385] [cursor=pointer]:
+                  - /url: /product/macbook-air-m3
+                  - button "View" [ref=f48e386]
+                - link [ref=f48e387] [cursor=pointer]:
+                  - /url: /admin/products/p-macbook-air-m3/edit
+                  - button "Edit" [ref=f48e388]
+                - button "Delete MacBook Air M3" [ref=f48e389]: Delete
+          - row [ref=f48e393]:
+            - cell "ThinkPad X1 Carbon Gen 11Lenovo" [ref=f48e394]
+            - cell "LEN-X1C-G11" [ref=f48e395]
+            - cell "Laptops" [ref=f48e396]
+            - cell "$1,499.00" [ref=f48e399]
+            - cell "25/25" [ref=f48e403]:
+              - generic [ref=f48e410]:
+                - text: "25"
+                - generic [ref=f48e411]: /25
+            - cell "Active" [ref=f48e412]
+            - cell [ref=f48e415]:
+              - generic [ref=f48e416]:
+                - link [ref=f48e417] [cursor=pointer]:
+                  - /url: /product/thinkpad-x1-carbon-gen-11
+                  - button "View" [ref=f48e418]
+                - link [ref=f48e419] [cursor=pointer]:
+                  - /url: /admin/products/p-thinkpad-x1-carbon-gen-11/edit
+                  - button "Edit" [ref=f48e420]
+                - button "Delete ThinkPad X1 Carbon Gen 11" [ref=f48e421]: Delete
+  - alert [ref=f48e425]

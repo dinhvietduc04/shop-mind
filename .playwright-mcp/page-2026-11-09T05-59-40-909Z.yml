@@ -1,0 +1,99 @@
+- generic [active] [ref=f30e1]:
+  - link "Skip to content" [ref=f30e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f30e3]:
+    - generic [ref=f30e4]:
+      - link "ShopMind cat. elec-026" [ref=f30e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f30e6]: ShopMind
+        - generic [ref=f30e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f30e8]'
+      - navigation [ref=f30e14]:
+        - link "Catalog" [ref=f30e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f30e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f30e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f30e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f30e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f30e21]
+      - generic [ref=f30e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f30e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f30e29]: empty
+        - link "Sign in" [ref=f30e30] [cursor=pointer]:
+          - /url: /login?next=%2F
+        - button "Switch to night (dark) theme" [ref=f30e31]
+  - generic [ref=f30e35]:
+    - complementary [ref=f30e36]:
+      - heading "Bins" [level=2] [ref=f30e37]
+      - button "ALL Every bin ··" [ref=f30e39]:
+        - generic [ref=f30e40]: ALL
+        - generic [ref=f30e41]: Every bin
+        - generic [ref=f30e42]: ··
+      - generic [ref=f30e44]:
+        - generic [ref=f30e45]:
+          - heading "Stock dots" [level=3] [ref=f30e46]
+          - list [ref=f30e47]:
+            - listitem [ref=f30e48]: 5+ in bin
+            - listitem [ref=f30e50]: 1–4 low
+            - listitem [ref=f30e52]: 0 empty
+        - generic [ref=f30e54]:
+          - heading "Value ladder" [level=3] [ref=f30e55]
+          - generic [ref=f30e62]:
+            - generic "0 = black" [ref=f30e63]
+            - generic "1 = brown" [ref=f30e64]
+            - generic "2 = red" [ref=f30e65]
+            - generic "3 = orange" [ref=f30e66]
+            - generic "4 = yellow" [ref=f30e67]
+            - generic "5 = green" [ref=f30e68]
+            - generic "6 = blue" [ref=f30e69]
+            - generic "7 = violet" [ref=f30e70]
+            - generic "8 = grey" [ref=f30e71]
+            - generic "9 = white" [ref=f30e72]
+          - paragraph [ref=f30e73]:
+            - text: The stripe beside every price is the resistor
+            - strong [ref=f30e74]: multiplier
+            - text: "band — one colour per order of magnitude: brown ×10, red ×100, orange ×1k. The exact number is always printed beside it; the band is a glance-anchor, not a code to decode."
+        - paragraph [ref=f30e75]:
+          - strong [ref=f30e77]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f30e78]:
+      - generic [ref=f30e79]:
+        - generic [ref=f30e80]:
+          - heading "Bin wall — every binquerying bins…" [level=1] [ref=f30e81]
+          - generic [ref=f30e82]:
+            - generic [ref=f30e83]:
+              - text: Sort
+              - combobox "Sort" [ref=f30e84]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f30e85] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f30e86]
+              - text: In stock only
+        - region "Assistant chat" [ref=f30e93]:
+          - status [ref=f30e94]
+          - generic [ref=f30e95]:
+            - heading "The assistant" [level=2] [ref=f30e96]
+            - generic [ref=f30e99]:
+              - text: new session
+              - button "new" [ref=f30e100]
+          - generic [ref=f30e102]:
+            - paragraph [ref=f30e103]:
+              - text: Ask for something. I search the bins, read live stock, and ask up to three pointed questions before I filter — every price or count I say came from a tool call this turn. I can quote;
+              - strong [ref=f30e104]: paying is yours
+              - text: ", on the bill page."
+            - generic [ref=f30e105]:
+              - button "“a laptop under $1200 for backend dev”" [ref=f30e106]
+              - button "“help me pick headphones”" [ref=f30e107]
+              - button "“what's in my bin?”" [ref=f30e108]
+          - generic [ref=f30e109]:
+            - textbox "Message the assistant" [ref=f30e110]:
+              - /placeholder: what do you need? (try a budget, a spec, a use case)
+            - button "send" [disabled]

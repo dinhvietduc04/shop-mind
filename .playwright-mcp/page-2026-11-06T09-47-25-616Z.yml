@@ -1,0 +1,81 @@
+- generic [active] [ref=f60e1]:
+  - alert [ref=f60e2]
+  - banner [ref=f60e3]:
+    - generic [ref=f60e4]:
+      - link "ShopMind cat. elec-026" [ref=f60e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f60e6]: ShopMind
+        - generic [ref=f60e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f60e8]'
+      - navigation [ref=f60e14]:
+        - link "Catalog" [ref=f60e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f60e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f60e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f60e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f60e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f60e21]
+      - generic [ref=f60e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f60e105] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f60e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f60e30]
+  - main [ref=f60e34]:
+    - navigation "Breadcrumb" [ref=f60e35]:
+      - link "Every bin" [ref=f60e36] [cursor=pointer]:
+        - /url: /
+      - generic [aria-hidden] [ref=f60e37]: /
+      - link "Headphones" [ref=f60e38] [cursor=pointer]:
+        - /url: /category/headphones
+      - generic [aria-hidden] [ref=f60e40]: /
+      - generic [ref=f60e41]: SNY-WH1000XM5
+    - generic [ref=f60e42]:
+      - generic [ref=f60e43]:
+        - figure "pl. SNY-WH1000XM5" [ref=f60e44]:
+          - img "WH-1000XM5 Headphones — product photo" [ref=f60e45]
+        - generic [ref=f60e49]:
+          - heading "Bench notes" [level=2] [ref=f60e50]
+          - paragraph [ref=f60e51]: Noise cancelling headphones.
+          - paragraph [ref=f60e52]: Mock pricing — demo data only. Logged 2026-10-08.
+      - generic [ref=f60e53]:
+        - paragraph [ref=f60e54]: Sony · unit SNY-WH1000XM5
+        - heading "WH-1000XM5 Headphones" [level=1] [ref=f60e55]
+        - generic [ref=f60e56]:
+          - generic [ref=f60e57]:
+            - generic [ref=f60e58]: $349.99
+            - generic [ref=f60e67]: in bin · 30
+          - paragraph [ref=f60e73]: 30 units physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.
+          - generic [ref=f60e74]:
+            - generic [ref=f60e75]:
+              - button "One fewer" [disabled] [ref=f60e76]
+              - generic [ref=f60e78]: "1"
+              - button "One more" [ref=f60e79]
+            - button "Add one to bin" [ref=f60e81]
+            - link "Filed — open the bill →" [ref=f60e106] [cursor=pointer]:
+              - /url: /quote
+          - paragraph [ref=f60e107]: Already in your bin × 1
+        - link "Ask the assistant to vet this" [ref=f60e84] [cursor=pointer]:
+          - /url: /assistant?cat=headphones&q=WH-1000XM5%20Headphones
+          - generic [aria-hidden] [ref=f60e86]: →
+        - heading "Full specification" [level=2] [ref=f60e87]
+        - table [ref=f60e88]:
+          - rowgroup [ref=f60e89]:
+            - row [ref=f60e90]:
+              - rowheader "SKU" [ref=f60e91]
+              - cell "SNY-WH1000XM5" [ref=f60e92]
+            - row [ref=f60e93]:
+              - rowheader "Status" [ref=f60e94]
+              - cell "Active" [ref=f60e95]
+            - row [ref=f60e96]:
+              - rowheader "anc" [ref=f60e97]
+              - cell "yes" [ref=f60e98]
+            - row [ref=f60e99]:
+              - rowheader "battery h" [ref=f60e100]
+              - cell "30" [ref=f60e101]
+            - row [ref=f60e102]:
+              - rowheader "wireless" [ref=f60e103]
+              - cell "yes" [ref=f60e104]

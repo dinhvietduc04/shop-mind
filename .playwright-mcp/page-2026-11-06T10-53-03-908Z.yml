@@ -1,0 +1,77 @@
+- generic [ref=f44e1]:
+  - alert [ref=f44e2]
+  - banner [ref=f44e27]:
+    - generic [ref=f44e28]:
+      - link "ShopMind cat. elec-026" [ref=f44e29] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f44e30]: ShopMind
+        - generic [ref=f44e31]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f44e32]'
+      - navigation [ref=f44e38]:
+        - link "Catalog" [ref=f44e39] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f44e40] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f44e41] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f44e42] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f44e43] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f44e45]
+      - generic [ref=f44e46]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f44e47] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f44e53]: empty
+        - 'link "Account: customer@shopmind.local, role Customer" [ref=f44e54] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f44e55]: DC
+          - generic [ref=f44e56]: Account
+        - button "Switch to night (dark) theme" [ref=f44e57]
+  - main [ref=f44e61]:
+    - heading "The assistant" [level=1] [ref=f44e62]
+    - paragraph [ref=f44e63]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f44e64]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f44e65]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f44e67] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f44e69]:
+      - generic [ref=f44e70]:
+        - heading "The assistant" [level=2] [ref=f44e71]
+        - generic [ref=f44e74]:
+          - text: turn 2/8
+          - button "new" [ref=f44e75]
+      - generic [ref=f44e76]:
+        - paragraph [ref=f44e87]: a laptop under $1200 for backend dev
+        - generic [ref=f44e88]:
+          - paragraph [ref=f44e89]: Nothing in laptops matches category=laptops, price<=1200, ram_gb>=16 together. The budget fits MacBook Air M3 ($1099.00) but it reads 8 ram gb — under the 16 you asked for. The 16-class one, ThinkPad X1 Carbon Gen 11, costs $1499.00 — over budget. Which side do you want to give?
+          - 'generic "Tools run this turn: search_products, search_products" [ref=f44e90]':
+            - generic "category=laptops, price<=1200, ram_gb>=16" [ref=f44e91]:
+              - text: search_products
+              - generic [ref=f44e94]: (category=laptops, price<=1200, ram_gb>=16)
+            - 'generic "relaxed: budget dropped" [ref=f44e95]':
+              - text: search_products
+              - generic [ref=f44e98]: "(relaxed: budget dropped)"
+          - generic [ref=f44e99]:
+            - heading "interview · 2 questions" [level=3] [ref=f44e100]
+            - generic [ref=f44e103]:
+              - text: Raise ceiling to $1499.00?
+              - generic [ref=f44e104]:
+                - slider "Budget ceiling" [ref=f44e105]: "1500"
+                - generic [ref=f44e106]: $1,500.00
+            - generic [ref=f44e107]:
+              - text: Relax ram gb
+              - generic [ref=f44e108]:
+                - button "keep" [ref=f44e109]
+                - button "drop" [ref=f44e110]
+            - generic [ref=f44e111]:
+              - button "send answers" [disabled]
+              - generic [ref=f44e112]: answers join the filter set · nothing is stored beyond this conversation
+      - generic [ref=f44e84]:
+        - textbox "Message the assistant" [active] [ref=f44e85]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

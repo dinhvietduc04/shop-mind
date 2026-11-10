@@ -1,0 +1,22 @@
+- generic [active] [ref=f8e1]:
+  - alert [ref=f8e2]
+  - banner [ref=f8e3]:
+    - generic [ref=f8e4]:
+      - link "ShopMind cat. elec-026" [ref=f8e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f8e6]: ShopMind
+        - generic [ref=f8e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f8e8]'
+      - navigation [ref=f8e14]:
+        - link "Catalog" [ref=f8e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f8e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f8e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f8e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f8e20]
+      - generic [ref=f8e21]:
+        - 'generic "Cart: 0 items, subtotal $0.00 — shipping computed on the bill" [ref=f8e22]': empty
+        - button "Switch to night (dark) theme" [ref=f8e29]

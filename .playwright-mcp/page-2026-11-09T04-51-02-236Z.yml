@@ -1,0 +1,22 @@
+- generic [active] [ref=f8e1]:
+  - main [ref=f8e2]:
+    - generic [ref=f8e3]:
+      - generic [ref=f8e4]:
+        - generic [ref=f8e5]: FakePsp · hosted session
+        - generic [ref=f8e9]: demo provider
+      - generic [ref=f8e10]:
+        - paragraph [ref=f8e13]: merchant · shopmind · order SM-2026-C72DKWVK
+        - heading "$1,499.00 due" [level=1] [ref=f8e14]
+        - paragraph [ref=f8e15]: reservation held until 12:20:39 PM
+        - list [ref=f8e19]:
+          - listitem [ref=f8e20]:
+            - generic [ref=f8e21]: ThinkPad X1 Carbon Gen 11 ×1
+            - generic [ref=f8e22]: $1,499.00
+          - listitem [ref=f8e23]:
+            - generic [ref=f8e24]: Shipping
+            - generic [ref=f8e25]: free
+        - generic [ref=f8e26]:
+          - button "Pay $1,499.00" [ref=f8e27]
+          - button "Abandon quote" [ref=f8e28]
+        - paragraph [ref=f8e32]: "no card form: this mock confirms instantly (paymentfail mode simulates a decline). real stripe checkout collects the card on stripe's page — card data never touches ShopMind (Assist level)."
+  - alert [ref=f8e33]

@@ -1,0 +1,82 @@
+- generic [active] [ref=f63e1]:
+  - alert [ref=f63e2]
+  - banner [ref=f63e3]:
+    - generic [ref=f63e4]:
+      - link "ShopMind cat. elec-026" [ref=f63e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f63e6]: ShopMind
+        - generic [ref=f63e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f63e8]'
+      - navigation [ref=f63e14]:
+        - link "Catalog" [ref=f63e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f63e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f63e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f63e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f63e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f63e21]
+      - generic [ref=f63e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f63e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f63e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f63e30]
+  - generic [ref=f63e34]:
+    - complementary [ref=f63e35]:
+      - heading "Bins" [level=2] [ref=f63e36]
+      - button "ALL Every bin ··" [ref=f63e38]:
+        - generic [ref=f63e39]: ALL
+        - generic [ref=f63e40]: Every bin
+        - generic [ref=f63e41]: ··
+      - generic [ref=f63e43]:
+        - generic [ref=f63e44]:
+          - heading "Stock dots" [level=3] [ref=f63e45]
+          - list [ref=f63e46]:
+            - listitem [ref=f63e47]: 5+ in bin
+            - listitem [ref=f63e49]: 1–4 low
+            - listitem [ref=f63e51]: 0 empty
+        - generic [ref=f63e53]:
+          - heading "Value ladder" [level=3] [ref=f63e54]
+          - generic [ref=f63e61]:
+            - generic "0 = black" [ref=f63e62]
+            - generic "1 = brown" [ref=f63e63]
+            - generic "2 = red" [ref=f63e64]
+            - generic "3 = orange" [ref=f63e65]
+            - generic "4 = yellow" [ref=f63e66]
+            - generic "5 = green" [ref=f63e67]
+            - generic "6 = blue" [ref=f63e68]
+            - generic "7 = violet" [ref=f63e69]
+            - generic "8 = grey" [ref=f63e70]
+            - generic "9 = white" [ref=f63e71]
+          - paragraph [ref=f63e72]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f63e73]:
+          - strong [ref=f63e75]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f63e76]:
+      - generic [ref=f63e77]:
+        - generic [ref=f63e78]:
+          - heading "Bin wall — every binquerying bins…" [level=1] [ref=f63e79]
+          - generic [ref=f63e80]:
+            - generic [ref=f63e81]:
+              - text: Sort
+              - combobox "Sort" [ref=f63e82]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f63e83] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f63e84]
+              - text: In stock only
+        - generic [ref=f63e91]:
+          - heading "The assistant · turn 41" [level=2] [ref=f63e92]
+          - paragraph [ref=f63e95]: "“One unit in bin laptops decodes under your budget band — search set to 1·2·0·0: the MacBook Air M3 at $1,099.00. The ThinkPad X1 Carbon is $1,499.00 — out of band but stronger RAM. Prices and stock came from this turn’s catalog calls, not from my weights.”"
+          - paragraph [ref=f63e101]: "trail: search_products(category=laptops, ram_gb≥8, maxPrice=1200) → get_product → add_to_cart"
+          - generic [ref=f63e102]:
+            - button "Add MacBook Air M3 — $1,099.00" [ref=f63e103]
+            - link "Review bill" [ref=f63e104] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f63e107]: payment is on the bill page · a yellow control is human-only · the assistant cannot press it

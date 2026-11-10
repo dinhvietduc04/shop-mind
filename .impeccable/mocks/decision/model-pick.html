@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Resistor Code — ShopMind first viewport</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;overflow:hidden;background:#f0ece2;color:#1a1a1a;font-family:Verdana,Geneva,sans-serif}
+.top{position:absolute;top:0;left:0;right:0;height:76px;background:#7a4a1e;color:#f0ece2;display:flex;align-items:center;gap:26px;padding:0 28px}
+.brand{font-size:19px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.bands{display:flex;gap:6px}
+.bands i{width:14px;height:26px;border-radius:3px}
+.top .links{margin-left:auto;display:flex;gap:16px;font-size:13px;letter-spacing:.08em}
+.top .cart{background:#e0a800;color:#1a1a1a;font-weight:700;padding:8px 14px;border-radius:6px;font-size:13px}
+.bins{position:absolute;left:0;top:76px;bottom:0;width:268px;background:#e4ddcc;border-right:2px solid #1a1a1a;padding:18px;font-size:12px}
+.bin{border:1.5px solid #1a1a1a;background:#f8f5ec;margin-bottom:10px;padding:9px 10px;display:flex;align-items:center;gap:10px}
+.bin.on{outline:3px solid #d9342b;outline-offset:-1px}
+.bin .sw{width:12px;height:26px;border-radius:2px;flex:none}
+.bin b{font-size:12px;letter-spacing:.06em}.bin span{color:#6b6250;font-size:11px;margin-left:auto}
+.key{margin-top:16px;border-top:2px dashed #1a1a1a;padding-top:12px;line-height:2}
+.key i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:0}
+.ladder{display:flex;height:14px;border:1.5px solid #1a1a1a;margin-top:8px}
+.ladder i{flex:1}
+.grid{position:absolute;left:268px;top:76px;right:0;bottom:0;padding:22px 26px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;grid-auto-rows:250px;overflow:hidden}
+.lbl{background:#fffdf7;border:1.5px solid #1a1a1a;border-radius:8px;padding:14px 16px;position:relative;font-size:12px}
+.lbl .cat{position:absolute;top:0;right:16px;background:#1a1a1a;color:#fffdf7;font-size:10px;letter-spacing:.14em;padding:4px 8px;border-radius:0 0 4px 4px;text-transform:uppercase}
+.lbl h3{font-size:15px;margin-bottom:2px}
+.lbl .m{color:#6b6250;margin-bottom:10px}
+.cb{display:flex;align-items:center;gap:4px;margin:10px 0}
+.cb i{width:13px;height:22px;border-radius:3px}
+.cb .gap{width:8px;height:0}
+.cb b{font-size:17px;font-weight:700;margin-left:10px;font-variant-numeric:tabular-nums}
+.cb .tol{font-size:10px;color:#6b6250}
+.stk{display:flex;gap:4px;align-items:center;margin-top:8px}
+.stk i{width:9px;height:9px;border-radius:50%}
+.add{position:absolute;bottom:14px;right:16px;background:#d9342b;color:#fff;font-weight:700;font-size:11px;letter-spacing:.08em;padding:8px 14px;border-radius:6px;text-transform:uppercase}
+.assist{position:absolute;left:294px;bottom:22px;width:430px;background:#1a1a1a;color:#f0ece2;border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.6}
+.assist h6{color:#e0a800;font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px}
+.assist .chips{display:flex;gap:5px;margin:8px 0 4px}
+.assist .chips i{width:10px;height:18px;border-radius:2px}
+.assist .b{display:inline-block;border:1.5px solid #f0ece2;padding:6px 12px;margin:8px 6px 0 0;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.assist .b.act{background:#e0a800;border-color:#e0a800;color:#1a1a1a}
+</style></head><body>
+<div class="top"><span class="brand">ShopMind</span><span class="bands"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i style="background:#1a1a1a"></i><i style="background:#c8a24a"></i></span><span style="font-size:11px;letter-spacing:.1em">BAND CODE OF THE DAY: LAPTOPS · BUDGET 12 × 10² USD · TOL ±0</span><div class="links"><span>Catalog</span><span>Cart · 2</span><span>Orders</span><span style="color:#e0a800">✦ Assistant</span></div><span class="cart">$2,448.00</span></div>
+<div class="bins">
+  <div class="bin on"><i class="sw" style="background:#d9342b"></i><b>LAPTOPS</b><span>41 · bin A1</span></div>
+  <div class="bin"><i class="sw" style="background:#e8b900"></i><b>SMARTPHONES</b><span>33 · bin B2</span></div>
+  <div class="bin"><i class="sw" style="background:#2f7d3b"></i><b>AUDIO</b><span>27 · bin C3</span></div>
+  <div class="bin"><i class="sw" style="background:#2b5aa0"></i><b>DISPLAYS</b><span>18 · bin C5</span></div>
+  <div class="bin"><i class="sw" style="background:#7a4a1e"></i><b>COMPONENTS</b><span>52 · bin D4</span></div>
+  <div class="key"><b>STOCK BANDS</b><div><i style="background:#2f7d3b"></i>≥ 5 in bin</div><div><i style="background:#e0a800"></i>1–4 low</div><div><i style="background:#d9342b"></i>0 empty</div></div>
+  <div class="ladder"><i style="background:#1a1a1a"></i><i style="background:#7a4a1e"></i><i style="background:#d9342b"></i><i style="background:#e0722f"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i style="background:#2b5aa0"></i><i style="background:#6b3fa0"></i><i style="background:#f0ece2"></i><i style="background:#c8a24a"></i></div>
+</div>
+<div class="grid">
+  <div class="lbl"><span class="cat">LAP · A1-02</span><h3>Zenbook 14 OLED</h3><div class="m">16 GB · 3K OLED · Ultra 7</div>
+    <div class="cb"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i class="gap"></i><i style="background:#e0a800"></i><b>$1,099</b><span class="tol">±0</span></div>
+    <div class="stk"><i style="background:#e0a800"></i><i style="background:#e0a800"></i><span>low · 2 in bin</span></div><span class="add">Add</span></div>
+  <div class="lbl"><span class="cat">LAP · A1-01</span><h3>ThinkPad X1 Carbon</h3><div class="m">32 GB · 2.8K · Ultra 7</div>
+    <div class="cb"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#d9342b"></i><i class="gap"></i><i style="background:#e0a800"></i><b>$1,349</b><span class="tol">±0</span></div>
+    <div class="stk"><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><span>7 in bin</span></div><span class="add">Add</span></div>
+  <div class="lbl"><span class="cat">LAP · A1-06</span><h3>Framework 16</h3><div class="m">32 GB · Ryzen AI 9 · modular</div>
+    <div class="cb"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i class="gap"></i><i style="background:#c8a24a"></i><b>$1,467</b><span class="tol">±0</span></div>
+    <div class="stk"><i style="background:#e0a800"></i><span>3 in bin</span></div><span class="add">Add</span></div>
+  <div class="lbl"><span class="cat">AUD · C3-12</span><h3>Sony A7 TS5</h3><div class="m">ANC · 40 h · LDAC</div>
+    <div class="cb"><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><i class="gap"></i><i style="background:#1a1a1a"></i><b>$329</b><span class="tol">±0</span></div>
+    <div class="stk"><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><span>12 in bin</span></div><span class="add">Add</span></div>
+  <div class="lbl"><span class="cat">LAP · A1-03</span><h3>MacBook Pro 14</h3><div class="m">24 GB · M4 Pro · XDR</div>
+    <div class="cb"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#d9342b"></i><i class="gap"></i><i style="background:#c8a24a"></i><i style="background:#c8a24a"></i><b>$1,999</b></div>
+    <div class="stk"><i style="background:#2f7d3b"></i><i style="background:#2f7d3b"></i><span>4 in bin</span></div><span class="add">Add</span></div>
+  <div class="lbl"><span class="cat">PON · B2-07</span><h3>Pixel 9 Pro</h3><div class="m">16 GB · Tensor G4 · LTPO</div>
+    <div class="cb"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i class="gap"></i><i style="background:#1a1a1a"></i><i style="background:#1a1a1a"></i><b>$999</b></div>
+    <div class="stk"><i style="background:#d9342b"></i><span>bin empty — restock ETA unknown</span></div><span class="add" style="background:#6b6250">Notify</span></div>
+</div>
+<div class="assist"><h6>✦ Assistant · code read this turn</h6>
+“A1-02 and B2-07 both decode under 12 × 10² USD; only A1-02 has stock in the bin. Band filter LAP·16GB·≤$1,200.”
+<div class="chips"><i style="background:#d9342b"></i><i style="background:#e0a800"></i><i style="background:#2f7d3b"></i><i style="background:#e0a800"></i></div>
+<span class="b act">Compare A1-01 / A1-02</span><span class="b act">Add A1-02</span><span class="b">More questions</span></div>
+</body></html>

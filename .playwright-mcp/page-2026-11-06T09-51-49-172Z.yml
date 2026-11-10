@@ -1,0 +1,58 @@
+- generic [active] [ref=f74e1]:
+  - alert [ref=f74e2]
+  - banner [ref=f74e3]:
+    - generic [ref=f74e4]:
+      - link "ShopMind cat. elec-026" [ref=f74e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f74e6]: ShopMind
+        - generic [ref=f74e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f74e8]'
+      - navigation [ref=f74e14]:
+        - link "Catalog" [ref=f74e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f74e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f74e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f74e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f74e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f74e21]
+      - generic [ref=f74e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f74e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f74e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f74e30]
+  - main [ref=f74e34]:
+    - heading "Order ledger" [level=1] [ref=f74e35]
+    - paragraph [ref=f74e36]: every quote you created — paid, expired or abandoned — lands here
+    - list [ref=f74e37]:
+      - listitem [ref=f74e38]:
+        - link "SM-2026-6Z1IGSUE Pending 11/6/2026, 4:51:47 PM · 1 line $364.99" [ref=f74e39] [cursor=pointer]:
+          - /url: /orders/o-zqlggn9k
+          - generic [ref=f74e44]: SM-2026-6Z1IGSUE
+          - generic [ref=f74e45]: Pending
+          - generic [ref=f74e46]: 11/6/2026, 4:51:47 PM · 1 line
+          - generic [ref=f74e47]: $364.99
+      - listitem [ref=f74e48]:
+        - link "SM-2026-IG43LJFM Cancelled 11/6/2026, 4:51:42 PM · 1 line $364.99" [ref=f74e49] [cursor=pointer]:
+          - /url: /orders/o-wwyfmjwv
+          - generic [ref=f74e54]: SM-2026-IG43LJFM
+          - generic [ref=f74e55]: Cancelled
+          - generic [ref=f74e56]: 11/6/2026, 4:51:42 PM · 1 line
+          - generic [ref=f74e57]: $364.99
+      - listitem [ref=f74e58]:
+        - link "SM-2026-UMLWLGYW PaymentFailed 11/6/2026, 4:51:35 PM · 1 line $364.99" [ref=f74e59] [cursor=pointer]:
+          - /url: /orders/o-go4drrze
+          - generic [ref=f74e64]: SM-2026-UMLWLGYW
+          - generic [ref=f74e65]: PaymentFailed
+          - generic [ref=f74e66]: 11/6/2026, 4:51:35 PM · 1 line
+          - generic [ref=f74e67]: $364.99
+      - listitem [ref=f74e68]:
+        - link "SM-2026-VWWM5YTN Pending 11/6/2026, 4:51:12 PM · 1 line $164.97" [ref=f74e69] [cursor=pointer]:
+          - /url: /orders/o-thr7maa4
+          - generic [ref=f74e74]: SM-2026-VWWM5YTN
+          - generic [ref=f74e75]: Pending
+          - generic [ref=f74e76]: 11/6/2026, 4:51:12 PM · 1 line
+          - generic [ref=f74e77]: $164.97

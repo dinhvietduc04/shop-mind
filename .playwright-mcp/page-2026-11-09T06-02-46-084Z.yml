@@ -1,0 +1,133 @@
+- generic [active] [ref=f40e1]:
+  - link "Skip to content" [ref=f40e2] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f40e3]:
+    - generic [ref=f40e4]:
+      - link "ShopMind cat. elec-026" [ref=f40e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f40e6]: ShopMind
+        - generic [ref=f40e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f40e8]'
+      - navigation [ref=f40e14]:
+        - link "Catalog" [ref=f40e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f40e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f40e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f40e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f40e36] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f40e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f40e21]
+      - generic [ref=f40e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f40e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f40e29]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f40e37] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f40e38]: SA
+          - generic [ref=f40e39]: Admin
+        - button "Switch to night (dark) theme" [ref=f40e31]
+  - generic [ref=f40e40]:
+    - generic [ref=f40e41]:
+      - generic [ref=f40e43]: Admin console
+      - navigation "Admin sections" [ref=f40e44]:
+        - link "Dashboard" [ref=f40e45] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f40e46] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f40e47] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f40e48] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f40e49] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f40e50] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f40e51]:
+      - generic [ref=f40e52]:
+        - generic [ref=f40e53]:
+          - heading "Kill switch" [level=2] [ref=f40e55]
+          - generic [ref=f40e56]:
+            - generic [ref=f40e57]:
+              - switch "Ai:Enabled" [checked] [ref=f40e58]
+              - generic [ref=f40e60]:
+                - generic [ref=f40e61]: Ai:EnabledON
+                - generic [ref=f40e62]: Assistant is live — chat turns run against the same mock tools the plan specs.
+            - generic [ref=f40e63]:
+              - paragraph [ref=f40e64]: per-tool · §B3 surface
+              - generic [ref=f40e65]:
+                - switch "search_products" [checked] [ref=f40e66]
+                - generic [ref=f40e68]:
+                  - generic [ref=f40e69]: search_productsON
+                  - generic [ref=f40e70]: the bins — off means no recommendations at all
+              - generic [ref=f40e71]:
+                - switch "get_product" [checked] [ref=f40e72]
+                - generic [ref=f40e74]:
+                  - generic [ref=f40e75]: get_productON
+                  - generic [ref=f40e76]: spec-sheet read behind the top pick
+              - generic [ref=f40e77]:
+                - switch "get_product_facets" [checked] [ref=f40e78]
+                - generic [ref=f40e80]:
+                  - generic [ref=f40e81]: get_product_facetsON
+                  - generic [ref=f40e82]: attribute questions in the interview
+              - generic [ref=f40e83]:
+                - switch "compare_products" [checked] [ref=f40e84]
+                - generic [ref=f40e86]:
+                  - generic [ref=f40e87]: compare_productsON
+                  - generic [ref=f40e88]: the side-by-side table
+              - generic [ref=f40e89]:
+                - switch "get_cart" [checked] [ref=f40e90]
+                - generic [ref=f40e92]:
+                  - generic [ref=f40e93]: get_cartON
+                  - generic [ref=f40e94]: reading the customer's bin
+              - generic [ref=f40e95]:
+                - switch "get_orders" [disabled] [ref=f40e96]
+                - generic [ref=f40e98]:
+                  - generic [ref=f40e99]: get_ordersOFF
+                  - generic [ref=f40e100]: planned (§A2) — planned (§a2) — not wired into the fake engine yet
+              - generic [ref=f40e101]:
+                - switch "get_order" [disabled] [ref=f40e102]
+                - generic [ref=f40e104]:
+                  - generic [ref=f40e105]: get_orderOFF
+                  - generic [ref=f40e106]: planned (§A2) — planned (§a2) — not wired into the fake engine yet
+              - generic [ref=f40e107]:
+                - switch "get_order_status" [disabled] [ref=f40e108]
+                - generic [ref=f40e110]:
+                  - generic [ref=f40e111]: get_order_statusOFF
+                  - generic [ref=f40e112]: planned (§A2) — planned (§a2) — not wired into the fake engine yet
+              - generic [ref=f40e113]:
+                - switch "add_to_cart" [checked] [ref=f40e114]
+                - generic [ref=f40e116]:
+                  - generic [ref=f40e117]: add_to_cartON
+                  - generic [ref=f40e118]: writing bin lines (still never pays)
+              - generic [ref=f40e119]:
+                - switch "update_cart" [disabled] [ref=f40e120]
+                - generic [ref=f40e122]:
+                  - generic [ref=f40e123]: update_cartOFF
+                  - generic [ref=f40e124]: "planned (§A2) — planned (§a2): line quantities — not wired into the fake engine yet"
+              - generic [ref=f40e125]:
+                - switch "remove_from_cart" [disabled] [ref=f40e126]
+                - generic [ref=f40e128]:
+                  - generic [ref=f40e129]: remove_from_cartOFF
+                  - generic [ref=f40e130]: "planned (§A2) — planned (§a2): leaving a line — not wired into the fake engine yet"
+              - generic [ref=f40e131]:
+                - switch "create_quote" [checked] [ref=f40e132]
+                - generic [ref=f40e134]:
+                  - generic [ref=f40e135]: create_quoteON
+                  - generic [ref=f40e136]: opening reservations — the Assist boundary
+            - generic [ref=f40e137]:
+              - paragraph [ref=f40e138]: never in the manifest
+              - paragraph [ref=f40e139]: "pay · refund · cancel_order — capability absent by construction (ADR-0006): no switch to flip, because nothing can register them. Money moves only on the hosted page, by a human."
+        - generic [ref=f40e140]:
+          - heading "Conversations · 0" [level=2] [ref=f40e142]
+          - paragraph [ref=f40e144]: No tool has been called yet. Open the assistant, ask it something — every call lands here within seconds, because the engine and this page read the same audit log.
+      - generic [ref=f40e145]:
+        - heading "Tool-call ledger" [level=2] [ref=f40e147]
+        - generic [ref=f40e148]:
+          - paragraph [ref=f40e149]: Empty log — the transcript of nothing.
+          - paragraph [ref=f40e150]: Every price and stock number the assistant quotes traces to one of these rows — that is the §A7 transparency rule the chat UI leans on (each tool chip maps to a call against the same database this table reads). The engine here is the deterministic FakeAiProvider; the real provider fills the same ledger shape.
+  - alert [ref=f40e151]

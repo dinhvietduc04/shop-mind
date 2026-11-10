@@ -1,0 +1,26 @@
+- generic [active] [ref=f80e1]:
+  - alert [ref=f80e2]: $64.99 DUE
+  - main [ref=f80e124]:
+    - generic [ref=f80e125]:
+      - generic [ref=f80e126]:
+        - generic [ref=f80e127]: FakePsp · hosted session
+        - generic [ref=f80e131]: demo provider
+      - generic [ref=f80e132]:
+        - paragraph [ref=f80e133]: merchant · shopmind · order SM-2026-UGECP6SL
+        - heading "$64.99 due" [level=1] [ref=f80e134]
+        - list [ref=f80e139]:
+          - listitem [ref=f80e140]:
+            - generic [ref=f80e141]: USB-C Docking Station ×1
+            - generic [ref=f80e142]: $49.99
+          - listitem [ref=f80e143]:
+            - generic [ref=f80e144]: Shipping
+            - generic [ref=f80e145]: $15.00
+        - generic [ref=f80e156]:
+          - strong [ref=f80e157]: Payment succeeded.
+          - text: Stock committed, cart cleared, order SM-2026-UGECP6SL is
+          - emphasis [ref=f80e158]: Paid
+          - text: . The webhook consumer in the real build makes this transition once (idempotent).
+          - generic [ref=f80e159]: txn MOCK-TXN-c7kq5wwn-4qwj6b1k
+          - link "Return to shop →" [ref=f80e160] [cursor=pointer]:
+            - /url: /checkout/success?session=trz6pfjf-wiw7ajwsi13c5py3-s28p3bmn
+        - paragraph [ref=f80e152]: "no card form: this mock confirms instantly (paymentfail mode simulates a decline). real stripe checkout collects the card on stripe's page — card data never touches ShopMind (Assist level)."

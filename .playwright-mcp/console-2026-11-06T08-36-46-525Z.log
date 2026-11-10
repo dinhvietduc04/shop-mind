@@ -1,0 +1,215 @@
+[     142ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[     484ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_cjs_react-dom-client_development_1nq9a-7w2rk6e.js:16702
+[     604ms] Error: ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\dvduc\shop-mind\fe\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1566:37)
+    at DevBundlerService.getCompilationError (file://C:\Users\dvduc\shop-mind\fe\node_modules\next\dist\server\lib\dev-bundler-service.js:66:55)
+    at DevServer.getCompilationError (file://C:\Users\dvduc\shop-mind\fe\node_modules\next\dist\server\dev\next-dev-server.js:695:42)
+    at DevServer.findPageComponents (file://C:\Users\dvduc\shop-mind\fe\node_modules\next\dist\server\dev\next-dev-server.js:665:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\dvduc\shop-mind\fe\node_modules\next\dist\server\base-server.js:2068:26)
+[     595ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:744
+[     615ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[     615ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[     616ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[     735ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[     833ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[  142364ms] [ERROR] ./src/mocks/browser.ts:1:1
+Error: Module not found: Can't resolve 'msw/browser'
+> 1 | import { setupWorker } from "msw/browser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { handlers } from "./handlers";
+  3 |
+  4 | /**
+
+Import traces:
+  Client Component Browser:
+    ./src/mocks/browser.ts [Client Component Browser]
+    ./src/components/shell.tsx [Client Component Browser]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/mocks/browser.ts [Client Component SSR]
+    ./src/components/shell.tsx [Client Component SSR]
+    ./src/components/shell.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1801
+[  159853ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:744
+[  159854ms] [LOG] [Fast Refresh] done in 58ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:744
+[  159943ms] [LOG] [Fast Refresh] done in 58ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:744
+[  160154ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:744
+[  160459ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:760
+[  160501ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:760
+[  160707ms] Invariant Violation: Failed to replace a global value at "WebSocket": already replaced.
+    at WebSocketInterceptor.setup (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2980:243)
+    at WebSocketInterceptor.apply (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:1203:18)
+    at BatchInterceptor.setup (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:2054:25)
+    at BatchInterceptor.apply (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:1203:18)
+    at InterceptorSource.enable (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:6682:27)
+    at http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:6268:31
+    at Array.map (<anonymous>)
+    at Object.enable (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:6247:64)
+    at Object.start (http://localhost:3000/_next/static/chunks/node_modules_1a714ljsljjw7._.js:7810:27)
+    at async startMockApi (http://localhost:3000/_next/static/chunks/src_0yg63innswaqa._.js:139:5)
+    at async MockBootstrapper.useEffect (http://localhost:3000/_next/static/chunks/src_0yg63innswaqa._.js:91:21)
+[  161732ms] [ERROR] Error: Route "/": Could not validate `instant` because the target segment was prevented from rendering, likely due to the following error.
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2029:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1568:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1688:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2634:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2637:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2716:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1141:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1039:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2585:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2507:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2614:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2801:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1036
+[  161733ms] [ERROR] Error: An error occurred while attempting to validate instant UI. This error may be preventing the validation from completing.
+    at Providers (about://React/Server/file:///C:/Users/dvduc/shop-mind/fe/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__1sichilo2zzqe._.js?id=%255Bproject%255D/src/components/shell.tsx+%255Bapp-ssr%255D+(ecmascript)?7:69:285)
+    at RootLayout (about://React/Server/file:///C:/Users/dvduc/shop-mind/fe/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__0xog2483vziwt._.js?id=%255Bproject%255D/src/app/layout.tsx+%255Bapp-rsc%255D+(ecmascript)?8:33:274)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2029:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1568:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1688:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2634:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2637:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2716:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1141:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1039:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2585:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2507:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2614:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2801:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1036

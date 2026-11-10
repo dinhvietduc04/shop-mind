@@ -1,0 +1,41 @@
+- generic [active] [ref=f81e1]:
+  - alert [ref=f81e2]
+  - banner [ref=f81e3]:
+    - generic [ref=f81e4]:
+      - link "ShopMind cat. elec-026" [ref=f81e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f81e6]: ShopMind
+        - generic [ref=f81e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f81e8]'
+      - navigation [ref=f81e14]:
+        - link "Catalog" [ref=f81e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f81e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f81e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f81e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f81e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f81e21]
+      - generic [ref=f81e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f81e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f81e29]: empty
+        - button "Switch to night (dark) theme" [ref=f81e30]
+  - main [ref=f81e34]:
+    - heading "Paid — thank you" [level=1] [ref=f81e35]
+    - article [ref=f81e36]:
+      - generic [ref=f81e38]:
+        - paragraph [ref=f81e39]:
+          - text: Order
+          - strong [ref=f81e40]: SM-2026-UGECP6SL
+          - text: settled at the hosted page. Stock committed, bin cleared — the ledger has the full trail.
+        - generic [ref=f81e41]:
+          - link [ref=f81e42] [cursor=pointer]:
+            - /url: /orders/o-trz6pfjf
+            - button "Order ledger →" [ref=f81e43]
+          - link [ref=f81e44] [cursor=pointer]:
+            - /url: /
+            - button "New shopping session" [ref=f81e45]

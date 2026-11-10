@@ -1,0 +1,2 @@
+[    2188ms] TypeError: res is not a function
+    at eval (eval at <anonymous> (eval at evaluate (:370:30)), <anonymous>:1:882)

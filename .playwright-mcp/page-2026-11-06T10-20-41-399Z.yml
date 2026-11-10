@@ -1,0 +1,92 @@
+- generic [active] [ref=f106e1]:
+  - alert [ref=f106e2]
+  - banner [ref=f106e3]:
+    - generic [ref=f106e4]:
+      - link "ShopMind cat. elec-026" [ref=f106e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f106e6]: ShopMind
+        - generic [ref=f106e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f106e8]'
+      - navigation [ref=f106e14]:
+        - link "Catalog" [ref=f106e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f106e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f106e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f106e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f106e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f106e21]
+      - generic [ref=f106e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f106e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f106e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f106e30]
+  - generic [ref=f106e34]:
+    - complementary [ref=f106e35]:
+      - heading "Bins" [level=2] [ref=f106e36]
+      - button "ALL Every bin ··" [ref=f106e38]:
+        - generic [ref=f106e39]: ALL
+        - generic [ref=f106e40]: Every bin
+        - generic [ref=f106e41]: ··
+      - generic [ref=f106e43]:
+        - generic [ref=f106e44]:
+          - heading "Stock dots" [level=3] [ref=f106e45]
+          - list [ref=f106e46]:
+            - listitem [ref=f106e47]: 5+ in bin
+            - listitem [ref=f106e49]: 1–4 low
+            - listitem [ref=f106e51]: 0 empty
+        - generic [ref=f106e53]:
+          - heading "Value ladder" [level=3] [ref=f106e54]
+          - generic [ref=f106e61]:
+            - generic "0 = black" [ref=f106e62]
+            - generic "1 = brown" [ref=f106e63]
+            - generic "2 = red" [ref=f106e64]
+            - generic "3 = orange" [ref=f106e65]
+            - generic "4 = yellow" [ref=f106e66]
+            - generic "5 = green" [ref=f106e67]
+            - generic "6 = blue" [ref=f106e68]
+            - generic "7 = violet" [ref=f106e69]
+            - generic "8 = grey" [ref=f106e70]
+            - generic "9 = white" [ref=f106e71]
+          - paragraph [ref=f106e72]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f106e73]:
+          - strong [ref=f106e75]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f106e76]:
+      - generic [ref=f106e77]:
+        - generic [ref=f106e78]:
+          - heading "Bin wall — every binquerying bins…" [level=1] [ref=f106e79]
+          - generic [ref=f106e80]:
+            - generic [ref=f106e81]:
+              - text: Sort
+              - combobox "Sort" [ref=f106e82]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f106e83] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f106e84]
+              - text: In stock only
+        - region "Assistant chat" [ref=f106e91]:
+          - generic [ref=f106e92]:
+            - heading "The assistant" [level=2] [ref=f106e93]
+            - generic [ref=f106e96]:
+              - text: turn 1/8
+              - button "new" [ref=f106e97]
+          - generic [ref=f106e99]:
+            - paragraph [ref=f106e100]:
+              - text: Ask for something. I search the bins, read live stock, and ask up to three pointed questions before I filter — every price or count I say came from a tool call this turn. I can quote;
+              - strong [ref=f106e101]: paying is yours
+              - text: ", on the bill page."
+            - generic [ref=f106e102]:
+              - button "“a laptop under $1200 for backend dev”" [ref=f106e103]
+              - button "“help me pick headphones”" [ref=f106e104]
+              - button "“what's in my bin?”" [ref=f106e105]
+          - generic [ref=f106e106]:
+            - textbox "Message the assistant" [ref=f106e107]:
+              - /placeholder: what do you need? (try a budget, a spec, a use case)
+            - button "send" [disabled]

@@ -1,0 +1,134 @@
+- generic [ref=f70e1]:
+  - alert [ref=f70e2]
+  - banner [ref=f70e3]:
+    - generic [ref=f70e4]:
+      - link "ShopMind cat. elec-026" [ref=f70e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f70e6]: ShopMind
+        - generic [ref=f70e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f70e8]'
+      - navigation [ref=f70e14]:
+        - link "Catalog" [ref=f70e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f70e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f70e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f70e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f70e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [active] [ref=f70e21]: XM5
+      - generic [ref=f70e22]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f70e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f70e29]: empty
+        - button "Switch to night (dark) theme" [ref=f70e30]
+  - generic [ref=f70e34]:
+    - complementary [ref=f70e35]:
+      - heading "Bins" [level=2] [ref=f70e36]
+      - generic [ref=f70e37]:
+        - button "ALL Every bin 10" [ref=f70e108]:
+          - generic [ref=f70e39]: ALL
+          - generic [ref=f70e40]: Every bin
+          - generic [ref=f70e41]: "10"
+        - button "Laptops LEN·2" [ref=f70e109]:
+          - generic [ref=f70e111]: Laptops
+          - generic [ref=f70e112]: LEN·2
+        - button "Smartphones SAM·2" [ref=f70e113]:
+          - generic [ref=f70e115]: Smartphones
+          - generic [ref=f70e116]: SAM·2
+        - button "Monitors DEL·1" [ref=f70e117]:
+          - generic [ref=f70e119]: Monitors
+          - generic [ref=f70e120]: DEL·1
+        - button "Keyboards LOG·1" [ref=f70e121]:
+          - generic [ref=f70e123]: Keyboards
+          - generic [ref=f70e124]: LOG·1
+        - button "Mice LOG·1" [ref=f70e125]:
+          - generic [ref=f70e127]: Mice
+          - generic [ref=f70e128]: LOG·1
+        - button "Headphones SNY·1" [ref=f70e129]:
+          - generic [ref=f70e131]: Headphones
+          - generic [ref=f70e132]: SNY·1
+        - button "Components NV-·1" [ref=f70e133]:
+          - generic [ref=f70e135]: Components
+          - generic [ref=f70e136]: NV-·1
+        - button "Accessories ACC·1" [ref=f70e137]:
+          - generic [ref=f70e139]: Accessories
+          - generic [ref=f70e140]: ACC·1
+      - generic [ref=f70e43]:
+        - generic [ref=f70e44]:
+          - heading "Stock dots" [level=3] [ref=f70e45]
+          - list [ref=f70e46]:
+            - listitem [ref=f70e47]: 5+ in bin
+            - listitem [ref=f70e49]: 1–4 low
+            - listitem [ref=f70e51]: 0 empty
+        - generic [ref=f70e53]:
+          - heading "Value ladder" [level=3] [ref=f70e54]
+          - generic [ref=f70e61]:
+            - generic "0 = black" [ref=f70e62]
+            - generic "1 = brown" [ref=f70e63]
+            - generic "2 = red" [ref=f70e64]
+            - generic "3 = orange" [ref=f70e65]
+            - generic "4 = yellow" [ref=f70e66]
+            - generic "5 = green" [ref=f70e67]
+            - generic "6 = blue" [ref=f70e68]
+            - generic "7 = violet" [ref=f70e69]
+            - generic "8 = grey" [ref=f70e70]
+            - generic "9 = white" [ref=f70e71]
+          - paragraph [ref=f70e72]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f70e73]:
+          - strong [ref=f70e75]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f70e76]:
+      - generic [ref=f70e77]:
+        - generic [ref=f70e78]:
+          - heading "Bin wall — every bin1 units" [level=1] [ref=f70e141]
+          - generic [ref=f70e80]:
+            - generic [ref=f70e81]:
+              - text: Sort
+              - combobox "Sort" [ref=f70e82]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f70e83] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f70e84]
+              - text: In stock only
+            - button "Clear filters" [ref=f70e142]
+          - article [ref=f70e147]:
+            - generic [aria-hidden] [ref=f70e148]: HEA · SNY-WH1000XM5
+            - figure "pl. SNY-WH1000XM5" [ref=f70e149]:
+              - img "WH-1000XM5 Headphones — product photo" [ref=f70e150]
+            - heading [level=3] [ref=f70e154]:
+              - link "WH-1000XM5 Headphones" [ref=f70e155] [cursor=pointer]:
+                - /url: /product/wh-1000xm5
+            - paragraph [ref=f70e156]: Sony · wh 1000xm5
+            - table [ref=f70e157]:
+              - rowgroup [ref=f70e158]:
+                - row [ref=f70e159]:
+                  - rowheader "anc" [ref=f70e160]
+                  - cell "true" [ref=f70e161]
+                - row [ref=f70e162]:
+                  - rowheader "battery h" [ref=f70e163]
+                  - cell "30" [ref=f70e164]
+                - row [ref=f70e165]:
+                  - rowheader "wireless" [ref=f70e166]
+                  - cell "true" [ref=f70e167]
+            - generic [ref=f70e168]:
+              - generic [ref=f70e169]: $349.99
+              - generic [ref=f70e178]: in bin · 30
+            - generic [ref=f70e184]:
+              - button "Add to bin" [ref=f70e185]
+              - link "Spec sheet →" [ref=f70e188] [cursor=pointer]:
+                - /url: /product/wh-1000xm5
+        - generic [ref=f70e91]:
+          - heading "The assistant · turn 41" [level=2] [ref=f70e92]
+          - paragraph [ref=f70e95]: "“One unit in bin laptops decodes under your budget band — search set to 1·2·0·0: the MacBook Air M3 at $1,099.00. The ThinkPad X1 Carbon is $1,499.00 — out of band but stronger RAM. Prices and stock came from this turn’s catalog calls, not from my weights.”"
+          - paragraph [ref=f70e101]: "trail: search_products(category=laptops, ram_gb≥8, maxPrice=1200) → get_product → add_to_cart"
+          - generic [ref=f70e102]:
+            - button "Add MacBook Air M3 — $1,099.00" [ref=f70e103]
+            - link "Review bill" [ref=f70e104] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f70e107]: payment is on the bill page · a yellow control is human-only · the assistant cannot press it

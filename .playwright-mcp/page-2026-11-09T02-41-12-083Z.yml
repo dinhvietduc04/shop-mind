@@ -1,0 +1,84 @@
+- generic [active] [ref=f17e1]:
+  - alert [ref=f17e2]
+  - banner [ref=f17e3]:
+    - generic [ref=f17e4]:
+      - link "ShopMind cat. elec-026" [ref=f17e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f17e6]: ShopMind
+        - generic [ref=f17e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f17e8]'
+      - searchbox "Search the catalog" [ref=f17e15]
+      - generic [ref=f17e16]:
+        - 'link "Cart: 0 items, subtotal $0.00 — open the bill" [ref=f17e17] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f17e23]: empty
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f17e24] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f17e25]: SA
+          - generic [ref=f17e26]: Admin
+        - button "Switch to night (dark) theme" [ref=f17e27]
+    - navigation "Primary" [ref=f17e30]:
+      - link "Catalog" [ref=f17e31] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f17e32] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f17e33] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f17e34] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f17e35] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f17e36] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f17e38]:
+    - generic [ref=f17e39]:
+      - generic [ref=f17e41]: Admin console
+      - navigation "Admin sections" [ref=f17e42]:
+        - link "Dashboard" [ref=f17e43] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f17e44] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f17e45] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f17e46] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f17e47] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f17e48] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f17e50]:
+      - heading "Order ledger · 1" [level=2] [ref=f17e52]
+      - generic [ref=f17e53]:
+        - tablist "Filter by status" [ref=f17e54]:
+          - tab "All" [selected] [ref=f17e55]
+          - tab "Pending" [ref=f17e56]
+          - tab "Paid" [ref=f17e57]
+          - tab "Processing" [ref=f17e58]
+          - tab "Shipped" [ref=f17e59]
+          - tab "Delivered" [ref=f17e60]
+          - tab "Cancelled" [ref=f17e61]
+          - tab "PaymentFailed" [ref=f17e62]
+        - table [ref=f17e64]:
+          - rowgroup [ref=f17e65]:
+            - row [ref=f17e66]:
+              - columnheader "Order" [ref=f17e67]
+              - columnheader "Filed" [ref=f17e68]
+              - columnheader "Ship to" [ref=f17e69]
+              - columnheader "Lines" [ref=f17e70]
+              - columnheader "Total" [ref=f17e71]
+              - columnheader "Status" [ref=f17e72]
+              - columnheader "Open" [ref=f17e73]
+          - rowgroup [ref=f17e74]:
+            - row [ref=f17e75]:
+              - cell "SM-2026-MD9TZRDU" [ref=f17e76]
+              - cell "11/9/2026, 9:40:20 AM" [ref=f17e77]
+              - cell "Demo Customer 123 Catalog Lane, Vienna" [ref=f17e78]:
+                - text: Demo Customer
+                - generic [ref=f17e79]: 123 Catalog Lane, Vienna
+              - cell "1" [ref=f17e80]
+              - cell "$64.99" [ref=f17e81]
+              - cell "Paid" [ref=f17e82]
+              - cell [ref=f17e84]:
+                - link [ref=f17e85] [cursor=pointer]:
+                  - /url: /admin/orders/o-1sclo1nd
+                  - button "Ledger card →" [ref=f17e86]

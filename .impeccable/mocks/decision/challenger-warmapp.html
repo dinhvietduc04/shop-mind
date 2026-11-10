@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Warm Consumer App — ShopMind first viewport</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;overflow:hidden;background:#faf6f0;color:#3a3a37;font-family:'Trebuchet MS',Verdana,sans-serif}
+.top{position:absolute;top:0;left:0;right:0;height:78px;display:flex;align-items:center;padding:0 32px;gap:22px}
+.logo{font-size:20px;font-weight:700;color:#e85d3a}
+.pill{background:#fff;border-radius:24px;padding:12px 20px;font-size:14px;color:#9a968d;box-shadow:0 1px 3px rgba(58,58,55,.08);flex:0 0 420px}
+.acts{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:14px}
+.dot{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(58,58,55,.1)}
+.dot.on{background:#e85d3a;color:#fff;font-weight:700}
+.wrap{position:absolute;top:90px;left:32px;right:32px;bottom:96px;display:flex;gap:22px}
+.filters{width:250px;background:#fff;border-radius:22px;padding:22px;box-shadow:0 1px 4px rgba(58,58,55,.07);font-size:14px}
+.filters h4{font-size:15px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{background:#f6efe6;border-radius:16px;padding:7px 14px}
+.chip.on{background:#e85d3a;color:#fff;font-weight:600}
+.range{height:6px;border-radius:3px;background:#f0e6d8;position:relative;margin:14px 2px 22px}
+.range b{position:absolute;left:18%;right:38%;top:0;bottom:0;background:#e85d3a;border-radius:3px}
+.range i{position:absolute;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #e85d3a}
+.grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;grid-auto-rows:268px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 2px 6px rgba(58,58,55,.08);position:relative;font-size:14px}
+.img{height:120px;border-radius:16px;background:#f4ece0;display:flex;align-items:center;justify-content:center;font-size:40px;color:#c9bda9;margin-bottom:12px}
+.card h3{font-size:16px;margin-bottom:3px}
+.card .m{color:#9a968d;font-size:13px}
+.price{font-weight:700;font-size:17px;margin:6px 0 0}
+.buy{position:absolute;right:18px;bottom:16px;background:#e85d3a;color:#fff;border-radius:18px;padding:10px 18px;font-weight:700;font-size:14px}
+.badge{position:absolute;left:18px;top:18px;background:#fff;border-radius:14px;padding:5px 12px;font-size:12px;font-weight:700;color:#e85d3a}
+.badge.grey{color:#9a968d}
+.bar{position:absolute;left:0;right:0;bottom:0;height:72px;background:#fff;box-shadow:0 -2px 10px rgba(58,58,55,.08);display:flex;align-items:center;justify-content:space-around;font-size:14px}
+.bar b{color:#e85d3a}
+.ask{position:absolute;right:32px;bottom:96px;width:560px;background:#fff;border-radius:22px;box-shadow:0 4px 16px rgba(58,58,55,.12);padding:16px 20px;font-size:14px}
+.ask .who{font-weight:700;color:#e85d3a;font-size:13px;margin-bottom:6px}
+.ask .btns{display:flex;gap:8px;margin-top:10px}
+.ask .b{background:#f6efe6;border-radius:14px;padding:8px 14px}
+.ask .b.act{background:#e85d3a;color:#fff;font-weight:700}
+</style></head><body>
+<div class="top"><span class="logo">shopmind</span><div class="pill">Search — “laptop for backend work under $1,200”</div><div class="acts"><span class="dot">⌂</span><span class="dot">♡</span><span class="dot on">2</span><span>Hi, Customer</span></div></div>
+<div class="wrap">
+<div class="filters">
+  <h4>Category</h4><div class="chips"><span class="chip on">Laptops</span><span class="chip">Phones</span><span class="chip">Audio</span><span class="chip">Displays</span></div>
+  <h4>Brand</h4><div class="chips"><span class="chip">Lenovo</span><span class="chip">ASUS</span><span class="chip">Apple</span><span class="chip">Framework</span><span class="chip">Sony</span></div>
+  <h4>Price</h4><div class="range"><b></b><i style="left:14%"></i><i style="left:54%"></i></div>
+  <h4>Memory</h4><div class="chips"><span class="chip on">16 GB+</span><span class="chip">32 GB+</span></div>
+</div>
+<div class="grid">
+  <div class="card"><div class="img">▢</div><h3>ThinkPad X1 Carbon</h3><div class="m">32 GB · 14″ 2.8K · 7 in stock</div><div class="price">$1,349</div><span class="buy">Add · $1,349</span></div>
+  <div class="card"><span class="badge">Matches your budget</span><div class="img">▢</div><h3>Zenbook 14 OLED</h3><div class="m">16 GB · 3K OLED · only 2 left</div><div class="price">$1,099</div><span class="buy">Add · $1,099</span></div>
+  <div class="card"><div class="img">▢</div><h3>MacBook Pro 14</h3><div class="m">24 GB · M4 Pro · 4 in stock</div><div class="price">$1,999</div><span class="buy">Add · $1,999</span></div>
+  <div class="card"><div class="img">◍</div><h3>Sony A7 TS5</h3><div class="m">ANC · 40 h · 12 in stock</div><div class="price">$329</div><span class="buy">Add · $329</span></div>
+  <div class="card"><span class="badge grey">Sold out</span><div class="img">▯</div><h3>Pixel 9 Pro</h3><div class="m">128 GB · Tensor G4</div><div class="price">$999</div><span class="buy" style="background:#9a968d">Notify me</span></div>
+  <div class="card"><div class="img">▢</div><h3>Framework 16</h3><div class="m">32 GB · modular · 3 left</div><div class="price">$1,467</div><span class="buy">Add · $1,467</span></div>
+</div>
+</div>
+<div class="ask"><div class="who">✦ ShopMind Assistant</div>
+“Two of these fit your $1,200 budget. Want me to compare the Zenbook and the Framework? I can build your cart and prep the bill — <b>you’ll always review and pay it yourself.</b>”
+<div class="btns"><span class="b act">Compare</span><span class="b act">Add Zenbook</span><span class="b">Ask about specs</span></div></div>
+<div class="bar"><span class="b">⌂ Shop</span><span>Search</span><span>✦ Assistant</span><span>♡ Saved</span><span>🧺 Cart · 2 · $2,448</span><span>☰ Account</span></div>
+</body></html>

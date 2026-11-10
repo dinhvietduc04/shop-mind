@@ -1,0 +1,62 @@
+- generic [active] [ref=f95e1]:
+  - alert [ref=f95e2]
+  - banner [ref=f95e3]:
+    - generic [ref=f95e4]:
+      - link "ShopMind cat. elec-026" [ref=f95e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f95e6]: ShopMind
+        - generic [ref=f95e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f95e8]'
+      - navigation [ref=f95e14]:
+        - link "Catalog" [ref=f95e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f95e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f95e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f95e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f95e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f95e21]
+      - generic [ref=f95e22]:
+        - 'link "Cart: 1 items, subtotal $1,099.00 — open the bill" [ref=f95e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f95e29]: $1,099.00
+        - button "Switch to night (dark) theme" [ref=f95e30]
+  - main [ref=f95e34]:
+    - heading "The bill" [level=1] [ref=f95e35]
+    - article [ref=f95e36]:
+      - generic [ref=f95e37]:
+        - generic [ref=f95e38]: cart · 1 lines
+        - generic [ref=f95e39]: priced by the API · free ship ≥ $500.00
+      - generic [ref=f95e40]:
+        - progressbar "Free shipping progress" [ref=f95e41]
+        - paragraph [ref=f95e43]: free shipping unlocked
+      - list [ref=f95e44]:
+        - listitem [ref=f95e45]:
+          - img "No photo on file for plate APL-MBA-M3" [ref=f95e47]:
+            - generic [ref=f95e52]: pl. APL-MBA-M3 · photo not on file
+          - generic [ref=f95e55]:
+            - link "MacBook Air M3" [ref=f95e57] [cursor=pointer]:
+              - /url: /product/p-macbook-air-m3
+            - generic [ref=f95e58]: APL-MBA-M3
+            - generic [ref=f95e69]:
+              - button "Decrease MacBook Air M3" [disabled] [ref=f95e70]
+              - generic [ref=f95e72]: "1"
+              - button "Increase MacBook Air M3" [ref=f95e73]
+              - button "Remove MacBook Air M3" [ref=f95e75]: remove
+          - generic [ref=f95e79]: $1,099.00
+      - generic [ref=f95e80]:
+        - generic [ref=f95e81]:
+          - term [ref=f95e82]: Subtotal
+          - definition [ref=f95e83]: $1,099.00
+        - generic [ref=f95e84]:
+          - term [ref=f95e85]: Shipping
+          - definition [ref=f95e86]: free
+        - generic [ref=f95e87]:
+          - term [ref=f95e88]: Total
+          - definition [ref=f95e89]: $1,099.00
+      - generic [ref=f95e90]:
+        - button "Create quote — reserve stock" [ref=f95e91]
+        - generic [ref=f95e92]: assistant may press this · yellow may not

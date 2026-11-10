@@ -1,0 +1,76 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - generic [ref=f3e3]:
+      - link "ShopMind cat. elec-026" [ref=f3e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e5]: ShopMind
+        - generic [ref=f3e6]: cat. elec-026
+      - navigation [ref=f3e7]:
+        - link "Catalog" [ref=f3e8] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f3e9] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f3e10] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f3e11] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f3e13]
+      - generic [ref=f3e14]:
+        - 'generic "Cart: 0 items, total $0.00" [ref=f3e15]': empty
+        - button "Switch to night (dark) theme" [ref=f3e22]
+  - generic [ref=f3e25]:
+    - complementary [ref=f3e26]:
+      - heading "Bins" [level=2] [ref=f3e27]
+      - generic [ref=f3e28]:
+        - button "ALL Every bin" [ref=f3e29]:
+          - generic [ref=f3e30]: ALL
+          - generic [ref=f3e31]: Every bin
+        - button "Laptops A1·41" [ref=f3e32]:
+          - generic [ref=f3e34]: Laptops
+          - generic [ref=f3e35]: A1·41
+        - button "Smartphones B2·33" [ref=f3e36]:
+          - generic [ref=f3e38]: Smartphones
+          - generic [ref=f3e39]: B2·33
+        - button "Audio C3·27" [ref=f3e40]:
+          - generic [ref=f3e42]: Audio
+          - generic [ref=f3e43]: C3·27
+        - button "Displays C5·18" [ref=f3e44]:
+          - generic [ref=f3e46]: Displays
+          - generic [ref=f3e47]: C5·18
+        - button "Components D4·52" [ref=f3e48]:
+          - generic [ref=f3e50]: Components
+          - generic [ref=f3e51]: D4·52
+      - generic [ref=f3e52]:
+        - generic [ref=f3e53]:
+          - heading "Stock dots" [level=3] [ref=f3e54]
+          - list [ref=f3e55]:
+            - listitem [ref=f3e56]: 5+ in bin
+            - listitem [ref=f3e58]: 1–4 low
+            - listitem [ref=f3e60]: 0 empty
+        - generic [ref=f3e62]:
+          - heading "Value ladder" [level=3] [ref=f3e63]
+          - generic [ref=f3e70]:
+            - generic "0 = black" [ref=f3e71]
+            - generic "1 = brown" [ref=f3e72]
+            - generic "2 = red" [ref=f3e73]
+            - generic "3 = orange" [ref=f3e74]
+            - generic "4 = yellow" [ref=f3e75]
+            - generic "5 = green" [ref=f3e76]
+            - generic "6 = blue" [ref=f3e77]
+            - generic "7 = violet" [ref=f3e78]
+            - generic "8 = grey" [ref=f3e79]
+            - generic "9 = white" [ref=f3e80]
+          - paragraph [ref=f3e81]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f3e82]:
+          - strong [ref=f3e84]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f3e85]:
+      - generic [ref=f3e86]:
+        - heading "The bill" [level=1] [ref=f3e87]
+        - generic [ref=f3e89]:
+          - heading "No quote open" [level=3] [ref=f3e90]
+          - generic [ref=f3e91]:
+            - paragraph [ref=f3e92]: Add units to a bin, or let the assistant build the cart and prepare a quote for you to review.
+            - link "Back to the catalog" [ref=f3e93] [cursor=pointer]:
+              - /url: /
+  - button "Open Next.js Dev Tools" [ref=f3e101] [cursor=pointer]

@@ -3,9 +3,16 @@ using System.Net.Http.Json;
 
 namespace Shop.IntegrationTests;
 
-public abstract class IntegrationTestBase(ShopWebFactory factory) : IClassFixture<ShopWebFactory>
+/// <summary>
+/// Shared HTTP helpers for a test class fixed to one <see cref="ShopWebFactory"/>
+/// subtype — declaring the fixture here (rather than on a concrete base) keeps
+/// xunit creating exactly ONE factory per class, even for specialized factories.
+/// </summary>
+public abstract class IntegrationTestBase<TFactory>(TFactory factory) : IClassFixture<TFactory>
+    where TFactory : ShopWebFactory
 {
     protected readonly HttpClient Client = factory.CreateClient();
+    protected TFactory Factory { get; } = factory;
 
     protected async Task<string> RegisterAndLoginAsync(string email, string password = "Test1234Aa", bool admin = false)
     {
@@ -39,3 +46,5 @@ public abstract class IntegrationTestBase(ShopWebFactory factory) : IClassFixtur
     protected record AuthPayload(string Token, object User);
     protected record IdPayload(Guid Id);
 }
+
+public abstract class IntegrationTestBase(ShopWebFactory factory) : IntegrationTestBase<ShopWebFactory>(factory);

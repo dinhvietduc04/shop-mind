@@ -1,0 +1,55 @@
+- generic [active] [ref=f72e1]:
+  - alert [ref=f72e2]
+  - banner [ref=f72e3]:
+    - generic [ref=f72e4]:
+      - link "ShopMind cat. elec-026" [ref=f72e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f72e6]: ShopMind
+        - generic [ref=f72e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f72e8]'
+      - navigation [ref=f72e14]:
+        - link "Catalog" [ref=f72e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f72e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f72e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f72e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f72e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f72e21]
+      - generic [ref=f72e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f72e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f72e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f72e30]
+  - main [ref=f72e34]:
+    - heading "The bill Pending" [level=1] [ref=f72e85]:
+      - text: The bill
+      - generic [ref=f72e86]: Pending
+    - article [ref=f72e87]:
+      - generic [ref=f72e88]:
+        - generic [ref=f72e89]: quote SM-2026-UMLWLGYW · stock reserved
+        - generic [ref=f72e90]:
+          - text: expires in
+          - generic [ref=f72e94]: 29:58
+      - list [ref=f72e95]:
+        - listitem [ref=f72e96]:
+          - generic [ref=f72e97]:
+            - text: WH-1000XM5 Headphones
+            - generic [ref=f72e98]: ×1
+          - generic [ref=f72e99]: $349.99
+      - generic [ref=f72e100]:
+        - paragraph [ref=f72e101]:
+          - text: Reserved for
+          - strong [ref=f72e102]: Demo Customer
+          - text: ", 123 Catalog Lane, Vienna. Prices were recomputed by the API at quote time — this bill cannot change. If stock sells out before you pay, the reservation releases."
+        - generic [ref=f72e103]:
+          - generic [ref=f72e104]: TOTAL
+          - text: $364.99
+      - generic [ref=f72e112]:
+        - link "Pay on hosted page" [ref=f72e113] [cursor=pointer]:
+          - /url: /psp/go4drrze-d6i59gdymba55dk3-589ru5rv
+        - button "Abandon quote" [ref=f72e117]
+        - generic [ref=f72e121]: pay is human-only · abandon releases the hold, keeps your bin

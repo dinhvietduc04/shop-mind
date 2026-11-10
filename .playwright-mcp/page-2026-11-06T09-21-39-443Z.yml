@@ -1,0 +1,212 @@
+- generic [active] [ref=f14e1]:
+  - alert [ref=f14e2]
+  - banner [ref=f14e3]:
+    - generic [ref=f14e4]:
+      - link "ShopMind cat. elec-026" [ref=f14e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f14e6]: ShopMind
+        - generic [ref=f14e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f14e8]'
+      - navigation [ref=f14e14]:
+        - link "Catalog" [ref=f14e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f14e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Assistant" [ref=f14e17] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f14e18] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f14e20]
+      - generic [ref=f14e21]:
+        - 'generic "Cart: 2 items, subtotal $99.98 — shipping computed on the bill" [ref=f14e22]': $99.98
+        - button "Switch to night (dark) theme" [ref=f14e29]
+  - generic [ref=f14e33]:
+    - complementary [ref=f14e34]:
+      - heading "Bins" [level=2] [ref=f14e35]
+      - generic [ref=f14e36]:
+        - button "ALL Every bin 10" [ref=f14e107]:
+          - generic [ref=f14e38]: ALL
+          - generic [ref=f14e39]: Every bin
+          - generic [ref=f14e40]: "10"
+        - button "Laptops LEN·2" [ref=f14e108]:
+          - generic [ref=f14e110]: Laptops
+          - generic [ref=f14e111]: LEN·2
+        - button "Smartphones SAM·2" [ref=f14e112]:
+          - generic [ref=f14e114]: Smartphones
+          - generic [ref=f14e115]: SAM·2
+        - button "Monitors DEL·1" [ref=f14e116]:
+          - generic [ref=f14e118]: Monitors
+          - generic [ref=f14e119]: DEL·1
+        - button "Keyboards LOG·1" [ref=f14e120]:
+          - generic [ref=f14e122]: Keyboards
+          - generic [ref=f14e123]: LOG·1
+        - button "Mice LOG·1" [ref=f14e124]:
+          - generic [ref=f14e126]: Mice
+          - generic [ref=f14e127]: LOG·1
+        - button "Headphones SNY·1" [ref=f14e128]:
+          - generic [ref=f14e130]: Headphones
+          - generic [ref=f14e131]: SNY·1
+        - button "Components NV-·1" [ref=f14e132]:
+          - generic [ref=f14e134]: Components
+          - generic [ref=f14e135]: NV-·1
+        - button "Accessories ACC·1" [ref=f14e136]:
+          - generic [ref=f14e138]: Accessories
+          - generic [ref=f14e139]: ACC·1
+      - generic [ref=f14e42]:
+        - generic [ref=f14e43]:
+          - heading "Stock dots" [level=3] [ref=f14e44]
+          - list [ref=f14e45]:
+            - listitem [ref=f14e46]: 5+ in bin
+            - listitem [ref=f14e48]: 1–4 low
+            - listitem [ref=f14e50]: 0 empty
+        - generic [ref=f14e52]:
+          - heading "Value ladder" [level=3] [ref=f14e53]
+          - generic [ref=f14e60]:
+            - generic "0 = black" [ref=f14e61]
+            - generic "1 = brown" [ref=f14e62]
+            - generic "2 = red" [ref=f14e63]
+            - generic "3 = orange" [ref=f14e64]
+            - generic "4 = yellow" [ref=f14e65]
+            - generic "5 = green" [ref=f14e66]
+            - generic "6 = blue" [ref=f14e67]
+            - generic "7 = violet" [ref=f14e68]
+            - generic "8 = grey" [ref=f14e69]
+            - generic "9 = white" [ref=f14e70]
+          - paragraph [ref=f14e71]: "Price bands read like resistor code: brown·black·white·white = 1·0·9·9. The digits are always printed too."
+        - paragraph [ref=f14e72]:
+          - strong [ref=f14e74]: Yellow is human-only.
+          - text: The assistant never presses a yellow control.
+    - main [ref=f14e75]:
+      - generic [ref=f14e76]:
+        - generic [ref=f14e77]:
+          - heading "Bin wall — every bin10 units" [level=1] [ref=f14e199]
+          - generic [ref=f14e79]:
+            - generic [ref=f14e80]:
+              - text: Sort
+              - combobox "Sort" [ref=f14e81]:
+                - option "newest first" [selected]
+                - option "price ↑"
+                - option "price ↓"
+                - option "name A–Z"
+                - option "name Z–A"
+            - generic [ref=f14e82] [cursor=pointer]:
+              - checkbox "In stock only" [ref=f14e83]
+              - text: In stock only
+          - generic [ref=f14e145]:
+            - article [ref=f14e469]:
+              - generic [aria-hidden] [ref=f14e470]: SMA · APL-IP15P
+              - img "No photo on file for plate APL-IP15P" [ref=f14e471]:
+                - generic [ref=f14e476]: pl. APL-IP15P · photo not on file
+              - heading [level=3] [ref=f14e479]:
+                - link "iPhone 15 Pro" [ref=f14e480] [cursor=pointer]:
+                  - /url: /product/iphone-15-pro
+              - paragraph [ref=f14e481]: Apple · 15 pro
+              - table [ref=f14e482]:
+                - rowgroup [ref=f14e483]:
+                  - row [ref=f14e484]:
+                    - rowheader "ram gb" [ref=f14e485]
+                    - cell "8" [ref=f14e486]
+                  - row [ref=f14e487]:
+                    - rowheader "storage gb" [ref=f14e488]
+                    - cell "128" [ref=f14e489]
+                  - row [ref=f14e490]:
+                    - rowheader "screen in" [ref=f14e491]
+                    - cell "6.1" [ref=f14e492]
+              - generic [ref=f14e493]:
+                - generic [ref=f14e494]: $999.00
+                - generic [ref=f14e503]: in bin · 35
+              - generic [ref=f14e509]:
+                - button "Add to bin" [ref=f14e510]
+                - link "Spec sheet →" [ref=f14e513] [cursor=pointer]:
+                  - /url: /product/iphone-15-pro
+            - article [ref=f14e514]:
+              - generic [aria-hidden] [ref=f14e515]: SMA · SAM-S24U
+              - img "No photo on file for plate SAM-S24U" [ref=f14e516]:
+                - generic [ref=f14e521]: pl. SAM-S24U · photo not on file
+              - heading [level=3] [ref=f14e524]:
+                - link "Galaxy S24 Ultra" [ref=f14e525] [cursor=pointer]:
+                  - /url: /product/galaxy-s24-ultra
+              - paragraph [ref=f14e526]: Samsung · s24 ultra
+              - table [ref=f14e527]:
+                - rowgroup [ref=f14e528]:
+                  - row [ref=f14e529]:
+                    - rowheader "ram gb" [ref=f14e530]
+                    - cell "12" [ref=f14e531]
+                  - row [ref=f14e532]:
+                    - rowheader "storage gb" [ref=f14e533]
+                    - cell "256" [ref=f14e534]
+                  - row [ref=f14e535]:
+                    - rowheader "screen in" [ref=f14e536]
+                    - cell "6.8" [ref=f14e537]
+              - generic [ref=f14e538]:
+                - generic [ref=f14e539]: $1,199.99
+                - generic [ref=f14e550]: in bin · 40
+              - generic [ref=f14e556]:
+                - button "Add to bin" [ref=f14e557]
+                - link "Spec sheet →" [ref=f14e560] [cursor=pointer]:
+                  - /url: /product/galaxy-s24-ultra
+            - article [ref=f14e561]:
+              - generic [aria-hidden] [ref=f14e562]: LAP · APL-MBA-M3
+              - img "No photo on file for plate APL-MBA-M3" [ref=f14e563]:
+                - generic [ref=f14e568]: pl. APL-MBA-M3 · photo not on file
+              - heading [level=3] [ref=f14e571]:
+                - link "MacBook Air M3" [ref=f14e572] [cursor=pointer]:
+                  - /url: /product/macbook-air-m3
+              - paragraph [ref=f14e573]: Apple · air m3
+              - table [ref=f14e574]:
+                - rowgroup [ref=f14e575]:
+                  - row [ref=f14e576]:
+                    - rowheader "ram gb" [ref=f14e577]
+                    - cell "8" [ref=f14e578]
+                  - row [ref=f14e579]:
+                    - rowheader "storage gb" [ref=f14e580]
+                    - cell "256" [ref=f14e581]
+                  - row [ref=f14e582]:
+                    - rowheader "screen in" [ref=f14e583]
+                    - cell "13.6" [ref=f14e584]
+              - generic [ref=f14e585]:
+                - generic [ref=f14e586]: $1,099.00
+                - generic [ref=f14e597]: in bin · 18
+              - generic [ref=f14e603]:
+                - button "Add to bin" [ref=f14e604]
+                - link "Spec sheet →" [ref=f14e607] [cursor=pointer]:
+                  - /url: /product/macbook-air-m3
+            - article [ref=f14e608]:
+              - generic [aria-hidden] [ref=f14e609]: LAP · LEN-X1C-G11
+              - figure "pl. LEN-X1C-G11" [ref=f14e610]:
+                - img "ThinkPad X1 Carbon Gen 11 — product photo" [ref=f14e611]
+              - heading [level=3] [ref=f14e615]:
+                - link "ThinkPad X1 Carbon Gen 11" [ref=f14e616] [cursor=pointer]:
+                  - /url: /product/thinkpad-x1-carbon-gen-11
+              - paragraph [ref=f14e617]: Lenovo · gen 11
+              - table [ref=f14e618]:
+                - rowgroup [ref=f14e619]:
+                  - row [ref=f14e620]:
+                    - rowheader "ram gb" [ref=f14e621]
+                    - cell "16" [ref=f14e622]
+                  - row [ref=f14e623]:
+                    - rowheader "storage gb" [ref=f14e624]
+                    - cell "512" [ref=f14e625]
+                  - row [ref=f14e626]:
+                    - rowheader "screen in" [ref=f14e627]
+                    - cell "14" [ref=f14e628]
+              - generic [ref=f14e629]:
+                - generic [ref=f14e630]: $1,499.00
+                - generic [ref=f14e641]: in bin · 25
+              - generic [ref=f14e647]:
+                - button "Add to bin" [ref=f14e648]
+                - link "Spec sheet →" [ref=f14e651] [cursor=pointer]:
+                  - /url: /product/thinkpad-x1-carbon-gen-11
+          - navigation "Pagination" [ref=f14e464]:
+            - button "Prev" [ref=f14e652]
+            - generic [ref=f14e465]: page 2 · of 2
+            - button "Next" [disabled]
+        - generic [ref=f14e90]:
+          - heading "The assistant · turn 41" [level=2] [ref=f14e91]
+          - paragraph [ref=f14e94]: "“One unit in bin laptops decodes under your budget band — search set to 1·2·0·0: the MacBook Air M3 at $1,099.00. The ThinkPad X1 Carbon is $1,499.00 — out of band but stronger RAM. Prices and stock came from this turn’s catalog calls, not from my weights.”"
+          - paragraph [ref=f14e100]: "trail: search_products(category=laptops, ram_gb≥8, maxPrice=1200) → get_product → add_to_cart"
+          - generic [ref=f14e101]:
+            - button "Add MacBook Air M3 — $1,099.00" [ref=f14e102]
+            - link "Review bill" [ref=f14e103] [cursor=pointer]:
+              - /url: /quote
+            - generic [ref=f14e106]: payment is on the bill page · a yellow control is human-only · the assistant cannot press it

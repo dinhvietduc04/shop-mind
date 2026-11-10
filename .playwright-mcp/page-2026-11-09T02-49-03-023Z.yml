@@ -1,0 +1,63 @@
+- generic [ref=f34e1]:
+  - alert [ref=f34e2]
+  - banner [ref=f34e3]:
+    - generic [ref=f34e4]:
+      - link "ShopMind cat. elec-026" [ref=f34e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f34e6]: ShopMind
+        - generic [ref=f34e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f34e8]'
+      - navigation [ref=f34e14]:
+        - link "Catalog" [ref=f34e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f34e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f34e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f34e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "Admin" [ref=f34e19] [cursor=pointer]:
+          - /url: /admin
+        - link "UI kit" [ref=f34e20] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f34e22]
+      - generic [ref=f34e23]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f34e24] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f34e30]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f34e31] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f34e32]: SA
+          - generic [ref=f34e33]: Admin
+        - button "Switch to night (dark) theme" [ref=f34e34]
+  - main [ref=f34e38]:
+    - heading "The assistant" [level=1] [ref=f34e39]
+    - paragraph [ref=f34e40]:
+      - text: "Assist level, live against the mock backend: it searches the bins,"
+      - strong [ref=f34e41]: asks attribute questions before it filters
+      - text: ", adds to your bin and opens quotes — and stops at the money. The engine is the deterministic FakeAiProvider (backend plan §A4), so every number you see traces to a tool chip in the same turn. The drawer on the catalog page is the same conversation."
+    - paragraph [ref=f34e42]:
+      - text: "yellow stays yours:"
+      - link "the bill page" [ref=f34e44] [cursor=pointer]:
+        - /url: /quote
+      - text: is where payment happens.
+    - region "Assistant chat" [ref=f34e46]:
+      - generic [ref=f34e47]:
+        - heading "The assistant" [level=2] [ref=f34e48]
+        - generic [ref=f34e51]:
+          - text: turn 1/8
+          - button "new" [ref=f34e52]
+      - generic [ref=f34e53]:
+        - paragraph [ref=f34e64]: hello
+        - generic [ref=f34e65]:
+          - paragraph
+          - generic [ref=f34e66]:
+            - strong [ref=f34e67]: The assistant is unavailable
+            - text: "— The assistant is switched off from the admin console.. Everything else in the shop keeps working:"
+            - link "browse the bins manually" [ref=f34e68] [cursor=pointer]:
+              - /url: /
+            - text: .AI_NOT_CONFIGURED
+      - generic [ref=f34e61]:
+        - textbox "Message the assistant" [active] [ref=f34e62]:
+          - /placeholder: what do you need? (try a budget, a spec, a use case)
+        - button "send" [disabled]

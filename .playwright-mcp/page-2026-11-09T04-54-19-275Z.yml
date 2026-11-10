@@ -1,0 +1,28 @@
+- generic [active] [ref=f19e1]:
+  - alert [ref=f19e110]: SIGN IN
+  - main [ref=f19e111]:
+    - paragraph [ref=f19e112]: shopmind · turnstile
+    - heading "Sign in" [level=1] [ref=f19e113]
+    - generic [ref=f19e114]:
+      - generic [ref=f19e115]:
+        - generic [ref=f19e116]:
+          - generic [ref=f19e117]: Email
+          - textbox "Email" [ref=f19e118]:
+            - /placeholder: you@example.com
+        - generic [ref=f19e119]:
+          - generic [ref=f19e120]: Password
+          - textbox "Password" [ref=f19e121]:
+            - /placeholder: ••••••••
+        - button "Sign in" [ref=f19e122]
+      - generic [ref=f19e126]:
+        - paragraph [ref=f19e127]: one-click demo identities
+        - generic [ref=f19e128]:
+          - button "Demo customer" [ref=f19e129]
+          - button "Demo admin" [ref=f19e130]
+      - paragraph [ref=f19e131]:
+        - text: no account?
+        - link "create one" [ref=f19e132] [cursor=pointer]:
+          - /url: /register
+      - paragraph [ref=f19e133]:
+        - link "continue as guest — browse the bins" [ref=f19e134] [cursor=pointer]:
+          - /url: /product/ultrasharp-27-4k

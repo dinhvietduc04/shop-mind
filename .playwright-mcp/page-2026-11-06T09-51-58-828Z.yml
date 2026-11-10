@@ -1,0 +1,38 @@
+- generic [active] [ref=f75e1]:
+  - alert [ref=f75e2]
+  - banner [ref=f75e3]:
+    - generic [ref=f75e4]:
+      - link "ShopMind cat. elec-026" [ref=f75e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f75e6]: ShopMind
+        - generic [ref=f75e7]: cat. elec-026
+      - 'generic "Category bands: laptops brown, phones orange, audio green, displays blue, components violet" [ref=f75e8]'
+      - navigation [ref=f75e14]:
+        - link "Catalog" [ref=f75e15] [cursor=pointer]:
+          - /url: /
+        - link "Bill" [ref=f75e16] [cursor=pointer]:
+          - /url: /quote
+        - link "Orders" [ref=f75e17] [cursor=pointer]:
+          - /url: /orders
+        - link "Assistant" [ref=f75e18] [cursor=pointer]:
+          - /url: /assistant
+        - link "UI kit" [ref=f75e19] [cursor=pointer]:
+          - /url: /dev/ui
+      - searchbox "Search the catalog" [ref=f75e21]
+      - generic [ref=f75e22]:
+        - 'link "Cart: 1 items, subtotal $349.99 — open the bill" [ref=f75e23] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f75e29]: $349.99
+        - button "Switch to night (dark) theme" [ref=f75e30]
+  - generic [ref=f75e34]:
+    - heading "The assistant" [level=1] [ref=f75e35]
+    - paragraph [ref=f75e36]: F0 ships the drawer demo below. The full chat surface — streaming replies, attribute-elicitation cards, and per-turn tool trails — lands at FRONTEND_PLAN phase F4, driven through the same contract.
+    - generic [ref=f75e38]:
+      - heading "The assistant · turn 41" [level=2] [ref=f75e39]
+      - paragraph [ref=f75e42]: "“One unit in bin laptops decodes under your budget band — search set to 1·2·0·0: the MacBook Air M3 at $1,099.00. The ThinkPad X1 Carbon is $1,499.00 — out of band but stronger RAM. Prices and stock came from this turn’s catalog calls, not from my weights.”"
+      - paragraph [ref=f75e48]: "trail: search_products(category=laptops, ram_gb≥8, maxPrice=1200) → get_product → add_to_cart"
+      - generic [ref=f75e49]:
+        - button "Add MacBook Air M3 — $1,099.00" [ref=f75e50]
+        - link "Review bill" [ref=f75e51] [cursor=pointer]:
+          - /url: /quote
+        - generic [ref=f75e54]: payment is on the bill page · a yellow control is human-only · the assistant cannot press it

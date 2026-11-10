@@ -1,0 +1,59 @@
+- generic [active] [ref=f90e1]:
+  - alert [ref=f90e2]
+  - link "Skip to content" [ref=f90e3] [cursor=pointer]:
+    - /url: "#shop-content"
+  - banner [ref=f90e4]:
+    - generic [ref=f90e5]:
+      - link "ShopMind" [ref=f90e6] [cursor=pointer]:
+        - /url: /
+      - searchbox "Search the catalog" [ref=f90e8]
+      - generic [ref=f90e9]:
+        - 'link "Cart: 1 items, subtotal $599.99 — open the bill" [ref=f90e10] [cursor=pointer]':
+          - /url: /quote
+          - generic [ref=f90e16]: $599.99
+        - 'link "Account: admin@shopmind.local, role Admin" [ref=f90e17] [cursor=pointer]':
+          - /url: /account
+          - generic [ref=f90e18]: SA
+        - button "Switch to night (dark) theme" [ref=f90e19]
+    - navigation "Primary" [ref=f90e22]:
+      - link "Catalog" [ref=f90e23] [cursor=pointer]:
+        - /url: /
+      - link "Bill" [ref=f90e24] [cursor=pointer]:
+        - /url: /quote
+      - link "Orders" [ref=f90e25] [cursor=pointer]:
+        - /url: /orders
+      - link "Assistant" [ref=f90e26] [cursor=pointer]:
+        - /url: /assistant
+      - link "Admin" [ref=f90e27] [cursor=pointer]:
+        - /url: /admin
+      - link "UI kit" [ref=f90e28] [cursor=pointer]:
+        - /url: /dev/ui
+  - generic [ref=f90e30]:
+    - generic [ref=f90e31]:
+      - generic [ref=f90e33]: Admin console
+      - navigation "Admin sections" [ref=f90e34]:
+        - link "Dashboard" [ref=f90e35] [cursor=pointer]:
+          - /url: /admin
+        - link "Products" [ref=f90e36] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f90e37] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Inventory" [ref=f90e38] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Orders" [ref=f90e39] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "AI audit" [ref=f90e40] [cursor=pointer]:
+          - /url: /admin/ai
+    - generic [ref=f90e42]:
+      - heading "Order ledger · 0" [level=2] [ref=f90e44]
+      - generic [ref=f90e45]:
+        - generic [ref=f90e46]:
+          - button "All" [pressed] [ref=f90e47]
+          - button "Pending" [ref=f90e48]
+          - button "Paid" [ref=f90e49]
+          - button "Processing" [ref=f90e50]
+          - button "Shipped" [ref=f90e51]
+          - button "Delivered" [ref=f90e52]
+          - button "Cancelled" [ref=f90e53]
+          - button "PaymentFailed" [ref=f90e54]
+        - paragraph [ref=f90e55]: No orders with status “All”.
