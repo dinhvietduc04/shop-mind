@@ -4,9 +4,11 @@ using FluentValidation.Results;
 using Microsoft.Extensions.Options;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
+using Shop.Application.Comparisons;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
 using Shop.Application.Mcp;
+using Shop.Domain.Exceptions;
 using Shop.Mcp.Tooling;
 
 namespace Shop.Mcp.Tools;
@@ -24,30 +26,32 @@ public static class CatalogTools
     };
 
     [McpServerTool(Name = "search_products", Title = "Search products")]
-    [Description("Search active products by text, category, brand, price, and stock.")]
+    [Description("Search active products by text, category, brand, price, stock, and specs.")]
     public static async Task<CallToolResult> SearchProducts(
         ToolExecutor executor,
         IProductService products,
         IOptions<McpOptions> options,
-        [Description("Free-text query over name, SKU, and brand.")] string? query = null,
+        [Description("Free-text query over name and SKU.")] string? query = null,
         [Description("Category slug, for example laptops.")] string? category = null,
         [Description("Brand name, for example Lenovo.")] string? brand = null,
         [Description("Minimum price in USD.")] decimal? minPrice = null,
         [Description("Maximum price in USD.")] decimal? maxPrice = null,
         [Description("When true, return only products with available stock.")] bool? inStockOnly = null,
+        [Description("Spec filters as key, op (gte|lte|eq|in), value clauses.")] List<SpecClauseArg>? specs = null,
         [Description("Sort: price_asc, price_desc, newest, name_asc, or name_desc.")] string? sort = null,
         [Description("One-based page number.")] int page = 1,
         [Description("Page size, 1 through 50.")] int pageSize = 20,
         CancellationToken ct = default)
     {
         var normalizedSort = string.IsNullOrWhiteSpace(sort) ? null : sort.Trim().ToLowerInvariant();
+        var encodedSpecs = EncodeSpecs(specs);
         var args = new ProductQueryParams(
             query, category, brand, minPrice, maxPrice, inStockOnly, normalizedSort,
-            page, pageSize, IncludeInactive: false, Specs: null);
+            page, pageSize, IncludeInactive: false, Specs: encodedSpecs);
 
         return await executor.RunAsync(
             "search_products",
-            new { query, category, brand, minPrice, maxPrice, inStockOnly, sort = normalizedSort, page, pageSize },
+            new { query, category, brand, minPrice, maxPrice, inStockOnly, specs, sort = normalizedSort, page, pageSize },
             async token =>
             {
                 Validate(args, options.Value.MaxPageSize);
@@ -76,6 +80,26 @@ public static class CatalogTools
             ct);
     }
 
+    [McpServerTool(Name = "compare_products", Title = "Compare products")]
+    [Description("Compare 2 to 4 active products side by side: price, brand, category, stock, and specification rows.")]
+    public static async Task<CallToolResult> CompareProducts(
+        ToolExecutor executor,
+        IProductComparisonBuilder comparisons,
+        [Description("Between 2 and 4 product UUIDs.")] Guid[] productIds,
+        CancellationToken ct = default)
+    {
+        return await executor.RunAsync(
+            "compare_products",
+            new { productIds },
+            async token =>
+            {
+                if (productIds is null || productIds.Length == 0)
+                    throw new DomainValidationException("productIds is required.");
+                return (object?)await comparisons.BuildAsync(productIds, token);
+            },
+            ct);
+    }
+
     [McpServerTool(Name = "get_product_facets", Title = "Get product facets")]
     [Description("Get the specification filters that are actually available for a category.")]
     public static async Task<CallToolResult> GetProductFacets(
@@ -94,6 +118,26 @@ public static class CatalogTools
                 return (object?)await products.GetFacetsAsync(category, token);
             },
             ct);
+    }
+
+    private static string? EncodeSpecs(IReadOnlyList<SpecClauseArg>? specs)
+    {
+        if (specs is null || specs.Count == 0) return null;
+
+        var parts = new List<string>(specs.Count);
+        foreach (var clause in specs)
+        {
+            if (string.IsNullOrWhiteSpace(clause.Key) || string.IsNullOrWhiteSpace(clause.Op))
+                throw new InvalidSpecFilterException("specs clauses need a key and an op.");
+
+            var value = clause.ValueText();
+            if (value.Contains(';'))
+                throw new InvalidSpecFilterException($"spec \"{clause.Key}\" value cannot contain ';'.");
+
+            parts.Add($"{clause.Key.Trim()}:{clause.Op.Trim()}:{value}");
+        }
+
+        return string.Join(';', parts);
     }
 
     private static void Validate(ProductQueryParams args, int maxPageSize)

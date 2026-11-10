@@ -5,6 +5,7 @@ using Shop.Api.Extensions;
 using Shop.Api.Idempotency;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
+using Shop.Domain.Enums;
 using Shop.Domain.Exceptions;
 
 namespace Shop.Api.Controllers;
@@ -28,7 +29,7 @@ public class QuoteController(IQuoteService quotes, IValidator<CreateQuoteRequest
             throw new AgentScopeForbiddenException("quote creation");
         var v = await validator.ValidateAsync(request, ct);
         if (!v.IsValid) throw new FluentValidation.ValidationException(v.Errors);
-        var quote = await quotes.CreateQuoteAsync(User.GetUserId(), request, ct);
+        var quote = await quotes.CreateQuoteAsync(User.GetUserId(), request, QuoteOrigin.Human, ct);
         return StatusCode(StatusCodes.Status201Created, quote);
     }
 

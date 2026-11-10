@@ -1,7 +1,10 @@
+using FluentValidation;
 using Microsoft.Extensions.Options;
 using ModelContextProtocol.Server;
 using Shop.Application.Caching;
+using Shop.Application.Dtos;
 using Shop.Application.Mcp;
+using Shop.Application.Validation;
 using Shop.Infrastructure;
 using Shop.Infrastructure.RateLimiting;
 using Shop.Mcp.Auth;
@@ -39,6 +42,12 @@ public static class ServiceRegistration
 
         services.AddScoped<ToolExecutor>();
         services.AddSingleton<IPostConfigureOptions<McpServerOptions>, ToolManifestPostConfigure>();
+
+        // A2: the tools reuse the REST validators, so MCP and HTTP enforce the
+        // same argument rules instead of growing a second copy.
+        services.AddScoped<IValidator<AddCartItemRequest>, AddCartItemValidator>();
+        services.AddScoped<IValidator<UpdateCartItemRequest>, UpdateCartItemValidator>();
+        services.AddScoped<IValidator<CreateQuoteRequest>, CreateQuoteValidator>();
 
         return services;
     }

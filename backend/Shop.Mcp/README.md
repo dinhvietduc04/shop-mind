@@ -1,20 +1,67 @@
-# Shop.Mcp (A1)
+# Shop.Mcp (A1 + A2)
 
-MCP server for ShopMind's Assist-level shopping agent. It exposes a small,
-policy-generated read toolset and calls the Application services — never a
-database context or raw SQL.
+MCP server for ShopMind's Assist-level shopping agent. It exposes a
+policy-generated toolset and calls the Application services — never a database
+context or raw SQL.
 
 ## Tools
 
 | Tool | Risk | Anonymous | What it does |
 |---|---|---|---|
-| `search_products` | READ | yes | Search active products by text, category, brand, price, stock, sort, page |
+| `search_products` | READ | yes | Search active products by text, category, brand, price, stock, specs, sort, page |
 | `get_product` | READ | yes | Product detail + available stock |
 | `get_product_facets` | READ | yes | Category specification filters (registry ∩ active data) |
+| `compare_products` | READ | yes | Deterministic 2–4 product table: header columns + aligned spec rows |
 | `get_cart` | READ | no | The authenticated user's cart |
+| `get_orders` | READ | no | The user's orders and quotes, newest first |
+| `get_order` | READ | no | One owner-scoped order |
+| `get_order_status` | READ | no | Status projection of one owner-scoped order |
+| `add_to_cart` | WRITE | no | Add a product; merges quantities; requires `idempotencyKey` |
+| `update_cart` | WRITE | no | Set an owned cart line's absolute quantity; requires `idempotencyKey` |
+| `remove_from_cart` | WRITE | no | Remove an owned cart line; requires `idempotencyKey` |
+| `create_quote` | QUOTE | no | Bill from the cart for the human to pay; requires `idempotencyKey` |
 
-`confirm_payment` is documented as `NEVER` in the policy and is absent from the
-manifest. A2 adds the remaining cart/order/quote tools.
+`confirm_payment`, `cancel_order`, and `refund_payment` are documented as
+`NEVER` in the policy and are absent from the manifest. Payment and cancellation
+stay human-only.
+
+## Agent shopping rules
+
+- `compare_products` takes 2 to 4 product ids in caller order. It returns a
+  header per product (name, SKU, brand, category, price, available stock, first
+  image) and registry-ordered spec rows. A spec a product does not carry is
+  `null`, not `false`. Unregistered jsonb keys are dropped; reserved stock never
+  appears.
+- `search_products.specs` is `[{key, op, value}]`, where `op` is
+  `gte | lte | eq | in`. It maps to the same fail-closed grammar as REST: an
+  unregistered key or malformed clause is `INVALID_ARGS`, never a silently
+  unfiltered page.
+- Cart tools reuse `ICartService` and the REST validators, so merge, stock
+  check, repricing, and ownership rules are identical to HTTP.
+- `create_quote` reuses `IQuoteService` with `QuoteOrigin.Agent`. It may replace
+  only another agent-origin open quote. A human-origin open quote blocks it with
+  `QUOTE_HELD_BY_HUMAN`; the agent narrates "pay or cancel your existing bill
+  first". The result contains the bill and a hosted pay URL for the human; the
+  agent never opens or confirms it.
+- Money never moves through MCP. The quote response includes the capability
+  token only so the human's page can use it.
+
+## Idempotency
+
+Every WRITE and QUOTE tool requires a tool argument
+`idempotencyKey` (1 to 128 characters). The guard derives the requirement from
+the policy risk class, so a future write tool cannot forget it. Keys are scoped
+per user and tool under the Redis idempotency store:
+
+- same key + same arguments → replay the stored result, do not execute again;
+- same key + different arguments → `IDEMPOTENCY_MISMATCH`;
+- same key still running → `IDEMPOTENCY_IN_PROGRESS` (retryable);
+- store unavailable → `IDEMPOTENCY_UNAVAILABLE` (retryable), and the tool does
+  not run.
+
+A failed attempt releases its owner-checked lease so a retry can execute. This
+is the same `IIdempotencyStore` and fail-closed policy the REST money path uses
+(ADR-0004).
 
 ## Run it
 
@@ -49,12 +96,14 @@ The API owns migrations and seed data; start it before relying on catalog tools.
 |---|---|---|
 | `ConnectionStrings:Default` | local Postgres | Same database as the API |
 | `Redis:ConnectionString` | `localhost:6379` | MCP budgets use Redis |
+| `Idempotency:ConnectionString` | `localhost:6379` | Fail-closed idempotency store |
+| `Idempotency:KeyPrefix` | `shop:idem:` | Redis namespace for idempotency keys |
 | `Jwt:Secret` / `Jwt:Issuer` | dev values | Must match the API |
 | `Mcp:Audience` | `Shop.Mcp` | Audience required on delegated agent JWTs |
 | `Mcp:KeyPrefix` | `shop:mcp:rl:` | Redis namespace for budgets |
 | `Mcp:ReadPerMin` | 30 | READ tools per user per minute |
-| `Mcp:WritePerMin` | 12 | Reserved for A2 |
-| `Mcp:QuotePerMin` | 4 | Reserved for A2 |
+| `Mcp:WritePerMin` | 12 | WRITE tools per user per minute |
+| `Mcp:QuotePerMin` | 4 | `create_quote` per user per minute |
 | `Mcp:WindowSeconds` | 60 | Sliding-window size |
 | `Mcp:MaxArgsBytes` | 4096 | Reject larger argument payloads |
 | `Mcp:MaxResultBytes` | 32768 | Reject larger tool results |
@@ -66,8 +115,9 @@ In .NET environment form use double underscores, for example
 
 ## Auth and error contract
 
-- Anonymous callers may use the three public READ tools.
-- `get_cart` requires a delegated agent JWT: audience `Shop.Mcp`, `scope=agent`.
+- Anonymous callers may use the four public READ tools.
+- Every cart, order, and quote tool requires a delegated agent JWT: audience
+  `Shop.Mcp`, `scope=agent`.
 - `Shop.Api` rejects `scope=agent` tokens on every `/api/*` route with `403
   AgentScopeForbidden`; the anonymous hosted pay page remains viewable.
 - STDIO dev mode builds the context from `MCP_DEV_USER_ID`,
@@ -84,7 +134,9 @@ In .NET environment form use double underscores, for example
 ```
 
 Codes: `INVALID_ARGS`, `UNAUTHORIZED`, `FORBIDDEN`, `NOT_FOUND`, `CONFLICT`,
-`UPSTREAM_ERROR`, `RATE_LIMITED`, `RESULT_TOO_LARGE`, `TOOL_NOT_FOUND`.
+`UPSTREAM_ERROR`, `RATE_LIMITED`, `RESULT_TOO_LARGE`, `TOOL_NOT_FOUND`,
+`QUOTE_HELD_BY_HUMAN`, `IDEMPOTENCY_IN_PROGRESS`, `IDEMPOTENCY_MISMATCH`,
+`IDEMPOTENCY_UNAVAILABLE`.
 
 Logs record the tool, status, duration, correlation id, and a hashed user id —
 never the JWT or tool arguments.
@@ -105,7 +157,10 @@ dotnet test tests/Shop.IntegrationTests --filter "FullyQualifiedName~Mcp"
 ```
 
 The integration suite covers HTTP and STDIO transports, the manifest/kill
-switch, anonymous catalog reads, cart ownership through two agent JWTs,
-`UNAUTHORIZED` without a token, strict argument validation, the READ budget,
-and token-free logs. It uses the same disposable Postgres/Redis seam as the API
-tests (`SHOPMIND_TEST_POSTGRES`, `SHOPMIND_TEST_REDIS`).
+switch, anonymous catalog reads, spec-filtered search, compare shape, cart and
+order ownership through two agent JWTs, add/update/remove with idempotent
+replay and mismatch, over-stock rejection, quote origin scope
+(`QUOTE_HELD_BY_HUMAN`), quote replay, the scripted shopping scenario, the
+fail-closed idempotency outage, budgets, and token-free logs. It uses the same
+disposable Postgres/Redis seam as the API tests (`SHOPMIND_TEST_POSTGRES`,
+`SHOPMIND_TEST_REDIS`).

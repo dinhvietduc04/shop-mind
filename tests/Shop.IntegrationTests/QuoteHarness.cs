@@ -41,7 +41,7 @@ public sealed class QuoteHarness(ShopWebFactory factory)
             .AddItemAsync(user.Id, new AddCartItemRequest(product.Id, qty));
 
         var quote = await factory.Services.CreateScope().ServiceProvider.GetRequiredService<IQuoteService>()
-            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("H Q", "1", "a", "c")));
+            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("H Q", "1", "a", "c")), QuoteOrigin.Human);
         return new Opened(user.Id, product.Id, quote, quote.Order.TotalAmount);
     }
 

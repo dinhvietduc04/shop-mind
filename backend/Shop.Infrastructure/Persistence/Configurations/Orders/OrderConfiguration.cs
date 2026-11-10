@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities;
+using Shop.Domain.Enums;
 
 namespace Shop.Infrastructure.Persistence.Configurations;
 
@@ -15,6 +16,8 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         b.Property(x => x.Subtotal).HasPrecision(18, 2);
         b.Property(x => x.ShippingFee).HasPrecision(18, 2);
         b.Property(x => x.TotalAmount).HasPrecision(18, 2);
+        b.Property(x => x.Origin).HasConversion<string>().HasMaxLength(16)
+            .HasDefaultValue(QuoteOrigin.Human);
         b.HasIndex(x => x.UserId);
         b.HasIndex(x => x.Status);
         b.HasMany(x => x.Items).WithOne(i => i.Order).HasForeignKey(i => i.OrderId).OnDelete(DeleteBehavior.Cascade);

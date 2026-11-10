@@ -411,11 +411,11 @@ Failures → retry exp backoff (3x) → shop.events.dlq + OutboxMessages.Status=
 
 **Deliverable / Exit.** Reliable async pipeline: HTTP never blocks on side effects; demo `checkout → RabbitMQ management UI shows routing → worker logs`.
 
-## M12 — MCP Foundation — 🟡 A1 foundation done; A2 adds writes
+## M12 — MCP Foundation — ✅ A1 foundation + A2 toolset done
 
 **Goal.** Expose ShopMind to AI through a standard MCP server with auth, validation, logging, and zero direct DB access.
 
-**Baseline.** A1 foundation exists (`backend/Shop.Mcp`, four read tools); A2 adds the write/compare/quote toolset.
+**Baseline.** A1 built `backend/Shop.Mcp` with four read tools; A2 added compare, cart writes, order reads, and `create_quote` behind the same guard.
 
 **Architecture.**
 
@@ -443,34 +443,36 @@ AI (agent) → MCP Client → Shop.Mcp (STDIO + Streamable HTTP)
 **Acceptance Criteria.**
 
 - [x] MCP client lists tools, calls `search_products` anonymously OK, calls `get_cart` without JWT → `UNAUTHORIZED` (integration test; Inspector command in README).
-- [ ] `add_to_cart` as user A cannot touch user B cart (ownership test via two JWTs) — lands with A2's write toolset; A1 proves `get_cart` ownership with two tokens.
+- [x] `add_to_cart` as user A cannot touch user B cart (ownership test via two JWTs); A2 also proves `update_cart`/`remove_from_cart` are owner-scoped.
+- [x] A2 write/quote tools require an idempotency key, replay a stored result, reject a mismatched payload, and refuse to run when the store is down (fail-closed).
 - [x] Architecture test fails if `Shop.Mcp` source/direct packages reference EF/Npgsql.
 
 **Test Plan.** Unit: policy/context/guard/authz matrix/architecture. Integration: boot the MCP HTTP + STDIO hosts, drive tools via the official MCP client, assert manifest, seed-data results, cart ownership, strict args, budgets, and REST agent-scope rejection.
 
 **Risks.** SDK version drift → pin version, wrap SDK in thin adapter. Token leakage in logs → log `userIdHash` only, never JWT.
 
-**Deliverable / Exit.** ✅ A1: running MCP server exposing `search_products`, `get_product`, `get_product_facets`, and `get_cart` behind auth with validated schemas; A2 adds the write/compare/quote toolset.
+**Deliverable / Exit.** ✅ A1: running MCP server exposing `search_products`, `get_product`, `get_product_facets`, and `get_cart` behind auth with validated schemas. ✅ A2: 12 live tools (add compare, order reads, cart writes, `create_quote`), origin-scoped quote replacement with `QUOTE_HELD_BY_HUMAN`, and mandatory idempotency on WRITE/QUOTE.
 
-## M13 — MCP Business Tools — ⬜
+## M13 — MCP Business Tools — 🟡 Assist subset shipped as A2
 
 **Goal.** Full business-capability toolset so an agent can shop like a human: discover → compare → cart → orders → checkout prep.
 
-**Baseline.** M12 has 3 tools.
+**Baseline.** M12 has 12 tools after A2. The A2 Assist subset covers compare, cart writes, order reads, and `create_quote`; the higher-level tools below (`get_product_inventory`, `find_products_for_requirement`, recommendations, `prepare_checkout`) are not part of A2 and remain planned.
 
 **Tasks (read tools first, then write tools).**
 
 Read:
 
-- [ ] `search_products(query, category?, brand?, minPrice?, maxPrice?, sort?, page?, pageSize?)` → same semantics as `GET /api/products` (reuse `ProductService`).
-- [ ] `get_product(productId)` → detail + `AvailableStock`.
-- [ ] `compare_products(productIds[2..4])` → side-by-side table (price, brand, category, stock, key attrs from description).
-- [ ] `get_product_inventory(productId)` → `available` only (no internal `reserved` leak unless Admin).
-- [ ] `get_orders`, `get_order(orderId)`, `get_order_status(orderId)` → ownership enforced.
+- [x] `search_products(query, category?, brand?, minPrice?, maxPrice?, specs?, sort?, page?, pageSize?)` → same semantics as `GET /api/products` (reuse `ProductService`; the A2 MCP `specs` array maps to the A3 codec).
+- [x] `get_product(productId)` → detail + `AvailableStock`.
+- [x] `compare_products(productIds[2..4])` → side-by-side table (price, brand, category, available stock, registry-ordered spec rows; A3 replaced description parsing).
+- [ ] `get_product_inventory(productId)` → not added in A2: `get_product` already returns `AvailableStock`, and a separate tool would risk exposing reserved stock.
+- [x] `get_orders`, `get_order(orderId)`, `get_order_status(orderId)` → ownership enforced.
 
 Write (all user-scoped):
 
-- [ ] `get_cart`, `add_to_cart(productId, qty)`, `update_cart(itemId, qty)`, `remove_from_cart(itemId)` → reuse `CartService` rules verbatim.
+- [x] `get_cart`, `add_to_cart(productId, qty)`, `update_cart(itemId, qty)`, `remove_from_cart(itemId)` → reuse `CartService` rules verbatim; A2 writes require `idempotencyKey`.
+- [x] `create_quote` → reuses the B5 money path, tags `QuoteOrigin.Agent`, and refuses to replace a human open quote (`QUOTE_HELD_BY_HUMAN`).
 - [ ] Higher-level: `find_products_for_requirement(requirementText, budget?, categoryHint?)` → structured-filter extraction (price cap, category keywords) + `search_products` + rank by price/stock match with explanation. (No LLM here yet — keyword heuristics; LLM ranking comes in M15.)
 - [ ] `get_personalized_recommendations(limit?)` → stub in this milestone (returns bestsellers/newest); real engine in M18 behind same signature.
 - [ ] `prepare_checkout` → validates cart, returns price breakdown + `AiAction` draft (does NOT create order; hands to M16 confirmation).

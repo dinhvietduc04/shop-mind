@@ -33,6 +33,9 @@ public class McpWebFactory : WebApplicationFactory<McpProgram>, IAsyncLifetime
     public int WritePerMin { get; init; } = 100_000;
     public int QuotePerMin { get; init; } = 100_000;
 
+    /// <summary>Override to fail only the idempotency store while budgets stay live.</summary>
+    protected virtual string IdempotencyConnectionString => Redis.ConnectionString;
+
     public McpWebFactory() : this(new TestRedis()) { }
 
     protected McpWebFactory(TestRedis redis)
@@ -84,6 +87,8 @@ public class McpWebFactory : WebApplicationFactory<McpProgram>, IAsyncLifetime
         builder.UseSetting("Redis:Enabled", "false");
         builder.UseSetting("Redis:ConnectionString", Redis.ConnectionString);
         builder.UseSetting("Mcp:KeyPrefix", Redis.KeyPrefix + "mcp:");
+        builder.UseSetting("Idempotency:ConnectionString", IdempotencyConnectionString);
+        builder.UseSetting("Idempotency:KeyPrefix", Redis.KeyPrefix + "idem:");
         builder.UseSetting("Mcp:ReadPerMin", ReadPerMin.ToString());
         builder.UseSetting("Mcp:WritePerMin", WritePerMin.ToString());
         builder.UseSetting("Mcp:QuotePerMin", QuotePerMin.ToString());
@@ -119,4 +124,14 @@ public class McpWebFactory : WebApplicationFactory<McpProgram>, IAsyncLifetime
         await base.DisposeAsync();
         await Redis.DisposeAsync();
     }
+}
+
+/// <summary>
+/// A2 fail-closed proof: budgets stay live, but the idempotency store can never
+/// answer. A WRITE/QUOTE tool must refuse before executing, never run
+/// un-deduplicated.
+/// </summary>
+public sealed class DeadRedisMcpFactory : McpWebFactory
+{
+    protected override string IdempotencyConnectionString => "127.0.0.1:1";
 }

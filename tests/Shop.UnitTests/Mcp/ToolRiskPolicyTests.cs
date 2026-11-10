@@ -21,6 +21,30 @@ public class ToolRiskPolicyTests
     }
 
     [Fact]
+    public void A2_tools_have_the_expected_risk_and_anonymous_rules()
+    {
+        AssertPolicy("compare_products", ToolRiskClass.Read, anonymous: true);
+        AssertPolicy("get_orders", ToolRiskClass.Read, anonymous: false);
+        AssertPolicy("get_order", ToolRiskClass.Read, anonymous: false);
+        AssertPolicy("get_order_status", ToolRiskClass.Read, anonymous: false);
+        AssertPolicy("add_to_cart", ToolRiskClass.Write, anonymous: false);
+        AssertPolicy("update_cart", ToolRiskClass.Write, anonymous: false);
+        AssertPolicy("remove_from_cart", ToolRiskClass.Write, anonymous: false);
+        AssertPolicy("create_quote", ToolRiskClass.Quote, anonymous: false);
+    }
+
+    [Fact]
+    public void Human_only_money_and_cancel_tools_are_documented_as_never()
+    {
+        AssertPolicy("cancel_order", ToolRiskClass.Never, anonymous: false);
+        AssertPolicy("refund_payment", ToolRiskClass.Never, anonymous: false);
+
+        var manifest = ToolManifest.Build(Policy, _ => true);
+
+        Assert.DoesNotContain(manifest, p => p.Name is "cancel_order" or "refund_payment");
+    }
+
+    [Fact]
     public void Payment_tools_are_documented_as_never_and_never_enter_the_manifest()
     {
         AssertPolicy("confirm_payment", ToolRiskClass.Never, anonymous: false);

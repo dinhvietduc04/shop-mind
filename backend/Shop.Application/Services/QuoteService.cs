@@ -28,7 +28,7 @@ public class QuoteService(
     private const decimal FreeShippingThreshold = 500m;
     private const decimal FlatShippingFee = 15m;
 
-    public async Task<QuoteResult> CreateQuoteAsync(Guid userId, CreateQuoteRequest request, CancellationToken ct = default)
+    public async Task<QuoteResult> CreateQuoteAsync(Guid userId, CreateQuoteRequest request, QuoteOrigin origin, CancellationToken ct = default)
     {
         var cart = await db.Carts.AsNoTracking().Include(c => c.Items)
             .FirstOrDefaultAsync(c => c.UserId == userId, ct);
@@ -58,6 +58,20 @@ public class QuoteService(
             .Include(o => o.Items)
             .Where(o => o.UserId == userId && o.Status == OrderStatus.Pending && o.ExpiresAt != null)
             .ToListAsync(ct);
+
+        // A2 / B3 origin scope: an agent may replace only agent-origin quotes.
+        // Check every open quote before the first transition so a human bill can
+        // never be cancelled (and its stock released) as a side effect. An
+        // already-elapsed human quote is not an Open Quote (Glossary), so the
+        // agent may replace it exactly as the sweeper would.
+        if (origin == QuoteOrigin.Agent)
+        {
+            var now = DateTime.UtcNow;
+            var humanQuote = openQuotes.FirstOrDefault(
+                o => o.Origin == QuoteOrigin.Human && o.ExpiresAt > now);
+            if (humanQuote is not null) throw new QuoteHeldByHumanException(humanQuote.Id);
+        }
+
         foreach (var old in openQuotes)
         {
             var outcome = await transitioner.ApplyAsync(old.Id, OrderStatus.Pending, OrderStatus.Cancelled, ct);
@@ -75,6 +89,7 @@ public class QuoteService(
             UserId = userId,
             OrderNumber = Order.GenerateOrderNumber(),
             Status = OrderStatus.Pending,
+            Origin = origin,
             ExpiresAt = DateTime.UtcNow.AddMinutes(QuoteExpiryMinutes),
             ShippingAddress = new Shop.Domain.ValueObjects.ShippingAddress
             {

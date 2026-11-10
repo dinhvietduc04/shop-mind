@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Shop.Application.Caching;
+using Shop.Application.Comparisons;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
 using Shop.Application.Services;
@@ -53,6 +54,7 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductComparisonBuilder, ProductComparisonBuilder>(); // A2 compare
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IInventoryService, InventoryService>();
