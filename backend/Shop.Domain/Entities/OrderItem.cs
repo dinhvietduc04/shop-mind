@@ -9,6 +9,10 @@ public class OrderItem
     public string SKU { get; set; } = string.Empty;
     public decimal UnitPrice { get; set; }
     public int Quantity { get; set; }
+
+    /// <summary>B5: units of this line the quote still holds (decreases as commits/releases consume the reservation).</summary>
+    public int ReservedQuantity { get; set; }
+
     public decimal Subtotal { get; set; }
 
     public Order? Order { get; set; }

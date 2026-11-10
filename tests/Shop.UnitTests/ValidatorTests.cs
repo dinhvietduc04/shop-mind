@@ -31,10 +31,10 @@ public class ValidatorTests
     }
 
     [Fact]
-    public async Task CheckoutValidator_EmptyAddress_Fails()
+    public async Task CreateQuoteValidator_EmptyAddress_Fails()
     {
-        var v = new CheckoutValidator();
-        var r = await v.ValidateAsync(new CheckoutRequest(new ShippingAddressDto("", "", "", ""), "fake", false, false));
+        var v = new CreateQuoteValidator();
+        var r = await v.ValidateAsync(new CreateQuoteRequest(new ShippingAddressDto("", "", "", "")));
         Assert.False(r.IsValid);
     }
 

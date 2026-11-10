@@ -45,10 +45,12 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
             EmailAlreadyExistsException eex => (409, eex.Code, eex.Message, null),
             InvalidCredentialsException icex => (401, icex.Code, icex.Message, null),
             UnauthorizedOrderAccessException uex => (403, uex.Code, uex.Message, null),
+            AgentScopeForbiddenException aex => (403, aex.Code, aex.Message, null), // ADR-0006
             UnauthorizedAccessException => (401, "Unauthorized", ex.Message, null),
             InsufficientStockException isex => (409, isex.Code, isex.Message, null),
             InvalidOrderStateException ioex => (422, ioex.Code, ioex.Message, null),
             PaymentFailedException pfex => (402, pfex.Code, pfex.Message, null),
+            WebhookSignatureException wex => (401, wex.Code, wex.Message, null),
             EmptyCartException ecex => (400, ecex.Code, ecex.Message, null),
             InactiveProductException ipex => (422, ipex.Code, ipex.Message, null),
             DbUpdateConcurrencyException => (409, "ConcurrencyConflict",
