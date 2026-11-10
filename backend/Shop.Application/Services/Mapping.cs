@@ -19,7 +19,8 @@ public static class Mapping
             p.Id, p.Name, p.Slug, p.SKU, p.Brand, p.Price, p.Status,
             p.CategoryId, p.Category?.Name,
             p.Inventory is null ? 0 : p.Inventory.Quantity - p.Inventory.ReservedQuantity,
-            p.Images.OrderBy(i => i.DisplayOrder).Select(ToDto).ToList());
+            p.Images.OrderBy(i => i.DisplayOrder).Select(ToDto).ToList(),
+            p.Specs);
 
     public static ProductDetailDto ToDetailDto(this Product p)
         => new(
@@ -27,7 +28,8 @@ public static class Mapping
             p.CategoryId, p.Category?.Name,
             p.Inventory is null ? 0 : p.Inventory.Quantity - p.Inventory.ReservedQuantity,
             p.Images.OrderBy(i => i.DisplayOrder).Select(ToDto).ToList(),
-            p.CreatedAt);
+            p.CreatedAt,
+            p.Specs);
 
     public static CartItemDto ToDto(this CartItem i)
         => new(

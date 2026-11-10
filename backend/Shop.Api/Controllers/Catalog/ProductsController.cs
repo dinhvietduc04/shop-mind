@@ -24,11 +24,12 @@ public class ProductsController(
         [FromQuery] decimal? maxPrice,
         [FromQuery] bool? inStockOnly,
         [FromQuery] string? sort,
+        [FromQuery] string? specs,
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 20,
         CancellationToken ct = default)
     {
-        var query = new ProductQueryParams(search, category, brand, minPrice, maxPrice, inStockOnly, sort, page, pageSize);
+        var query = new ProductQueryParams(search, category, brand, minPrice, maxPrice, inStockOnly, sort, page, pageSize, Specs: specs);
         if (IsBypassRequested())
         {
             Response.Headers["X-Cache"] = "BYPASSED";
@@ -41,6 +42,24 @@ public class ProductsController(
             CacheKeys.ProductsQuery(query),
             () => products.QueryAsync(query, ct),
             ttl,
+            ct);
+        Response.Headers["X-Cache"] = fromCache ? "HIT" : "MISS";
+        return Ok(result);
+    }
+
+    [HttpGet("facets")]
+    public async Task<ActionResult> Facets([FromQuery] string? category, CancellationToken ct)
+    {
+        if (IsBypassRequested())
+        {
+            Response.Headers["X-Cache"] = "BYPASSED";
+            return Ok(await products.GetFacetsAsync(category, ct));
+        }
+
+        var (result, fromCache) = await cache.GetOrCreateAsync(
+            CacheKeys.Facets(category),
+            () => products.GetFacetsAsync(category, ct),
+            CacheDurations.Facets,
             ct);
         Response.Headers["X-Cache"] = fromCache ? "HIT" : "MISS";
         return Ok(result);

@@ -10,4 +10,5 @@ public record ProductQueryParams(
     string? Sort, // price_asc, price_desc, newest, name_asc, name_desc
     int Page = 1,
     int PageSize = 20,
-    bool IncludeInactive = false);
+    bool IncludeInactive = false,
+    string? Specs = null); // A3: key:op:value[;...] (fail-closed)

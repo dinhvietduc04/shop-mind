@@ -83,5 +83,6 @@ public class CategoryService(IAppDbContext db, ICacheService cache) : ICategoryS
     {
         await cache.RemoveAsync(CacheKeys.CategoriesAll, ct);
         await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.FacetsPrefix, ct);
     }
 }

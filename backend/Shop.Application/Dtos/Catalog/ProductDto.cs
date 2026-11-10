@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Shop.Domain.Enums;
 
 namespace Shop.Application.Dtos;
@@ -13,4 +14,5 @@ public record ProductDto(
     Guid CategoryId,
     string? CategoryName,
     int AvailableStock,
-    IReadOnlyList<ProductImageDto> Images);
+    IReadOnlyList<ProductImageDto> Images,
+    JsonElement Specs);

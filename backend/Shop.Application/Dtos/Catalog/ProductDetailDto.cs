@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Shop.Domain.Enums;
 
 namespace Shop.Application.Dtos;
@@ -15,4 +16,5 @@ public record ProductDetailDto(
     string? CategoryName,
     int AvailableStock,
     IReadOnlyList<ProductImageDto> Images,
-    DateTime CreatedAt);
+    DateTime CreatedAt,
+    JsonElement Specs);

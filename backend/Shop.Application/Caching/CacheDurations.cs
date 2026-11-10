@@ -6,4 +6,5 @@ public static class CacheDurations
     public static readonly TimeSpan Categories = TimeSpan.FromMinutes(10);
     public static readonly TimeSpan Product = TimeSpan.FromMinutes(5);
     public static readonly TimeSpan ProductsQuery = TimeSpan.FromSeconds(90);
+    public static readonly TimeSpan Facets = TimeSpan.FromMinutes(10);
 }

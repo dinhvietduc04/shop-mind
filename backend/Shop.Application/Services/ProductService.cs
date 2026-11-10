@@ -1,9 +1,11 @@
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Caching;
 using Shop.Application.Common;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
+using Shop.Application.Specs;
 using Shop.Application.Validation;
 using Shop.Domain.Entities;
 using Shop.Domain.Enums;
@@ -17,6 +19,24 @@ public class ProductService(IAppDbContext db, ICacheService cache, IEventPublish
     {
         var page = query.Page <= 0 ? 1 : query.Page;
         var pageSize = query.PageSize is <= 0 or > 100 ? 20 : query.PageSize;
+        var specClauses = SpecFilterCodec.Parse(query.Specs); // A3: fail-closed 400
+        if (specClauses.Count > 0 && !string.IsNullOrWhiteSpace(query.Category))
+        {
+            // ADR-0007: the category's registry is authoritative — a key that is
+            // only valid for another category is a hallucinated filter, not an
+            // empty result.
+            var categorySlug = await ResolveCategorySlugAsync(query.Category, ct);
+            if (categorySlug is not null)
+            {
+                var allowed = SpecRegistry.ForCategory(categorySlug)
+                    .Select(d => d.Key)
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                var invalid = specClauses.FirstOrDefault(c => !allowed.Contains(c.Key));
+                if (invalid is not null)
+                    throw new InvalidSpecFilterException(
+                        $"\"{invalid.Key}\" is not a registered spec for category \"{query.Category}\"");
+            }
+        }
 
         var q = db.Products
             .AsNoTracking()
@@ -52,6 +72,7 @@ public class ProductService(IAppDbContext db, ICacheService cache, IEventPublish
         if (query.MinPrice.HasValue) q = q.Where(p => p.Price >= query.MinPrice.Value);
         if (query.MaxPrice.HasValue) q = q.Where(p => p.Price <= query.MaxPrice.Value);
         if (query.InStockOnly == true) q = q.Where(p => p.Inventory != null && p.Inventory.Quantity - p.Inventory.ReservedQuantity > 0);
+        q = SpecFilter.Apply(q, specClauses);
 
         q = query.Sort?.ToLowerInvariant() switch
         {
@@ -71,6 +92,86 @@ public class ProductService(IAppDbContext db, ICacheService cache, IEventPublish
             PageSize = pageSize,
             TotalCount = total
         };
+    }
+
+    /// <summary>
+    /// A3 / ADR-0007: registry ∩ populated Active products for one category.
+    /// Unregistered jsonb keys and bool specs never surface. Cached by the
+    /// controller for 10 minutes.
+    /// </summary>
+    public async Task<IReadOnlyList<FacetDto>> GetFacetsAsync(string? category, CancellationToken ct = default)
+    {
+        var q = db.Products.AsNoTracking().Where(p => p.Status == ProductStatus.Active);
+
+        string? categorySlug = null;
+        if (!string.IsNullOrWhiteSpace(category))
+        {
+            var token = category.Trim();
+            if (Guid.TryParse(token, out var categoryId))
+            {
+                categorySlug = await db.Categories
+                    .Where(c => c.Id == categoryId)
+                    .Select(c => c.Slug)
+                    .FirstOrDefaultAsync(ct);
+                q = q.Where(p => p.CategoryId == categoryId);
+            }
+            else
+            {
+                categorySlug = token.ToLowerInvariant();
+                q = q.Where(p => p.Category != null && p.Category.Slug == categorySlug);
+            }
+        }
+
+        var specs = await q.Select(p => p.Specs).ToListAsync(ct);
+        var defs = categorySlug is null ? SpecRegistry.All : SpecRegistry.ForCategory(categorySlug);
+
+        var facets = new List<FacetDto>();
+        foreach (var def in defs)
+        {
+            if (def.Type == SpecType.Bool) continue; // bools filter by existence, never elicit
+
+            if (def.Type == SpecType.Range)
+            {
+                var numbers = specs
+                    .Select(s => s.TryGetProperty(def.Key, out var v)
+                                 && v.ValueKind == JsonValueKind.Number
+                                 && v.TryGetDouble(out var n) ? n : (double?)null)
+                    .Where(n => n.HasValue)
+                    .Select(n => n!.Value)
+                    .Distinct()
+                    .ToList();
+                if (numbers.Count == 0) continue;
+                facets.Add(new FacetDto(def.Key, def.Label, "range", def.Unit, null,
+                    numbers.Min(), numbers.Max(), numbers.Count));
+                continue;
+            }
+
+            var values = specs
+                .Select(s => s.TryGetProperty(def.Key, out var v) && v.ValueKind == JsonValueKind.String
+                    ? v.GetString()
+                    : null)
+                .Where(v => !string.IsNullOrWhiteSpace(v))
+                .Select(v => v!)
+                .Distinct(StringComparer.Ordinal)
+                .OrderBy(v => v, StringComparer.Ordinal)
+                .ToList();
+            if (values.Count == 0) continue;
+            facets.Add(new FacetDto(def.Key, def.Label, "enum", def.Unit, values, null, null, values.Count));
+        }
+
+        return facets;
+    }
+
+    /// <summary>Resolve a category slug or id token to its canonical slug.</summary>
+    private async Task<string?> ResolveCategorySlugAsync(string category, CancellationToken ct)
+    {
+        var token = category.Trim();
+        if (Guid.TryParse(token, out var categoryId))
+            return await db.Categories
+                .Where(c => c.Id == categoryId)
+                .Select(c => c.Slug)
+                .FirstOrDefaultAsync(ct);
+        return token.ToLowerInvariant();
     }
 
     public async Task<ProductDetailDto> GetByIdAsync(Guid id, bool includeInactive = false, CancellationToken ct = default)
@@ -180,10 +281,11 @@ public class ProductService(IAppDbContext db, ICacheService cache, IEventPublish
         await EvictProductCacheAsync(product.Id, ct);
     }
 
-    /// <summary>M9: product write → evict product:{id} + products:query:*. Best-effort; never fails the write.</summary>
+    /// <summary>M9/A3: product write → evict product:{id}, product queries, and facets. Best-effort; never fails the write.</summary>
     private async Task EvictProductCacheAsync(Guid id, CancellationToken ct)
     {
         await cache.RemoveAsync(CacheKeys.Product(id), ct);
         await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.FacetsPrefix, ct);
     }
 }

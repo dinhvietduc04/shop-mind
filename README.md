@@ -49,7 +49,8 @@ docker compose up --build
 ## API surface
 
 - `POST /api/auth/register, POST /api/auth/login, GET /api/auth/me`
-- `GET /api/products?search=&category=&brand=&minPrice=&maxPrice=&sort=&page=&pageSize=`
+- `GET /api/products?search=&category=&brand=&minPrice=&maxPrice=&specs=&sort=&page=&pageSize=`
+- `GET /api/products/facets?category=` (A3: registry-driven range/enum facets, 10 min cache)
 - `GET /api/products/{id}`, `GET /api/categories`
 - `GET /api/cart, POST /api/cart/items, PATCH /api/cart/items/{id}, DELETE /api/cart/items/{id}, DELETE /api/cart`
 - `POST /api/checkout`
@@ -66,16 +67,28 @@ Hot catalog reads are cached in Redis via `ICacheService`
 
 | Cached read | Key | TTL |
 |---|---|---|
-| `GET /api/products?...` | `shop:products:q:{sha1(search\|category\|brand\|min\|max\|sort\|page\|size)}` | `Redis:DefaultTtlSeconds` (default 90s) |
+| `GET /api/products?...` | `shop:products:q:{sha1(search\|category\|brand\|min\|max\|specs\|sort\|page\|size)}` | `Redis:DefaultTtlSeconds` (default 90s) |
+| `GET /api/products/facets?category=` | `shop:facets:{category-or-all}` | 10 min |
 | `GET /api/products/{id}` (public only) | `shop:product:{id}` | 5 min |
 | `GET /api/categories` (public list) | `shop:categories:all` | 10 min |
+
+### Spec filters and facets (A3)
+
+`specs` is a fail-closed filter grammar: `key:op:value` clauses joined by `;`,
+`in` values joined by `|` (e.g. `ram_gb:gte:16;panel:in:IPS|VA`). Ops by
+registry type: range `gte|lte|eq`, enum `eq|in`, bool `eq`. An unregistered key,
+invalid operator, or non-coercible value returns `400 InvalidSpecFilter`.
+Specs live in `Product.Specs` (`jsonb`, GIN-indexed) and are validated against
+`SpecRegistry` (the same vocabulary drives seed validation and facets). Facets
+only include registered keys populated by Active products; bool specs never
+appear.
 
 - Cached responses carry `X-Cache: HIT | MISS`. Admins can bypass with
   `?nocache=1` (or `X-Bypass-Cache: 1` header) → `X-Cache: BYPASSED`.
 - Invalidation (mandatory, best-effort): product create/update/delete →
-  `product:{id}` + `products:q:*`; category write → `categories:all` (+
-  `products:q:*`, since listings filter by category slug); inventory
-  quantity change → `product:{id}` + `products:q:*`.
+  `product:{id}` + `products:q:*` + `facets:*`; category write → `categories:all`
+  (+ `products:q:*`, `facets:*`); inventory quantity change → `product:{id}` +
+  `products:q:*` + `facets:*`.
 - Never cached: cart, checkout, orders, auth/me, admin lists.
 - Resilience: Redis down or `Redis:Enabled=false` → API still serves 200
   from Postgres (MISS), warning logged at most once/minute.

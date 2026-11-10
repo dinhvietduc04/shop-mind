@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Shop.Domain.Enums;
 
 namespace Shop.Domain.Entities;
@@ -15,6 +16,13 @@ public class Product
     public ProductStatus Status { get; set; } = ProductStatus.Draft;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    /// <summary>
+    /// A3 / ADR-0007: registry-defined product attributes stored as a flat
+    /// JSON object (<c>jsonb</c>). Keys outside <c>SpecRegistry</c> are invisible
+    /// to facets and filtered search.
+    /// </summary>
+    public JsonElement Specs { get; set; } = JsonSerializer.SerializeToElement(new Dictionary<string, object?>());
 
     public Category? Category { get; set; }
     public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();

@@ -57,5 +57,8 @@ The assistant asking a few targeted attribute questions before filtering or reco
 **Spec**:
 A canonical product attribute defined by the per-category specs registry (e.g. `ram_gb`, `cpu`). Specs outside the registry do not exist for facets or filtered search.
 
+**Facet**:
+A registry-derived summary of the Specs actually populated by Active products in a category — a numeric range (min/max) or an enum value set. Facets drive elicitation questions and filter chips; bool Specs never become facets.
+
 **Payment Anomaly**:
 A provider event that conflicts with an Order's terminal state (e.g. a late *succeeded* after *Cancelled*). Never applied automatically; recorded and escalated for a human refund/cancel decision.
