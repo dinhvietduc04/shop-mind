@@ -5,13 +5,13 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY ShopMind.slnx ./
-COPY src/Shop.Api/Shop.Api.csproj src/Shop.Api/
-COPY src/Shop.Application/Shop.Application.csproj src/Shop.Application/
-COPY src/Shop.Domain/Shop.Domain.csproj src/Shop.Domain/
-COPY src/Shop.Infrastructure/Shop.Infrastructure.csproj src/Shop.Infrastructure/
-RUN dotnet restore src/Shop.Api/Shop.Api.csproj
+COPY backend/Shop.Api/Shop.Api.csproj backend/Shop.Api/
+COPY backend/Shop.Application/Shop.Application.csproj backend/Shop.Application/
+COPY backend/Shop.Domain/Shop.Domain.csproj backend/Shop.Domain/
+COPY backend/Shop.Infrastructure/Shop.Infrastructure.csproj backend/Shop.Infrastructure/
+RUN dotnet restore backend/Shop.Api/Shop.Api.csproj
 COPY . .
-WORKDIR /src/src/Shop.Api
+WORKDIR /src/backend/Shop.Api
 RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final

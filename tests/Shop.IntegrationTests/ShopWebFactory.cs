@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Shop.Application.Interfaces;
@@ -83,6 +84,9 @@ public class ShopWebFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
             // Use test database connection string
             services.AddDbContext<AppDbContext>(o => o.UseNpgsql(ConnectionString));
+
+            // B5: capture log lines for contract assertions (ADR-0002 /pay/* exclusion).
+            services.AddLogging(b => b.AddProvider(TestLogSink.Instance));
 
             // B2: the test assembly contributes the idempotency probe controller.
             services.AddControllers().AddApplicationPart(typeof(IdempotencyProbeController).Assembly);

@@ -182,10 +182,16 @@ namespace Shop.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("OrderNumber")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<int?>("Outcome")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("ShippingFee")
                         .HasPrecision(18, 2)
@@ -244,6 +250,9 @@ namespace Shop.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(300)");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ReservedQuantity")
                         .HasColumnType("integer");
 
                     b.Property<string>("SKU")
@@ -340,6 +349,92 @@ namespace Shop.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.PaymentAnomaly", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CurrentStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Observed")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ProviderEventId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("SessionToken")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("PaymentAnomalies");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.PaymentSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("numeric(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Provider")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SessionToken")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("SessionToken")
+                        .IsUnique();
+
+                    b.ToTable("PaymentSessions");
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.ProcessedEvent", b =>
@@ -650,6 +745,17 @@ namespace Shop.Infrastructure.Persistence.Migrations
                     b.HasOne("Shop.Domain.Entities.Order", "Order")
                         .WithOne("Payment")
                         .HasForeignKey("Shop.Domain.Entities.Payment", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.PaymentSession", b =>
+                {
+                    b.HasOne("Shop.Domain.Entities.Order", "Order")
+                        .WithOne()
+                        .HasForeignKey("Shop.Domain.Entities.PaymentSession", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

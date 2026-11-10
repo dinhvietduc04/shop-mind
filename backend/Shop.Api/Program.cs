@@ -71,6 +71,8 @@ var app = builder.Build();
 // M10: correlation id first — everything downstream (logs, exception handling,
 // rate limiting, idempotency, outbox payloads) runs inside its scope.
 app.UseMiddleware<CorrelationIdMiddleware>();
+// B5 (ADR-0002): request-line logging with /pay/* redacted (URLs are credentials).
+app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())

@@ -19,8 +19,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
-    // B4 worker-side tables: reached through AppDbContext (not IAppDbContext) —
-    // app services never read or write them.
+    // B5 money-path tables (app services consume these through IAppDbContext):
+    public DbSet<PaymentSession> PaymentSessions => Set<PaymentSession>();
+    public DbSet<PaymentAnomaly> PaymentAnomalies => Set<PaymentAnomaly>();
+
+    // B4/B5 ledger + analytics tables. ProcessedEvents is exposed through
+    // IAppDbContext (the B5 webhook consumer applies money fates); the behavior
+    // sink stays worker-only.
     public DbSet<ProcessedEvent> ProcessedEvents => Set<ProcessedEvent>();
     public DbSet<UserBehaviorEvent> UserBehaviorEvents => Set<UserBehaviorEvent>();
 

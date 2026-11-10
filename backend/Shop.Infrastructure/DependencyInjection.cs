@@ -12,6 +12,7 @@ using Shop.Infrastructure.Idempotency;
 using Shop.Infrastructure.Payments;
 using Shop.Infrastructure.Persistence;
 using Shop.Infrastructure.RateLimiting;
+using Shop.Infrastructure.RateLimiting;
 
 namespace Shop.Infrastructure;
 
@@ -41,16 +42,25 @@ public static class DependencyInjection
 
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-        services.AddScoped<IFakePaymentService, FakePaymentService>();
+
+        // B5: PSP adapters behind the normalized webhook contract.
+        services.Configure<PaymentsOptions>(config.GetSection("Payments"));
+        services.AddScoped(sp => new FakePspProvider(
+            sp.GetRequiredService<IEventPublisher>(),
+            sp.GetRequiredService<IOptions<PaymentsOptions>>().Value.FakePspSecret));
+        services.AddScoped<IPaymentProvider>(sp => sp.GetRequiredService<FakePspProvider>());
 
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICartService, CartService>();
-        services.AddScoped<ICheckoutService, CheckoutService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IInventoryService, InventoryService>();
         services.AddScoped<IEventPublisher, EventPublisher>(); // M10
+        services.AddScoped<OrderStatusTransitioner>(); // B1/B5: shared conditional-transition engine
+        services.AddScoped<IQuoteService, QuoteService>(); // B5
+        services.AddScoped<QuoteExpirySweeper>(); // B5
+        services.AddScoped<PaymentWebhookConsumer>(); // B5
 
         return services;
     }

@@ -22,6 +22,7 @@ builder.Services.AddTransient<AnalyticsEventHandler>();
 builder.Services.AddHostedService<OutboxPublisherWorker>();
 builder.Services.AddHostedService<EmailConsumerWorker>();
 builder.Services.AddHostedService<AnalyticsConsumerWorker>();
+builder.Services.AddHostedService<PaymentWebhookQueueWorker>();
 builder.Services.AddHostedService<OutboxRetentionWorker>();
 
 var host = builder.Build();

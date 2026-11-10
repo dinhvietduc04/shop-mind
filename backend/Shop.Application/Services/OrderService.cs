@@ -9,51 +9,21 @@ using Shop.Domain.Rules;
 
 namespace Shop.Application.Services;
 
-public class OrderService(IAppDbContext db, IEventPublisher events) : IOrderService
+public class OrderService(IAppDbContext db, IEventPublisher events, OrderStatusTransitioner transitioner, IInventoryService inventory) : IOrderService
 {
     private IQueryable<Domain.Entities.Order> BaseQuery()
         => db.Orders.Include(o => o.Items).Include(o => o.Payment).AsQueryable();
 
-    /// <summary>
-    /// M10: distinguishes a real state change from an ADR-0005 replay — events
-    /// fire only on <see cref="Transitioned"/>.
-    /// </summary>
     private enum TransitionOutcome { Transitioned, Replayed }
 
     /// <summary>
-    /// B1: a status transition is ONE conditional statement
-    /// (UPDATE orders SET status=@to WHERE id=@id AND status=@from), so racing
-    /// transitions serialize at the row and exactly one guard passes.
-    /// 0 rows is resolved per ADR-0005's first row: if the database already holds
-    /// the target status the transition is an idempotent replay; anything else is a
-    /// typed InvalidOrderStateException carrying the real current status.
-    /// (Mainline-downstream and PaymentAnomaly outcomes land with B5's webhook path.)
-    /// Rules still come only from OrderTransitions.
+    /// B1: conditional-update transition via the shared OrderStatusTransitioner
+    /// (single source of truth for the ADR-0005 replay resolution).
     /// </summary>
     private async Task<TransitionOutcome> ApplyTransitionAsync(Guid orderId, OrderStatus from, OrderStatus to, CancellationToken ct)
-    {
-        if (from == to) return TransitionOutcome.Replayed; // replay of the same state: idempotent success
-        if (!OrderTransitions.IsValidTransition(from, to))
-            throw new InvalidOrderStateException(orderId, from, to);
-
-        var updated = await db.Orders
-            .Where(o => o.Id == orderId && o.Status == from)
-            .ExecuteUpdateAsync(s => s
-                .SetProperty(o => o.Status, to)
-                .SetProperty(o => o.UpdatedAt, DateTime.UtcNow), ct);
-
-        if (updated == 0)
-        {
-            var current = await db.Orders.AsNoTracking()
-                .Where(o => o.Id == orderId)
-                .Select(o => (OrderStatus?)o.Status)
-                .FirstOrDefaultAsync(ct)
-                ?? throw new OrderNotFoundException(orderId);
-            if (current == to) return TransitionOutcome.Replayed; // raced with an identical outcome
-            throw new InvalidOrderStateException(orderId, current, to);
-        }
-        return TransitionOutcome.Transitioned;
-    }
+        => await transitioner.ApplyAsync(orderId, from, to, ct) == OrderStatusTransitioner.Outcome.Transitioned
+            ? TransitionOutcome.Transitioned
+            : TransitionOutcome.Replayed;
 
     public async Task<PagedResult<OrderDto>> ListMineAsync(Guid userId, int page, int pageSize, CancellationToken ct = default)
     {
@@ -98,9 +68,10 @@ public class OrderService(IAppDbContext db, IEventPublisher events) : IOrderServ
         // re-fire the event. Business work happens only on a real transition.
         if (outcome == TransitionOutcome.Transitioned)
         {
-            // Restore inventory if stock was decremented (Paid -> Cancelled).
-            // Pending orders in V1 never reserve stock, so only restore when previously Paid.
-            if (previous == OrderStatus.Paid)
+            // B5: quote holds release through the guarded primitives (physical stock
+            // was never decremented); legacy Paid orders restore quantity (M5 shape).
+            var holds = o.Items.Where(i => i.ReservedQuantity > 0).ToList();
+            if (previous == OrderStatus.Paid && holds.Count == 0)
             {
                 var productIds = o.Items.Select(i => i.ProductId).ToList();
                 var inventories = await db.Inventories.Where(i => productIds.Contains(i.ProductId)).ToDictionaryAsync(i => i.ProductId, ct);
@@ -111,9 +82,14 @@ public class OrderService(IAppDbContext db, IEventPublisher events) : IOrderServ
                         inv.UpdatedAt = DateTime.UtcNow;
                     }
             }
+            foreach (var item in holds)
+                await inventory.TryReleaseReservationAsync(item.ProductId, item.ReservedQuantity, ct);
+            if (holds.Count > 0)
+                await db.OrderItems.Where(i => i.OrderId == orderId)
+                    .ExecuteUpdateAsync(s => s.SetProperty(i => i.ReservedQuantity, 0), ct);
 
             // order.cancelled enqueued inside the SAME transaction as the status
-            // guard + stock restore; SaveChanges flushes outbox and business rows together.
+            // guard + stock release; SaveChanges flushes outbox and business rows together.
             await events.EnqueueAsync(new Shop.Domain.Events.OrderCancelledEvent(orderId, o.UserId), ct);
         }
         await db.SaveChangesAsync(ct);

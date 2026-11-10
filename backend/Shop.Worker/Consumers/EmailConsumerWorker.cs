@@ -10,7 +10,9 @@ public sealed class EmailConsumerWorker(IServiceScopeFactory scopes, IOptions<Ra
     : EventConsumerWorkerBase(scopes, rabbit, log)
 {
     protected override string QueueName => "shop.email";
-    protected override IReadOnlyList<string> RoutingKeys { get; } = ["order.*", "payment.*"];
+    // order.* + the human-facing payment outcomes only — NOT payment.webhook-received
+    // (that is the internal intake key the PaymentWebhookQueueWorker eats).
+    protected override IReadOnlyList<string> RoutingKeys { get; } = ["order.*", "payment.failed", "payment.anomaly"];
     protected override IEventConsumer CreateConsumer(IServiceScope scope) => new EmailEventHandler(
         scope.ServiceProvider.GetRequiredService<ILogger<EmailEventHandler>>());
 }

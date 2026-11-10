@@ -16,7 +16,12 @@ public interface IAppDbContext
     DbSet<Order> Orders { get; }
     DbSet<OrderItem> OrderItems { get; }
     DbSet<Payment> Payments { get; }
+    DbSet<PaymentSession> PaymentSessions { get; }
+    DbSet<PaymentAnomaly> PaymentAnomalies { get; }
     DbSet<OutboxMessage> OutboxMessages { get; }
+
+    /// <summary>B5: per-consumer exactly-once ledger (webhook intake + worker consumers).</summary>
+    DbSet<ProcessedEvent> ProcessedEvents { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default);
