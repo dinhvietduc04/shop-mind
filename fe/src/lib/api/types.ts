@@ -1,8 +1,7 @@
 /**
- * DTO contracts mirrored 1:1 from backend/Shop.Application/Dtos/Dtos.cs and
- * Common/PagedResult.cs. When F8 swaps MSW for the real Shop.Api, nothing in
- * the UI changes — these types ARE the contract. Money is a JSON number
- * (decimal 18,2 server-side); display always via formatUsd().
+ * DTO contracts mirrored from backend/Shop.Application/Dtos/Dtos.cs and
+ * Common/PagedResult.cs. The UI must not invent fields. Money is a JSON number
+ * (decimal 18,2 server-side); display always through formatUsd().
  */
 
 export type UserRole = "Customer" | "Admin";
@@ -47,7 +46,7 @@ export interface ProductImageDto {
   displayOrder: number;
 }
 
-/** spec map (backend plan A3): key → scalar/array. Keys feed the facets API. */
+/** spec map: key to scalar or array. Keys feed the facets API. */
 export type Specs = Record<string, string | number | boolean | null>;
 
 export interface ProductDto {
@@ -62,7 +61,7 @@ export interface ProductDto {
   categoryName: string | null;
   availableStock: number;
   images: ProductImageDto[];
-  /** A3 forward contract — not in V1 backend yet; mock ships it now. */
+  /** Forward contract; the mock ships specs before the V1 backend does. */
   specs?: Specs;
 }
 
@@ -78,9 +77,9 @@ export interface ProductQuery {
   minPrice?: number;
   maxPrice?: number;
   inStockOnly?: boolean;
-  /** Spec filter DSL (§B5+ 4, one codec in lib/attributes): clauses
+  /** Spec filter DSL (one codec in lib/attributes): clauses
    *  `key:op:value` joined by ";", `in` values joined by "|".
-   *  Unregistered key or malformed clause → 400 (fail-closed). */
+   *  Unregistered key or malformed clause fails with 400 (fail-closed). */
   specs?: string;
   sort?: "price_asc" | "price_desc" | "newest" | "name_asc" | "name_desc";
   page?: number;
@@ -99,7 +98,7 @@ export interface FacetDto {
   key: string;
   label: string;
   type: "range" | "enum";
-  /** §A3 registry unit ("GB", "in", …) — additive front-end surface */
+  /** Registry unit ("GB", "in"), an additive front-end field */
   unit?: string;
   values?: (string | number)[];
   min?: number;
@@ -132,9 +131,10 @@ export interface ShippingAddressDto {
   city: string;
 }
 
-/** B5 forward contract: quote = order + reservation + hosted pay session.
- *  sessionToken is delivered as its own field (§B5+ item 2) — clients must
- *  never decompose hostedPayUrl to find it (prod = cross-origin Stripe URL). */
+/** A quote combines an order, a reservation, and a hosted pay session. The
+ *  server delivers sessionToken as its own field. Clients must never decompose
+ *  hostedPayUrl to find it, because in production the URL points at Stripe on
+ *  another origin. */
 export interface QuoteDto {
   sessionToken: string;
   order: OrderDto;
@@ -143,11 +143,11 @@ export interface QuoteDto {
 }
 
 /* --------------------------------- admin ----------------------------------
- * Transcribed from backend/Shop.Api/Controllers/AdminControllers.cs + the
+ * Transcribed from backend/Shop.Api/Controllers/AdminControllers.cs and the
  * matching records in Dtos.cs. Role-gated (Admin) server-side; the mock's
- * requireAdmin mirrors [Authorize(Roles = "Admin")]. */
+ * `adminOnly` mirrors [Authorize(Roles = "Admin")]. */
 
-/** FixtureProduct shape — admin list/detail rows carry the fields the public
+/** FixtureProduct shape. Admin list and detail rows carry the fields the public
  *  ProductDto hides (description, raw quantity, createdAt). */
 export interface ProductAdminDto extends ProductDto {
   description: string;
@@ -213,14 +213,9 @@ export interface UpdateOrderStatusRequest {
   status: OrderStatus;
 }
 
-/* Order-state facts (transitions, terminality, mainline rank, stock fate,
-   revenue eligibility, bands) moved to lib/orders/lifecycle.ts — the ONE
-   Quote-lifecycle module both the client and the mock server's guard call.
-   This file keeps only the wire enum (OrderStatus). */
-
-/* ------------------------------ AI audit (§A7) ------------------------------
- * Mock-only surface until the backend grows its audit read-model (plan §A7);
- * the ledger rows mirror what the real loop must emit per tool call. */
+/* ------------------------------ AI audit ------------------------------
+ * Mock-only until the backend grows its audit read-model. The ledger rows
+ * mirror what the real loop must emit per tool call. */
 
 export interface AiLedgerEntryDto {
   id: string;
@@ -241,14 +236,14 @@ export interface AiConversationDto {
 }
 
 export interface AiSettingsDto {
-  /** Ai:Enabled kill switch — off → chat answers 503 AI_NOT_CONFIGURED. */
+  /** Ai:Enabled kill switch. When off, chat answers 503 AI_NOT_CONFIGURED. */
   enabled: boolean;
-  /** per-tool switches (§B3 surface): off → that tool degrades inside a turn */
+  /** per-tool switches. When off, that tool degrades inside a turn */
   tools: Record<string, boolean>;
 }
 
-/** Client-visible payment outcome (§B5+ item 1). The discriminator the UI
- *  reads instead of inferring "expired" from a null transactionId. */
+/** Client-visible payment outcome. The discriminator the UI reads instead of
+ *  inferring "expired" from a null transactionId. */
 export type PaymentOutcome = "captured" | "failed" | "expired";
 
 export interface PaymentDto {
@@ -294,10 +289,9 @@ export class ApiError extends Error {
 }
 
 /* ----------------------------- agent chat ------------------------------
- * Mirrors backend plan §A5 (POST /api/agent/chat) + §A2 tool names + §A3
- * elicitation fields. The mock engine is the deterministic FakeAiProvider
- * (§A4) — CI's own stand-in — so numbers in replies always trace to a tool
- * call against the same fixture DB the REST handlers use. */
+ * Mirrors POST /api/agent/chat and the elicitation fields. The mock engine is
+ * the deterministic FakeAiProvider, so numbers in replies always trace to a
+ * tool call against the same fixture DB the REST handlers use. */
 
 export interface ToolTrailItem {
   tool: string; // search_products | get_product | get_product_facets | compare_products | add_to_cart | create_quote | get_cart
@@ -318,7 +312,7 @@ export interface ChatProductRef {
   brand: string | null;
   categoryName: string | null;
   matchReason?: string; // why the deterministic ranker picked it
-  /** only carried on compare turns — the side-by-side needs the rows. */
+  /** only carried on compare turns, because the side-by-side needs the rows. */
   specs?: Specs;
 }
 
@@ -338,20 +332,20 @@ export interface AgentTurnResult {
   elicit?: ElicitField[];
   quote?: ChatQuoteRef;
   cartCount?: number;
-  /** per-conversation turn cap hit (B3): the answer above is partial. */
+  /** per-conversation turn cap hit. The answer above is partial. */
   limitReached?: boolean;
   /** machine code for policy refusals, e.g. QUOTE_HELD_BY_HUMAN. */
   code?: string;
   /** server-delivered truth so the UI renders "turn x/N" without hardcoding
-   *  the cap (§B5+ item 3). Absent only before the first finished turn. */
+   *  the cap. Absent only before the first finished turn. */
   turnCap?: number;
   turnsUsed?: number;
 }
 
-/* ---------------- chat wire contract (AI_ASSISTANT_PLAN §B5+ item 3) --------
- * The frame vocabulary below is SHARED by the producer (mocks/handlers.ts SSE)
- * and the consumer (lib/chat/transport.ts — the only parser). F8: Shop.Api
- * must speak exactly this; nothing else in the app may know it. */
+/* ---------------- chat wire contract ----------------
+ * The frame vocabulary below is shared by the producer (mocks/handlers.ts SSE)
+ * and the consumer (lib/chat/transport.ts, the only parser). Shop.Api must
+ * speak exactly this; nothing else in the app may know it. */
 export type ChatSseFrame =
   | { type: "delta"; text: string }
   | { type: "turn"; result: AgentTurnResult }
@@ -373,7 +367,6 @@ export interface ChatRequest {
   /** structured answers from an elicitation card, folded in as intent. */
   answers?: Record<string, string | number | boolean>;
 }
-
 
 export const formatUsd = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });

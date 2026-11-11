@@ -11,7 +11,7 @@ import { useAdminOrder, useSetOrderStatus } from "@/lib/api/hooks";
 import { legalTargets } from "@/lib/orders/lifecycle";
 import { ApiError, formatUsd, type OrderStatus } from "@/lib/api/types";
 
-/** §5.6: status dropdown offers ONLY legal targets — a client mirror of
+/** Status dropdown offers only legal targets. A client mirror of
  *  OrderTransitions.cs. The mock re-checks server-side, so hand-crafted
  *  requests fail exactly like Shop.Api would. */
 export default function AdminOrderDetailPage() {
@@ -101,7 +101,7 @@ export default function AdminOrderDetailPage() {
       <Panel title="Fulfillment desk">
         {legal.length === 0 ? (
           <p className="text-[13px] leading-relaxed text-ink-soft">
-            <strong>{order.status}</strong> is terminal in the state machine — there is no legal
+            <strong>{order.status}</strong> is terminal in the state machine. There is no legal
             next state, so this dropdown would be a lie. The row is closed.
           </p>
         ) : (
@@ -116,7 +116,7 @@ export default function AdminOrderDetailPage() {
                 className="rounded-[4px] border-[1.5px] border-line bg-paper px-3 py-2 font-mono text-[13px] focus:border-ink"
                 aria-label="Next status"
               >
-                <option value="">— pick a legal target —</option>
+                <option value="">pick a legal target</option>
                 {legal.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
@@ -137,7 +137,7 @@ export default function AdminOrderDetailPage() {
             </Button>
             <p className="w-full text-[11px] leading-relaxed text-ink-soft">
               Yellow = a human decision. A Pending order moving through this desk runs the same
-              guarded settle as the payment page — reservations commit or release honestly.
+              guarded settle as the payment page. Reservations commit or release.
             </p>
           </div>
         )}
@@ -145,7 +145,7 @@ export default function AdminOrderDetailPage() {
           <div className="mt-3">
             <ErrorNote>
               <strong>Transition refused.</strong>{" "}
-              {error instanceof ApiError ? error.title : "Unexpected error."} — the server keeps
+              {error instanceof ApiError ? error.title : "Unexpected error."}. The server keeps
               its own copy of the state machine; the dropdown is convenience, not permission.
             </ErrorNote>
           </div>

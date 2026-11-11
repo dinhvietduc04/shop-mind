@@ -2,8 +2,8 @@ import type { AiConversationDto, AiLedgerEntryDto, AiSettingsDto } from "@/lib/a
 import { AI_TOOLS, LLM_TURN } from "@/lib/tools/registry";
 import { registerStore, uuid } from "./snapshot";
 
-/** AI settings + §A7 audit ledger domain. The tool vocabulary itself is NOT
- *  duplicated here — defaults derive from the shared tool registry (C4). */
+/** AI settings and audit ledger domain. The tool vocabulary is not duplicated
+ *  here. Defaults derive from the shared tool registry. */
 
 const aiLedger = new Map<string, AiLedgerEntryDto>();
 const defaultSettings = (): AiSettingsDto => ({
@@ -49,7 +49,7 @@ export function setAiSettings(patch: Partial<AiSettingsDto>): AiSettingsDto {
   return getAiSettings();
 }
 
-/** §A7 stand-in: one row per tool call the turn made (or per LLM call). */
+/** Audit stand-in: one row per tool call the turn made (or per LLM call). */
 export function recordAiCalls(
   conversationId: string,
   rows: Omit<AiLedgerEntryDto, "id" | "conversationId">[]

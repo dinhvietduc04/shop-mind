@@ -25,7 +25,7 @@ function OrdersInner() {
         Order ledger
       </h1>
       <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
-        every quote you created — paid, expired or abandoned — lands here
+        every quote you created lands here: paid, expired or abandoned
       </p>
 
       {isPending ? (

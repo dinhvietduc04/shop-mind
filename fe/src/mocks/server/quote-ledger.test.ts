@@ -15,10 +15,10 @@ import { resetServer } from "./snapshot";
 import type { ShippingAddressDto } from "@/lib/api/types";
 
 /**
- * THE Wave-3 payoff (C7): the quote ledger's riskiest invariants asserted in
- * plain Node. Before the split these facts lived inside a 714-line module
- * whose interface silently required `window.localStorage`; reachable only
- * through Playwright-grade round trips. Now: import, reset, call.
+ * Plain Node assertions cover the quote ledger's riskiest invariants:
+ * reserve-with-rollback, idempotent settle, expiry release, and
+ * agent-versus-human origin scope. A test imports the domain modules, resets
+ * the server, and calls them directly.
  */
 
 const U = "u-test";
@@ -28,7 +28,7 @@ const tp = () => allProducts().find((p) => p.slug === "thinkpad-x1-carbon-gen-11
 
 beforeEach(() => resetServer());
 
-describe("reserve → settle: the money boundary's stock fates", () => {
+describe("reserve and settle: stock fates at the money boundary", () => {
   it("creating a quote reserves per line atomically", () => {
     cartAdd(U, tp().id, 2);
     const before = available(tp().id);
@@ -44,12 +44,12 @@ describe("reserve → settle: the money boundary's stock fates", () => {
     if (!r.ok) throw new Error("quote failed");
     const qtyBefore = available(tp().id); // already reserved
     expect(settleQuote(r.sessionToken, "Paid")).toBe(true);
-    expect(available(tp().id)).toBe(qtyBefore); // commit consumes quantity AND reserved
+    expect(available(tp().id)).toBe(qtyBefore); // commit consumes quantity and reserved
     expect(settleQuote(r.sessionToken, "Paid")).toBe(false); // first caller won
     expect(settleQuote(r.sessionToken, "Cancelled")).toBe(false);
   });
 
-  it("expiry releases honestly and stamps the payment outcome", () => {
+  it("expiry releases stock and stamps the payment outcome", () => {
     cartAdd(U, tp().id, 1);
     const before = available(tp().id);
     const r = createQuote(U, ADDR);
@@ -57,14 +57,14 @@ describe("reserve → settle: the money boundary's stock fates", () => {
     expect(available(tp().id)).toBe(before - 1);
     const n = expirePendingQuotes();
     expect(n).toBe(1);
-    expect(available(tp().id)).toBe(before); // back on the wall
+    expect(available(tp().id)).toBe(before); // available again
     const q = getQuote(r.sessionToken);
     expect(q?.order.status).toBe("PaymentFailed");
-    expect(q?.order.payment?.outcome).toBe("expired"); // §B5+ discriminator
+    expect(q?.order.payment?.outcome).toBe("expired"); // the wire discriminator
     expect(q?.order.payment?.transactionId).toBeNull();
   });
 
-  it("a decline is stamped failed — not expired — with a transaction id", () => {
+  it("a decline is stamped failed, not expired, and gets a transaction id", () => {
     cartAdd(U, tp().id, 1);
     const r = createQuote(U, ADDR);
     if (!r.ok) throw new Error("quote failed");
@@ -74,12 +74,12 @@ describe("reserve → settle: the money boundary's stock fates", () => {
     expect(q?.order.payment?.transactionId).toContain("MOCK-DECLINED");
   });
 
-  it("mid-flight stock loss rolls back EVERY line — no partial reservations", () => {
+  it("mid-flight stock loss rolls back every line, with no partial reservations", () => {
     const monitor = allProducts().find((p) => p.slug === "ultrasharp-27-4k")!;
     const gpu = allProducts().find((p) => p.slug === "rtx-4070")!;
     cartAdd(U, monitor.id, 1);
     cartAdd(U, gpu.id, 5);
-    // stock drops between cart edits and quote creation: the race the guard exists for
+    // stock drops between cart edits and quote creation, which is the race the guard exists for
     adminSetStock(gpu.id, 3);
     const mBefore = available(monitor.id);
     const gBefore = available(gpu.id);
@@ -90,7 +90,7 @@ describe("reserve → settle: the money boundary's stock fates", () => {
   });
 });
 
-describe("origin-scoped replace policy (A2 / QUOTE_HELD_BY_HUMAN)", () => {
+describe("origin-scoped replace policy (A2, QUOTE_HELD_BY_HUMAN)", () => {
   it("an agent cannot replace a human's Open Quote", () => {
     cartAdd(U, tp().id, 1);
     const human = createQuote(U, ADDR, "human");
@@ -102,7 +102,7 @@ describe("origin-scoped replace policy (A2 / QUOTE_HELD_BY_HUMAN)", () => {
     if (human.ok) expect(getQuote(human.sessionToken)?.order.status).toBe("Pending");
   });
 
-  it("an agent replaces its OWN quote, releasing the old reservation", () => {
+  it("an agent replaces its own quote, releasing the old reservation", () => {
     cartAdd(U, tp().id, 1);
     const a1 = createQuote(U, ADDR, "agent");
     if (!a1.ok) throw new Error("a1 failed");
@@ -112,7 +112,7 @@ describe("origin-scoped replace policy (A2 / QUOTE_HELD_BY_HUMAN)", () => {
     expect(a2.ok).toBe(true);
     if (!a2.ok) return;
     expect(getQuote(a1.sessionToken)?.order.status).toBe("Cancelled");
-    // old reservation released, new one doubled: net available drops by 2
+    // old reservation released, new one doubled, so net available drops by 2
     expect(available(tp().id)).toBe(heldAfterFirst + 1 - 2);
   });
 
@@ -126,20 +126,20 @@ describe("origin-scoped replace policy (A2 / QUOTE_HELD_BY_HUMAN)", () => {
   });
 });
 
-describe("delete guards read the ledger through the domain's own question", () => {
-  it("openQuoteHolds refuses hard-delete while a reservation lives", () => {
+describe("delete guards use the ledger domain's own check", () => {
+  it("openQuoteHolds refuses hard-delete while a reservation is open", () => {
     cartAdd(U, tp().id, 1);
     createQuote(U, ADDR);
     expect(openQuoteHolds(tp().id)).toBe(true);
   });
 
-  it("admin order list sees every origin", () => {
+  it("admin order list includes every origin", () => {
     cartAdd(U, tp().id, 1);
     createQuote(U, ADDR, "agent");
     expect(adminListOrders("Pending").length).toBe(1);
   });
 
-  it("tryReserve is the no-oversell primitive", () => {
+  it("tryReserve is the no-oversell guard", () => {
     const p = tp();
     const start = available(p.id);
     expect(tryReserve(p.id, start + 1)).toBe(false);

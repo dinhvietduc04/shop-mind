@@ -36,11 +36,9 @@ import type {
   QuoteDto,
   ShippingAddressDto,
   UpdateCategoryRequest,
+  UpdateInventoryRequest,
+  UpdateOrderStatusRequest,
 } from "./types";
-
-/* The contract map lives in ./keys (with first-class prefixes for the
-   invalidation recipes); re-exported so existing imports keep working. */
-export { qk };
 
 export function useProducts(q: ProductQuery, opts?: { enabled?: boolean }) {
   return useQuery({
@@ -70,14 +68,13 @@ export function useFacets(category?: string) {
   return useQuery({
     queryKey: qk.facets(category),
     queryFn: () => api<FacetDto[]>(`/products/facets`, { query: { category } }),
-    enabled: true,
   });
 }
 
 /* ---------------------------------- cart ---------------------------------- */
 
 export function useCart() {
-  /* Guests have no bucket to read — don't fire the 401, wait for a session. */
+  /* Guests have no bucket to read. Don't fire the 401. Wait for a session. */
   const authed = useSession((s) => s.user !== null);
   return useQuery({
     queryKey: qk.cart(),
@@ -118,9 +115,9 @@ export function useRemoveCartItem() {
 }
 
 /* ---------------------------- quote & payment -----------------------------
- * The session pointer + outcome live in lib/quotes/intake (C1); these hooks
- * are only the HTTP verbs. QuoteDto carries sessionToken (§B5+) — callers
- * never decompose hostedPayUrl. */
+ * The session pointer and outcome live in lib/quotes/intake. These hooks are
+ * only the HTTP verbs. QuoteDto carries sessionToken. Callers never decompose
+ * hostedPayUrl. */
 
 export function useCreateQuote() {
   return useMutation({
@@ -139,7 +136,7 @@ export function useQuote(sessionToken: string) {
     queryKey: qk.quote(sessionToken),
     queryFn: () => api<QuoteDto>(`/quotes/${sessionToken}`),
     enabled: !!sessionToken,
-    // live expiry: poll while pending; a settled session is final
+    // poll while the quote is pending; a settled session is final
     refetchInterval: (query) =>
       query.state.data?.order.status === "Pending" ? 10_000 : false,
   });
@@ -165,7 +162,7 @@ export function useConfirmPayment(sessionToken: string) {
     onSuccess: () => {
       quoteWallsStale(sessionToken);
       cartStale();
-      // reservations committed — every stock tile on the wall is now stale
+      // reservations committed. Every stock tile on the wall is now stale.
       stockWallStale();
     },
   });
@@ -185,7 +182,8 @@ export function useCancelPayment(sessionToken: string) {
 
 /* --------------------------------- orders --------------------------------- */
 
-export function useOrders() {  return useQuery({
+export function useOrders() {
+  return useQuery({
     queryKey: qk.orders(),
     queryFn: () => api<OrderDto[]>("/orders"),
   });
@@ -211,7 +209,7 @@ export function useCancelOrder() {
 
 /* --------------------------------- account -------------------------------- */
 
-/** §5.2 shipping preset — the bill creates quotes against this address. */
+/** Shipping preset. The bill creates quotes against this address. */
 export function useAccountAddress() {
   return useQuery({
     queryKey: qk.address(),
@@ -231,14 +229,7 @@ export function useSaveAddress() {
   });
 }
 
-/* -------------------------------- admin F6 --------------------------------
- * Catalog writes here must invalidate the PUBLIC keys too — the admin console
- * and the storefront are the same database, and the demo's whole point is
- * "edit in one tab, correct in the other". */
-
-function useCatalogInvalidation() {
-  return () => catalogWriteStale();
-}
+/* --------------------------------- admin ---------------------------------- */
 
 export function useAdminProducts(search = "") {
   const authed = useSession((s) => s.user?.role === "Admin");
@@ -259,10 +250,9 @@ export function useAdminProduct(id: string) {
 }
 
 export function useDeleteProduct() {
-  const done = useCatalogInvalidation();
   return useMutation({
     mutationFn: (id: string) => api<{ ok: true }>(`/admin/products/${id}`, { method: "DELETE" }),
-    onSuccess: done,
+    onSuccess: () => catalogWriteStale(),
   });
 }
 
@@ -271,21 +261,19 @@ export function useAdminCategories() {
 }
 
 export function useSaveCategory() {
-  const done = useCatalogInvalidation();
   return useMutation({
     mutationFn: (c: { id?: string } & CreateCategoryRequest) =>
       c.id
         ? api<CategoryDto>(`/admin/categories/${c.id}`, { method: "PUT", body: JSON.stringify(c satisfies UpdateCategoryRequest) })
         : api<CategoryDto>("/admin/categories", { method: "POST", body: JSON.stringify(c) }),
-    onSuccess: done,
+    onSuccess: () => catalogWriteStale(),
   });
 }
 
 export function useDeleteCategory() {
-  const done = useCatalogInvalidation();
   return useMutation({
     mutationFn: (id: string) => api<{ ok: true }>(`/admin/categories/${id}`, { method: "DELETE" }),
-    onSuccess: done,
+    onSuccess: () => catalogWriteStale(),
   });
 }
 
@@ -298,15 +286,14 @@ export function useInventory() {
 
 export function useSetStock() {
   const qc = useQueryClient();
-  const done = useCatalogInvalidation();
   return useMutation({
     mutationFn: (v: { productId: string; quantity: number }) =>
       api<InventoryDto>(`/admin/inventory/${v.productId}`, {
         method: "PATCH",
-        body: JSON.stringify({ quantity: v.quantity } satisfies { quantity: number }),
+        body: JSON.stringify({ quantity: v.quantity } satisfies UpdateInventoryRequest),
       }),
     onSuccess: (data) => {
-      done();
+      catalogWriteStale();
       qc.setQueryData<InventoryDto[]>(qk.adminInventory(), (old) =>
         old ? old.map((r) => (r.productId === data.productId ? data : r)) : old
       );
@@ -335,7 +322,7 @@ export function useSetOrderStatus() {
     mutationFn: (v: { id: string; status: OrderStatus }) =>
       api<OrderDto>(`/admin/orders/${v.id}/status`, {
         method: "PATCH",
-        body: JSON.stringify({ status: v.status } satisfies { status: string }),
+        body: JSON.stringify({ status: v.status } satisfies UpdateOrderStatusRequest),
         idempotencyKey: idemKey(),
       }),
     onSuccess: (order) => {
@@ -352,7 +339,7 @@ export function useAiLedger() {
   return useQuery({
     queryKey: qk.aiLedger(),
     queryFn: () => api<AiLedgerEntryDto[]>("/admin/ai/ledger"),
-    refetchInterval: 5000, // the ledger fills while someone else chats — live-ish view
+    refetchInterval: 5000, // the ledger fills while someone else chats, so poll for new rows
   });
 }
 

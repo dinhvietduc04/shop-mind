@@ -5,15 +5,14 @@ import { cartClear, getCart } from "./cart";
 import { commitReservation, releaseReservation, tryReserve } from "./inventory";
 import { registerStore, uuid, type AdminResult } from "./snapshot";
 
-/**
- * The quote ledger domain — Quote (an Order in the awaiting-payment role),
- * its Payment Session, and the guarded settle that commits or releases the
- * Reservation. The highest-risk invariants in the product live here:
- * atomic per-line reserve-with-rollback, the one-Open-Quote replace policy
- * with A2 origin scope (QUOTE_HELD_BY_HUMAN), and idempotent settle.
+/** The quote ledger domain: the Quote (an Order in the awaiting-payment role),
+ *  its Payment Session, and the guarded settle that commits or releases the
+ *  Reservation. This module holds the highest-risk invariants: atomic per-line
+ *  reserve-with-rollback, the one-open-quote replace policy with agent origin
+ *  scope (`QUOTE_HELD_BY_HUMAN`), and idempotent settle.
  *
- * PURE: no persist(), no window. The HTTP seam decides when to snapshot.
- * (Which is exactly the point — see quote-ledger.test.ts.)
+ *  Pure: no persist(), no window. The HTTP seam decides when to snapshot, and
+ *  quote-ledger.test.ts runs these domains without a persistence layer.
  */
 
 const QUOTE_TTL_MS = 30 * 60 * 1000;
@@ -39,8 +38,8 @@ registerStore({
     (v as [string, QuoteRecord & { origin?: "human" | "agent" }][]).forEach(([k, q]) =>
       quotes.set(k, { ...q, origin: q.origin ?? "human" })
     );
-    /* After a reload the two maps hold SEPARATE deserialized copies of the
-       same order — re-point every quote at the orders-map instance so status
+    /* After a reload the two maps hold separate deserialized copies of the
+       same order. Re-point every quote at the orders-map instance so status
        writes (PSP settle, admin transitions) can never fork. The orders map
        is the single source of truth. */
     for (const q of quotes.values()) {
@@ -68,9 +67,9 @@ export function createQuote(
   const items = getCart(userId);
   if (items.length === 0) return { ok: false, error: "Cart is empty." };
 
-  // Replace policy: one active quote per user — release the old reservation.
-  // A2 origin scope: the agent may replace its OWN quotes; a human-origin
-  // quote is untouchable ("QUOTE_HELD_BY_HUMAN") until the human acts.
+  // Replace policy: one active quote per user. Release the old reservation.
+  // The agent may replace its own quotes. A human-origin quote is untouchable
+  // ("QUOTE_HELD_BY_HUMAN") until the human acts.
   const oldToken = userActiveQuote.get(userId);
   if (oldToken) {
     const prev = quotes.get(oldToken);
@@ -85,13 +84,13 @@ export function createQuote(
   for (const it of items) {
     if (!tryReserve(it.productId, it.quantity)) {
       reserved.forEach((r) => releaseReservation(r.productId, r.qty));
-      return { ok: false, error: `Insufficient stock for one or more items right now — nothing was reserved.` };
+      return { ok: false, error: `Insufficient stock for one or more items right now. Nothing was reserved.` };
     }
     reserved.push({ productId: it.productId, qty: it.quantity });
   }
 
   const subtotal = +items.reduce((t, i) => t + i.subtotal, 0).toFixed(2);
-  const shippingFee = shippingFeeFor(subtotal); // the ONE rule (lib/shipping)
+  const shippingFee = shippingFeeFor(subtotal); // the only rule (lib/shipping)
   const total = +(subtotal + shippingFee).toFixed(2);
   const sessionToken = `${uuid()}${uuid()}`;
   const order: OrderDto = {
@@ -122,8 +121,8 @@ export function createQuote(
 
 /* -------------------------------- read/settle ------------------------------ */
 
-/** The bill page discovers an open quote even when the agent created it —
- *  chat never links to the PSP directly (Assist invariant). */
+/** The bill page discovers an open quote even when the agent created it.
+ *  Chat never links to the PSP directly (Assist invariant). */
 export function activeQuoteFor(userId: string): { sessionToken: string; quote: QuoteDto } | null {
   const token = userActiveQuote.get(userId);
   if (!token) return null;
@@ -135,21 +134,21 @@ export function activeQuoteFor(userId: string): { sessionToken: string; quote: Q
 export function getQuote(sessionToken: string): QuoteRecord | null {
   const q = quotes.get(sessionToken);
   if (!q) return null;
-  // lazy expiry — same guarded transition the sweeper would run server-side
+  // lazy expiry, using the same guarded transition the sweeper would run server-side
   if (q.order.status === "Pending" && new Date(q.expiresAt).getTime() < Date.now()) {
     settleQuote(sessionToken, "PaymentFailed", QUOTE_EXPIRED_REASON);
   }
   return q;
 }
 
-/** The one reason string that marks an expiry settle (getQuote + sweeper +
- *  demo helper) — outcome decoding keys on this in ONE place. */
+/** The one reason string that marks an expiry settle (getQuote, sweeper, demo
+ *  helper). Outcome decoding reads it in one place. */
 export const QUOTE_EXPIRED_REASON = "Quote expired.";
 
-/** Idempotent guarded transition — first caller wins, replay is a no-op.
- *  Which moves touch stock comes from the lifecycle module (Reservation →
- *  Commit/Release); this file executes the fate, never decides it.
- *  payment.outcome (§B5+ 1) records WHY a PaymentFailed is what it is. */
+/** Idempotent guarded transition: the first caller wins, and a replay is a
+ *  no-op. The lifecycle module decides which moves touch stock (Reservation
+ *  to Commit or Release); this file executes that fate, never decides it.
+ *  payment.outcome records why a PaymentFailed happened. */
 export function settleQuote(
   sessionToken: string,
   outcome: Extract<OrderStatus, "Paid" | "Cancelled" | "PaymentFailed">,
@@ -174,7 +173,7 @@ export function settleQuote(
         outcome: expired ? "expired" : "failed",
       };
     } else {
-      q.order.payment = null; // abandoned before any attempt — nothing to record
+      q.order.payment = null; // abandoned before any attempt, so there is nothing to record
     }
   }
   q.order.status = outcome;
@@ -205,13 +204,13 @@ export function ordersFor(userId: string): OrderDto[] {
   return list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-/** Cancel only when legal per the state machine (Pending/Paid → Cancelled). */
+/** Cancel is legal only from Pending. Paid orders must be refunded. */
 export function cancelOrder(orderId: string, userId: string): { ok: true } | { ok: false; error: string } {
   const q = [...quotes.values()].find((qq) => qq.order.id === orderId);
   if (!q || q.userId !== userId) return { ok: false, error: "Order not found." };
   const o = q.order;
   if (o.status === "Pending") {
-    settleQuote(findTokenFor(orderId)!, "Cancelled", "Cancelled by user.");
+    settleQuote(q.sessionToken, "Cancelled", "Cancelled by user.");
     return { ok: true };
   }
   if (o.status === "Paid") return { ok: false, error: "Paid orders must be refunded via support (mock). Try before shipment." };
@@ -219,49 +218,49 @@ export function cancelOrder(orderId: string, userId: string): { ok: true } | { o
 }
 
 /** Dev helper for the expiry demo/test gate: force every pending quote past
- *  its expiry and let the lazy sweeper transition run the honest path. */
+ *  its expiry and let the lazy sweeper run the guarded transition. */
 export function expirePendingQuotes(): number {
   let n = 0;
   for (const [token, q] of [...quotes]) {
     if (q.order.status !== "Pending") continue;
     q.expiresAt = new Date(Date.now() - 1000).toISOString();
-    getQuote(token); // triggers guarded settle → PaymentFailed + release
+    getQuote(token); // triggers the guarded settle, which records PaymentFailed and releases stock
     n++;
   }
   return n;
 }
 
-/** Order detail by id, owner-scoped — mirrors the real GET /orders/{id} 404/403 merge. */
+/** Order detail by id, owner-scoped. Mirrors the real GET /orders/{id} 404/403 merge. */
 export function orderFor(orderId: string, userId: string): OrderDto | null {
   const q = [...quotes.values()].find((qq) => qq.order.id === orderId);
   if (!q || q.userId !== userId) return null;
-  // read through getQuote so a still-pending expired order transitions honestly
-  getQuote(findTokenFor(orderId) ?? "");
+  // read through getQuote so a still-pending expired order transitions
+  getQuote(q.sessionToken);
   return orders.get(orderId) ?? null;
 }
 
 /* ------------------------------ admin order ops ---------------------------- */
 
-/** GET /api/admin/orders — every order, newest first, optional status filter. */
+/** GET /api/admin/orders: every order, newest first, with an optional status filter. */
 export function adminListOrders(status?: string | null): OrderDto[] {
   const list = [...orders.values()].filter((o) => !status || o.status === status);
   return list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-/** PATCH /api/admin/orders/{id}/status — the dropdown's legality is enforced
- *  server-side too (defense in depth: the SAME lifecycle function the client
+/** PATCH /api/admin/orders/{id}/status. The server enforces the dropdown's
+ *  legality too (defense in depth: the same lifecycle function the client
  *  uses). Pending transitions run through the guarded settle so reservations
- *  commit/release exactly like the real B1 write path; later ones are plain
+ *  commit or release exactly like the real B1 write path; later ones are plain
  *  status writes. */
 export function adminSetOrderStatus(orderId: string, to: OrderStatus): AdminResult<OrderDto> {
   const o = orders.get(orderId);
   if (!o) return { ok: false, error: "Order not found." };
   if (!isLegalTransition(o.status, to))
-    return { ok: false, error: `Illegal transition ${o.status} → ${to}.`, field: "Status" };
+    return { ok: false, error: `Illegal transition from ${o.status} to ${to}.`, field: "Status" };
   if (o.status === "Pending") {
     const token = findTokenFor(orderId);
     if (token) {
-      // money-boundary path: settle() commits/releases reservations honestly
+      // money-boundary path: settle() commits or releases reservations
       if (!settleQuote(token, to as "Paid" | "Cancelled" | "PaymentFailed", "Admin transition."))
         return { ok: false, error: "Order is no longer pending (it may have just expired)." };
       return { ok: true, value: orders.get(orderId)! };

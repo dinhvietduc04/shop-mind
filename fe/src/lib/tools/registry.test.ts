@@ -9,9 +9,9 @@ import {
   turnTouches,
 } from "./registry";
 
-/* Parity with the backend plan §A2 risk tiers (AI_ASSISTANT_PLAN.md:224–231)
-   and ADR-0006: NEVER means ABSENT, so it must carry no switch. */
-describe("tool registry — §A2 parity", () => {
+/* Parity with the backend risk tiers and ADR-0006: NEVER means absent, so it
+   must carry no switch. */
+describe("tool registry parity", () => {
   it("risk classes match the plan exactly", () => {
     const READ = ["search_products", "get_product", "get_product_facets", "compare_products", "get_cart", "get_orders", "get_order", "get_order_status"];
     const WRITE = ["add_to_cart", "update_cart", "remove_from_cart"];
@@ -21,7 +21,7 @@ describe("tool registry — §A2 parity", () => {
     for (const n of ["pay", "refund", "cancel_order"]) expect(toolDef(n)?.risk).toBe("NEVER");
   });
 
-  it("NEVER tools are not switchable — capability absent is not a toggle", () => {
+  it("NEVER tools are not switchable. An absent capability is not a toggle", () => {
     expect(NEVER_TOOLS.length).toBeGreaterThan(0);
     for (const t of NEVER_TOOLS) expect(t.switchable).toBe(false);
   });
@@ -51,13 +51,13 @@ describe("tool registry — §A2 parity", () => {
   });
 });
 
-describe("turnTouches — the registry answers what the transport used to sniff", () => {
+describe("turnTouches reports the cache work a turn causes", () => {
   it("flags cart writes and quote creation", () => {
     expect(turnTouches(["search_products", "add_to_cart"])).toEqual({ cart: true, stock: true });
     expect(turnTouches(["create_quote"])).toEqual({ cart: true, stock: true });
   });
 
-  it("preserves the F6 get_cart re-sync semantics (behavior-pinned)", () => {
+  it("get_cart re-syncs the cart and stock walls", () => {
     expect(turnTouches(["get_cart"]).cart).toBe(true);
   });
 

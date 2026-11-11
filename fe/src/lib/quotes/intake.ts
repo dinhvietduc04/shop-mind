@@ -1,29 +1,18 @@
-import { useEffect } from "react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { useActiveQuote, useQuote } from "@/lib/api/hooks";
 import type { OrderDto, ShippingAddressDto } from "@/lib/api/types";
 import { mainlineRank } from "@/lib/orders/lifecycle";
 
 /**
- * Quote intake (C1) — the module a human's Payment Session lives in.
- *
- * Owns three things that used to be page-local folklore inside /quote:
- *  1. the session pointer: which Open Quote THIS TAB holds (sessionStorage +
- *     cross-tab event; the server stays the truth source, the pointer is a
- *     claim of attention, never authority);
- *  2. reconciliation: a pointer naming a session the server dropped, while
- *     discovery sees a live quote (e.g. one the assistant opened), re-points
- *     instead of wedging the bill on a dead-session card;
- *  3. outcome: WHAT STATE a Quote is in, decoded once from the wire truth —
- *     `payment.outcome` (§B5+ item 1) — so no screen performs transactionId
- *     archaeology or splits hostedPayUrl to find its own session token.
+ * Quote intake. The server holds the truth; the session pointer this tab
+ * stores is a claim of attention, not authority. `payment.outcome` is the one
+ * terminal-state decode.
  */
 
 /* ---------------------------------- demo ---------------------------------- */
 
-/** The identity the bill falls back to when a member never saved an address.
- *  Mock convenience only: the real API should 422 a missing preset instead
- *  of letting the UI fabricate one — flagged for the B-milestone contract. */
+/** Fallback identity for a member with no saved address. The mock lets the UI
+ *  fabricate one; the real API must answer 422 instead. */
 export const DEMO_ADDRESS: ShippingAddressDto = {
   fullName: "Demo Customer",
   phone: "+1-555-0100",
@@ -34,17 +23,16 @@ export const DEMO_ADDRESS: ShippingAddressDto = {
 /* --------------------------------- outcome -------------------------------- */
 
 export type QuoteOutcome =
-  | "open" // Pending — live reservations, human may still pay
+  | "open" // Pending. The reservation is live, and a human may still pay
   | "paid"
   | "fulfilled" // past Paid on the mainline (Processing/Shipped/Delivered)
   | "declined" // a payment attempt failed
-  | "expired" // the hold ran out — never charged, stock returned
+  | "expired" // the hold ran out, nothing was charged, and the stock returned
   | "abandoned"; // a human cancelled it
 
 /**
- * The single decode of a Quote's terminal story. Expired vs declined is
- * read from `payment.outcome` (the server's truth) — NOT from a null
- * transactionId, which was the mock's internal encoding leaking upward.
+ * The single decode of a Quote's terminal state. It reads expired versus
+ * declined from `payment.outcome`, the server's source of truth.
  */
 export function quoteOutcome(o: OrderDto): QuoteOutcome {
   switch (o.status) {
@@ -57,7 +45,7 @@ export function quoteOutcome(o: OrderDto): QuoteOutcome {
     case "PaymentFailed":
       return o.payment?.outcome === "expired" ? "expired" : "declined";
     default:
-      // only mainline statuses live past Paid — the machine says so
+      // only mainline statuses live past Paid, as the transition table says
       return mainlineRank(o.status) > 1 ? "fulfilled" : "paid";
   }
 }
@@ -90,7 +78,7 @@ export const holdOpenQuote = (sessionToken: string) => publish(sessionToken);
 export const releaseOpenQuote = () => publish(null);
 
 /** Read via useSyncExternalStore so hydration matches the server snapshot
- *  (null) and the token appears only after mount — no setState-in-effect. */
+ *  (null) and the token appears only after mount, with no setState-in-effect. */
 export function useOpenQuoteToken(): string | null {
   return useSyncExternalStore(
     subscribe,
@@ -101,9 +89,9 @@ export function useOpenQuoteToken(): string | null {
 
 /**
  * The held Quote: pointer first, server discovery as the fallback, then
- * reconciliation. Callers get the live view + the quote it names; cached
- * discovery must not resurrect a pointer after the session it found was
- * settled — only a SUCCESSFUL current fetch counts as "there is one".
+ * reconciliation. Callers get the live view and the quote it names. Cached
+ * discovery must not restore a pointer after the session it found was
+ * settled. Only a successful current fetch counts as "there is one".
  */
 export function useHeldQuote(): {
   token: string | null;

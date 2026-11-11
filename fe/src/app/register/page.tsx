@@ -133,8 +133,8 @@ function RegisterInner() {
         </form>
       </div>
       <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-ink-soft">
-        mock note: accounts persist in this browser&apos;s fake-server state until
-        demo reset — the real build posts the same RegisterRequest to Shop.Api.
+        accounts persist in this browser&apos;s fake-server state until demo reset.
+        The real build posts the same RegisterRequest to Shop.Api.
       </p>
     </main>
   );

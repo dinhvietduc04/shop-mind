@@ -3,8 +3,8 @@ import { available } from "./inventory";
 import { findProduct } from "./catalog";
 import { registerStore } from "./snapshot";
 
-/** Cart domain — the per-user cart. Reads prices from the live catalog row;
- *  the QUOTE is where anything becomes money (server-recalculated). */
+/** Cart domain: the per-user cart. Reads prices from the live catalog row.
+ *  The quote recalculates prices on the server; cart prices are not final. */
 
 const carts = new Map<string, Map<string, number>>(); // userId -> productId -> qty
 

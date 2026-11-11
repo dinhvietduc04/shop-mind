@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { Check, Minus, Plus, RotateCcw } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
 import {
@@ -16,14 +15,13 @@ import {
   StockDots,
 } from "@/components/ui";
 import { useAddToCart, useCart, useCategories, useProduct, useProducts } from "@/lib/api/hooks";
+import { specLabel } from "@/lib/attributes/registry";
 import { asMember } from "@/lib/session";
 import { ApiError, formatUsd, type Specs } from "@/lib/api/types";
 import { bandForCategory } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 
-import { specLabel } from "@/lib/attributes/registry";
-
-/** Format one spec value for the sheet: booleans read as marks, arrays join. */
+/** Format one spec value for the sheet: booleans read as yes or no, arrays join. */
 function specValue(value: Specs[string]): string {
   if (value === null || value === undefined) return "—";
   if (typeof value === "boolean") return value ? "yes" : "no";
@@ -31,7 +29,7 @@ function specValue(value: Specs[string]): string {
   return String(value);
 }
 
-/** Product spec sheet — the full record: photo, decoded price, every spec. */
+/** Product spec sheet with the full record: photo, decoded price, every spec. */
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
@@ -75,8 +73,8 @@ export default function ProductDetailPage() {
     return (
       <main className="mx-auto max-w-[720px] px-6 py-10">
         <ErrorNote>
-          <strong>No unit on file with code “{slug}”.</strong> It may have been
-          delisted — the bin wall always holds what is live.
+          <strong>No unit on file with code &quot;{slug}&quot;.</strong> It may have been
+          delisted. The bin wall always holds what is live.
           <div className="mt-3 flex gap-2">
             <Button variant="ghost" onClick={() => refetch()}>
               <RotateCcw size={13} aria-hidden /> Re-read sheet
@@ -128,7 +126,7 @@ export default function ProductDetailPage() {
               </h2>
               <p className="mt-3 text-[14px] leading-relaxed">{product.description}</p>
               <p className="mt-3 border-t-[1.5px] border-dashed border-line pt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
-                Mock pricing — demo data only. Logged {product.createdAt.slice(0, 10)}.
+                Mock pricing for demo data only. Logged {product.createdAt.slice(0, 10)}.
               </p>
             </div>
           )}
@@ -170,7 +168,7 @@ export default function ProductDetailPage() {
             </div>
             <p className="mt-3 border-t-[1.5px] border-dashed border-line pt-3 text-[12px] text-ink-soft">
               {soldOut
-                ? "Bin empty — restock ETA unknown. The assistant cannot order what is not on the shelf."
+                ? "Bin empty. Restock ETA unknown. The assistant cannot order what is not on the shelf."
                 : `${product.availableStock} unit${product.availableStock === 1 ? "" : "s"} physically in this bin. A quote reserves them; nobody pays until you do on the hosted page.`}
             </p>
 
@@ -210,7 +208,7 @@ export default function ProductDetailPage() {
                     href="/quote"
                     className="font-mono text-[11px] uppercase tracking-[0.14em] text-band-green underline underline-offset-4"
                   >
-                    Filed — open the bill →
+                    Filed. Open the bill
                   </Link>
                 )}
               </div>
@@ -229,7 +227,7 @@ export default function ProductDetailPage() {
             )}
           </div>
 
-          {/* yellow = human-only hand-off: this invites the assistant, it never acts */}
+          {/* yellow marks a human-only hand-off. This link invites the assistant; it never acts. */}
           <Link
             href={`/assistant?cat=${category?.slug ?? ""}&q=${encodeURIComponent(product.name)}`}
             className={cn(

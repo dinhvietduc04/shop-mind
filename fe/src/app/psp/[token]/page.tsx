@@ -10,8 +10,8 @@ import { formatUsd } from "@/lib/api/types";
 
 /**
  * FakePsp hosted payment page. Intentionally chromeless and outside the shop
- * shell: this is the boundary from the Assist level of the plan — the human
- * arrives here from the bill, reviews, and pays. The assistant never does.
+ * shell. This is where the Assist level ends. The human arrives here from the
+ * bill, reviews, and pays. The assistant never does.
  * A real Stripe Checkout session URL would replace this route; the shop-side
  * contract (hostedPayUrl + webhook) is identical.
  */
@@ -21,7 +21,7 @@ export default function PspPage() {
   const confirm = useConfirmPayment(token);
   const cancel = useCancelPayment(token);
 
-  /* one decode (intake) — expired-vs-declined comes from payment.outcome */
+  /* one decode. Expired-versus-declined comes from payment.outcome */
   const outcome = quote ? quoteOutcome(quote.order) : null;
   const expired = outcome === "expired";
   const paid = outcome === "paid" || outcome === "fulfilled" || (confirm.data ? quoteOutcome(confirm.data.order) === "paid" : false);
@@ -48,7 +48,7 @@ export default function PspPage() {
           <div className="p-5">
             <ErrorNote>
               <strong>Session not found or expired.</strong> Quotes hold stock for
-              30 minutes — start a new one from the bill page.
+              30 minutes. Start a new one from the bill page.
             </ErrorNote>
           </div>
         ) : (
@@ -93,14 +93,14 @@ export default function PspPage() {
                     href={`/checkout/success?session=${token}`}
                     className="mt-2 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.14em] underline underline-offset-4"
                   >
-                    Return to shop →
+                    Return to the shop
                   </Link>
                 </div>
               </div>
             ) : expired ? (
               <div className="flex items-center gap-3 rounded-[4px] border-[1.5px] border-band-red bg-band-red/10 p-4 text-[13px]">
                 <ShieldAlert size={20} aria-hidden className="text-band-red" />
-                <div><strong>Reservation released.</strong> The quote expired — stock
+                <div><strong>Reservation released.</strong> The quote expired. Stock
                   returned to the bins. Create a new quote from the bill page.</div>
               </div>
             ) : outcome === "abandoned" ? (
@@ -111,7 +111,7 @@ export default function PspPage() {
                     href={`/checkout/cancel?session=${token}`}
                     className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] underline underline-offset-4"
                   >
-                    Return to shop →
+                    Return to the shop
                   </Link>
                 </div>
               </div>
@@ -136,14 +136,14 @@ export default function PspPage() {
 
             {confirm.error && (
               <div className="mt-4">
-                <ErrorNote><strong>Card declined.</strong> Nothing was charged; the reservation still holds until expiry — try again or abandon.</ErrorNote>
+                <ErrorNote><strong>Card declined.</strong> Nothing was charged; the reservation still holds until expiry. Try again or abandon.</ErrorNote>
               </div>
             )}
 
             <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-ink-soft">
-              no card form: this mock confirms instantly (paymentfail mode simulates a
-              decline). real stripe checkout collects the card on stripe&apos;s page —
-              card data never touches ShopMind (Assist level).
+              no card form. This mock confirms instantly (paymentfail mode simulates a
+              decline). Real stripe checkout collects the card on stripe&apos;s page.
+              Card data never touches ShopMind (Assist level).
             </p>
           </div>
         )}

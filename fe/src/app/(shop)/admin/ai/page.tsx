@@ -6,13 +6,11 @@ import { useAiConversations, useAiLedger, useAiSettings, useSaveAiSettings } fro
 import { LLM_TURN, NEVER_TOOLS, SWITCHABLE_TOOLS } from "@/lib/tools/registry";
 import type { AiSettingsDto } from "@/lib/api/types";
 
-/** §A7 transparency surface: every tool call the assistant made, plus the
- *  kill switches the human can pull. Chat keeps working while this page is
- *  closed — the shop does not depend on the audit view.
- *  The switch list is DERIVED from the shared tool registry (C4) — hints,
- *  order and defaults come from §A2 in one place, not a console-local copy.
- *  Planned-but-unwired tools show honestly disabled; NEVER tools are stated
- *  as absent-by-policy (ADR-0006), not denied capabilities. */
+/** Transparency page: every tool call the assistant made, plus the kill
+ *  switches a human can pull. Chat keeps working while this page is closed.
+ *  The switch list comes from the shared tool registry, so hints, order, and
+ *  defaults live in one place. Planned tools show as disabled. NEVER tools are
+ *  absent by policy (ADR-0006), not denied capabilities. */
 export default function AdminAiPage() {
   const { data: settings } = useAiSettings();
   const { data: conversations, isPending: convPending } = useAiConversations();
@@ -29,7 +27,7 @@ export default function AdminAiPage() {
                 label="Ai:Enabled"
                 hint={
                   settings.enabled
-                    ? "Assistant is live — chat turns run against the same mock tools the plan specs."
+                    ? "Assistant is live. Chat turns run against the same mock tools the plan specs."
                     : "Chat answers 503 AI_NOT_CONFIGURED. The storefront, bins and bill are untouched."
                 }
                 checked={settings.enabled}
@@ -38,13 +36,13 @@ export default function AdminAiPage() {
               />
               <div className="mt-3 border-t-[1.5px] border-dashed border-line pt-2">
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">
-                  per-tool · §B3 surface
+                  per-tool · console
                 </p>
                 {SWITCHABLE_TOOLS.map((tool) => (
                   <Toggle
                     key={tool.name}
                     label={tool.name}
-                    hint={tool.implemented ? tool.hint : `planned (§A2) — ${tool.hint.toLowerCase()}`}
+                    hint={tool.implemented ? tool.hint : `planned, ${tool.hint.toLowerCase()}`}
                     checked={Boolean(settings.tools[tool.name])}
                     danger={!settings.enabled ? undefined : true}
                     disabled={!settings.enabled || !tool.implemented}
@@ -59,9 +57,10 @@ export default function AdminAiPage() {
                   never in the manifest
                 </p>
                 <p className="mt-1 text-[11px] leading-relaxed text-ink-soft">
-                  {NEVER_TOOLS.map((t) => t.name).join(" · ")} — capability absent by
-                  construction (ADR-0006): no switch to flip, because nothing can
-                  register them. Money moves only on the hosted page, by a human.
+                  {NEVER_TOOLS.map((t) => t.name).join(" · ")}. Capability absent by
+                  construction (ADR-0006). There is no switch to flip, because
+                  nothing can register them. Money moves only on the hosted page,
+                  by a human.
                 </p>
               </div>
             </>
@@ -75,8 +74,8 @@ export default function AdminAiPage() {
             <Skeleton className="h-40" />
           ) : !conversations?.length ? (
             <p className="text-[13px] leading-relaxed text-ink-soft">
-              No tool has been called yet. Open the assistant, ask it something —
-              every call lands here within seconds, because the engine and this
+              No tool has been called yet. Open the assistant, ask it something.
+              Every call lands here within seconds, because the engine and this
               page read the same audit log.
             </p>
           ) : (
@@ -109,7 +108,7 @@ export default function AdminAiPage() {
         {ledgerPending ? (
           <Skeleton className="h-64" />
         ) : !ledger?.length ? (
-          <p className="text-[13px] text-ink-soft">Empty log — the transcript of nothing.</p>
+          <p className="text-[13px] text-ink-soft">Empty log. No calls recorded yet.</p>
         ) : (
           <AdminTable
             head={
@@ -141,7 +140,7 @@ export default function AdminAiPage() {
         )}
         <p className="mt-3 text-[11px] leading-relaxed text-ink-soft">
           Every price and stock number the assistant quotes traces to one of
-          these rows — that is the §A7 transparency rule the chat UI leans on
+          these rows. That is the transparency rule the chat UI uses
           (each tool chip maps to a call against the same database this table
           reads). The engine here is the deterministic FakeAiProvider; the real
           provider fills the same ledger shape.

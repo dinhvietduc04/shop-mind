@@ -38,7 +38,7 @@ export default function AdminOrdersPage() {
         {isPending ? (
           <Skeleton className="h-64" />
         ) : !data?.length ? (
-          <p className="text-[13px] text-ink-soft">No orders with status “{status}”.</p>
+          <p className="text-[13px] text-ink-soft">No orders with status &quot;{status}&quot;.</p>
         ) : (
           <AdminTable
             head={
@@ -70,7 +70,7 @@ export default function AdminOrdersPage() {
                 <td className={td}><StatusChip status={o.status} /></td>
                 <td className={td}>
                   <Link href={`/admin/orders/${o.id}`}>
-                    <Button variant="ghost">Ledger card →</Button>
+                    <Button variant="ghost">Open the ledger card</Button>
                   </Link>
                 </td>
               </tr>

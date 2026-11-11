@@ -9,11 +9,6 @@ import { useAdminProducts, useDeleteProduct } from "@/lib/api/hooks";
 import { ApiError, formatUsd } from "@/lib/api/types";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
 
-/* category band fill by slug, same ladder the storefront rails use */
-function bandClassOf(categoryName: string | null) {
-  return BAND_BG[bandForCategory(categoryName?.toLowerCase())];
-}
-
 export default function AdminProductsPage() {
   const [search, setSearch] = useState("");
   const { data, isPending } = useAdminProducts(search);
@@ -44,7 +39,7 @@ export default function AdminProductsPage() {
         {isPending ? (
           <Skeleton className="h-64" />
         ) : !data?.length ? (
-          <p className="text-[13px] text-ink-soft">Nothing matches “{search}”.</p>
+          <p className="text-[13px] text-ink-soft">Nothing matches &quot;{search}&quot;.</p>
         ) : (
           <AdminTable
             head={
@@ -68,7 +63,7 @@ export default function AdminProductsPage() {
                 <td className={`${td} font-mono text-[11px]`}>{p.sku}</td>
                 <td className={td}>
                   <span className="inline-flex items-center gap-1.5">
-                    <span className={`h-3 w-3 rounded-[2px] ${bandClassOf(p.categoryName)}`} aria-hidden />
+                    <span className={`h-3 w-3 rounded-[2px] ${BAND_BG[bandForCategory(p.categoryName?.toLowerCase())]}`} aria-hidden />
                     {p.categoryName ?? "—"}
                   </span>
                 </td>
@@ -130,7 +125,7 @@ export default function AdminProductsPage() {
           <div className="mt-3">
             <ErrorNote>
               <strong>Could not delete.</strong>{" "}
-              {del.error instanceof ApiError ? del.error.title : "Unexpected error."} — the
+              {del.error instanceof ApiError ? del.error.title : "Unexpected error."}. The
               guard mirrors the real FK rules: cart lines and open quotes hold products.
             </ErrorNote>
           </div>

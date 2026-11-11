@@ -3,7 +3,7 @@ import { MOCK_USERS } from "../fixtures";
 import { registerStore, uuid } from "./snapshot";
 
 /** Identity domain: demo fixture users + accounts registered during the demo.
- *  Registered accounts persist with everything else so a reload doesn't
+ *  Registered accounts persist with everything else, so a reload doesn't
  *  orphan their token. */
 
 export interface UserRecord {
@@ -12,15 +12,15 @@ export interface UserRecord {
 }
 
 const customUsers = new Map<string, UserRecord>();
-/** §5.2: shipping presets used at quote time, per user. Mock-only until the
- *  real API grows an addresses resource (F8 contract pass). */
+/** Shipping presets, per user. Mock-only until the real API grows an addresses
+ *  resource. */
 const addresses = new Map<string, ShippingAddressDto>();
 
 registerStore({
   name: "customUsers",
   dump: () => [...customUsers.entries()],
   restore: (v) => (v as [string, UserRecord][]).forEach(([k, rec]) => customUsers.set(k, rec)),
-  clear: () => customUsers.clear(), // registered accounts die honestly with a reset
+  clear: () => customUsers.clear(), // a reset clears registered accounts too
 });
 
 registerStore({

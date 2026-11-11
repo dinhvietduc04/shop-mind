@@ -13,16 +13,25 @@ import { formatUsd, type ProductAdminDto, type Specs } from "@/lib/api/types";
 import { bandForCategory, BAND_BG } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 
-/* Field legality is stated ONCE (lib/admin/product-schema) and enforced
-   twice by design: the intake validates locally for instant feedback, then
-   the mock server (authority — same schema via @/lib/admin/product-schema)
-   answers any write that skipped the form. Problem-map keys are camelCase,
-   exactly like the real backend's, so no lowercase-and-allowlist remapping
-   lives here anymore (C9). */
+/* Field legality is stated once in lib/admin/product-schema and enforced
+   twice: the intake validates locally for instant feedback, and the mock
+   server (same schema) answers any write that skipped the form. */
 
-type FieldKey = "name" | "slug" | "sku" | "brand" | "categoryId" | "status" | "price" | "description" | "specs" | "initialStock";
+const FIELD_KEYS = [
+  "name",
+  "slug",
+  "sku",
+  "brand",
+  "categoryId",
+  "status",
+  "price",
+  "description",
+  "specs",
+  "initialStock",
+] as const;
+type FieldKey = (typeof FIELD_KEYS)[number];
 type FieldErrors = Partial<Record<FieldKey, string>>;
-const FIELD_KEYS = new Set<string>(["name", "slug", "sku", "brand", "categoryId", "status", "price", "description", "specs", "initialStock"]);
+const FIELD_KEY_SET = new Set<string>(FIELD_KEYS);
 
 const input =
   "mt-1 w-full rounded-[4px] border-[1.5px] border-line bg-paper px-3 py-2 font-mono text-[13px] focus:border-ink";
@@ -66,13 +75,13 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
   const priceOk = Number.isFinite(priceNum) && priceNum > 0;
   const catBand = BAND_BG[bandForCategory(categories?.find((c) => c.id === f.categoryId)?.slug)];
 
-  /** server/intake problem map → local field errors. Keys already speak the
+  /** Maps the server and intake problem map to local field errors. Keys already speak the
    *  backend's camelCase; anything unrecognised becomes an honest note. */
   const applyProblems = (problems: Record<string, string[]>, title: string) => {
     const next: FieldErrors = {};
     let note: string | null = null;
     for (const [key, msgs] of Object.entries(problems)) {
-      if (FIELD_KEYS.has(key)) next[key as FieldKey] = msgs[0];
+      if (FIELD_KEY_SET.has(key)) next[key as FieldKey] = msgs[0];
       else note = msgs[0] ?? note;
     }
     setErrs(next);
@@ -91,7 +100,7 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
         if (!sp.success) nextErrs.specs = sp.error.issues[0]?.message ?? "Specs must be a flat JSON object of scalars.";
         else specs = sp.data as Specs;
       } catch {
-        nextErrs.specs = "Not valid JSON — the sheet must parse as an object.";
+        nextErrs.specs = "Not valid JSON. The sheet must parse as an object.";
       }
     } else specs = isEdit ? product?.specs : {};
 
@@ -129,7 +138,7 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
     }
     if ("stockWarning" in out) {
       // partial success, stated: the sheet saved, the stock row did not move
-      setServerNote(`${out.stockWarning} — the product saved, only stock is stale. Retry the stock number.`);
+      setServerNote(`${out.stockWarning} The product saved, only stock is stale. Retry the stock number.`);
       return;
     }
     router.push("/admin/products");
@@ -165,12 +174,12 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
           <label>
             <span className={label}>Category *</span>
             <select name="productCategory" value={f.categoryId} onChange={set("categoryId")} className={input}>
-              <option value="">— pick a bin —</option>
+              <option value="">pick a bin</option>
               {categories?.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
-            <FieldErr msg={(errs as Record<string, string>).categoryId} />
+            <FieldErr msg={errs.categoryId} />
           </label>
           <label>
             <span className={label}>Status</span>
@@ -196,9 +205,9 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
           </label>
         </div>
 
-        {/* live band preview — the label the customer will actually read */}
+        {/* live band preview of the label the customer will actually read */}
         <div className="mt-4 rounded-[4px] border-[1.5px] border-dashed border-line px-4 py-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">label preview — as the storefront renders it</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">label preview, as the storefront renders it</p>
           <div className="mt-2 flex flex-wrap items-center gap-3">
             <span className={`h-4 w-4 rounded-[3px] border-[1.5px] border-[#1a1a1a] ${catBand}`} aria-hidden title="category band" />
             {priceOk ? <MagnitudeTick value={priceNum} className="h-5 w-[6px]" /> : <span className="font-mono text-[11px] text-ink-soft">price…</span>}
@@ -243,7 +252,7 @@ export function ProductForm({ product }: { product?: ProductAdminDto }) {
           </Button>
         </div>
 
-        {/* specs editor — A3: flat scalars, keys are the facet vocabulary */}
+        {/* specs editor. A3 requires flat scalars; keys are the facet vocabulary */}
         <h3 className="mt-5 flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.22em]">
           Specs JSON <span className="font-normal text-ink-soft">· feeds facets &amp; the assistant&apos;s questions</span>
         </h3>

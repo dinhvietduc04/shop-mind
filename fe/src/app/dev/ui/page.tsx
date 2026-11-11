@@ -32,12 +32,12 @@ export default function UiKitPage() {
     <div className="mx-auto max-w-[1000px] px-6 py-8">
       <h1 className="text-2xl font-extrabold uppercase tracking-[0.04em]">UI kit</h1>
       <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-ink-soft">
-        Every primitive in the resistor-code world, in every state it can hold.
-        Hover and focus each control — the dashed outline is the focus ring.
+        Every component in the Resistor Code system, in every state it can hold.
+        Hover and focus each control. The dashed outline is the focus ring.
       </p>
 
       <div className="mt-8">
-        <Section title="Band ladder — the whole palette">
+        <Section title="The whole band ladder">
           <div className="grid grid-cols-6 gap-2">
             {LADDER.map(([band, digit]) => (
               <div key={band} className="flex flex-col items-center gap-1.5">
@@ -51,7 +51,7 @@ export default function UiKitPage() {
           </div>
         </Section>
 
-        <Section title="Buttons — add, ghost, and the human-only yellow">
+        <Section title="Add, ghost, and human-only yellow buttons">
           <Button variant="add">Add to cart</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="human">Review bill &amp; pay</Button>
@@ -63,11 +63,11 @@ export default function UiKitPage() {
           </Button>
         </Section>
 
-        <Section title="Price magnitude band + stock dots">
+        <Section title="Price magnitude band and stock dots">
           <p className="-mt-1 mb-3 max-w-[62ch] text-[12px] leading-relaxed text-ink-soft">
-            One stripe per price = the resistor multiplier, encoding magnitude only
-            (×1 … ×100k). The digits beside it are the actual value — the stripe is
-            a glance-anchor, never something to decode.
+            One stripe per price is the resistor multiplier, encoding magnitude only
+            (×1 … ×100k). The digits beside it are the actual value. The stripe
+            shows magnitude at a glance, and you never need to decode it.
           </p>
           <div className="flex flex-col gap-2">
             {[49.99, 329, 1099].map((v) => (
@@ -87,7 +87,7 @@ export default function UiKitPage() {
           </div>
         </Section>
 
-        <Section title="Plate slot — with photo on file, and empty fallback">
+        <Section title="Plate slot with a photo on file and the empty fallback">
           <div className="grid w-full gap-4 md:grid-cols-2">
             <PhotoPlate sku="A1-01" band="brown" name="ThinkPad X1 Carbon" image="/products/thinkpad-x1c.jpg" />
             <PhotoPlate sku="A1-02" band="brown" />
@@ -98,11 +98,11 @@ export default function UiKitPage() {
           <div className="grid w-full gap-5 md:grid-cols-3">
             <Field id="f1" label="Search" placeholder="16 GB laptop" />
             <Field id="f2" label="Budget" defaultValue="1200" />
-            <Field id="f3" label="Quantity" error="Bin holds 2 — not 5" defaultValue="5" />
+            <Field id="f3" label="Quantity" error="Bin holds 2, not 5" defaultValue="5" />
           </div>
         </Section>
 
-        <Section title="States — loading, empty, error">
+        <Section title="Loading, empty, and error states">
           <div className="flex w-full flex-col gap-4">
             <div className="grid grid-cols-3 gap-4">
               <Skeleton className="h-[150px]" />
@@ -110,11 +110,11 @@ export default function UiKitPage() {
               <Skeleton className="h-[150px]" />
             </div>
             <EmptyState title="No units match this filter">
-              <p>Clear a band and try again — the bins will wait.</p>
+              <p>Clear a band and try again.</p>
             </EmptyState>
             <ErrorNote>
-              <strong>Redis cache offline.</strong> Serving from Postgres — reads
-              are slower, prices stay live. No action needed.
+              <strong>Redis cache offline.</strong> Serving from Postgres. Reads
+              are slower. Prices stay live. No action needed.
             </ErrorNote>
           </div>
         </Section>

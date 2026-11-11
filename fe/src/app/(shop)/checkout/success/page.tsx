@@ -16,7 +16,7 @@ function SuccessView() {
 
   if (!token) {
     return (
-      <EmptyState title="Nothing to land on">
+      <EmptyState title="No payment session">
         <p>This page only exists as the return URL after a hosted payment.</p>
         <Link href="/" className="mt-4 inline-block">
           <Button variant="ghost">To the catalog</Button>
@@ -53,12 +53,12 @@ function SuccessView() {
               )}
             </p>
             <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
-              Stock committed, cart cleared. The confirmation you would get by e-mail
-              in the real build is this page plus the ledger entry.
+              Stock committed, cart cleared. In the real build, this page and the
+              ledger entry are the confirmation e-mail.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link href={`/orders/${order.id}`}>
-                <Button variant="ghost">View in order ledger →</Button>
+                <Button variant="ghost">View in the order ledger</Button>
               </Link>
               <Link href="/">
                 <Button variant="ghost">Keep shopping</Button>
@@ -70,7 +70,7 @@ function SuccessView() {
 
       {order?.status === "Pending" && (
         <p className="mt-4 text-[13px] text-ink-soft">
-          This session has not been paid — the bill still holds.{" "}
+          This session has not been paid. The bill still holds.{" "}
           <Link href="/quote" className="underline underline-offset-4">
             Back to the bill
           </Link>

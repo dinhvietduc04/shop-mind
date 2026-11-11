@@ -1,15 +1,9 @@
 /**
- * The assistant tool registry — client-side mirror of the Risk-Class
- * vocabulary (§A2, ADR-0006) (C4). The real backend generates its MCP
- * manifest from `IToolRiskPolicy` server-side and exposes NO list to
- * clients, so this registry is the single legitimate home for the mirror:
- * admin hints, kill-switch defaults, ledger weights, and the cache-repair
- * signal all read from ONE statement of what the agent may do — and what it
- * mechanically cannot (NEVER = absent from the manifest entirely: capability
- * missing, not capability denied).
- *
- * Adding a tool is now one entry here, not five dictionaries across the
- * mock/UI seam.
+ * Client-side mirror of the assistant tool risk classes (ADR-0006). The
+ * backend generates its MCP manifest from `IToolRiskPolicy` and exposes no
+ * list, so this is the one client mirror behind admin hints, kill-switch
+ * defaults, ledger weights, and cache repair. NEVER means absent from the
+ * manifest, so the capability is missing rather than denied.
  */
 
 export type RiskClass = "READ" | "WRITE" | "QUOTE" | "NEVER";
@@ -18,29 +12,29 @@ export type CacheTouch = "cart" | "stock";
 export interface ToolDef {
   name: string;
   risk: RiskClass;
-  /** human-toggleable in the §B3 console (NEVER tools have no switch — there
-   *  is no capability to turn off) */
+  /** human-toggleable in the admin console (NEVER tools have no switch because
+   *  there is no capability to turn off) */
   switchable: boolean;
   /** wired into the FakeAiProvider today; planned tools show in the console
-   *  as honestly-disabled switches, not fake-working ones */
+   *  as disabled switches, not switches that appear to work */
   implemented: boolean;
-  /** §A7 audit stand-in: deterministic ledger duration per call */
+  /** audit stand-in: deterministic ledger duration per call */
   weightMs: number;
   hint: string;
-  /** live-db surfaces this tool moves (or re-syncs) — drives the turn's
+  /** live-db data this tool moves (or re-syncs), which drives the turn's
    *  invalidation recipes */
   invalidates: CacheTouch[];
 }
 
 export const TOOLS: readonly ToolDef[] = [
-  /* READ — public browsing (§A2) */
+  /* READ: public browsing */
   {
     name: "search_products",
     risk: "READ",
     switchable: true,
     implemented: true,
     weightMs: 140,
-    hint: "the bins — off means no recommendations at all",
+    hint: "the bins. Off means no recommendations at all",
     invalidates: [],
   },
   {
@@ -77,8 +71,6 @@ export const TOOLS: readonly ToolDef[] = [
     implemented: true,
     weightMs: 30,
     hint: "reading the customer's cart",
-    // preserves the F6 sniff's behavior byte-for-behavior: a cart read also
-    // re-syncs the human's walls. Revisit when real cache semantics land.
     invalidates: ["cart", "stock"],
   },
   {
@@ -87,7 +79,7 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: true,
     implemented: false,
     weightMs: 40,
-    hint: "planned (§A2) — not wired into the fake engine yet",
+    hint: "planned, not wired into the fake engine yet",
     invalidates: [],
   },
   {
@@ -96,7 +88,7 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: true,
     implemented: false,
     weightMs: 35,
-    hint: "planned (§A2) — not wired into the fake engine yet",
+    hint: "planned, not wired into the fake engine yet",
     invalidates: [],
   },
   {
@@ -105,11 +97,11 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: true,
     implemented: false,
     weightMs: 25,
-    hint: "planned (§A2) — not wired into the fake engine yet",
+    hint: "planned, not wired into the fake engine yet",
     invalidates: [],
   },
 
-  /* WRITE — cart lines (still never money) */
+  /* WRITE: cart lines (still never money) */
   {
     name: "add_to_cart",
     risk: "WRITE",
@@ -125,7 +117,7 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: true,
     implemented: false,
     weightMs: 55,
-    hint: "planned (§A2): line quantities — not wired into the fake engine yet",
+    hint: "planned: line quantities, not wired into the fake engine yet",
     invalidates: ["cart", "stock"],
   },
   {
@@ -134,31 +126,31 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: true,
     implemented: false,
     weightMs: 55,
-    hint: "planned (§A2): leaving a line — not wired into the fake engine yet",
+    hint: "planned: leaving a line, not wired into the fake engine yet",
     invalidates: ["cart", "stock"],
   },
 
-  /* QUOTE — the Assist boundary */
+  /* QUOTE: the Assist boundary */
   {
     name: "create_quote",
     risk: "QUOTE",
     switchable: true,
     implemented: true,
     weightMs: 180,
-    hint: "opening reservations — the Assist boundary",
+    hint: "opening reservations, the Assist boundary",
     invalidates: ["cart", "stock"],
   },
 
-  /* NEVER — absent from the manifest by construction (§A2). Recorded so the
-     admin console can STATE the boundary; they are never switchable because
-     a pay tool cannot exist in the surface. */
+  /* NEVER: absent from the manifest by construction. Recorded so the admin
+     console can state the boundary; they are never switchable because a pay
+     tool cannot exist in the manifest. */
   {
     name: "pay",
     risk: "NEVER",
     switchable: false,
     implemented: false,
     weightMs: 0,
-    hint: "absent from the manifest — money moves only on the hosted page",
+    hint: "absent from the manifest. Money moves only on the hosted page",
     invalidates: [],
   },
   {
@@ -167,7 +159,7 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: false,
     implemented: false,
     weightMs: 0,
-    hint: "absent from the manifest — human support surface",
+    hint: "absent from the manifest. A human handles refunds",
     invalidates: [],
   },
   {
@@ -176,33 +168,32 @@ export const TOOLS: readonly ToolDef[] = [
     switchable: false,
     implemented: false,
     weightMs: 0,
-    hint: "absent at Assist — cancel stays a human action",
+    hint: "absent at Assist. Cancel stays a human action",
     invalidates: [],
   },
 ];
 
-/** pseudo-tool marker: the ledger row that costs the model call itself (§A7). */
+/** pseudo-tool marker: the ledger row that costs the model call itself. */
 export const LLM_TURN = "llm_turn";
 
 export const toolDef = (name: string): ToolDef | undefined =>
   TOOLS.find((t) => t.name === name);
 
-/** the §B3 console surface: every real tool with a switch. */
+/** every real tool with a switch. */
 export const SWITCHABLE_TOOLS: readonly ToolDef[] = TOOLS.filter((t) => t.switchable);
 
 /** the boundary statement for the console. */
 export const NEVER_TOOLS: readonly ToolDef[] = TOOLS.filter((t) => t.risk === "NEVER");
 
-/** implemented + switchable = what the fake engine honors today (db defaults). */
+/** implemented and switchable tools are what the fake engine honors today (db defaults). */
 export const AI_TOOLS: readonly string[] = SWITCHABLE_TOOLS.filter((t) => t.implemented).map(
   (t) => t.name
 );
 
-/** deterministic ledger duration for the §A7 stand-in rows. */
+/** deterministic ledger duration for the stand-in rows. */
 export const ledgerWeight = (name: string): number => toolDef(name)?.weightMs ?? 50;
 
-/** Did this turn move (or re-sync) anything the pages must re-read?
- *  Replaces the F6 tool-name sniff inside the chat transport. */
+/** Did this turn move (or re-sync) anything the pages must re-read? */
 export function turnTouches(trailTools: string[]): { cart: boolean; stock: boolean } {
   const touched = new Set<CacheTouch>();
   for (const name of trailTools) toolDef(name)?.invalidates.forEach((x) => touched.add(x));

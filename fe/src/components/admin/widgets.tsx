@@ -7,8 +7,8 @@ import { ORDER_BAND } from "@/lib/orders/lifecycle";
 import type { OrderStatus } from "@/lib/api/types";
 import { cn } from "@/lib/cn";
 
-/** Shared scaffolding for the §5.6 screens — same flat-outline world as the
- *  storefront, just denser grids. */
+/** Shared layout for the admin screens. Same flat-outline world as the
+ *  storefront, with denser grids. */
 
 export function Panel({
   title,
@@ -55,8 +55,8 @@ export function Kpi({
   );
 }
 
-/** Band-styled switch — role="switch" for the a11y tree, mono ON/OFF readout
- *  so state is never color-only. */
+/** Band-styled switch. It uses role="switch" for the a11y tree and a mono
+ *  ON/OFF readout, so state is never color-only. */
 export function Toggle({
   label,
   hint,
@@ -70,7 +70,7 @@ export function Toggle({
   checked: boolean;
   onChange: (next: boolean) => void;
   disabled?: boolean;
-  danger?: boolean; // off = tool switched off → red band; healthy = green
+  danger?: boolean; // off means the tool is switched off and gets a red band; healthy is green
 }) {
   return (
     <div className={cn("flex items-start gap-3 py-1.5", disabled && "opacity-50")}>
@@ -117,10 +117,8 @@ export function Pill({ band, label }: { band: BandName; label: string }) {
   );
 }
 
-/** Status → band for admin tables. Order statuses delegate to the lifecycle's
- *  ONE ladder (C5 — this map and the customer chip had already drifted:
- *  Delivered green vs blue, Processing yellow vs green); only the
- *  non-order vocabularies (product status, ledger status) live here. */
+/** Maps status to a band for admin tables. Order statuses delegate to the
+ *  lifecycle's one ladder. Product status and ledger status live here. */
 export function statusBand(status: string): BandName {
   if (status in ORDER_BAND) return ORDER_BAND[status as OrderStatus];
   switch (status) {

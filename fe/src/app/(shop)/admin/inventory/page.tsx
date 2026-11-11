@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AdminTable, Panel, td, th } from "@/components/admin/widgets";
 import { Button, ErrorNote, Skeleton, StockDots } from "@/components/ui";
 import { useInventory, useSetStock } from "@/lib/api/hooks";
-import { ApiError } from "@/lib/api/types";
+import { ApiError, type InventoryDto } from "@/lib/api/types";
 
 export default function AdminInventoryPage() {
   const [search, setSearch] = useState("");
@@ -30,13 +30,13 @@ export default function AdminInventoryPage() {
       >
         <p className="mb-3 text-[12px] leading-relaxed text-ink-soft">
           You set <strong>total stock</strong>. <span className="font-mono">Reserved</span> is
-          held by open quotes and protected — a write below it is refused, because that would
+          held by open quotes and protected. A write below it is refused, because that would
           oversell stock a human already committed to at the bill.
         </p>
         {isPending ? (
           <Skeleton className="h-64" />
         ) : !rows?.length ? (
-          <p className="text-[13px] text-ink-soft">Nothing matches “{search}”.</p>
+          <p className="text-[13px] text-ink-soft">Nothing matches &quot;{search}&quot;.</p>
         ) : (
           <AdminTable
             head={
@@ -75,7 +75,7 @@ function StockRow({
   busy,
   onSet,
 }: {
-  row: { productId: string; productName: string; sku: string; quantity: number; reservedQuantity: number; availableQuantity: number };
+  row: InventoryDto;
   busy: boolean;
   onSet: (quantity: number) => void;
 }) {

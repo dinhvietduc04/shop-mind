@@ -1,15 +1,8 @@
 /**
- * Chat turn transport — the ONLY consumer-side knowledge of the assistant's
- * streaming wire contract (AI_ASSISTANT_PLAN §B5+ item 3). The producer
- * (mocks/handlers.ts SSE) and this module share the frame vocabulary declared
- * in lib/api/types.ts (ChatSseFrame); nothing else parses `data:` lines.
- *
- * Owns, in one place:
- *  - the readyGate await — chat used to fetch raw and silently bypass the
- *    mock-boot park that api() imposes (candidate C3's leak);
- *  - auth via the sole header builder in api/client (authHeaders);
- *  - the failure taxonomy: map on the server's `code` FIRST, falling back to
- *    HTTP status arithmetic only for errors that don't speak the envelope.
+ * Chat turn transport. This is the only consumer-side parser of the streaming
+ * wire contract (`ChatSseFrame`). The producer is the SSE handler in
+ * `mocks/handlers.ts`. Failure taxonomy: map on the server's `code` first and
+ * fall back to HTTP status only for errors without the envelope.
  */
 import { authHeaders } from "@/lib/api/client";
 import { whenReady } from "@/lib/api/readyGate";
@@ -22,10 +15,10 @@ import type {
 
 const NETWORK_LOSS: ChatError = {
   kind: "network",
-  message: "Connection to the assistant was lost — nothing in your cart changed.",
+  message: "Connection to the assistant was lost. Nothing in your cart changed.",
 };
 
-/** Pure: split accumulated SSE text into complete frames + the remainder. */
+/** Pure: split accumulated SSE text into complete frames and the remainder. */
 export function decodeFrames(buffer: string): {
   frames: ChatSseFrame[];
   rest: string;
@@ -47,7 +40,7 @@ export function decodeFrames(buffer: string): {
           frames.push(ev);
         }
       } catch {
-        /* malformed frame — drop it; the turn frame is the authority anyway */
+        /* Drop a malformed frame. The turn frame is the authority anyway. */
       }
     }
   }
@@ -77,7 +70,7 @@ export type TurnOutcome =
 
 /**
  * POST /api/agent/chat: stream word deltas through onDelta, resolve with the
- * finished structured turn — or a ChatError. Never throws.
+ * finished structured turn or a ChatError. Never throws.
  */
 export async function streamTurn(
   req: ChatRequest,

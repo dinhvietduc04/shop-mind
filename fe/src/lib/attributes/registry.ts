@@ -1,16 +1,11 @@
 import type { Specs } from "@/lib/api/types";
 
 /**
- * The attribute registry (C8) — §A3 / ADR-0007's per-key Specs vocabulary,
- * mirrored client-side: `(key, type, unit, label)`. The real backend owns
- * `IToolRiskPolicy`-style authority for this in Shop.Application; the mock
- * derives facets and Elicitation from HERE, so the rule
- *
- *   "Specs outside the registry do not exist for facets or filtered search"
- *   (GLOSSARY: Spec)
- *
- * is stated once instead of being approximated by two near-duplicate scans
- * and five copies of `key.replace(/_/g, " ")`.
+ * The attribute registry holds the per-key Specs vocabulary from ADR-0007,
+ * mirrored client-side as `(key, type, unit, label)`. The backend owns the
+ * authority for this vocabulary. The mock derives facets and elicitation from
+ * here, so one rule is stated once: "Specs outside the registry do not exist
+ * for facets or filtered search" (GLOSSARY: Spec).
  */
 
 export type SpecType = "range" | "enum" | "bool";
@@ -22,8 +17,8 @@ export interface SpecDef {
   unit?: string;
 }
 
-/** Fixture catalog (§A3 seed vocabulary). Unregistered keys written by the
- *  admin stay invisible to facets and filters — by design, not by accident. */
+/** Fixture catalog seed vocabulary. Unregistered keys written by the admin stay
+ *  invisible to facets and filters by design. */
 const SPEC_DEFS: readonly SpecDef[] = [
   { key: "ram_gb", label: "RAM (GB)", type: "range", unit: "GB" },
   { key: "storage_gb", label: "Storage (GB)", type: "range", unit: "GB" },
@@ -56,7 +51,7 @@ const BY_KEY = new Map(SPEC_DEFS.map((d) => [d.key, d]));
 export const specDef = (key: string): SpecDef | undefined => BY_KEY.get(key);
 export const specRegistered = (key: string): boolean => BY_KEY.has(key);
 
-/** The ONE label renderer — replaced five hand-rolled mangle sites. */
+/** The one label renderer. */
 export const specLabel = (key: string): string =>
   BY_KEY.get(key)?.label ?? key.replace(/_/g, " ");
 
@@ -73,11 +68,10 @@ export interface PoolEntry {
 }
 
 /**
- * registry ∩ populated data — the SINGLE scan that feeds BOTH the catalog's
- * facet endpoint and the assistant's Elicitation questions (they used to
- * carry two near-copies of this loop with different output shapes).
- * Bool attributes never surface as questions (unchanged policy: they filter
- * by existence, humans don't pick "true").
+ * One scan of the registry against populated data feeds both the catalog facet
+ * endpoint and the assistant's elicitation questions. Bool attributes never
+ * become questions, since they filter by existence and humans do not pick
+ * "true".
  */
 export function facetPool(products: { specs?: Specs }[]): PoolEntry[] {
   const seen = new Map<string, PoolEntry>();
@@ -85,7 +79,7 @@ export function facetPool(products: { specs?: Specs }[]): PoolEntry[] {
     for (const [k, v] of Object.entries(p.specs ?? {})) {
       if (typeof v === "boolean") continue;
       const def = specDef(k);
-      if (!def) continue; // unregistered keys do not exist here (§A3)
+      if (!def) continue; // unregistered keys do not exist here
       const entry = seen.get(k) ?? { def, values: [], numeric: true };
       const sv = v as string | number;
       if (!entry.values.includes(sv)) entry.values.push(sv);

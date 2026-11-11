@@ -73,10 +73,10 @@ export function BandChip({
   );
 }
 
-/** The price's multiplier band, kept small and next to the number — a visual
- *  anchor for order of magnitude, not a code to decode. Digits always carry
- *  the real value; the tick is aria-hidden (screen readers get the price,
- *  and one decorative stripe must not announce itself as data). */
+/** The price's multiplier band, kept small and next to the number. It shows
+ *  the order of magnitude, not a code to decode. Digits always carry the real
+ *  value; the tick is aria-hidden, so screen readers get the price and not a
+ *  decorative stripe. */
 export function MagnitudeTick({
   value,
   className,
@@ -128,14 +128,12 @@ export function StockDots({ qty, withLabel = true }: { qty: number; withLabel?: 
 /* -------------------------------- PhotoPlate ------------------------------- */
 
 /**
- * Placeholder for product photography: an empty plate slot in catalog-sheet
- * language — registration corners, plate number, category band. Honest demo
- * state; replaced by real imagery when assets exist (PRODUCT.md: no fake claims).
- */
-/**
- * Plate slot for product photography. Empty state: dashed registration frame,
- * honest "photo not on file" label. With a photo: the image sits on the plate,
- * captioned with its plate number. Local files — see public/products/PROVENANCE.md.
+ * Plate slot for product photography. The empty state is a dashed frame with
+ * registration corners, a plate number, and a category band, plus a "photo not
+ * on file" label. With a photo, the image sits on the plate, captioned with its
+ * plate number. A real photo replaces the placeholder when assets exist
+ * (PRODUCT.md: no fake claims). Photos are local files. See
+ * public/products/PROVENANCE.md.
  */
 export function PhotoPlate({
   sku,
@@ -161,7 +159,7 @@ export function PhotoPlate({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
-          alt={name ? `${name} — product photo` : `Product ${sku}`}
+          alt={name ? `${name}, product photo` : `Product ${sku}`}
           className={cn("object-contain", compact ? "h-full w-full p-0.5" : "h-full w-full p-2")}
           loading="lazy"
         />

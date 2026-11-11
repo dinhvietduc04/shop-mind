@@ -5,7 +5,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { AdminTable, Panel, Pill, statusBand, td, th } from "@/components/admin/widgets";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
 import { useAdminCategories, useDeleteCategory, useSaveCategory } from "@/lib/api/hooks";
-import { ApiError, type CategoryDto } from "@/lib/api/types";
+import { ApiError, type CategoryDto, type CreateCategoryRequest } from "@/lib/api/types";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
 import { slugify } from "@/lib/slug";
 
@@ -19,7 +19,11 @@ export default function AdminCategoriesPage() {
   const [showNew, setShowNew] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const errText = (e: unknown) => (e instanceof ApiError ? `${e.title}${Object.values(e.errors ?? {}).flat()[0] ? ` — ${Object.values(e.errors ?? {}).flat()[0]}` : ""}` : "Unexpected error.");
+  const errText = (e: unknown) => {
+    if (!(e instanceof ApiError)) return "Unexpected error.";
+    const detail = Object.values(e.errors ?? {}).flat()[0];
+    return detail ? `${e.title}. ${detail}` : e.title;
+  };
 
   return (
     <div className="mt-5">
@@ -65,7 +69,7 @@ export default function AdminCategoriesPage() {
         )}
         {error && (
           <div className="mt-3">
-            <ErrorNote><strong>Write refused.</strong> {error} — deleting a bin that still holds products is illegal, exactly like the real FK.</ErrorNote>
+            <ErrorNote><strong>Write refused.</strong> {error}. Deleting a bin that still holds products is illegal, exactly like the real FK.</ErrorNote>
           </div>
         )}
       </Panel>
@@ -78,7 +82,7 @@ function NewCategoryForm({
   onSubmit,
 }: {
   busy: boolean;
-  onSubmit: (c: { name: string; slug: string | null; description: string | null; isActive: boolean }) => void;
+  onSubmit: (c: CreateCategoryRequest) => void;
 }) {
   const [name, setName] = useState("");
   return (
@@ -90,7 +94,7 @@ function NewCategoryForm({
         onSubmit({ name: name.trim(), slug: null, description: null, isActive: true });
       }}
     >
-      <input value={name} onChange={(e) => setName(e.target.value)} placeholder="new bin name — slug auto-generates" className={`${input} w-[260px]`} aria-label="New category name" />
+      <input value={name} onChange={(e) => setName(e.target.value)} placeholder="new bin name, slug auto-generates" className={`${input} w-[260px]`} aria-label="New category name" />
       <Button variant="human" type="submit" disabled={busy || !name.trim()}>
         Create
       </Button>
@@ -106,7 +110,7 @@ function CategoryRow({
 }: {
   category: CategoryDto;
   busy: boolean;
-  onSave: (patch: { name: string; slug: string | null; description: string | null; isActive: boolean }) => void;
+  onSave: (patch: CreateCategoryRequest) => void;
   onDelete: () => void;
 }) {
   const [form, setForm] = useState({

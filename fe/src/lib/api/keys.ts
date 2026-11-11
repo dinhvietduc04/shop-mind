@@ -1,11 +1,7 @@
 import type { ProductQuery } from "./types";
 
-/**
- * Query keys are the contract map — one place to grep for every endpoint.
- * C6: prefixes are FIRST-CLASS members now (productsAll, productAny, …).
- * When callers had to hand-write `["products"]` to invalidate a whole wall,
- * the key map was a shallow naming layer its own callers out-managed.
- */
+/** One place to grep for every endpoint. Prefixes exist only for invalidation
+ *  recipes; reads use exact keys. */
 export const qk = {
   /* exact keys */
   products: (q: ProductQuery) => ["products", q] as const,
@@ -28,7 +24,7 @@ export const qk = {
   aiConversations: () => ["admin", "ai", "conversations"] as const,
   aiSettings: () => ["admin", "ai", "settings"] as const,
 
-  /* prefixes — for invalidation recipes only; reads still use exact keys */
+  /* prefixes, for invalidation recipes only; reads still use exact keys */
   productsAll: () => ["products"] as const,
   productAny: () => ["product"] as const,
   facetsAll: () => ["facets"] as const,

@@ -15,7 +15,7 @@ function CancelView() {
 
   if (!token) {
     return (
-      <EmptyState title="Nothing to land on">
+      <EmptyState title="No payment session">
         <p>This page only exists as the cancel-return URL from the hosted payment.</p>
         <Link href="/" className="mt-4 inline-block">
           <Button variant="ghost">To the catalog</Button>
@@ -39,9 +39,9 @@ function CancelView() {
       </div>
       <p className="mt-3 text-[14px] leading-relaxed">
         {paid
-          ? `Order ${quote.order.orderNumber} is actually paid — you may have hit back after returning. Nothing further is due.`
+          ? `Order ${quote.order.orderNumber} is actually paid. You may have hit back after returning. Nothing further is due.`
           : abandoned
-            ? "You abandoned the quote: the reservation is released back to the bins and no charge exists. Your cart still holds the items — a new quote can be created any time."
+            ? "You abandoned the quote. The reservation is released back to the bins and no charge exists. Your cart still holds the items. You can create a new quote any time."
             : `Session ${token.slice(0, 8)} is still pending. Nothing was charged; stock stays reserved until ${quote ? new Date(quote.expiresAt).toLocaleTimeString() : "expiry"}.`}
       </p>
       {!paid && (
@@ -52,7 +52,7 @@ function CancelView() {
       <div className="mt-5 flex flex-wrap gap-2">
         {!paid && (
           <Link href="/quote">
-            <Button variant="ghost">Back to the bill →</Button>
+            <Button variant="ghost">Back to the bill</Button>
           </Link>
         )}
         <Link href="/">

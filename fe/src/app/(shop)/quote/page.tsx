@@ -24,9 +24,6 @@ import {
 import { ApiError, formatUsd } from "@/lib/api/types";
 import { FREE_SHIPPING_THRESHOLD, shippingFeeFor } from "@/lib/shipping";
 
-/* The session pointer, discovery reconciliation, and outcome decode all live
-   in lib/quotes/intake (C1) — this page renders what that module holds. */
-
 function Countdown({ to }: { to: string }) {
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
@@ -50,14 +47,12 @@ function QuotePageInner() {
   const createQuote = useCreateQuote();
   const update = useUpdateCartItem();
   const remove = useRemoveCartItem();
-  /* pointer + discovery + reconciliation in one hook (intake): this tab's
-     held session, or the live one the server/assistant points at. */
   const { token, quote, isPending: quotePending } = useHeldQuote();
   const abandon = useCancelPayment(token ?? "");
 
   const lines = cart?.items ?? [];
   const subtotal = cart?.subtotal ?? 0;
-  const shipping = shippingFeeFor(subtotal); // the ONE rule, same fn the mock server prices with
+  const shipping = shippingFeeFor(subtotal); // the same rule the mock server prices with
   const total = subtotal + shipping;
   const shipLeft = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
 
@@ -101,20 +96,18 @@ function QuotePageInner() {
     }
 
     const o = quote.order;
-    /* the ONE decode (intake) — reads status + payment.outcome, never
-       transactionId archaeology */
     const outcome = quoteOutcome(o);
 
     if (outcome === "paid" || outcome === "fulfilled") {
       return (
-        <TerminalQuote title="Paid — thank you" tone="green">
+        <TerminalQuote title="Paid. Thank you." tone="green">
           <p>
             Order <strong>{o.orderNumber}</strong> settled at the hosted page.
-            Stock committed, cart cleared — the ledger has the full trail.
+            Stock committed, cart cleared. The ledger has the full trail.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link href={`/orders/${o.id}`}>
-              <Button variant="ghost">Order ledger →</Button>
+              <Button variant="ghost">Open the order ledger</Button>
             </Link>
             <Link href="/">
               <Button variant="ghost" onClick={releaseOpenQuote}>
@@ -129,15 +122,15 @@ function QuotePageInner() {
     if (outcome === "expired" || outcome === "declined") {
       const expired = outcome === "expired";
       return (
-        <TerminalQuote title={expired ? "Quote expired — stock released" : "Card declined"} tone="red">
+        <TerminalQuote title={expired ? "Quote expired. Stock released." : "Card declined"} tone="red">
           <p>
             {expired
-              ? "The 30-minute hold ran out and every reserved unit went back to the bins. Nobody was charged. Your cart survived — create a fresh quote and pay faster next time."
+              ? "The 30-minute hold ran out and every reserved unit went back to the bins. Nobody was charged. Your cart survived. Create a fresh quote and pay faster next time."
               : "The hosted page declined the card. Nothing was charged and the reservation was released."}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button variant="ghost" onClick={releaseOpenQuote}>
-              Back to the cart — re-quote
+              Back to the cart and re-quote
             </Button>
             <Link href="/orders">
               <Button variant="ghost">See the ledger entry</Button>
@@ -155,14 +148,14 @@ function QuotePageInner() {
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button variant="ghost" onClick={releaseOpenQuote}>
-              Back to the cart — re-quote
+              Back to the cart and re-quote
             </Button>
           </div>
         </TerminalQuote>
       );
     }
 
-    // Pending — the live bill
+    // pending, so show the live bill
     return (
       <main className="mx-auto max-w-[680px] px-6 py-6">
         <h1 className="text-2xl font-extrabold uppercase tracking-[0.04em]">
@@ -191,7 +184,7 @@ function QuotePageInner() {
             <p>
               Reserved for <strong>{o.shippingAddress.fullName}</strong>,{" "}
               {o.shippingAddress.address}, {o.shippingAddress.city}. Prices were
-              recomputed by the API at quote time — this bill cannot change. If
+              recomputed by the API at quote time. This bill cannot change. If
               stock sells out before you pay, the reservation releases.
             </p>
             <div className="mt-4 flex items-center justify-between font-mono text-lg font-bold tabular-nums">
@@ -215,7 +208,7 @@ function QuotePageInner() {
               onClick={() =>
                 abandon.mutate(undefined, {
                   onSuccess: () => {
-                    // go read the released truth from the server, then park the tab
+                    // wait for the server to show the release, then clear this tab's pointer
                     setTimeout(releaseOpenQuote, 4000);
                   },
                 })
@@ -229,7 +222,7 @@ function QuotePageInner() {
           </div>
           {abandon.error && (
             <div className="border-t border-line/50 px-5 py-3">
-              <ErrorNote>Could not release the hold — the quote stays pending.</ErrorNote>
+              <ErrorNote>Could not release the hold. The quote stays pending.</ErrorNote>
             </div>
           )}
         </article>
@@ -271,7 +264,7 @@ function QuotePageInner() {
           <span>priced by the API · free ship ≥ {formatUsd(FREE_SHIPPING_THRESHOLD)}</span>
         </div>
 
-        {/* free-shipping progress — honest bar, band green only when filled */}
+        {/* Free-shipping progress. The bar turns green only when filled. */}
         <div className="px-5 pt-4">
           <div
             role="progressbar"
@@ -292,7 +285,7 @@ function QuotePageInner() {
           </div>
           <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
             {subtotal >= FREE_SHIPPING_THRESHOLD
-              ? "free shipping unlocked"
+              ? "free shipping applies"
               : `add ${formatUsd(shipLeft)} more for free shipping`}
           </p>
         </div>
@@ -372,12 +365,12 @@ function QuotePageInner() {
             disabled={createQuote.isPending}
             onClick={() =>
               createQuote.mutate(shipTo, {
-                // sessionToken arrives as a DTO field — no URL archaeology (C1)
+                // the session token is a DTO field, never parsed out of a URL
                 onSuccess: (q) => holdOpenQuote(q.sessionToken),
               })
             }
           >
-            {createQuote.isPending ? "Reserving stock…" : "Create quote — reserve stock"}
+            {createQuote.isPending ? "Reserving stock…" : "Create quote and reserve stock"}
           </Button>
           <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft">
             assistant may press this · yellow may not

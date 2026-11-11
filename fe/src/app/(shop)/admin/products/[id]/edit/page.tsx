@@ -6,7 +6,7 @@ import { ProductForm } from "@/components/admin/product-form";
 import { useAdminProduct } from "@/lib/api/hooks";
 
 /** Mount-after-settle: the form's initial state is the loaded product, so the
- *  query result is passed as a prop from a child boundary — no sync effect. */
+ *  query result is passed as a prop from a child boundary. No sync effect. */
 export default function EditProductPage() {
   const { id } = useParams<{ id: string }>();
   const { data, isPending, isError } = useAdminProduct(id);

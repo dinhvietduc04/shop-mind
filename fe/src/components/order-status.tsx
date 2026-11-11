@@ -3,11 +3,6 @@ import { BAND_BG } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 import { MAINLINE, ORDER_BAND, mainlineRank } from "@/lib/orders/lifecycle";
 
-/** The fulfillment path is the lifecycle's mainline — no second ordering
- *  that must "agree by luck" with the transition map (C5). */
-const ORDER_STEPS = MAINLINE;
-
-/** Band-coloured status chip — the digits of order state, always printed. */
 export function StatusChip({ status }: { status: OrderStatus }) {
   return (
     <span
@@ -24,15 +19,15 @@ export function StatusChip({ status }: { status: OrderStatus }) {
   );
 }
 
-/** Five-dot decode of the fulfillment path. Terminal side-branches mark the
- *  stop point with their own colour and never fake forward progress. */
+/** Five-dot view of the fulfillment path. For a terminal side branch, every
+ *  dot stays empty and the label below reports the stop state. */
 export function StatusTimeline({ status }: { status: OrderStatus }) {
   const branch = mainlineRank(status) === -1; // terminal side branch (ADR-0005)
-  const reached = branch ? 0 : ORDER_STEPS.indexOf(status) + 1;
+  const reached = branch ? 0 : MAINLINE.indexOf(status) + 1;
   return (
     <div>
       <ol className="flex items-center gap-0" aria-label={`Order status: ${status}`}>
-        {ORDER_STEPS.map((step, i) => {
+        {MAINLINE.map((step, i) => {
           const done = i < reached;
           return (
             <li key={step} className="flex items-center">
@@ -45,7 +40,7 @@ export function StatusTimeline({ status }: { status: OrderStatus }) {
                     : "bg-transparent border-ink/30"
                 )}
               />
-              {i < ORDER_STEPS.length - 1 && (
+              {i < MAINLINE.length - 1 && (
                 <span
                   aria-hidden
                   className={cn(
@@ -60,8 +55,8 @@ export function StatusTimeline({ status }: { status: OrderStatus }) {
       </ol>
       <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
         {branch
-          ? `stopped — ${status.toLowerCase()}`
-          : ORDER_STEPS[reached - 1]}
+          ? `stopped at ${status.toLowerCase()}`
+          : MAINLINE[reached - 1]}
       </p>
     </div>
   );

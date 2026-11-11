@@ -6,8 +6,8 @@ import type { ProductQuery } from "@/lib/api/types";
 export type SortKey = NonNullable<ProductQuery["sort"]>;
 
 /** Shared catalog UI state: search text, active bin, sort, stock toggle, spec
- *  chips and page. Every filter mutation resets page — stale pagination on a
- *  narrowed result set is how servers get accidentally paged off a cliff. */
+ *  chips and page. Every filter mutation resets page, because stale pagination
+ *  on a narrowed result set can land on an empty page. */
 interface ShopUIState {
   query: string;
   category: string | null;
@@ -32,7 +32,7 @@ export const useShopUI = create<ShopUIState>((set) => ({
   specs: {},
   page: 1,
   setQuery: (query) => set({ query, page: 1 }),
-  // Changing the bin invalidates the previous bin's spec keys entirely.
+  // Changing the bin clears the previous bin's spec keys.
   setCategory: (category) => set({ category, specs: {}, page: 1 }),
   setSort: (sort) => set({ sort, page: 1 }),
   setInStockOnly: (inStockOnly) => set({ inStockOnly, page: 1 }),
@@ -51,7 +51,3 @@ export const useShopUI = create<ShopUIState>((set) => ({
   clearFilters: () =>
     set({ query: "", category: null, sort: "newest", inStockOnly: false, specs: {}, page: 1 }),
 }));
-
-/** Serialize spec chips to the wire DSL — one clause per key through the
- *  shared codec (C8): >1 selected value becomes `in`, one becomes `eq`. */
-export { encodeChipState as specsToString } from "@/lib/attributes/codec";
