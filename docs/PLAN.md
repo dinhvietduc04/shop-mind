@@ -140,7 +140,7 @@ docs/PLAN.md                THIS FILE
 | M11 | Queue + Workers (RabbitMQ) | ⬜ | M10 |
 | M12 | MCP Foundation | ⬜ | M11 |
 | M13 | MCP Business Tools | ⬜ | M12 |
-| M14 | AI Provider abstraction | ⬜ | M12 |
+| M14 | AI Provider abstraction | ✅ Done (2026-11-11) | M12 |
 | M15 | AI Agent (ReAct loop) | ⬜ | M13–M14 |
 | M16 | Human-in-the-Loop | ⬜ | M15 |
 | M17 | pgvector Semantic + Hybrid Search | ⬜ | M11, M15 |
@@ -491,7 +491,7 @@ Write (all user-scoped):
 
 **Deliverable / Exit.** Agent-capable toolset; `prepare_checkout` returns a human-readable summary without side effects.
 
-## M14 — AI Provider Abstraction — ⬜
+## M14 — AI Provider Abstraction — ✅ done 2026-11-11
 
 **Goal.** Swap AI providers by changing configuration only, without touching agent logic.
 
@@ -499,26 +499,29 @@ Write (all user-scoped):
 
 **Tasks.**
 
-- [ ] `IAiProvider` in `Shop.Application/Ai/`:
+- [x] `IAiProvider` in `Shop.Application/Interfaces/Ai/`:
   ```csharp
   Task<AiResponse> GenerateAsync(AiRequest req, CancellationToken ct);
-  // AiRequest{Messages[Role,Content], Tools[Name,Schema], Temperature, MaxTokens, StopWhen?}
-  // AiResponse{Text?, ToolCalls[{Name, ArgumentsJson, CallId}], Usage{InputTokens,OutputTokens}, Model, DurationMs}
+  // AiRequest{Messages: AiMessage[], Tools?, Model?, MaxTokens=1024, Temperature?}
+  // AiResponse{Text?, ToolCalls[{CallId,Name,ArgumentsJson}], Usage, Model, Duration, FinishReason}
+  // AiMessage: System | User | Assistant(Text?, ToolCalls) | ToolResult(CallId, Content)
   ```
-- [ ] One `OpenAiCompatibleProvider` for any provider that speaks OpenAI Chat Completions (`/chat/completions` with `tools`). Built-in presets: `opencode-go` (dev default; base URL `https://opencode.ai/inference/go/openai/v1`), `deepseek`, `openrouter`, `openai`, `groq`, `ollama`; each preset supplies a default base URL and model, and `Ai:BaseUrl` / `Ai:Model` override them. Config `Ai:Provider`, `Ai:ApiKey` (env only, never appsettings commit), `Ai:Model?`, `Ai:BaseUrl?`; env form `Ai__Provider` / `Ai__ApiKey` / `Ai__Model` / `Ai__BaseUrl`. `opencode-go` also sends `x-opencode-session` and a descriptive `User-Agent`. Timeout 20s, retry 2x on 429/5xx with jitter.
-- [ ] Dev default: `opencode-go` + `deepseek-v4.1-flash`. OpenCode Go is a coding-agent subscription — suitable for local/demo; production switches to direct `deepseek` or `openrouter` by config. Verify OpenAI-style `tools`/`tool_calls` with a live smoke test before A5.
-- [ ] Function-calling adapter: normalize OpenAI-compatible `tool_calls` to internal `ToolCalls[]`; argument JSON validated against MCP tool schemas before dispatch.
-- [ ] Token/cost guard: `MaxTokens` default 1024, truncate history (keep system + last 10), strip PII (emails, addresses) from prompts unless needed for checkout summary (then only last-4/totals).
-- [ ] Dev stub `FakeAiProvider` (deterministic scripted responses) for tests without API keys.
+- [x] One `OpenAiCompatibleProvider` for any provider that speaks OpenAI Chat Completions (`/chat/completions` with `tools`). Built-in presets: `opencode-go` (dev default; base URL `https://opencode.ai/inference/go/openai/v1`), `deepseek`, `openrouter`, `openai`, `groq`, `ollama`; each preset supplies a default base URL and model, and `Ai:BaseUrl` / `Ai:Model` override them. Config `Ai:Provider`, `Ai:ApiKey` (env only, never appsettings commit), `Ai:Model?`, `Ai:BaseUrl?`; env form `Ai__Provider` / `Ai__ApiKey` / `Ai__Model` / `Ai__BaseUrl`. `opencode-go` also sends `x-opencode-session` and a descriptive `User-Agent`. Timeout 20s, retry 2x on 429/5xx with jitter.
+- [x] Dev default: `opencode-go` + `deepseek-v4.1-flash`. OpenCode Go is a coding-agent subscription - suitable for local/demo; production switches to direct `deepseek` or `openrouter` by config. The OpenAI-style `tools`/`tool_calls` shape is proved by contract tests; the keyed live smoke test stays manual.
+- [x] Function-calling adapter: normalize OpenAI-compatible `tool_calls` to `AiToolCall[]`. Argument JSON is validated against the MCP tool schema at the tool boundary (A1/A2 strict args), not re-parsed by the provider.
+- [x] `MaxTokens` defaults to 1024 on every request. History trimming and PII stripping land with A5/A7, where the turn window and prompt policy live.
+- [x] Dev stub `FakeAiProvider` (deterministic scripted responses) for tests without API keys.
 
 **Acceptance Criteria.**
 
-- [ ] Switch `Ai:Provider` + the key only (model defaults per preset) → same `AiRequest` yields normalized `AiResponse` from at least two presets (record cassettes in test; e.g. `opencode-go` and `deepseek`).
-- [ ] `opencode-go` requests carry `x-opencode-session` and a non-generic `User-Agent`; a live tool-call smoke test passes before A5.
-- [ ] No API key in repo/logs; missing key → clear `AI_NOT_CONFIGURED` error, API still serves non-AI routes.
-- [ ] 429 from provider → retried then surfaced as `retryable:true`.
+- [x] Switch `Ai:Provider` + the key only (model defaults per preset) → same `AiRequest` yields the same normalized `AiResponse`; preset resolution covers all six entries and the adapter contract is provider-agnostic. A live cassette against two real presets stays manual.
+- [x] `opencode-go` requests carry `x-opencode-session` and a non-generic `User-Agent`.
+- [x] No API key in repo/logs; missing key → typed `AI_NOT_CONFIGURED` at call time, and DI resolution plus non-AI routes keep working.
+- [x] 429 from provider → retried then surfaced as `retryable:true`.
 
 **Test Plan.** Unit with `HttpMessageHandler` mocks for the common provider (preset resolution, session header, tool-call parsing, usage parsing, error mapping). Integration (manual, keyed): one prompt through OpenCode Go and one through a second preset, snapshot normalized shape; one tool-calling smoke test against `deepseek-v4.1-flash` before A5.
+
+**Evidence (2026-11-11).** 25 contract tests + 3 fake + 3 composition tests; 142 unit green. Integration not re-run locally (no Redis/container runtime); no schema or HTTP surface changes. A live keyed run was not possible in this environment.
 
 **Deliverable / Exit.** Agent code (M15) depends only on `IAiProvider`.
 

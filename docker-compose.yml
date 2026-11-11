@@ -61,6 +61,8 @@ services:
       Redis__DefaultTtlSeconds: "90"
       Idempotency__ConnectionString: "redis:6379"
       RateLimit__ConnectionString: "redis:6379"
+      Ai__Provider: "${AI_PROVIDER:-opencode-go}"
+      Ai__ApiKey: "${AI_API_KEY:-}"
     ports:
       - "5000:8080"
     depends_on:

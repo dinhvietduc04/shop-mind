@@ -81,6 +81,37 @@ catalog reads; `get_cart` needs a delegated agent JWT (`aud=Shop.Mcp`,
 with `403 AgentScopeForbidden`. Redis sliding-window budgets and the strict error
 envelope are covered in `backend/Shop.Mcp/README.md`.
 
+## AI provider (M10 — A4)
+
+Every agent call goes through `IAiProvider.GenerateAsync`. One
+`OpenAiCompatibleProvider` speaks OpenAI Chat Completions with `tools`, so a
+provider switch is configuration only:
+
+| `Ai:Provider` | Default base URL | Default model | Key |
+|---|---|---|---|
+| `opencode-go` (dev default) | `https://opencode.ai/inference/go/openai/v1` | `deepseek-v4.1-flash` | required |
+| `deepseek` | `https://api.deepseek.com/v1` | `deepseek-chat` | required |
+| `openrouter` | `https://openrouter.ai/api/v1` | `deepseek/deepseek-chat` | required |
+| `openai` | `https://api.openai.com/v1` | `gpt-4o-mini` | required |
+| `groq` | `https://api.groq.com/openai/v1` | `llama-3.3-70b-versatile` | required |
+| `ollama` | `http://localhost:11434/v1` | `llama3.1` | not needed |
+| `fake` | none | deterministic | not needed |
+
+```bash
+Ai__Provider=deepseek Ai__ApiKey=sk-... dotnet run --project backend/Shop.Api
+
+# Overrides, only when the preset is not enough:
+Ai__BaseUrl=https://my-gateway/v1 Ai__Model=my-model
+```
+
+`Ai:Model` and `Ai:BaseUrl` are overrides, so leaving them unset keeps the
+provider-plus-key switch. `opencode-go` sends `x-opencode-session` and a
+ShopMind `User-Agent`. The adapter has a 20s timeout and 2 retries with jitter
+on 429/5xx/network faults. Failures are `AiProviderException` with code
+`AI_NOT_CONFIGURED` or `AI_PROVIDER_ERROR` and a `Retryable` flag; a missing key
+never blocks startup or non-AI routes. `Ai:Provider=fake` is deterministic,
+needs no key, and is what the integration test factory uses.
+
 ## Caching (M9 — Redis)
 
 Hot catalog reads are cached in Redis via `ICacheService`

@@ -51,6 +51,10 @@ A tool's authority tier: `READ`, `WRITE`, `QUOTE`, `NEVER`. A `NEVER` tool is ab
 **Agent Scope**:
 The authority of a `scope=agent` token: MCP tools for one user only. Rejected at every REST endpoint, and cannot confirm payment anywhere.
 
+**AI Provider**:
+The provider-neutral seam the agent loop calls (`IAiProvider`). A preset differs only in endpoint, default model, and headers; switching providers changes configuration, never agent code.
+_Avoid_: LLM client, model adapter
+
 **Elicitation**:
 The assistant asking a few targeted attribute questions before filtering or recommending. Attribute-driven, deterministic, explicitly not a recommendation system.
 
