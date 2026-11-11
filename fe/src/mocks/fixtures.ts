@@ -1,12 +1,12 @@
 import type { CategoryDto, ProductDto, Specs, UserDto } from "@/lib/api/types";
 
 /**
- * Fixtures transcribed from backend/Shop.Infrastructure/Seed/SeedData.cs
+ * Fixtures are transcribed from backend/Shop.Infrastructure/Seed/SeedData.cs
  * (names, SKUs, brands, prices, stock exact). GUIDs are deterministic mock
- * ids — the real API returns its own. `specs` is the A3 forward contract,
- * authored here at full fidelity and labeled synthetic.
+ * ids. The real API returns its own. `specs` is the A3 forward contract,
+ * written here in full and marked synthetic.
  * Local photos: public/products/ (see PROVENANCE.md); products without one
- * render the honest empty plate.
+ * show an empty image slot.
  */
 
 export const MOCK_USERS: Record<string, { password: string; user: UserDto }> = {
@@ -84,7 +84,3 @@ export const FIXTURE_PRODUCTS: FixtureProduct[] = SEED.map((s, i) => {
     createdAt: new Date(Date.UTC(2026, 9, 1 + i)).toISOString(),
   };
 });
-
-export const PRODUCT_CATEGORIES = Object.fromEntries(
-  SEED.map((s, i) => [FIXTURE_PRODUCTS[i].id, s.category])
-) as Record<string, string>;

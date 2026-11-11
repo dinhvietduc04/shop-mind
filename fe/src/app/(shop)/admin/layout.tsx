@@ -20,7 +20,7 @@ function tabActive(pathname: string, href: string) {
   return href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 }
 
-/** One gate for the whole console (§5.6): guests bounce to the turnstile with
+/** One gate for the whole console: guests redirect to sign-in with
  *  a return path, signed-in non-admins get the 403 card naming their identity. */
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <RequireRole role="Admin">
       <div className="mx-auto max-w-[1080px] px-6 py-6">
         <div className="flex flex-wrap items-center gap-2 border-b-[1.5px] border-ink pb-3">
-          <BandChip band="red" size="md" title="admin surface" />
+          <BandChip band="red" size="md" title="admin console" />
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em]">
             Admin console
           </span>

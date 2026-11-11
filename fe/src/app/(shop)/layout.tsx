@@ -1,8 +1,8 @@
 import { Masthead } from "@/components/shell";
 
-// The bin rail is NOT here on purpose: filtering bins only means something on
-// the catalog itself. Bill/assistant/order surfaces get a focused full-width
-// layout (docs/FRONTEND_PLAN.md F3).
+// The bin rail is not here on purpose. Filtering bins only means something on
+// the catalog itself. Bill, assistant, and order pages get a focused full-width
+// layout (docs/FRONTEND_PLAN.md).
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

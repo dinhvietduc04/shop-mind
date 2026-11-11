@@ -17,11 +17,11 @@ const jetmono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ShopMind — bin catalog",
+    default: "ShopMind bin catalog",
     template: "%s · ShopMind",
   },
   description:
-    "Electronics store demo where an AI assistant shops through MCP tools — Assist level: the assistant quotes, a human pays.",
+    "Electronics store demo where an AI assistant shops through MCP tools. At the Assist level, the assistant quotes and a human pays.",
 };
 
 export default function RootLayout({

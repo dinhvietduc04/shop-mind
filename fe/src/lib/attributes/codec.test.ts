@@ -8,12 +8,11 @@ import {
 } from "./codec";
 import { facetPool, specLabel, specRegistered } from "./registry";
 
-/* C8: one grammar between every producer and the matcher, and it fails
-   CLOSED. The pre-W3 mock parsed `>=|<=|==|!=` while the UI wrote `key=v`,
-   and silently ignored anything it couldn't read — chip filters no-op'd. */
+/* One grammar between every producer and the matcher, and it fails CLOSED:
+   an unknown key, op, or value is an error, never a dropped clause. */
 
-describe("codec — round trips", () => {
-  it("encodes chips to the §B5+ grammar", () => {
+describe("codec round trips", () => {
+  it("encodes chips to the wire grammar", () => {
     expect(encodeChipState({ panel: ["IPS"] })).toBe("panel:eq:IPS");
     expect(encodeChipState({ panel: ["IPS", "VA"], layout: ["full"] })).toBe(
       "layout:eq:full;panel:in:IPS|VA"
@@ -32,12 +31,12 @@ describe("codec — round trips", () => {
     ]);
   });
 
-  it("empty and blank input decode to zero clauses (no filter ≠ error)", () => {
+  it("empty and blank input decode to zero clauses (no filter is not an error)", () => {
     expect(decodeSpecs("")).toEqual({ ok: true, clauses: [] });
   });
 });
 
-describe("codec — fail CLOSED (§A3)", () => {
+describe("codec fails CLOSED", () => {
   it("rejects unregistered keys", () => {
     const d = decodeSpecs("battery_years:gte:5");
     expect(d.ok).toBe(false);
@@ -49,18 +48,18 @@ describe("codec — fail CLOSED (§A3)", () => {
     expect(decodeSpecs("ram_gb:in:8|16").ok).toBe(false); // range: use gte/lte/eq
   });
 
-  it("rejects non-numeric values for range keys and non-bool for bools", () => {
+  it("rejects non-numeric values for range keys and non-boolean values for bool keys", () => {
     expect(decodeSpecs("ram_gb:gte:lots").ok).toBe(false);
     expect(decodeSpecs("wireless:eq:maybe").ok).toBe(false);
   });
 
   it("rejects malformed clauses instead of ignoring them", () => {
-    expect(decodeSpecs("ram_gb>=16").ok).toBe(false); // the OLD grammar is now an error, not a shrug
+    expect(decodeSpecs("ram_gb>=16").ok).toBe(false); // the OLD grammar is now an error
     expect(decodeSpecs("cpu").ok).toBe(false);
   });
 });
 
-describe("codec — matching", () => {
+describe("codec matching", () => {
   const specs = { ram_gb: 16, cpu: "Intel Core i7", wireless: true } as const;
   const c = (key: string, op: SpecClause["op"], value: SpecClause["value"]): SpecClause =>
     ({ key, op, value });
@@ -90,15 +89,15 @@ describe("attribute registry", () => {
     expect(specLabel("battery_years")).toBe("battery years");
   });
 
-  it("facetPool = registry ∩ populated: unregistered and bool keys invisible", () => {
+  it("facetPool keeps registered keys with populated values, so unregistered and bool keys stay invisible", () => {
     const pool = facetPool([
       { specs: { ram_gb: 16, halo_ring: true, battery_years: 10 } },
       { specs: { ram_gb: 8, cpu: "M3" } },
     ]);
     const keys = pool.map((p) => p.def.key);
     expect(keys).toContain("ram_gb");
-    expect(keys).not.toContain("battery_years"); // unregistered (§A3)
-    expect(keys).not.toContain("halo_ring"); // bools never surface as questions
+    expect(keys).not.toContain("battery_years"); // unregistered
+    expect(keys).not.toContain("halo_ring"); // bools never become questions
     const ram = pool.find((p) => p.def.key === "ram_gb")!;
     expect(ram.numeric).toBe(true);
     expect([ram.min, ram.max]).toEqual([8, 16]);

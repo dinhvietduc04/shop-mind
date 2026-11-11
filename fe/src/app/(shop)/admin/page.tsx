@@ -8,8 +8,8 @@ import { useAdminOrders, useAiLedger, useInventory } from "@/lib/api/hooks";
 import { formatUsd } from "@/lib/api/types";
 import { useSession } from "@/lib/session";
 
-/** §5.6 dashboard: everything reads the same live mock db the storefront
- *  uses — KPIs move the moment a quote settles in another tab. */
+/** Admin dashboard: everything reads the same live mock db the storefront
+ *  uses. KPIs move the moment a quote settles in another tab. */
 export default function AdminDashboardPage() {
   const user = useSession((s) => s.user);
   const { data: orders, isPending: ordersPending } = useAdminOrders("");
@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="mt-5 space-y-5">
       <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
-        signed in as {user?.email} — the console writes to the same catalog the
+        signed in as {user?.email}. The console writes to the same catalog the
         customer storefront reads.
       </p>
 
@@ -60,7 +60,7 @@ export default function AdminDashboardPage() {
           <Kpi
             label="Queue / DLQ"
             value={<span className="text-[13px] uppercase tracking-[0.12em]">not wired</span>}
-            sub="B2 background queues land server-side — placeholder per plan"
+            sub="B2 background queues land server-side, placeholder per plan"
             band="grey"
           />
         </div>
@@ -69,12 +69,12 @@ export default function AdminDashboardPage() {
       <div className="grid gap-5 lg:grid-cols-2">
         <Panel
           title="Restock bench"
-          aside={<Link href="/admin/inventory"><Button variant="ghost">Inventory →</Button></Link>}
+          aside={<Link href="/admin/inventory"><Button variant="ghost">Open inventory</Button></Link>}
         >
           {loading ? (
             <Skeleton className="h-40" />
           ) : lowStock.length + outStock.length === 0 ? (
-            <p className="text-[13px] text-ink-soft">Every bin reads healthy — nothing at or below 5 units.</p>
+            <p className="text-[13px] text-ink-soft">Every bin reads healthy. Nothing at or below 5 units.</p>
           ) : (
             <ul className="space-y-2">
               {[...outStock, ...lowStock].slice(0, 6).map((r) => (
@@ -91,12 +91,12 @@ export default function AdminDashboardPage() {
 
         <Panel
           title="Latest orders"
-          aside={<Link href="/admin/orders"><Button variant="ghost">Order ledger →</Button></Link>}
+          aside={<Link href="/admin/orders"><Button variant="ghost">Open the order ledger</Button></Link>}
         >
           {loading ? (
             <Skeleton className="h-40" />
           ) : !orders?.length ? (
-            <p className="text-[13px] text-ink-soft">No orders yet — quote and pay from the storefront to see this move.</p>
+            <p className="text-[13px] text-ink-soft">No orders yet. Quote and pay from the storefront to see this move.</p>
           ) : (
             <ul className="space-y-2">
               {orders.slice(0, 6).map((o) => (

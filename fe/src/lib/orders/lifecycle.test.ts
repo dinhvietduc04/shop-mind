@@ -12,8 +12,9 @@ import {
 } from "./lifecycle";
 import type { OrderStatus } from "@/lib/api/types";
 
-/* Parity with the backend authority — backend/Shop.Domain/Rules/
-   OrderTransitions.cs:7–16. If the .NET file changes, this test is the tripwire. */
+/* Parity with the backend authority at backend/Shop.Domain/Rules/
+   OrderTransitions.cs lines 7 to 16. If the .NET file changes, this test is
+   the tripwire. */
 const CS_TABLE: Record<OrderStatus, OrderStatus[]> = {
   Pending: ["Paid", "PaymentFailed", "Cancelled"],
   Paid: ["Processing", "Cancelled"],
@@ -24,7 +25,7 @@ const CS_TABLE: Record<OrderStatus, OrderStatus[]> = {
   PaymentFailed: [],
 };
 
-describe("Quote lifecycle — mirror parity with OrderTransitions.cs", () => {
+describe("Quote lifecycle parity with OrderTransitions.cs", () => {
   it("enumerates exactly the shipped status union", () => {
     expect([...ORDER_STATUSES].sort()).toEqual(Object.keys(CS_TABLE).sort());
   });
@@ -49,7 +50,7 @@ describe("Quote lifecycle — mirror parity with OrderTransitions.cs", () => {
   });
 });
 
-describe("stock fate — the GLOSSARY's Reservation/Commit/Release", () => {
+describe("stock fate matches the GLOSSARY's Reservation/Commit/Release", () => {
   it("only Pending settlements move stock", () => {
     expect(stockFate("Paid", "Processing")).toBe("none");
     expect(stockFate("Shipped", "Delivered")).toBe("none");
@@ -63,7 +64,7 @@ describe("stock fate — the GLOSSARY's Reservation/Commit/Release", () => {
   });
 });
 
-describe("mainline rank (ADR-0005) + revenue + bands", () => {
+describe("mainline rank (ADR-0005), revenue, and bands", () => {
   it("ranks the happy path strictly and leaves side branches unranked", () => {
     const ranks = MAINLINE.map(mainlineRank);
     expect(ranks).toEqual([0, 1, 2, 3, 4]);
@@ -71,7 +72,7 @@ describe("mainline rank (ADR-0005) + revenue + bands", () => {
     expect(mainlineRank("PaymentFailed")).toBe(-1);
   });
 
-  it("revenue eligibility = money received, terminal failures never", () => {
+  it("revenue eligibility counts money received and never terminal failures", () => {
     for (const s of ["Paid", "Processing", "Shipped", "Delivered"] as OrderStatus[])
       expect(isRevenueEligible(s)).toBe(true);
     for (const s of ["Pending", "Cancelled", "PaymentFailed"] as OrderStatus[])

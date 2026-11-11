@@ -2,7 +2,7 @@
 
 import { CatalogView } from "@/components/catalog-view";
 
-/** Home = the full bin wall: rail, facets, pagination, assistant drawer. */
+/** The home page renders the full bin wall: rail, facets, pagination, and the assistant drawer. */
 export default function CatalogPage() {
   return <CatalogView bins assistant />;
 }

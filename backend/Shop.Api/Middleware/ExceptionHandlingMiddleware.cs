@@ -45,6 +45,7 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
             EmailAlreadyExistsException eex => (409, eex.Code, eex.Message, null),
             InvalidCredentialsException icex => (401, icex.Code, icex.Message, null),
             UnauthorizedOrderAccessException uex => (403, uex.Code, uex.Message, null),
+            QuoteHeldByHumanException qh => (409, qh.Code, qh.Message, null), // A2 origin scope
             AgentScopeForbiddenException aex => (403, aex.Code, aex.Message, null), // ADR-0006
             UnauthorizedAccessException => (401, "Unauthorized", ex.Message, null),
             InsufficientStockException isex => (409, isex.Code, isex.Message, null),

@@ -1,9 +1,9 @@
 import { FIXTURE_PRODUCTS } from "../fixtures";
 import { registerStore, type AdminResult } from "./snapshot";
 
-/** Inventory domain — the Reservation/Commit/Release engine (GLOSSARY).
- *  These helpers mimic the atomic guarded UPDATEs of backend plan B1: check
- *  and write in one step, so concurrent handler calls can never oversell.
+/** Inventory domain: the Reservation/Commit/Release engine (GLOSSARY).
+ *  These helpers mimic the atomic guarded UPDATEs of backend plan B1. They
+ *  check and write in one step, so concurrent handler calls can never oversell.
  *  Pure in-memory: no persist(), no window. */
 
 interface StockRow {
@@ -44,7 +44,8 @@ export function forgetStock(productId: string): void {
   stock.delete(productId);
 }
 
-/** Atomic: reserve `qty` for product. False = insufficient (no oversell). */
+/** Atomic: reserve `qty` for a product. Returns false when stock is
+ *  insufficient (no oversell). */
 export function tryReserve(productId: string, qty: number): boolean {
   const row = stock.get(productId);
   if (!row || row.quantity - row.reserved < qty) return false;
@@ -59,7 +60,7 @@ export function releaseReservation(productId: string, qty: number): void {
   row.reserved = Math.max(0, row.reserved - qty);
 }
 
-/** Atomic commit of a paid reservation: consume quantity AND reserved. */
+/** Atomic commit of a paid reservation: consume quantity and reserved. */
 export function commitReservation(productId: string, qty: number): boolean {
   const row = stock.get(productId);
   if (!row || row.reserved < qty || row.quantity < qty) return false;
@@ -68,8 +69,8 @@ export function commitReservation(productId: string, qty: number): boolean {
   return true;
 }
 
-/** Set TOTAL stock — reserved is untouchable (open quotes hold it). Mirrors
- *  the guarded update of backend plan B1. */
+/** Set total stock. Reserved stock is untouchable because open quotes hold it.
+ *  Mirrors the guarded update of backend plan B1. */
 export function adminSetStock(
   productId: string,
   quantity: number
@@ -79,7 +80,7 @@ export function adminSetStock(
   if (!Number.isInteger(quantity) || quantity < 0)
     return { ok: false, error: "Quantity must be a non-negative integer." };
   if (quantity < row.reserved)
-    return { ok: false, error: `Cannot go below reserved (${row.reserved}) — open quotes would be oversold.` };
+    return { ok: false, error: `Cannot go below reserved (${row.reserved}). Open quotes would be oversold.` };
   row.quantity = quantity;
   return { ok: true, value: { productId, quantity: row.quantity, reserved: row.reserved } };
 }

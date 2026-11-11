@@ -14,31 +14,22 @@ export function setToken(t: string | null) {
   else localStorage.removeItem("shopmind.token");
 }
 
-/** Has a session token at all — restore() probes with this instead of
- *  touching storage itself (this module is the ONLY reader/writer). */
+/** Has a session token at all. restore() probes with this instead of
+ *  touching storage itself (this module is the only reader and writer). */
 export const hasToken = () => token() !== null;
 
-/**
- * The ONLY builder of the Authorization header. `api()` uses it for REST;
- * raw-fetch callers (the chat transport needs the Response body stream) spread
- * this record instead of hand-assembling `Bearer ${localStorage...}` — that
- * duplication is how a token-store change becomes a three-module hunt.
- */
+/** Builds the Authorization header. `api()` and the raw-fetch chat transport
+ *  both use it, so the token store has one reader. */
 export function authHeaders(base?: Record<string, string>): Record<string, string> {
   const t = token();
   return { ...(base ?? {}), ...(t ? { Authorization: `Bearer ${t}` } : {}) };
 }
 
-/**
- * F8 swap note: everything the UI knows about the network lives here and in
- * types.ts. Point NEXT_PUBLIC_API_URL at Shop.Api, drop MSW, done.
- */
 export async function api<T>(
   path: string,
   init: RequestInit & { idempotencyKey?: string; query?: Record<string, string | number | boolean | undefined> } = {}
 ): Promise<T> {
-  /* Mock boot decoupling: render does not wait for MSW — requests do.
-     Resolved immediately outside mock mode (zero cost against Shop.Api). */
+  /* Mock boot decoupling: render does not wait for MSW. Requests wait for it. */
   await whenReady();
   const { idempotencyKey, query, ...rest } = init;
   const qs = query
@@ -48,8 +39,7 @@ export async function api<T>(
     : [];
   const url = `${BASE}${path}${qs.length ? `?${qs.join("&")}` : ""}`;
   const headers = new Headers(rest.headers);
-  const t = token();
-  if (t) headers.set("Authorization", `Bearer ${t}`);
+  for (const [name, value] of Object.entries(authHeaders())) headers.set(name, value);
   if (rest.body) headers.set("Content-Type", "application/json");
   if (idempotencyKey) headers.set("Idempotency-Key", idempotencyKey);
 

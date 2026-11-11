@@ -124,7 +124,12 @@ function ElicitCard({ fields, disabled }: { fields: ElicitField[]; disabled: boo
   const budgetValue = Number(answers.budget ?? (budget ? Math.round((budget.min + budget.max) / 2) : 0));
 
   const toggle = (key: string, v: string | number) =>
-    setAnswers((a) => ({ ...a, [key]: String(a[key]) === String(v) ? undefined! : v }));
+    setAnswers((a) => {
+      const next = { ...a };
+      if (String(next[key]) === String(v)) delete next[key];
+      else next[key] = v;
+      return next;
+    });
 
   const ready = Object.entries(answers).some(([, v]) => v !== undefined);
 
@@ -226,20 +231,20 @@ function ChatQuoteCard({ orderNumber, totalAmount, itemCount, expiresAt }: { ord
           <span>{itemCount} line{itemCount === 1 ? "" : "s"} · stock held</span>
           <span className="flex items-center gap-2"><MagnitudeTick value={totalAmount} className="h-4" />{formatUsd(totalAmount)}</span>
         </div>
-        {/* Assist invariant: chat never pays — every action routes to the bill */}
+        {/* Assist invariant: chat never pays. Every action routes to the bill */}
         <div className="mt-3 flex flex-wrap gap-2">
           <Link
             href="/quote"
             className="inline-flex items-center gap-2 rounded-[4px] border-[1.5px] border-[#1a1a1a] bg-band-yellow px-4 py-2 text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#1a1a1a] hover:brightness-110"
           >
-            Review &amp; Pay on the bill <ArrowRight size={13} aria-hidden />
+            Review &amp; pay on the bill <ArrowRight size={13} aria-hidden />
           </Link>
           <Link href="/quote">
             <Button variant="ghost">Edit cart instead</Button>
           </Link>
         </div>
         <p className="mt-2 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-ink-soft">
-          there is no pay control in this panel — the money boundary is the bill page
+          there is no pay control in this panel, and the money boundary is the bill page
         </p>
       </div>
     </div>
@@ -276,13 +281,13 @@ function ErrorTurn({ msg }: { msg: ChatMessage }) {
   if (e.kind === "auth")
     return (
       <div className="mt-2 rounded-[4px] border-[1.5px] border-ink bg-card px-3 py-2.5 text-[12px] text-ink">
-        <strong>Sign in to chat.</strong> Conversation quotas are per-user (§A5) —
-        the bins and spec sheets stay open to guests.{" "}
+        <strong>Sign in to chat.</strong> Conversation quotas are per-user.
+        The bins and spec sheets stay open to guests.{" "}
         <Link
           href={`/login?next=${encodeURIComponent("/assistant")}`}
           className="font-bold uppercase tracking-[0.1em] underline underline-offset-4"
         >
-          Turnstile →
+          Sign in
         </Link>
         <span className="ml-2 rounded-[3px] border border-ink px-1.5 py-0.5 font-mono text-[11px] uppercase">
           {e.code}
@@ -292,7 +297,7 @@ function ErrorTurn({ msg }: { msg: ChatMessage }) {
   if (e.kind === "provider")
     return (
       <div className="mt-2 rounded-[4px] border-[1.5px] border-line bg-kraft px-3 py-2.5 text-[12px] text-ink">
-        <strong>The assistant is unavailable</strong> — {e.message.replace(/\.\s*$/, "")}. Everything else in the shop keeps
+        <strong>The assistant is unavailable.</strong> {e.message.replace(/\.\s*$/, "")}. Everything else in the shop keeps
         working: <Link href="/" className="underline underline-offset-4">browse the bins manually</Link>.
         <span className="ml-2 rounded-[3px] border border-ink px-1.5 py-0.5 font-mono text-[11px] uppercase">{e.code}</span>
       </div>
@@ -317,9 +322,9 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
   const { messages, busy, send, newSession } = useChat();
   const [draft, setDraft] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
-  /* The cap is server truth, carried in each turn's envelope (§B5+ 3). Until
-     the first finished turn there is no number to show — so show none, not a
-     guessed 8 that can drift from the engine's TURN_CAP. */
+  /* The cap is server truth, carried in each turn's envelope. Until the first
+     finished turn there is no number to show, so show none, not a guessed 8
+     that can drift from the engine's TURN_CAP. */
   const turnMeta = [...messages].reverse().find((m) => m.result?.turnCap != null)?.result;
   /* Screen readers get each COMPLETED agent turn once (streaming word-by-word
      into aria-live would flood the queue). */
@@ -368,7 +373,7 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
           <div>
             <p className="text-[13px] leading-relaxed opacity-80">
               Ask for something. I search the bins, read live stock, and ask up to three
-              pointed questions before I filter — every price or count I say came from a
+              pointed questions before I filter. Every price or count I say came from a
               tool call this turn. I can quote; <strong>paying is yours</strong>, on the
               bill page.
             </p>
@@ -380,7 +385,7 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
                   onClick={() => void send(p)}
                   className="rounded-[4px] border-[1.5px] border-drawer-ink/40 px-2.5 py-1 font-mono text-[11px] hover:border-drawer-ink disabled:opacity-40"
                 >
-                  “{p}”
+                  &quot;{p}&quot;
                 </button>
               ))}
             </div>
@@ -438,7 +443,7 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
 
       {limitHit && (
         <div className="border-t-[1.5px] border-ink bg-band-yellow/30 px-4 py-2.5 text-[12px]">
-          <strong>Turn cap reached</strong> — this conversation is partial by design
+          <strong>Turn cap reached.</strong> This conversation is partial by design
           (rate limits are part of the product). Your cart and any open quote are
           untouched.
           <Button variant="ghost" className="ml-3" onClick={newSession}>

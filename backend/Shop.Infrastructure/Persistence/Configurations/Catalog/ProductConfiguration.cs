@@ -16,6 +16,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         b.HasIndex(x => x.SKU).IsUnique();
         b.HasIndex(x => x.Slug).IsUnique();
         b.Property(x => x.Price).HasPrecision(18, 2);
+        b.Property(x => x.Specs).HasColumnType("jsonb"); // A3: registry-defined attributes
+        b.HasIndex(x => x.Specs).HasMethod("gin"); // A3: containment/existence filters
         b.Property(x => x.Brand).HasMaxLength(200);
         b.HasIndex(x => x.CategoryId);
         b.HasIndex(x => x.Brand);

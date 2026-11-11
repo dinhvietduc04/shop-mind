@@ -10,47 +10,56 @@ import {
   adminCreateProduct,
   adminDeleteCategory,
   adminDeleteProduct,
-  adminListOrders,
-  adminSetOrderStatus,
-  adminSetStock,
   adminUpdateCategory,
   adminUpdateProduct,
-  aiConversationsList,
-  aiKillSwitchOn,
-  aiLedgerList,
-  activeQuoteFor,
   allCategories,
   allProducts,
-  available,
+  findProduct,
+  inventoryFor,
+  liveProduct,
+} from "./server/catalog";
+import { adminSetStock, available } from "./server/inventory";
+import {
+  activeQuoteFor,
+  adminListOrders,
+  adminSetOrderStatus,
   cancelOrder,
+  createQuote,
+  expirePendingQuotes,
+  getQuote,
+  openQuoteHolds,
+  orderFor,
+  ordersFor,
+  settleQuote,
+} from "./server/quotes";
+import {
   cartAdd,
   cartClear,
   cartHolds,
   cartRemove,
   cartUpdate,
-  createQuote,
-  expirePendingQuotes,
-  findProduct,
+  getCart,
+} from "./server/cart";
+import {
+  aiConversationsList,
+  aiKillSwitchOn,
+  aiLedgerList,
+  getAiSettings,
+  recordAiCalls,
+  setAiSettings,
+} from "./server/ai";
+import {
   findUserRecord,
   getAddress,
-  getAiSettings,
-  getCart,
-  getQuote,
-  inventoryFor,
-  liveProduct,
-  openQuoteHolds,
-  orderFor,
-  ordersFor,
-  persist,
-  recordAiCalls,
   registerUser,
-  setAiSettings,
   setAddress,
-  settleQuote,
   userByToken,
-} from "./db";
+} from "./server/identity";
+import { persist } from "./server/snapshot";
 import type {
   AgentTurnResult,
+  CartDto,
+  CartItemDto,
   ChatSseFrame,
   CreateProductRequest,
   InventoryDto,
@@ -70,8 +79,8 @@ let chatCount = 0;
 
 /**
  * MSW handlers mirroring Shop.Api routes 1:1 (docs/PLAN.md + backend plan B5
- * quote endpoints, A3 facets). NEXT_PUBLIC_MOCK_MODE: slow | ratelimit |
- * paymentfail demo the failure paths without a backend.
+ * quote endpoints, A3 facets). The NEXT_PUBLIC_MOCK_MODE values slow,
+ * ratelimit, and paymentfail exercise the failure paths without a backend.
  */
 
 const MODE = process.env.NEXT_PUBLIC_MOCK_MODE ?? "";
@@ -90,21 +99,26 @@ function requireAuth(request: Request) {
   return userByToken(request.headers.get("authorization"));
 }
 
-/** [Authorize(Roles = "Admin")] mirror: signed-in AND admin, else 403 — the
- *  mock's admin surface must fail exactly like Shop.Api so F8 swaps clean. */
-function requireAdmin(request: Request) {
-  const u = requireAuth(request);
-  return u?.admin ? u : null;
-}
-
+/** [Authorize(Roles = "Admin")] mirror: signed in and admin, otherwise 403.
+ *  The mock admin endpoints must fail exactly like Shop.Api. */
 function adminOnly(request: Request) {
-  return requireAdmin(request) ? null : problems("Admin role required.", {}, 403);
+  const u = requireAuth(request);
+  return u?.admin ? null : problems("Admin role required.", {}, 403);
 }
 
-/* §A7 audit stand-in: every chat turn leaves one llm_turn row plus one row per
+function cartDto(userId: string, items: CartItemDto[]): CartDto {
+  return {
+    id: `cart-${userId}`,
+    items,
+    subtotal: +items.reduce((total, item) => total + item.subtotal, 0).toFixed(2),
+    totalQuantity: items.reduce((total, item) => total + item.quantity, 0),
+  };
+}
+
+/* audit stand-in: every chat turn leaves one llm_turn row plus one row per
    tool in the trail. Durations are deterministic weights from the tool
-   REGISTRY (a mock that rolls random latencies teaches nothing); tokens ≈
-   chars/4 over the turn's prose. */
+   registry, not random latencies. Tokens are estimated at one per four
+   characters of the turn's prose. */
 function ledgerRows(message: string, result: AgentTurnResult, wallMs: number) {
   const ts = new Date().toISOString();
   const limited = Boolean(result.limitReached);
@@ -151,8 +165,8 @@ export const handlers = [
     return HttpResponse.json({ token: `mock.${rec.user.email}`, user: rec.user });
   }),
 
-  /* RegisterRequest mirror of the real endpoint: email/password/name/phone?,
-     FluentValidation-shaped error map, 409 on duplicate. */
+  /* RegisterRequest mirror of the real endpoint: email, password, name, and an
+     optional phone. FluentValidation-shaped error map, 409 on duplicate. */
   http.post(`${BASE}/auth/register`, async ({ request }) => {
     await shaped("");
     const body = (await request.json().catch(() => ({}))) as {
@@ -179,7 +193,7 @@ export const handlers = [
     return HttpResponse.json(findUserRecord(u.email)!.user);
   }),
 
-  /* ------------------------- account (§5.2, mock-only) ------------------------- */
+  /* ------------------------- account (mock-only) ------------------------- */
   http.get(`${BASE}/account/address`, ({ request }) => {
     const u = requireAuth(request);
     if (!u) return problems("Unauthorized.", {}, 401);
@@ -216,8 +230,9 @@ export const handlers = [
     const url = new URL(request.url);
     const categorySlug = url.searchParams.get("category");
     const pool = activeProducts().filter((p) => !categorySlug || p.categoryName?.toLowerCase() === categorySlug.toLowerCase() || p.categoryId === `c-${categorySlug}`);
-    /* registry ∩ populated data — the ONE scan (lib/attributes), shared with
-       the assistant's Elicitation (C8). Unregistered keys do not exist here. */
+    /* the registry filtered to populated data, one scan in lib/attributes,
+       shared with the assistant's elicitation. Unregistered keys do not
+       exist here. */
     const facets = facetPool(pool).map((e) => ({
       key: e.def.key,
       label: specLabel(e.def.key),
@@ -243,8 +258,8 @@ export const handlers = [
     const minPrice = sp.get("minPrice");
     const maxPrice = sp.get("maxPrice");
     const inStockOnly = sp.get("inStockOnly") === "true";
-    /* ONE grammar, fail-closed (§B5+ 4 / C8): a clause we can't read is a
-       400, never a silently-ignored filter. */
+    /* one grammar, fail-closed. A clause we can't read returns 400, never a
+       silently ignored filter. */
     const specDecode = decodeSpecs(sp.get("specs") ?? "");
     if (!specDecode.ok)
       return problems(`Invalid spec filter: ${specDecode.error}`, { specs: [specDecode.error] }, 400);
@@ -299,12 +314,7 @@ export const handlers = [
   http.get(`${BASE}/cart`, ({ request }) => {
     const u = requireAuth(request);
     if (!u) return problems("Unauthorized.", {}, 401);
-    const items = getCart(u.id);
-    const subtotal = +items.reduce((t, i) => t + i.subtotal, 0).toFixed(2);
-    return HttpResponse.json({
-      id: `cart-${u.id}`, items, subtotal,
-      totalQuantity: items.reduce((t, i) => t + i.quantity, 0),
-    });
+    return HttpResponse.json(cartDto(u.id, getCart(u.id)));
   }),
 
   http.post(`${BASE}/cart/items`, async ({ request }) => {
@@ -317,8 +327,7 @@ export const handlers = [
     const r = cartAdd(u.id, body.productId, body.quantity);
     if (!r.ok) return problems(r.error, {}, 409);
     persist();
-    const subtotal = +r.items.reduce((t, i) => t + i.subtotal, 0).toFixed(2);
-    return HttpResponse.json({ id: `cart-${u.id}`, items: r.items, subtotal, totalQuantity: r.items.reduce((t, i) => t + i.quantity, 0) });
+    return HttpResponse.json(cartDto(u.id, r.items));
   }),
 
   http.patch(`${BASE}/cart/items/:productId`, async ({ request, params }) => {
@@ -330,7 +339,7 @@ export const handlers = [
     const r = cartUpdate(u.id, params.productId as string, body.quantity);
     if (!r.ok) return problems(r.error, {}, 409);
     persist();
-    return HttpResponse.json({ id: `cart-${u.id}`, items: r.items, subtotal: +r.items.reduce((t, i) => t + i.subtotal, 0).toFixed(2), totalQuantity: r.items.reduce((t, i) => t + i.quantity, 0) });
+    return HttpResponse.json(cartDto(u.id, r.items));
   }),
 
   http.delete(`${BASE}/cart/items/:productId`, ({ request, params }) => {
@@ -338,7 +347,7 @@ export const handlers = [
     if (!u) return problems("Unauthorized.", {}, 401);
     const items = cartRemove(u.id, params.productId as string);
     persist();
-    return HttpResponse.json({ id: `cart-${u.id}`, items, subtotal: +items.reduce((t, i) => t + i.subtotal, 0).toFixed(2), totalQuantity: items.reduce((t, i) => t + i.quantity, 0) });
+    return HttpResponse.json(cartDto(u.id, items));
   }),
 
   http.delete(`${BASE}/cart`, ({ request }) => {
@@ -346,7 +355,7 @@ export const handlers = [
     if (!u) return problems("Unauthorized.", {}, 401);
     cartClear(u.id);
     persist();
-    return HttpResponse.json({ id: `cart-${u.id}`, items: [], subtotal: 0, totalQuantity: 0 });
+    return HttpResponse.json(cartDto(u.id, []));
   }),
 
   /* ------------------------------ quote ------------------------------- */
@@ -354,10 +363,10 @@ export const handlers = [
     const u = requireAuth(request);
     if (!u) return problems("Unauthorized.", {}, 401);
     const active = activeQuoteFor(u.id);
-    // a lazy expiry settle may have just run — persist it at the seam
+    // a lazy expiry settle may have just run, so persist it at the seam
     persist();
     if (!active) return problems("No open quote.", {}, 404);
-    // sessionToken travels as its own DTO field (§B5+ 2) — never URL archaeology
+    // the session token is its own DTO field, never read out of the URL
     return HttpResponse.json(active.quote);
   }),
 
@@ -372,7 +381,7 @@ export const handlers = [
     const r = createQuote(u.id, { fullName: a.fullName, phone: a.phone, address: a.address, city: a.city });
     persist();
     if (!r.ok) return problems(r.error, {}, 409);
-    // DTO-only response: internal userId/origin never leave the API
+    // DTO-only response: internal userId and origin never leave the API
     return HttpResponse.json(
       { sessionToken: r.sessionToken, order: r.quote.order, hostedPayUrl: r.quote.hostedPayUrl, expiresAt: r.quote.expiresAt },
       { status: 201 }
@@ -431,9 +440,9 @@ export const handlers = [
     return HttpResponse.json({ ok: true });
   }),
 
-  /* ------------------------------ admin (F6) ------------------------------
-   * Mirrors AdminControllers.cs 1:1 — same routes, same role gate, same
-   * FluentValidation-style problem maps — so the F8 cutover is a no-op. */
+  /* ------------------------------ admin ------------------------------
+   * Mirrors AdminControllers.cs: same routes, role gate, and
+   * FluentValidation-style problem maps, so the real API is a drop-in. */
   http.get(`${BASE}/admin/products`, async ({ request }) => {
     const deny = adminOnly(request);
     if (deny) return deny;
@@ -484,12 +493,11 @@ export const handlers = [
   http.delete(`${BASE}/admin/products/:id`, ({ request, params }) => {
     const deny = adminOnly(request);
     if (deny) return deny;
-    /* FK refuses (C7): the guard knowledge stays in each domain; the seam
-       composes it — same messages the F6 gate verified. */
+    /* FK refuses: each domain owns its guard, and the seam composes them. */
     if (cartHolds(params.id as string))
-      return problems("This product is in a customer's cart — set it Inactive instead.", {}, 409);
+      return problems("This product is in a customer's cart. Set it Inactive instead.", {}, 409);
     if (openQuoteHolds(params.id as string))
-      return problems("An open quote holds this product — settle the quote first.", {}, 409);
+      return problems("An open quote holds this product. Settle the quote first.", {}, 409);
     const r = adminDeleteProduct(params.id as string);
     if (!r.ok) return problems(r.error, {}, r.error.includes("not found") ? 404 : 409);
     persist();
@@ -579,9 +587,9 @@ export const handlers = [
     return HttpResponse.json(o);
   }),
 
-  /* the state machine is the contract — PATCH only accepts legal targets
-     (ORDER_TRANSITIONS), and Pending transitions run the guarded settle so
-     reservations move exactly like the real B1 write path. */
+  /* the state machine is the contract. PATCH only accepts legal targets through
+     `isLegalTransition`, and Pending transitions run the guarded settle so
+     reservations move exactly like the real write path. */
   http.patch(`${BASE}/admin/orders/:id/status`, async ({ request, params }) => {
     const deny = adminOnly(request);
     if (deny) return deny;
@@ -595,7 +603,7 @@ export const handlers = [
     return HttpResponse.json(r.value);
   }),
 
-  /* --------------------------- admin · AI audit (§A7) --------------------------- */
+  /* --------------------------- admin · AI audit --------------------------- */
   http.get(`${BASE}/admin/ai/ledger`, ({ request }) => {
     const deny = adminOnly(request);
     if (deny) return deny;
@@ -625,15 +633,15 @@ export const handlers = [
   }),
 
   /* ------------------------------- agent chat ------------------------------
-   * §A5: POST /api/agent/chat → SSE. Word deltas first (real typing feel),
-   * then the structured turn (tool trail, cards, quote). Requires login — v1
-   * chat buckets are per-user (B3). NEXT_PUBLIC_MOCK_MODE: ratelimit → every
-   * 3rd chat 429s with Retry-After; agentdown → provider unavailable, the UI
-   * must degrade without breaking the rest of the shop (§A4 AI_NOT_CONFIGURED). */
+   * POST /api/agent/chat returns SSE. Word deltas stream first, then the
+   * structured turn (tool trail, cards, quote). Chat requires login and buckets
+   * per user. NEXT_PUBLIC_MOCK_MODE ratelimit makes every third chat return 429
+   * with Retry-After. agentdown means the provider is unavailable, and the UI
+   * must degrade without breaking the rest of the shop (AI_NOT_CONFIGURED). */
   http.post(`${BASE}/agent/chat`, async ({ request }) => {
     const u = requireAuth(request);
     if (!u)
-      return HttpResponse.json({ code: "UNAUTHORIZED", title: "Chat requires login in v1 — the bins and facets stay open.", message: "Chat requires login in v1 — the bins and facets stay open.", retryable: false }, { status: 401 });
+      return HttpResponse.json({ code: "UNAUTHORIZED", title: "Chat requires login in v1. The bins and facets stay open.", message: "Chat requires login in v1. The bins and facets stay open.", retryable: false }, { status: 401 });
 
     if (MODE === "agentdown" || !aiKillSwitchOn())
       return HttpResponse.json({ code: "AI_NOT_CONFIGURED", title: "No provider key on this deployment.", message: MODE === "agentdown" ? "No provider key on this deployment." : "The assistant is switched off from the admin console.", retryable: false }, { status: 503 });
@@ -652,11 +660,11 @@ export const handlers = [
     const t0 = Date.now();
     const result = runAgentTurn(u.id, body.conversationId, body.message, body.answers);
     recordAiCalls(body.conversationId, ledgerRows(body.message, result, Date.now() - t0));
-    persist(); // agent turns mutate the live db (cart writes, quotes) — same seam rule as REST
+    persist(); // agent turns mutate the live db (cart writes, quotes), the same seam rule as REST
 
     const enc = new TextEncoder();
-    /* frames are the SHARED wire vocabulary (lib/api/types ChatSseFrame) —
-       the only consumer of this grammar is lib/chat/transport.ts (§B5+ 3). */
+    /* frames are the shared wire vocabulary (lib/api/types ChatSseFrame).
+       The only consumer of this grammar is lib/chat/transport.ts. */
     const frame = (f: ChatSseFrame) => `data: ${JSON.stringify(f)}\n\n`;
     const stream = new ReadableStream<Uint8Array>({
       async start(controller) {
@@ -680,13 +688,13 @@ export const handlers = [
 
   /* dev helper: wipe mock server state (localStorage-backed) between demos */
   http.post(`${BASE}/_mock/reset`, async () => {
-    const { resetDb } = await import("./db");
-    resetDb();
+    const { resetServer } = await import("./server/snapshot");
+    resetServer();
     return HttpResponse.json({ ok: true });
   }),
 
-  /* dev helper: fast-forward every pending quote past expiry (demo + the
-     F3 Playwright gate needs the release path without a 30-minute wait) */
+  /* dev helper: fast-forward every pending quote past expiry, so the release
+     path is testable without a 30-minute wait */
   http.post(`${BASE}/_mock/expire-quotes`, () => {
     const settled = expirePendingQuotes();
     persist();

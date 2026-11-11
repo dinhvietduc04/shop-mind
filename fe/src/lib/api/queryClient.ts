@@ -4,7 +4,8 @@ import { ApiError } from "./types";
 /**
  * Singleton so non-component code (the chat store, after a tool-driven cart
  * mutation) can invalidate the same cache the pages read from. The retry
- * policy lives here: 4xx (except 429) is a verdict, not a hiccup.
+ * policy lives here. A 4xx response (except 429) will not succeed on retry,
+ * so do not retry it.
  */
 export const queryClient = new QueryClient({
   defaultOptions: {

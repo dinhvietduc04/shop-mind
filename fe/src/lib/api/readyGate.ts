@@ -1,12 +1,8 @@
 /**
- * Mock-network boot gate — decouples first paint from MSW startup.
- *
- * The old Bootstrapper rendered NOTHING until the worker was live, so cold
- * loads paid chunk-download + worker-registration before any pixel appeared.
- * Now the app renders immediately and api() holds each request on this gate
- * until the worker starts (or a 5 s failsafe releases it so the UI can never
- * hang). F8 note: the real API never calls beginHold() — whenReady() stays a
- * resolved promise and api() costs one microtask.
+ * Mock-network boot gate. `api()` parks each request here until MSW is live.
+ * A 5 s failsafe releases the gate, so a failed worker cannot hang the UI.
+ * The gate is never armed against the real API, where `whenReady()` is already
+ * resolved.
  */
 let readyPromise: Promise<void> = Promise.resolve();
 let resolveReady: (() => void) | null = null;

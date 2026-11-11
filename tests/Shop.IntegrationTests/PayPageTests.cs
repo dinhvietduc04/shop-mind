@@ -40,7 +40,7 @@ public class PayPageTests(ShopWebFactory factory) : IntegrationTestBase<ShopWebF
         await factory.Services.CreateScope().ServiceProvider.GetRequiredService<ICartService>()
             .AddItemAsync(user.Id, new AddCartItemRequest(product.Id, 1));
         var quote = await factory.Services.CreateScope().ServiceProvider.GetRequiredService<IQuoteService>()
-            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("P A", "1", "a", "c")));
+            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("P A", "1", "a", "c")), QuoteOrigin.Human);
         return (user.Id, token, quote);
     }
 
@@ -148,7 +148,7 @@ public class WebhookIntakeTests(ShopWebFactory factory) : IntegrationTestBase<Sh
         await factory.Services.CreateScope().ServiceProvider.GetRequiredService<ICartService>()
             .AddItemAsync(user.Id, new AddCartItemRequest(product.Id, 1));
         await factory.Services.CreateScope().ServiceProvider.GetRequiredService<IQuoteService>()
-            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("W H", "1", "a", "c")));
+            .CreateQuoteAsync(user.Id, new CreateQuoteRequest(new ShippingAddressDto("W H", "1", "a", "c")), QuoteOrigin.Human);
         return (await db.PaymentSessions.AsNoTracking().FirstAsync(s => s.UserId == user.Id)).SessionToken;
     }
 

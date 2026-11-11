@@ -53,7 +53,7 @@ function OrderDetailInner() {
     <main className="mx-auto max-w-[860px] px-6 py-6">
       <nav className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
         <Link href="/orders" className="hover:text-ink hover:underline">
-          ← Order ledger
+          Back to the order ledger
         </Link>
       </nav>
 
@@ -116,12 +116,12 @@ function OrderDetailInner() {
             </h3>
             {order.payment ? (
               <p className="leading-relaxed">
-                <strong>{order.payment.status}</strong> — {formatUsd(order.payment.amount)}
+                <strong>{order.payment.status}</strong>, {formatUsd(order.payment.amount)}
                 <br />
                 <span className="font-mono text-[11px]">
                   {order.payment.transactionId ??
                     (order.payment.outcome === "expired"
-                      ? "expired before pay — no transaction"
+                      ? "expired before pay, no transaction"
                       : "no transaction")}
                 </span>
               </p>
@@ -143,7 +143,7 @@ function OrderDetailInner() {
               onClick={() => cancel.mutate(order.id)}
             >
               <Ban size={13} aria-hidden />
-              {cancel.isPending ? "Cancelling…" : "Cancel order — release stock"}
+              {cancel.isPending ? "Cancelling…" : "Cancel order and release stock"}
             </Button>
             <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft">
               legal while pending; paid orders route to support
@@ -157,14 +157,14 @@ function OrderDetailInner() {
         )}
         {cancel.isSuccess && (
           <p className="border-t border-line/50 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-band-green">
-            Cancelled — reservation released back to the bins.
+            Cancelled. Reservation released back to the bins.
           </p>
         )}
       </article>
 
       <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">
         placed {new Date(order.createdAt).toLocaleString()} · mock ledger, no real
-        charge — this record exists because a human pressed Pay on the hosted page
+        charge. This record exists because a human pressed Pay on the hosted page
       </p>
     </main>
   );

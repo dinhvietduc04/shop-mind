@@ -19,7 +19,7 @@ function fakeStorage(initial: Record<string, string> = {}) {
   };
 }
 
-/** Fresh module graph per test — the first-settled gate is module-scoped. */
+/** Fresh module graph per test, because the first-settled gate is module-scoped. */
 async function freshSession() {
   vi.resetModules();
   return import("@/lib/session");
@@ -40,7 +40,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-describe("asMember — the settle-ordering protocol in one place", () => {
+describe("asMember keeps the settle-ordering protocol in one place", () => {
   it("guest boot: no token, no probe, null membership", async () => {
     vi.stubGlobal("localStorage", fakeStorage());
     const fetchSpy = vi.fn();
@@ -53,7 +53,7 @@ describe("asMember — the settle-ordering protocol in one place", () => {
   });
 
   it("member restoring: a call made BEFORE restore settles still sees the member", async () => {
-    // the F7 regression: UI painted, user clicked instantly, raw getState()
+    // the regression: UI painted, user clicked instantly, raw getState()
     // read a not-yet-restored null and misread the member as a guest.
     vi.stubGlobal("localStorage", fakeStorage({ "shopmind.token": "mock.customer@shopmind.local" }));
     vi.stubGlobal("fetch", vi.fn(async () => jsonResponse(MEMBER)));
@@ -64,7 +64,7 @@ describe("asMember — the settle-ordering protocol in one place", () => {
     expect(await pending).toEqual(MEMBER);
   });
 
-  it("dead token: cleaned to guest instead of sticking", async () => {
+  it("dead token: cleared, and the visitor stays a guest", async () => {
     const storage = fakeStorage({ "shopmind.token": "mock.gone@shopmind.local" });
     vi.stubGlobal("localStorage", storage);
     vi.stubGlobal(

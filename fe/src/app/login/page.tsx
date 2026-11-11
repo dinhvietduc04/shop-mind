@@ -107,7 +107,7 @@ function LoginForm({ next, onDone }: { next: string; onDone: () => void }) {
 
         {serverError && (
           <ErrorNote>
-            <strong>{serverError}</strong> The mock shop holds two seeded accounts — one click each below signs in honestly.
+            <strong>{serverError}</strong> The mock shop holds two seeded accounts. Click either account below to sign in.
           </ErrorNote>
         )}
 
@@ -136,7 +136,7 @@ function LoginForm({ next, onDone }: { next: string; onDone: () => void }) {
       </p>
       <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.14em]">
         <Link href={next} className="text-ink-soft underline decoration-line underline-offset-4 hover:text-ink">
-          continue as guest — browse the bins
+          continue as guest and browse the bins
         </Link>
       </p>
     </>
@@ -149,7 +149,7 @@ function LoginInner() {
   const next = safeNext(params?.get("next"));
   const user = useSession((s) => s.user);
 
-  /* Redirect from the parent, not the form's callback: the form unmounts the
+  /* Redirect from the parent, not the form's callback. The form unmounts the
      moment `user` lands, and an unmounted router.push can be dropped. */
   useEffect(() => {
     if (user) router.replace(next);
@@ -160,9 +160,9 @@ function LoginInner() {
       <AuthCard kicker="session" title={`Welcome back, ${user.firstName}`}>
         <p className="text-[14px] leading-relaxed">
           Signed in as <strong>{user.email}</strong> ({user.role}). Returning to{" "}
-          <span className="font-mono text-[12px]">{next}</span> —{" "}
+          <span className="font-mono text-[12px]">{next}</span>.{" "}
           <Link href={next} className="underline underline-offset-4">
-            continue
+            Continue
           </Link>
           .
         </p>
@@ -171,7 +171,7 @@ function LoginInner() {
   }
 
   return (
-    <AuthCard kicker="shopmind · turnstile" title="Sign in">
+    <AuthCard kicker="shopmind · session" title="Sign in">
       <LoginForm next={next} onDone={() => { /* parent effect redirects */ }} />
     </AuthCard>
   );

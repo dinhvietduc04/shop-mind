@@ -2,13 +2,11 @@ import { describe, expect, it } from "vitest";
 import { decodeFrames, mapTurnError } from "./transport";
 import type { AgentTurnResult } from "@/lib/api/types";
 
-/* The interface is the test surface: these two pure functions ARE the
-   transport's contract knowledge (wire grammar + failure taxonomy).
-   streamTurn() is their orchestration; behavior across HTTP is the
-   Playwright golden's job. The old write-signal test moved to
-   lib/tools/registry.test.ts — the registry answers it now. */
+/* These two pure functions are the transport's contract knowledge: the wire
+   grammar and the failure taxonomy. streamTurn() is their orchestration. The
+   cache-work question lives in lib/tools/registry.test.ts. */
 
-describe("decodeFrames — SSE grammar (ChatSseFrame, §B5+ 3)", () => {
+describe("decodeFrames parses the SSE frame grammar (ChatSseFrame)", () => {
   it("splits complete frames and carries the partial remainder", () => {
     const buf =
       'data: {"type":"delta","text":"hi "}\n\n' +
@@ -49,7 +47,7 @@ describe("decodeFrames — SSE grammar (ChatSseFrame, §B5+ 3)", () => {
   });
 });
 
-describe("mapTurnError — code first, status as fallback", () => {
+describe("mapTurnError reads the code first and the status as fallback", () => {
   it("trusts the server code over the status number", () => {
     // a provider failure wrapped in a 500 still reads as provider-off
     expect(mapTurnError(500, { code: "AI_NOT_CONFIGURED", message: "no key" }).kind).toBe("provider");
@@ -66,7 +64,7 @@ describe("mapTurnError — code first, status as fallback", () => {
     expect(mapTurnError(409, { code: "QUOTE_HELD_BY_HUMAN", message: "yours is open" }).kind).toBe("policy");
   });
 
-  it("keeps the machine code for the UI chip", () => {
+  it("keeps the error code for the UI chip", () => {
     expect(mapTurnError(503, { code: "AI_NOT_CONFIGURED", message: "off" }).code).toBe("AI_NOT_CONFIGURED");
   });
 });

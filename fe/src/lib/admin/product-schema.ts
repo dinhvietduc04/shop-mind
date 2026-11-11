@@ -1,20 +1,16 @@
 import { z } from "zod";
 
 /**
- * Product intake — the ONE field description (C9).
- *
- * Before, what made a product write legal was stated three times: zod
- * strings in the form, near-identical English messages in the mock db, and a
- * PascalCase→allowlist mapping back. Here it is stated once; the form uses
- * it for pre-checks and the mock server uses it as authority — and the
- * error keys are camelCase, exactly like the real backend's
- * `errors:{camelField:[messages]}` problem map (ExceptionHandlingMiddleware.cs:71–81).
+ * One field description for product intake. The form pre-checks with it and
+ * the mock server uses it as authority. Problem-map keys are camelCase to
+ * match the backend's `errors:{camelField:[messages]}` map
+ * (ExceptionHandlingMiddleware.cs).
  */
 
 export const scalar = z.union([z.string(), z.number(), z.boolean(), z.null()]);
 
-/** A3 specs contract: key → scalar. Never nested JSON — the facets engine
- *  can't read that. */
+/** A3 specs contract: each key maps to a scalar. Never nested JSON, which
+ *  the facets engine can't read. */
 export const specsSchema = z.record(
   z.string().regex(/^[a-z0-9_]+$/, "keys are lower_snake_case"),
   scalar
@@ -41,7 +37,7 @@ export type ProductProblem = Record<string, string[]>;
 /**
  * Validate a product write. Returns null when clean, else the backend-shaped
  * problem map. `withStock` checks the stock number (create carries it; the
- * update path sends it only through the inventory PATCH — the intake module
+ * update path sends it only through the inventory PATCH, and the intake module
  * decides).
  */
 export function validateProductWrite(
@@ -67,8 +63,7 @@ export function validateProductWrite(
   return Object.keys(problems).length ? problems : null;
 }
 
-/** The write result grammar for product routes (replaces the old
- *  single-error AdminResult on this path). */
+/** The write result grammar for product routes. */
 export type WriteResult<T> =
   | { ok: true; value: T }
   | { ok: false; status?: number; title?: string; errors: Record<string, string[]> };

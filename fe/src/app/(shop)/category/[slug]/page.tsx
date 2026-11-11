@@ -8,7 +8,7 @@ import { useCategories } from "@/lib/api/hooks";
 import { bandClass, bandForCategory } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 
-/** Category landing — the catalog engine pinned to one bin. */
+/** Category landing with the catalog pinned to one bin. */
 export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: categories, isPending } = useCategories();
@@ -20,8 +20,8 @@ export default function CategoryPage() {
     return (
       <main className="mx-auto max-w-[720px] px-6 py-10">
         <ErrorNote>
-          <strong>No such bin: “{slug}”.</strong> The catalog holds eight bins —
-          pick one from the wall.
+          <strong>No bin named &quot;{slug}&quot;.</strong> The catalog holds eight bins.
+          Pick one from the wall.
           <div className="mt-3">
             <Link href="/">
               <Button variant="ghost">Back to every bin</Button>

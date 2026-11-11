@@ -4,25 +4,17 @@ import { ApiError, type CreateProductRequest, type ProductAdminDto, type Specs, 
 import { validateProductWrite, type ProductProblem } from "./product-schema";
 
 /**
- * Product intake module (C9) — owns the whole write, including the
- * backend-faithful TWO-ENDPOINT sequence.
+ * Product intake. Owns the whole write sequence. Create carries `initialStock`
+ * in one request. Update sends the product, then a stock PATCH only when the
+ * number moved. A failed stock PATCH returns a partial success with
+ * `stockWarning`, so the saved product is never hidden.
  *
- * The real API genuinely splits this way (CreateProductRequest carries
- * InitialStock, UpdateProductRequest does not, stock changes are
- * PATCH /api/admin/inventory/{id}) — that shape was verified against
- * AdminControllers.cs. What had no owner was the SEQUENCE: the form fired a
- * second call mid-submit and partial failure was undefined territory. Here
- * the sequence has a home: create is one write; update is a write plus a
- * stock PATCH *only when the number moved*, and a failed stock PATCH is
- * reported honestly as a partial success instead of a silent lie.
- *
- * Local pre-validation goes through the same field description the mock
- * server enforces (product-schema) — one statement of legality, two
- * enforcers by design (form UX + server authority), zero message copies.
+ * Local pre-validation uses the same field description the mock server
+ * enforces (`product-schema`), so the form and the server cannot disagree.
  */
 
 export type ProductWriteInput = {
-  productId?: string; // present → update path
+  productId?: string; // present selects the update path
   body: UpdateProductRequest & { specs?: Specs };
   stock?: number;
   previousStock?: number; // update path: was the stock number moved?
@@ -49,7 +41,7 @@ export async function saveProduct(input: ProductWriteInput): Promise<ProductWrit
         idempotencyKey: idemKey(),
       });
       catalogWriteStale();
-      // stock lives on the inventory row — PATCH only when the number moved
+      // stock lives on the inventory row, so PATCH only when the number moved
       if (input.stock !== undefined && input.stock !== input.previousStock) {
         try {
           await api(`/admin/inventory/${input.productId}`, {
@@ -67,7 +59,7 @@ export async function saveProduct(input: ProductWriteInput): Promise<ProductWrit
     }
     const product = await api<ProductAdminDto>("/admin/products", {
       method: "POST",
-      body: JSON.stringify({ ...input.body, initialStock: input.stock ?? 0 } satisfies CreateProductRequest & { initialStock: number }),
+      body: JSON.stringify({ ...input.body, initialStock: input.stock ?? 0 } satisfies CreateProductRequest),
       idempotencyKey: idemKey(),
     });
     catalogWriteStale();

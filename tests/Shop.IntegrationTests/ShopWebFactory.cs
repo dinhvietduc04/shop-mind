@@ -112,6 +112,8 @@ public class ShopWebFactory : WebApplicationFactory<Program>, IAsyncLifetime
         builder.UseSetting("RateLimit:CatalogPerMinute", "100000");
         builder.UseSetting("RateLimit:CartWritePerMinute", "100000");
         builder.UseSetting("RateLimit:CheckoutPerMinute", "100000");
+        // A4: tests never call a live model; the fake keeps CI keyless.
+        builder.UseSetting("Ai:Provider", "fake");
     }
 
     public new async Task DisposeAsync()

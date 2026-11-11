@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Button, MagnitudeTick, PhotoPlate, StockDots } from "@/components/ui";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
+import { specLabel } from "@/lib/attributes/registry";
 import { useAddToCart, useCart, useRemoveCartItem } from "@/lib/api/hooks";
 import { formatUsd, ApiError, type ProductDto } from "@/lib/api/types";
 import { asMember } from "@/lib/session";
@@ -12,17 +13,16 @@ import { cn } from "@/lib/cn";
 
 const LIGHT_TABS = new Set(["white", "gold", "silver", "yellow", "grey"]);
 
-import { specLabel } from "@/lib/attributes/registry";
-
 export function ProductCard({ product }: { product: ProductDto }) {
   const { data: cart } = useCart();
   const add = useAddToCart();
   const remove = useRemoveCartItem();
   const router = useRouter();
   const pathname = usePathname();
-  /* Guests can browse everything the real API leaves public — but a cart is
-     per-user, so filling one goes through the turnstile first. asMember()
-     hides the settle-ordering protocol: a restoring member is never bounced. */
+  /* Guests can browse everything the real API leaves public, but a cart is
+     per-user, so filling one requires sign-in first. asMember()
+     hides the settle-ordering protocol, so onAdd never sends a restoring
+     member to sign-in. */
   const onAdd = async () => {
     if (!(await asMember())) {
       router.push(`/login?next=${encodeURIComponent(`${pathname}${window.location.search}`)}`);
@@ -54,7 +54,7 @@ export function ProductCard({ product }: { product: ProductDto }) {
 
       <PhotoPlate sku={product.sku} band={band} name={product.name} image={photo} />
 
-      {/* fixed 2-line height + clamp → brand/spec rows start level across cards */}
+      {/* fixed 2-line height and clamp, so brand/spec rows start level across cards */}
       <h2 className="min-h-[2.4em] text-[17px] font-extrabold uppercase leading-[1.2] tracking-[0.03em] line-clamp-2">
         <Link
           href={`/product/${product.slug}`}
@@ -101,7 +101,7 @@ export function ProductCard({ product }: { product: ProductDto }) {
 
       <div className="mt-4 flex flex-wrap gap-2">
         {soldOut ? (
-          <Button variant="ghost" disabled title="Bin empty — restock ETA unknown">
+          <Button variant="ghost" disabled title="Bin empty. Restock ETA unknown">
             Bin empty
           </Button>
         ) : line ? (
@@ -112,7 +112,7 @@ export function ProductCard({ product }: { product: ProductDto }) {
             aria-label={`Remove ${product.name} from cart`}
           >
             <Minus size={13} aria-hidden />
-            In cart · {line.quantity} — {remove.isPending ? "removing…" : "remove"}
+            In cart · {line.quantity}, {remove.isPending ? "removing…" : "remove"}
           </Button>
         ) : (
           <Button variant="add" onClick={onAdd} disabled={add.isPending}>
@@ -124,7 +124,7 @@ export function ProductCard({ product }: { product: ProductDto }) {
           href={`/product/${product.slug}`}
           className="self-center font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft underline decoration-line underline-offset-4 hover:text-ink"
         >
-          Spec sheet →
+          Open the spec sheet
         </Link>
       </div>
 

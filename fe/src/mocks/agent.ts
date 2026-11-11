@@ -1,13 +1,8 @@
-import {
-  allCategories,
-  allProducts,
-  available,
-  cartAdd,
-  createQuote,
-  getCart,
-  liveProduct,
-  toolEnabled,
-} from "./db";
+import { allCategories, allProducts, liveProduct } from "./server/catalog";
+import { available } from "./server/inventory";
+import { cartAdd, getCart } from "./server/cart";
+import { createQuote } from "./server/quotes";
+import { toolEnabled } from "./server/ai";
 import type {
   AgentTurnResult,
   ChatProductRef,
@@ -18,16 +13,15 @@ import { facetPool, specLabel } from "@/lib/attributes/registry";
 import { DEMO_ADDRESS } from "@/lib/quotes/intake";
 
 /**
- * The mock agent brain = the deterministic FakeAiProvider of backend plan §A4.
- * No LLM: intent parsing, catalog queries through the same db the REST
- * handlers use, and template prose. That is deliberate — every number in a
- * reply is interpolated from a tool call made in THIS turn (plan rule #1:
+ * The mock agent is the deterministic FakeAiProvider. No LLM: intent parsing, catalog queries through the same db the REST
+ * handlers use, and template prose. That is deliberate. Every number in a
+ * reply is interpolated from a tool call made in this turn (plan rule #1:
  * "never invent price/stock"). Turn budget mirrors B3 (8 turns/conversation).
  */
 
 export const TURN_CAP = 8;
-/* The one demo identity — Quote intake owns it (C1); the fake agent quotes
-   with the SAME constant the bill page falls back to, not a byte-copy. */
+/* Quote intake owns the one demo identity. The fake agent quotes
+   with the same constant the bill page falls back to, not a byte-copy. */
 
 /* ------------------------------ conversation ------------------------------ */
 
@@ -39,7 +33,7 @@ interface SpecIntent {
 
 interface ConvState {
   turns: number;
-  /** product ids of the last result set — powers "add it" / "compare these". */
+  /** product ids of the last result set; used by "add it" and "compare these". */
   lastPicks: string[];
   intent: { category?: string; budget?: number; specs: SpecIntent[] };
 }
@@ -116,8 +110,8 @@ function detectAction(message: string): "add" | "quote" | "compare" | "cart" | "
 
 /* --------------------------------- catalog -------------------------------- */
 
-/* spec matching goes through the SHARED codec (C8) — the agent's intent
-   clauses and the REST filter are the same grammar, evaluated the same way */
+/* spec matching goes through the shared codec. The agent's intent clauses and
+   the REST filter are the same grammar, evaluated the same way */
 
 function searchProducts(intent: ConvState["intent"]): ChatProductRef[] {
   const rows = allProducts().map(liveProduct).filter((p) => {
@@ -145,10 +139,10 @@ const specDetail = (intent: ConvState["intent"]) => {
   return parts.join(", ") || "unfiltered";
 };
 
-/** Ask ≤3 targeted questions before filtering (A3). Budget first, then the
- *  category's real facet keys — never invented attributes. The key pool is
- *  the SHARED attribute scan (C8): what the catalog facet endpoint offers
- *  and what the interview asks can no longer drift. */
+/** Ask at most three targeted questions before filtering (A3). Budget first,
+ *  then the category's real facet keys, never invented attributes. The key
+ *  pool is the shared attribute scan: the catalog facet endpoint and the
+ *  interview ask from the same keys. */
 function elicitFor(category: string | undefined): ElicitField[] {
   const fields: ElicitField[] = [];
   const poolProducts = category
@@ -156,8 +150,8 @@ function elicitFor(category: string | undefined): ElicitField[] {
     : allProducts();
   const prices = poolProducts.map((p) => p.price);
   fields.push({ key: "budget", label: "Budget ceiling (USD)", type: "range", min: 50, max: Math.ceil(Math.max(...(category ? prices : [1500]))), unit: "usd" });
-  // get_product_facets switched off (admin kill switch) → attributes can't be
-  // read, so the interview honestly stops at the one question it can still ask.
+  // get_product_facets switched off (admin kill switch) means attributes can't be
+  // read, so the interview stops at the one question it can still ask.
   if (!toolEnabled("get_product_facets")) return fields.slice(0, 1);
 
   if (category) {
@@ -181,9 +175,9 @@ function elicitFor(category: string | undefined): ElicitField[] {
   return fields.slice(0, 3);
 }
 
-/** The turn envelope carries server truth (§B5+ item 3): the per-conversation
- *  cap and how much of it this conversation has spent. The UI renders "turn
- *  x/N" from these instead of a hardcoded literal that drifts from the engine. */
+/** The turn envelope includes values from the server: the per-conversation
+ *  cap and how much of it this conversation has spent. The UI renders
+ *  "turn x/N" from these instead of a hardcoded literal. */
 export function runAgentTurn(userId: string, conversationId: string, message: string, answers?: Record<string, string | number | boolean>): AgentTurnResult {
   const result = agentTurnCore(userId, conversationId, message, answers);
   const turns = convs.get(conversationId)?.turns ?? 1;
@@ -197,7 +191,7 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
 
   if (conv.turns > TURN_CAP) {
     return {
-      text: `That is ${TURN_CAP} turns — the per-conversation cap for one assistant session (rate limits are part of the product, not a bug). Everything in your cart and any open quote is untouched. Start a new conversation and your cart is still here.`,
+      text: `That is ${TURN_CAP} turns, the per-conversation cap for one assistant session (rate limits are part of the product, not a bug). Everything in your cart and any open quote is untouched. Start a new conversation and your cart is still here.`,
       toolTrail: [],
       limitReached: true,
     };
@@ -225,10 +219,10 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
   const action = detectAction(message);
   const turn = conv.turns;
 
-  /* --------------------------- money boundary (§A2) -------------------------- */
+  /* --------------------------- money boundary -------------------------- */
   if (action === "pay") {
     return {
-      text: `I can't pay, and it's not a permission I'm lacking — there is no tool that touches a card at this level. The bill page opens the hosted payment page; that click is yours alone.`,
+      text: `I can't pay, and it's not a permission I'm lacking. There is no tool that touches a card at this level. The bill page opens the hosted payment page; that click is yours alone.`,
       toolTrail: [],
       code: "ASSIST_LEVEL_NO_PAYMENT",
     };
@@ -242,8 +236,8 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
   }
 
   /* -------------------------------- actions -------------------------------- */
-  /* Admin kill switches (§B3 surface, /admin/ai): a switched-off tool is not
-     silently skipped — the turn says so, and the ledger row records it. */
+  /* Admin kill switches (/admin/ai): a switched-off tool is not silently
+     skipped. The turn says so, and the ledger row records it. */
   if (action === "cart" && !toolEnabled("get_cart"))
     return { text: "The get_cart tool is switched off by an administrator right now, so I can't read your cart. The cart page itself stays yours.", toolTrail: [{ tool: "get_cart", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
   if (action === "cart") {
@@ -251,8 +245,8 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
     const subtotal = items.reduce((t, i) => t + i.subtotal, 0);
     return {
       text: items.length
-        ? `Your cart holds ${items.length} line${items.length === 1 ? "" : "s"} — ${items.map((i) => `${i.productName} ×${i.quantity}`).join(", ")} — subtotal ${money(subtotal)}.`
-        : "Your cart is empty. Name a category or say what you need it for — I'll search the bins.",
+        ? `Your cart holds ${items.length} line${items.length === 1 ? "" : "s"}: ${items.map((i) => `${i.productName} ×${i.quantity}`).join(", ")}. Subtotal ${money(subtotal)}.`
+        : "Your cart is empty. Name a category or say what you need it for, and I'll search the bins.",
       toolTrail: [{ tool: "get_cart", detail: `${items.length} lines` }],
       cartCount: items.reduce((t, i) => t + i.quantity, 0),
     };
@@ -260,7 +254,7 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
 
   if (action === "add") {
     if (!toolEnabled("add_to_cart"))
-      return { text: "add_to_cart is switched off by an administrator right now. The product pages still let you fill the cart yourself — that button was always a human action.", toolTrail: [{ tool: "add_to_cart", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
+      return { text: "add_to_cart is switched off by an administrator right now. The product pages still let you fill the cart yourself. That button was always a human action.", toolTrail: [{ tool: "add_to_cart", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
     let targetId: string | undefined;
     const pickIdx = message.match(/add (?:#|no\.? ?)?(\d)\b/i);
     if (pickIdx) targetId = conv.lastPicks[Number(pickIdx[1]) - 1];
@@ -269,7 +263,7 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
       targetId = named?.id ?? conv.lastPicks[0];
     }
     if (!targetId) {
-      return { text: "Nothing to add yet — tell me what you're after first (a laptop under $1,200 for backend dev does exist in my bins).", toolTrail: [] };
+      return { text: "Nothing to add yet. Tell me what you're after first (a laptop under $1,200 for backend dev does exist in my bins).", toolTrail: [] };
     }
     const p = allProducts().find((x) => x.id === targetId)!;
     const before = available(targetId);
@@ -277,11 +271,11 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
     if (!r.ok) {
       return {
         text: `Could not add ${p.name}: ${r.error}`,
-        toolTrail: [{ tool: "add_to_cart", detail: `id=${targetId} qty=1 → rejected` }],
+        toolTrail: [{ tool: "add_to_cart", detail: `id=${targetId} qty=1, rejected` }],
       };
     }
     return {
-      text: `Added ${p.name} — ${money(p.price)}. Bin stock read ${before} → ${available(targetId)} at the time of the call; quote-time is where the server reserves it for real.`,
+      text: `Added ${p.name} for ${money(p.price)}. Bin stock went from ${before} to ${available(targetId)} at the time of the call; quote-time is where the server reserves it for real.`,
       toolTrail: [{ tool: "add_to_cart", detail: `id=${targetId}, qty=1`, }, { tool: "get_cart", detail: `${r.items.length} lines` }],
       cartCount: r.items.reduce((t, i) => t + i.quantity, 0),
     };
@@ -289,10 +283,10 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
 
   if (action === "quote") {
     if (!toolEnabled("create_quote"))
-      return { text: "create_quote is switched off by an administrator right now — no reservations can be opened by me. You can create the quote yourself from the bill page.", toolTrail: [{ tool: "create_quote", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
+      return { text: "create_quote is switched off by an administrator right now, so I can't open a reservation. You can create the quote yourself from the bill page.", toolTrail: [{ tool: "create_quote", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
     const items = getCart(userId);
     if (items.length === 0) {
-      return { text: "No quote — the cart is empty. Find something first; I can search by budget, category or spec.", toolTrail: [] };
+      return { text: "No quote. The cart is empty. Find something first; I can search by budget, category or spec.", toolTrail: [] };
     }
     const r = createQuote(userId, DEMO_ADDRESS, "agent");
     if (!r.ok) {
@@ -303,7 +297,7 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
       };
     }
     return {
-      text: `Quote ${r.quote.order.orderNumber} is open: ${items.length} line${items.length === 1 ? "" : "s"}, total ${money(r.quote.order.totalAmount)}, stock reserved until the countdown ends. Review the bill and pay on the hosted page — I stop here by design.`,
+      text: `Quote ${r.quote.order.orderNumber} is open: ${items.length} line${items.length === 1 ? "" : "s"}, total ${money(r.quote.order.totalAmount)}, stock reserved until the countdown ends. Review the bill and pay on the hosted page. I stop here by design.`,
       toolTrail: [{ tool: "create_quote", detail: `${items.length} lines, atomically reserved` }],
       quote: {
         orderNumber: r.quote.order.orderNumber,
@@ -318,13 +312,13 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
   /* ------------------------------- discovery ------------------------------- */
   if (intent.category) {
     if (!toolEnabled("search_products"))
-      return { text: "search_products is switched off by an administrator right now — I can't read the bins, so I won't pretend to. Catalog pages and manual shopping are unaffected.", toolTrail: [{ tool: "search_products", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
-    /* A3: elicit specs before recommending — fuzzy ask (no budget, no specs,
+      return { text: "search_products is switched off by an administrator right now. I can't read the bins, so I won't pretend to. Catalog pages and manual shopping are unaffected.", toolTrail: [{ tool: "search_products", detail: "disabled by policy" }], code: "TOOL_DISABLED" };
+    /* A3: elicit specs before recommending. A fuzzy ask (no budget, no specs,
        general ask wording) gets targeted questions instead of a raw dump. */
     const fuzzy = intent.budget == null && intent.specs.length === 0 && /(looking|need|want|recommend|suggest|help|best|pick)/.test(message.toLowerCase());
     if (fuzzy && turn < TURN_CAP) {
       return {
-        text: `Before I filter bin ${intent.category} — three quick questions so the ranking uses real attributes, not guesses (turn ${turn}).`,
+        text: `Before I filter bin ${intent.category}, answer three quick questions so the ranking uses real attributes, not guesses (turn ${turn}).`,
         toolTrail: [{ tool: "search_products", detail: `category=${intent.category}` }, { tool: "get_product_facets", detail: `category=${intent.category}` }],
         elicit: elicitFor(intent.category),
       };
@@ -334,7 +328,7 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
     conv.lastPicks = hits.map((h) => h.id);
 
     if (hits.length === 0) {
-      /* honest tension: name the two products that disagree, offer the relax */
+      /* name the two products that disagree, then offer the relax */
       const withoutBudget = searchProducts({ ...intent, budget: undefined });
       const relax = withoutBudget[0] ?? searchProducts({ ...intent, specs: [] })[0];
       if (relax && turn < TURN_CAP) {
@@ -372,8 +366,8 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
         }
         return {
           text: blocker
-            ? `Nothing in ${intent.category} matches ${specDetail(intent)} together. The budget fits ${blocker.name} (${money(blocker.price)}) but it reads ${String(blocker.specs?.[whichKey!])} ${specLabel(whichKey!)} — under the ${intent.specs[0].value} you asked for. The ${intent.specs[0].value}-class one${withoutBudget.length ? `, ${withoutBudget[0].name}, costs ${money(withoutBudget[0].price)} — over budget.` : " is out of stock."} Which side do you want to give?`
-            : `No ${intent.category} matches ${specDetail(intent)} — and unlike most stores I'm telling you what exists instead: try loosening one constraint.`,
+            ? `Nothing in ${intent.category} matches ${specDetail(intent)} together. The budget fits ${blocker.name} (${money(blocker.price)}) but it reads ${String(blocker.specs?.[whichKey!])} ${specLabel(whichKey!)}. That is under the ${intent.specs[0].value} you asked for. The ${intent.specs[0].value}-class one${withoutBudget.length ? `, ${withoutBudget[0].name}, costs ${money(withoutBudget[0].price)}, over budget.` : " is out of stock."} Which side do you want to give?`
+            : `No ${intent.category} matches ${specDetail(intent)}, and unlike most stores I'm telling you what exists instead. Try loosening one constraint.`,
           toolTrail: [
             { tool: "search_products", detail: specDetail(intent) },
             { tool: "search_products", detail: "relaxed: budget dropped" },
@@ -395,17 +389,17 @@ function agentTurnCore(userId: string, conversationId: string, message: string, 
     }
 
     const top = hits.slice(0, 3);
-    const lines = top.map((h, i) => `${i + 1}. ${h.name} — ${money(h.price)}, ${h.availableStock} in bin (${h.brand ?? "unbranded"}${intent.specs.length ? `, ${intent.specs.map((s) => `${specLabel(s.key)} ${s.op === "gte" ? "≥" : s.op === "lte" ? "≤" : "="}${s.value}`)}: specs matched` : ""})`);
+    const lines = top.map((h, i) => `${i + 1}. ${h.name} at ${money(h.price)}, ${h.availableStock} in bin (${h.brand ?? "unbranded"}${intent.specs.length ? `, ${intent.specs.map((s) => `${specLabel(s.key)} ${s.op === "gte" ? "≥" : s.op === "lte" ? "≤" : "="}${s.value}`)} matched` : ""})`);
     return {
-      text: `${hits.length} match in bin ${intent.category}${intent.budget != null ? ` under ${money(intent.budget)}` : ""}, ranked in-stock then price (turn ${turn}):\n${lines.join("\n")}\n${top.length ? `My pick: ${top[0].name}. "add it" puts it in your cart; "compare" shows the top two side by side.` : ""}`,
+      text: `${hits.length} match in bin ${intent.category}${intent.budget != null ? ` under ${money(intent.budget)}` : ""}, ranked in-stock then price (turn ${turn}):\n${lines.join("\n")}\n${top.length ? `My pick is ${top[0].name}. "add it" puts it in your cart; "compare" shows the top two side by side.` : ""}`,
       toolTrail: [{ tool: "search_products", detail: specDetail(intent) }, ...(top.length ? [{ tool: "get_product", detail: `top=${top[0].sku}` }] : [])],
       products: top.map((h, i) => ({ ...h, matchReason: i === 0 ? "cheapest in stock matching all filters" : "next in deterministic price order" })),
     };
   }
 
-  /* no category and no action → open the interview, never guess (A3) */
+  /* no category and no action, so open the interview and never guess (A3) */
   return {
-    text: "Tell me the bin and roughly what it's for, and I'll ask up to three sharp questions before I filter anything — that's the whole suggestion system here: attributes you state, stock I read, no black box.",
+    text: "Tell me the bin and roughly what it's for, and I'll ask up to three sharp questions before I filter anything. That's the whole suggestion system here: attributes you state, stock I read, no black box.",
     toolTrail: [{ tool: "get_product_facets", detail: "all categories" }],
     elicit: elicitFor(undefined),
   };

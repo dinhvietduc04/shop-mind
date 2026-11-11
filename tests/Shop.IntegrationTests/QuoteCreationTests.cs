@@ -44,7 +44,7 @@ public class QuoteCreationTests(ShopWebFactory factory) : IntegrationTestBase<Sh
     }
 
     private async Task<QuoteResult> CreateAsync(Guid userId) =>
-        await Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address));
+        await Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address), QuoteOrigin.Human);
 
     [Fact]
     public async Task CreateQuote_ReservesStock_AttachesSession_ReturnsBill()
@@ -142,6 +142,95 @@ public class QuoteCreationTests(ShopWebFactory factory) : IntegrationTestBase<Sh
         var open = await db.Orders.AsNoTracking()
             .CountAsync(o => o.UserId == userId && o.Status == OrderStatus.Pending && o.ExpiresAt != null);
         Assert.Equal(1, open);
+    }
+
+    [Fact]
+    public async Task CreateQuote_RecordsHumanOrigin()
+    {
+        var (userId, productId) = await SeedUserWithStockAsync(10);
+        await Carts().AddItemAsync(userId, new AddCartItemRequest(productId, 1));
+
+        var quote = await CreateAsync(userId);
+
+        var order = await NewDb().Orders.AsNoTracking().SingleAsync(o => o.Id == quote.Order.Id);
+        Assert.Equal(QuoteOrigin.Human, order.Origin);
+    }
+
+    [Fact]
+    public async Task AgentQuote_CannotReplaceHumanOpenQuote_AndLeavesItUntouched()
+    {
+        var (userId, productId) = await SeedUserWithStockAsync(10);
+        await Carts().AddItemAsync(userId, new AddCartItemRequest(productId, 2));
+        var human = await CreateAsync(userId);
+
+        await Assert.ThrowsAsync<QuoteHeldByHumanException>(() =>
+            Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address), QuoteOrigin.Agent));
+
+        var db = NewDb();
+        var order = await db.Orders.AsNoTracking().Include(o => o.Items).SingleAsync(o => o.UserId == userId);
+        Assert.Equal(human.Order.Id, order.Id);
+        Assert.Equal(OrderStatus.Pending, order.Status);
+        Assert.Equal(QuoteOrigin.Human, order.Origin);
+        Assert.Equal(2, order.Items.Single().ReservedQuantity);
+
+        var inventory = await db.Inventories.AsNoTracking().SingleAsync(i => i.ProductId == productId);
+        Assert.Equal(2, inventory.ReservedQuantity);
+    }
+
+    [Fact]
+    public async Task AgentQuote_ReplacesAnotherAgentQuote()
+    {
+        var (userId, productId) = await SeedUserWithStockAsync(10);
+        await Carts().AddItemAsync(userId, new AddCartItemRequest(productId, 1));
+        var first = await Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address), QuoteOrigin.Agent);
+
+        var second = await Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address), QuoteOrigin.Agent);
+
+        var db = NewDb();
+        Assert.Equal(OrderStatus.Cancelled,
+            (await db.Orders.AsNoTracking().SingleAsync(o => o.Id == first.Order.Id)).Status);
+        Assert.Equal(QuoteOrigin.Agent,
+            (await db.Orders.AsNoTracking().SingleAsync(o => o.Id == second.Order.Id)).Origin);
+    }
+
+    [Fact]
+    public async Task AnElapsedHumanQuote_DoesNotBlockAnAgentQuote()
+    {
+        // Glossary "Open Quote": elapsed is not open. The sweeper would cancel
+        // it; the agent replacing it is the same outcome, so it is allowed.
+        var (userId, productId) = await SeedUserWithStockAsync(10);
+        await Carts().AddItemAsync(userId, new AddCartItemRequest(productId, 1));
+        var human = await CreateAsync(userId);
+        var db = NewDb();
+        await db.Orders.Where(o => o.Id == human.Order.Id)
+            .ExecuteUpdateAsync(s => s.SetProperty(o => o.ExpiresAt, DateTime.UtcNow.AddMinutes(-1)));
+
+        var agent = await Quotes().CreateQuoteAsync(
+            userId, new CreateQuoteRequest(Address), QuoteOrigin.Agent);
+
+        var after = NewDb();
+        Assert.Equal(OrderStatus.Cancelled,
+            (await after.Orders.AsNoTracking().SingleAsync(o => o.Id == human.Order.Id)).Status);
+        Assert.Equal(OrderStatus.Pending,
+            (await after.Orders.AsNoTracking().SingleAsync(o => o.Id == agent.Order.Id)).Status);
+    }
+
+    [Fact]
+    public async Task HumanQuote_ReplacesAnAgentQuote()
+    {
+        var (userId, productId) = await SeedUserWithStockAsync(10);
+        await Carts().AddItemAsync(userId, new AddCartItemRequest(productId, 1));
+        var agent = await Quotes().CreateQuoteAsync(userId, new CreateQuoteRequest(Address), QuoteOrigin.Agent);
+
+        var human = await CreateAsync(userId);
+
+        var db = NewDb();
+        Assert.Equal(OrderStatus.Cancelled,
+            (await db.Orders.AsNoTracking().SingleAsync(o => o.Id == agent.Order.Id)).Status);
+        var open = await db.Orders.AsNoTracking()
+            .SingleAsync(o => o.UserId == userId && o.Status == OrderStatus.Pending);
+        Assert.Equal(human.Order.Id, open.Id);
+        Assert.Equal(QuoteOrigin.Human, open.Origin);
     }
 
     [Fact]

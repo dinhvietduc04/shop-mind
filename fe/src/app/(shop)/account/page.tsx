@@ -65,7 +65,7 @@ function AccountInner() {
           <MapPin size={13} aria-hidden /> Shipping preset
         </h2>
         <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
-          Quotes are reserved for this address — the bill shows it verbatim. The
+          Quotes are reserved for this address. The bill shows it verbatim. The
           agent quotes to it as-is; changing it here is a human edit.
         </p>
 
@@ -81,7 +81,8 @@ function AccountInner() {
 
 /**
  * Mounts only once the preset query has settled, so useState starts from the
- * server's value — no hydrating effect to fight (react-hooks/set-state-in-effect).
+ * server's value. No effect syncs state after hydration
+ * (react-hooks/set-state-in-effect).
  */
 function ShippingForm({ initial }: { initial: ShippingAddressDto }) {
   const save = useSaveAddress();
@@ -119,7 +120,7 @@ function ShippingForm({ initial }: { initial: ShippingAddressDto }) {
         </Button>
         {save.isSuccess && (
           <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-band-green">
-            saved — the next quote uses it
+            saved, so the next quote uses it
           </span>
         )}
       </div>

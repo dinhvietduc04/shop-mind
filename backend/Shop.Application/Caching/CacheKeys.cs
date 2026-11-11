@@ -8,14 +8,20 @@ namespace Shop.Application.Caching;
 /// <summary>
 /// M9: canonical cache keys + TTLs. Contracts (locked):
 /// <c>shop:product:{id}</c>, <c>shop:products:q:{sha1}</c>, <c>shop:categories:all</c>.
+/// A3 adds <c>shop:facets:{category|all}</c> (10 min, evicted on catalog writes).
 /// Only public catalog reads are cached — never cart/checkout/orders/auth.
 /// </summary>
 public static class CacheKeys
 {
     public const string CategoriesAll = "shop:categories:all";
     public const string ProductsQueryPrefix = "shop:products:q:";
+    public const string FacetsPrefix = "shop:facets:";
 
     public static string Product(Guid id) => $"shop:product:{id:D}";
+
+    /// <summary>A3: facets are category-scoped; the token is the normalized slug or id.</summary>
+    public static string Facets(string? category) =>
+        FacetsPrefix + (string.IsNullOrWhiteSpace(category) ? "all" : category.Trim().ToLowerInvariant());
 
     public static string ProductsQuery(ProductQueryParams query)
     {
@@ -33,7 +39,8 @@ public static class CacheKeys
             (query.Sort ?? string.Empty).Trim().ToLowerInvariant(),
             page.ToString(CultureInfo.InvariantCulture),
             pageSize.ToString(CultureInfo.InvariantCulture),
-            query.IncludeInactive.ToString());
+            query.IncludeInactive.ToString(),
+            (query.Specs ?? string.Empty).Trim().ToLowerInvariant());
         var hash = Convert.ToHexString(SHA1.HashData(Encoding.UTF8.GetBytes(raw))).ToLowerInvariant();
         return ProductsQueryPrefix + hash;
     }

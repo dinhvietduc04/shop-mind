@@ -3,20 +3,20 @@
 import { create } from "zustand";
 import { api, setToken, hasToken } from "./api/client";
 import { queryClient } from "./api/queryClient";
-import type { RegisterRequest, UserDto } from "./api/types";
+import type { AuthResponse, LoginRequest, RegisterRequest, UserDto } from "./api/types";
 
 /**
- * Session truth = the bearer token in localStorage; this store mirrors the
- * server's view (/auth/me) for the UI. F5 rule: boot never signs anybody in —
- * guests browse the public REST surface (catalog, facets, product sheets) and
- * hit the login wall exactly where the real API 401s (cart, quote, orders,
- * chat). The /login page carries one-click demo identities.
+ * Session truth is the bearer token in localStorage; this store mirrors the
+ * server's view (/auth/me) for the UI. Boot never signs anybody in.
+ * Guests browse the public REST endpoints (catalog, facets, product sheets)
+ * and hit the login wall exactly where the real API returns 401 (cart, quote,
+ * orders, chat). The /login page carries one-click demo identities.
  */
 interface SessionState {
   user: UserDto | null;
   ready: boolean;
-  /** epoch ms of the last deliberate sign-out — guards must not yank the user
-   *  back to /login for a moment after they chose to leave. */
+  /** epoch ms of the last deliberate sign-out, so guards do not send the user
+   *  back to /login right after they chose to leave. */
   signedOutAt: number;
   login: (email: string, password: string) => Promise<void>;
   register: (input: RegisterRequest) => Promise<void>;
@@ -45,9 +45,9 @@ export const useSession = create<SessionState>((set) => ({
   signedOutAt: 0,
 
   login: async (email, password) => {
-    const res = await api<{ token: string; user: UserDto }>("/auth/login", {
+    const res = await api<AuthResponse>("/auth/login", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password } satisfies LoginRequest),
     });
     setToken(res.token);
     queryClient.clear(); // every cached read was made as the previous identity
@@ -56,7 +56,7 @@ export const useSession = create<SessionState>((set) => ({
   },
 
   register: async (input) => {
-    const res = await api<{ token: string; user: UserDto }>("/auth/register", {
+    const res = await api<AuthResponse>("/auth/register", {
       method: "POST",
       body: JSON.stringify(input),
       idempotencyKey: crypto.randomUUID?.(),
@@ -76,14 +76,14 @@ export const useSession = create<SessionState>((set) => ({
   restore: async () => {
     try {
       if (!hasToken()) {
-        // no token, nothing to probe — don't fire a 401 just to learn "guest"
+        // no token, nothing to probe. Don't fire a 401 just to learn "guest".
         set({ user: null, ready: true });
         return;
       }
       const user = await api<UserDto>("/auth/me");
       set({ user, ready: true });
     } catch {
-      setToken(null); // dead token from an older demo — clean it, stay guest
+      setToken(null); // dead token from an older demo. Clean it and stay guest.
       set({ user: null, ready: true });
     }
   },
@@ -101,12 +101,9 @@ export async function bootSession() {
 }
 
 /**
- * The one way to answer "is this visitor a member — and which one?".
- * Hides the settle-ordering protocol that used to be restated at every
- * auth-dependent action: boot paints before restore resolves, so a bare
- * `user === null` read races with a just-restored session and misreads a
- * member as a guest (the F7 regression). Callers bounce or nudge on null;
- * the waiting lives here.
+ * The one way to answer "is this visitor a member, and which one?". It waits
+ * for the first settled session, then returns the user. Callers redirect or
+ * prompt on null.
  */
 export async function asMember(): Promise<UserDto | null> {
   if (!useSession.getState().ready) await whenSessionReady();

@@ -8,7 +8,8 @@ import { AssistantPanel } from "@/components/assistant-panel";
 import { BinRail } from "@/components/shell";
 import { Button, EmptyState, ErrorNote, Skeleton } from "@/components/ui";
 import { useCategories, useFacets, useProducts } from "@/lib/api/hooks";
-import { specsToString, useShopUI, type SortKey } from "@/lib/ui";
+import { encodeChipState } from "@/lib/attributes/codec";
+import { useShopUI, type SortKey } from "@/lib/ui";
 import { bandForCategory, bandClass } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 
@@ -23,9 +24,9 @@ const SORTS: { value: SortKey; label: string }[] = [
 ];
 
 /**
- * The catalog engine, shared by the home bin wall and every category landing.
- * All filtering/sorting/paging is server-driven — this component only builds a
- * ProductQuery and renders what the (mock) API returns.
+ * The home bin wall and every category landing share this catalog engine.
+ * The server handles all filtering, sorting, and paging. This component only
+ * builds a ProductQuery and renders what the (mock) API returns.
  *
  * `lockedCategory` (a slug) pins the query to one bin: the BinRail disappears,
  * the facet chips scope to that bin, and leaving means going somewhere else.
@@ -61,7 +62,7 @@ export function CatalogView({
     category: activeCategory,
     sort: ui.sort,
     inStockOnly: ui.inStockOnly || undefined,
-    specs: specsToString(ui.specs) || undefined,
+    specs: encodeChipState(ui.specs) || undefined,
     page: ui.page,
     pageSize: PAGE_SIZE,
   });
@@ -81,7 +82,7 @@ export function CatalogView({
         <div className="flex items-start gap-6">
           <div className="min-w-0 flex-1">
             <h1 className="text-2xl font-extrabold uppercase tracking-[0.04em]">
-              Bin wall — {label}
+              Bin wall, {label}
               {locked && (
                 <Link
                   href="/"
@@ -131,7 +132,7 @@ export function CatalogView({
               )}
             </div>
 
-            {/* spec facet chips — only meaningful with a bin in scope */}
+            {/* spec facet chips, only meaningful with a bin in scope */}
             {!isPending && activeCategory && enumFacets.length > 0 && (
               <div className="mt-4 space-y-2">
                 {enumFacets.map((f) => (
@@ -166,7 +167,7 @@ export function CatalogView({
               <div className="mt-6">
                 <ErrorNote>
                   <strong>The catalog service is not answering.</strong> Reads may be
-                  rate-limited (429) or the mock is still booting — nothing was lost.
+                  rate-limited (429) or the mock is still booting. Nothing was lost.
                   <div className="mt-3">
                     <Button variant="ghost" onClick={() => refetch()}>
                       <RotateCcw size={13} aria-hidden /> Retry
@@ -192,8 +193,8 @@ export function CatalogView({
                   <div className="mt-6">
                     <EmptyState title="No units match this filter">
                       <p>
-                        The bins hold nothing for “{ui.query || label}”. Loosen a
-                        chip or drop a filter — server-side search tokenizes words
+                        The bins hold nothing for &quot;{ui.query || label}&quot;. Loosen a
+                        chip or drop a filter. Server-side search tokenizes words
                         of 3+ characters against name, brand, SKU and description.
                       </p>
                       <div className="mt-4 flex gap-2">
@@ -239,7 +240,7 @@ export function CatalogView({
             )}
           </div>
 
-          {/* Locked right column at xl+ — the drawer stays inside the first
+          {/* Locked right column at xl+. The drawer stays inside the first
               viewport without ever covering a card's controls. */}
           {assistant && (
             <div className="sticky top-[92px] hidden w-[400px] shrink-0 xl:block">

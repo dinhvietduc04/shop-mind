@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { ThemeProvider, useTheme } from "next-themes";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -18,20 +19,16 @@ import { BAND_DIGIT, bandClass, bandForCategory } from "@/lib/bands";
 
 /* -------------------------------- Providers -------------------------------- */
 
-import dynamic from "next/dynamic";
-
 // ssr:false keeps msw out of the server bundle graph (its browser export
-// refuses Node resolution in msw v3). Children render only after the worker
-// is live, so no query can fire against a missing mock network — the boot
-// itself no longer gates rendering (see lib/api/readyGate: pages paint,
-// api() parks requests until the worker answers).
+// refuses Node resolution in msw v3). The provider arms the request gate, so
+// pages paint while api() parks requests until the worker answers.
 const MockBootstrapper = dynamic(() => import("@/mocks/Bootstrapper"), {
   ssr: false,
 });
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const mockMode = (process.env.NEXT_PUBLIC_API_MODE ?? "mock") === "mock";
-  /* Arm the request gate during this render — before any child effect can
+  /* Arm the request gate during this render, before any child effect can
      schedule a fetch. Idempotent; never armed against the real API. */
   useState(() => {
     if (mockMode && typeof window !== "undefined") beginHold();
@@ -41,7 +38,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        {/* cacheComponents: browser-only content (next/dynamic ssr:false →
+        {/* cacheComponents: browser-only content (next/dynamic ssr:false loading
             browser()) must suspend to a Suspense boundary during prerender. */}
         {mockMode && (
           <Suspense fallback={null}>
@@ -69,7 +66,7 @@ const useMounted = () =>
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
-  // Before mount we cannot know the stored theme — render the neutral Moon
+  // Before mount we cannot know the stored theme. Render the neutral Moon
   // so server and first client paint agree (next-themes hydration rule).
   const dark = mounted && resolvedTheme === "dark";
   return (
@@ -148,7 +145,7 @@ export function Masthead() {
             suppressHydrationWarning
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="search bins — “16 GB laptop under $1,200”"
+            placeholder='search bins, for example "16 GB laptop under $1,200"'
             className="w-full rounded-[4px] border-[1.5px] border-line bg-card py-2 pl-9 pr-3 font-mono text-[13px] placeholder:text-ink-soft focus:border-ink"
           />
         </div>
@@ -161,7 +158,7 @@ export function Masthead() {
                 ? "border-ink bg-band-yellow font-extrabold text-[#1a1a1a] hover:brightness-105"
                 : "border-line text-ink-soft hover:border-ink"
             )}
-            aria-label={`Cart: ${count} items, subtotal ${formatUsd(total)} — open the bill`}
+            aria-label={`Cart: ${count} items, subtotal ${formatUsd(total)}. Open the bill.`}
           >
             <ShoppingCart size={15} aria-hidden />
             <span className="font-mono text-[13px] tabular-nums">
@@ -177,7 +174,7 @@ export function Masthead() {
                 : "border-dashed border-line text-ink-soft hover:border-ink hover:text-ink"
             )}
             aria-label={user ? `Account: ${user.email}, role ${user.role}` : "Sign in"}
-            title={user ? `${user.firstName} ${user.lastName} · ${user.role}` : "Guest — no session"}
+            title={user ? `${user.firstName} ${user.lastName} · ${user.role}` : "Guest, no session"}
           >
             {user ? (
               <>
@@ -334,10 +331,10 @@ function RailLegend() {
         </div>
         <p className="mt-2 leading-relaxed">
           The stripe beside every price is the resistor{" "}
-          <strong className="font-semibold text-ink">multiplier</strong> band — one
+          <strong className="font-semibold text-ink">multiplier</strong> band, one
           colour per order of magnitude: brown ×10, red ×100, orange ×1k. The exact
-          number is always printed beside it; the band is a glance-anchor, not a code
-          to decode.
+          number is always printed beside it. The band only shows the order of
+          magnitude.
         </p>
       </div>
       <p className="border-t-[1.5px] border-dashed border-line pt-4 text-ink-soft">

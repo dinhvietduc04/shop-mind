@@ -3,15 +3,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Shop.Application.Caching;
+using Shop.Application.Comparisons;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
 using Shop.Application.Services;
+using Shop.Infrastructure.Ai;
 using Shop.Infrastructure.Auth;
 using Shop.Infrastructure.Caching;
 using Shop.Infrastructure.Idempotency;
 using Shop.Infrastructure.Payments;
 using Shop.Infrastructure.Persistence;
-using Shop.Infrastructure.RateLimiting;
 using Shop.Infrastructure.RateLimiting;
 
 namespace Shop.Infrastructure;
@@ -38,7 +39,7 @@ public static class DependencyInjection
         // B3-L1 (ADR-0004): rate limiting is fail-closed too — same Redis, deny on outage.
         services.Configure<RateLimitOptions>(config.GetSection("RateLimit"));
         services.AddSingleton(sp => new RedisRateLimitCounter(
-            sp.GetRequiredService<IOptions<RateLimitOptions>>().Value));
+            sp.GetRequiredService<IOptionsMonitor<RateLimitOptions>>()));
 
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
@@ -50,9 +51,26 @@ public static class DependencyInjection
             sp.GetRequiredService<IOptions<PaymentsOptions>>().Value.FakePspSecret));
         services.AddScoped<IPaymentProvider>(sp => sp.GetRequiredService<FakePspProvider>());
 
+        // A4: one AI seam. The fake keeps CI network-free; every other provider
+        // goes through the same OpenAI-compatible adapter. A missing key fails
+        // at call time, never at startup.
+        services.Configure<AiOptions>(config.GetSection("Ai"));
+        if (string.Equals(config["Ai:Provider"], AiProviderPresets.Fake, StringComparison.OrdinalIgnoreCase))
+        {
+            services.AddSingleton<IAiProvider, FakeAiProvider>();
+        }
+        else
+        {
+            services.AddHttpClient();
+            services.AddSingleton<IAiProvider>(sp => new OpenAiCompatibleProvider(
+                sp.GetRequiredService<IHttpClientFactory>().CreateClient("ai"),
+                sp.GetRequiredService<IOptions<AiOptions>>().Value));
+        }
+
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductComparisonBuilder, ProductComparisonBuilder>(); // A2 compare
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IInventoryService, InventoryService>();

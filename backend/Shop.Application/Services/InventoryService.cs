@@ -45,6 +45,7 @@ public class InventoryService(IAppDbContext db, ICacheService cache) : IInventor
         // briefly stale cache can never oversell.
         await cache.RemoveAsync(CacheKeys.Product(productId), ct);
         await cache.RemoveByPrefixAsync(CacheKeys.ProductsQueryPrefix, ct);
+        await cache.RemoveByPrefixAsync(CacheKeys.FacetsPrefix, ct);
         return inv.ToDto();
     }
 

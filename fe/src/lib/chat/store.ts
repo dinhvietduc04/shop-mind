@@ -14,7 +14,7 @@ export interface ChatMessage {
   /** structured payload of a finished agent turn (cards, trail, quote…) */
   result?: AgentTurnResult;
   streaming?: boolean;
-  /** surfaced transport/policy failure; retryAfter ticks down in the UI. */
+  /** transport or policy failure shown to the user; retryAfter ticks down in the UI. */
   error?: ChatError;
 }
 
@@ -59,16 +59,16 @@ export const useChat = create<ChatState>((set, get) => ({
     const patch = (fn: (m: ChatMessage) => ChatMessage) =>
       set((s) => ({ messages: s.messages.map((m) => (m.id === agentId ? fn(m) : m)) }));
 
-    /* §A5: chat requires login (per-user cost caps). Nudge at the boundary —
-       the guest's own message stands in the transcript, the reply is the ask.
-       asMember() absorbs the settle-ordering protocol (boot paints before
-       restore resolves — a just-restored member is never misread as guest). */
+    /* Chat requires login because cost caps are per user. Nudge at the
+       boundary. The guest's own message stands in the transcript and the
+       reply is the ask. asMember() waits for the first settled session, so a
+       just-restored member is never misread as a guest. */
     if (!(await asMember())) {
       patch((m) => ({
         ...m,
         streaming: false,
         text: "",
-        error: { kind: "auth", message: "Sign in to open a conversation — chat quotas are per-user.", code: "UNAUTHORIZED" },
+        error: { kind: "auth", message: "Sign in to open a conversation. Chat quotas are per-user.", code: "UNAUTHORIZED" },
       }));
       set({ busy: false });
       return;
@@ -88,9 +88,8 @@ export const useChat = create<ChatState>((set, get) => ({
       const final = out.result;
       patch((m) => ({ ...m, text: final.text, result: final, streaming: false }));
 
-      /* tool writes moved live state — pages must re-read it. The registry
-         answers "did this turn touch the cart or the stock wall" (§A2 Risk
-         Classes), so the transport no longer name-sniffs agent internals. */
+      /* Tool writes move live state, so pages must re-read it. The registry
+         answers whether this turn touched the cart or the stock wall. */
       const touch = turnTouches(final.toolTrail.map((t) => t.tool));
       if (touch.cart) cartStale();
       if (touch.stock) stockWallStale();

@@ -1,18 +1,14 @@
 import type { CategoryDto, CreateProductRequest, InventoryDto, Specs, UpdateProductRequest } from "@/lib/api/types";
-import { slugify as slugBase } from "@/lib/slug";
+import { slugify } from "@/lib/slug";
 import { FIXTURE_CATEGORIES, FIXTURE_PRODUCTS, type FixtureProduct } from "../fixtures";
 import { validateProductWrite, type WriteResult } from "@/lib/admin/product-schema";
 import { forgetStock, seedStock, stockRow } from "./inventory";
 import { registerStore, uuid, type AdminResult } from "./snapshot";
 
-export { type AdminResult };
-export { type WriteResult };
-export const slugify = slugBase;
-
-/** Catalog domain: the mutable product/category registry (F6). Everything —
- *  public storefront, agent engine, admin CRUD — reads these accessors.
- *  FK-refuse checks that need OTHER domains (live carts, open quotes) are
- *  composed by the HTTP handlers, not imported here — no cycles, no god file. */
+/** Catalog domain: the mutable product and category registry. The storefront,
+ *  the agent engine, and admin CRUD all read these accessors. Checks that need
+ *  other domains (live carts, open quotes) live in the HTTP handlers, which
+ *  compose them. This module imports neither, so there are no cycles. */
 
 const products = new Map<string, FixtureProduct>(FIXTURE_PRODUCTS.map((p) => [p.id, p]));
 const categories = new Map<string, CategoryDto>(FIXTURE_CATEGORIES.map((c) => [c.id, c]));
@@ -55,12 +51,12 @@ export function findProduct(idOrSlug: string): FixtureProduct | undefined {
   return products.get(idOrSlug) ?? [...products.values()].find((p) => p.slug === idOrSlug);
 }
 
-/** Public surface = Active only (Draft/Inactive are admin-visible, §5.6). */
+/** Public catalog: Active products only (Draft and Inactive are admin-visible). */
 export function activeProducts(): FixtureProduct[] {
   return allProducts().filter((p) => p.status === "Active");
 }
 
-/** Attach the LIVE available stock to a catalog row. */
+/** Attach the live available stock to a catalog row. */
 export function liveProduct(p: FixtureProduct): FixtureProduct {
   const row = stockRow(p.id);
   return { ...p, availableStock: row ? row.quantity - row.reserved : 0 };
@@ -81,11 +77,11 @@ export function inventoryFor(productId: string): InventoryDto | null {
 }
 
 /* ------------------------------ product CRUD ------------------------------
- * C9: field legality comes from the SHARED intake schema (one statement of
- * the rules — same messages the form shows); this module adds only the
- * domain facts zod cannot know: uniqueness, category existence, and the row
- * build. Problem maps are camelCase, like the real
- * ExceptionHandlingMiddleware output — the form consumes them unmapped. */
+ * Field legality comes from the shared intake schema, so the form and the
+ * server use the same rules and messages. This module adds the domain facts
+ * zod cannot know: uniqueness, category existence, and building the row.
+ * Problem maps are camelCase, like the real ExceptionHandlingMiddleware
+ * output, and the form consumes them unmapped. */
 
 function productProblems(req: CreateProductRequest | UpdateProductRequest, withStock: boolean) {
   const problems = validateProductWrite(req as unknown as Record<string, unknown>, { withStock });
@@ -165,8 +161,8 @@ export function adminUpdateProduct(
   return { ok: true, value: next };
 }
 
-/** Hard delete, unguarded by carts/quotes here (the handler composes those
- *  FK refuses) — the catalog only drops its own rows. */
+/** Hard delete, unguarded by carts and quotes here (the handler composes those
+ *  FK refuses). The catalog only drops its own rows. */
 export function adminDeleteProduct(id: string): AdminResult<true> {
   if (!products.has(id)) return { ok: false, error: "Product not found." };
   products.delete(id);
@@ -202,7 +198,7 @@ export function adminUpdateCategory(id: string, req: CategoryWrite): AdminResult
     return { ok: false, error: `Slug '${slug}' is already in use.`, field: "Slug" };
   const next: CategoryDto = { ...c, name: req.name.trim() || c.name, slug, description: req.description?.trim() || null, isActive: req.isActive };
   categories.set(id, next);
-  // denormalized categoryName lives on products — keep it in step
+  // products carry a denormalized categoryName, so keep it in step
   for (const [pid, p] of [...products.entries()])
     if (p.categoryId === id) products.set(pid, { ...p, categoryName: next.name });
   return { ok: true, value: next };
@@ -211,7 +207,7 @@ export function adminUpdateCategory(id: string, req: CategoryWrite): AdminResult
 export function adminDeleteCategory(id: string): AdminResult<true> {
   if (!categories.has(id)) return { ok: false, error: "Category not found." };
   if ([...products.values()].some((p) => p.categoryId === id))
-    return { ok: false, error: "Products still live in this category — move or delete them first." };
+    return { ok: false, error: "Products are still in this category. Move or delete them first." };
   categories.delete(id);
   return { ok: true, value: true };
 }

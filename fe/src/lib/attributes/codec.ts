@@ -2,20 +2,19 @@ import { specDef } from "./registry";
 import type { Specs } from "@/lib/api/types";
 
 /**
- * The Spec filter codec (C8) — ONE grammar between every producer (UI chips,
- * any future REST caller) and the one consumer (mock search matching).
+ * The Spec filter codec. It defines one grammar between every producer
+ * (UI chips, any future REST caller) and the one consumer (mock search
+ * matching).
  *
- * The wire shape mirrors the backend MCP arg contract one-to-one
- * (AI_ASSISTANT_PLAN §A3 / §B5+ 4): each clause is `<key>:<op>:<value>`,
+ * The wire shape mirrors the backend MCP arg contract one-to-one: each clause
+ * is `<key>:<op>:<value>`,
  * clauses joined by `;`, `in` values joined by `|`.
  *
  *     ?specs=ram_gb:gte:16;brand:in:Lenovo|Dell
- *     ops by registry type — range: gte|lte|eq · enum: eq|in · bool: eq
+ *     ops by registry type. Range: gte|lte|eq · Enum: eq|in · Bool: eq
  *
- * FAIL-CLOSED: an unregistered key, an unknown op, or a non-coercible value
- * is an ERROR the endpoint answers with 400 — never a silently-ignored
- * clause. (The old mock parsed one grammar while the UI wrote another and
- * dropped anything it couldn't read: chip filters silently no-op'd.)
+ * FAIL-CLOSED: the endpoint answers 400 for an unregistered key, an unknown
+ * op, or a non-coercible value, never a silently ignored clause.
  */
 
 export type SpecOp = "gte" | "lte" | "eq" | "in";
@@ -36,7 +35,7 @@ export type Decoded =
   | { ok: true; clauses: SpecClause[] }
   | { ok: false; error: string };
 
-/** Serialize clauses to the REST grammar. Empty list → "". */
+/** Serialize clauses to the REST grammar. An empty list encodes to "". */
 export function encodeSpecs(clauses: SpecClause[]): string {
   return clauses
     .map((c) =>
@@ -47,7 +46,7 @@ export function encodeSpecs(clauses: SpecClause[]): string {
     .join(";");
 }
 
-/** Encode the UI's chip state (key → selected values). */
+/** Encode the UI's chip state (key to selected values). */
 export function encodeChipState(specs: Record<string, string[]>): string {
   const clauses: SpecClause[] = Object.entries(specs)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -57,7 +56,7 @@ export function encodeChipState(specs: Record<string, string[]>): string {
   return encodeSpecs(clauses);
 }
 
-/** Parse + validate against the registry. Any violation is an error, not a shrug. */
+/** Parse and validate against the registry. Any violation is an error. */
 export function decodeSpecs(raw: string): Decoded {
   const bad = (error: string): Decoded => ({ ok: false, error });
   const clauses: SpecClause[] = [];
@@ -109,7 +108,7 @@ export function matchesSpecs(specs: Specs | undefined, clauses: SpecClause[]): b
       if (typeof actual !== "number" || typeof c.value !== "number") return false;
       return c.op === "gte" ? actual >= c.value : actual <= c.value;
     }
-    // eq — bool-aware, everything else case-insensitive string compare
+    // eq compares bools directly and everything else as case-insensitive strings
     if (typeof actual === "boolean") return actual === c.value;
     return String(actual).toLowerCase() === String(c.value).toLowerCase();
   });

@@ -18,10 +18,10 @@ const order = (status: OrderStatus, payment?: { outcome?: "captured" | "failed" 
       : null,
   }) as OrderDto;
 
-/* C1/Q9: expired-vs-declined is read from payment.outcome — the §B5+
-   discriminator — never from transactionId nullness. */
-describe("quoteOutcome — the single decode", () => {
-  it("a live hold is open regardless of clock luck", () => {
+/* Expired versus declined is read from payment.outcome, the wire
+   discriminator, and never from transactionId being null. */
+describe("quoteOutcome is the single decode", () => {
+  it("a live hold is open regardless of the clock", () => {
     expect(quoteOutcome(order("Pending"))).toBe("open");
   });
 
@@ -31,7 +31,7 @@ describe("quoteOutcome — the single decode", () => {
     expect(quoteOutcome(order("Delivered", { outcome: "captured" }))).toBe("fulfilled");
   });
 
-  it("distinguishes expired from declined ONLY via outcome", () => {
+  it("distinguishes expired from declined only through outcome", () => {
     expect(quoteOutcome(order("PaymentFailed", { outcome: "expired", transactionId: null }))).toBe("expired");
     expect(quoteOutcome(order("PaymentFailed", { outcome: "failed", transactionId: "MOCK-DECLINED" }))).toBe("declined");
   });
@@ -40,7 +40,7 @@ describe("quoteOutcome — the single decode", () => {
     expect(quoteOutcome(order("PaymentFailed", { transactionId: null }))).toBe("declined");
   });
 
-  it("abandonment is its own story — a human act, not a failure", () => {
+  it("abandonment is a human act, not a failure", () => {
     expect(quoteOutcome(order("Cancelled"))).toBe("abandoned");
   });
 });

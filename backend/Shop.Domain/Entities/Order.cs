@@ -28,6 +28,13 @@ public class Order
     /// <summary>B5+: server-stated reason the quote left the money table; set only by webhook/sweeper transitions.</summary>
     public PaymentOutcome? Outcome { get; set; }
 
+    /// <summary>
+    /// A2 / ADR-0006 Glossary "Origin": who created this quote. Defaults to
+    /// Human so pre-A2 rows and every REST-created quote keep human ownership;
+    /// an agent may replace only Agent-origin open quotes.
+    /// </summary>
+    public QuoteOrigin Origin { get; set; } = QuoteOrigin.Human;
+
     /// <summary>Glossary "Open Quote" shape: Pending with an expiry attached (elapsed or not — callers compare to now).</summary>
     public bool IsQuote => Status == OrderStatus.Pending && ExpiresAt is not null;
 
