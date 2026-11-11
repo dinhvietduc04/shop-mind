@@ -1,11 +1,14 @@
+using Microsoft.Extensions.Options;
 using Shop.Domain.Exceptions;
 using Shop.Infrastructure.RateLimiting;
+using StackExchange.Redis;
 
 namespace Shop.IntegrationTests;
 
 /// <summary>
-/// B3-L1: fixed-window rate permits in Redis (INCR + PEXPIRE atomicity, PTTL
-/// drives Retry-After). Fail-closed per ADR-0004: an unreachable store denies.
+/// B3-L1: fixed-window rate permits in Redis (check+INCR+PEXPIRE atomicity, PTTL
+/// drives Retry-After, refusals never consume a permit). Fail-closed per
+/// ADR-0004: an unreachable store denies.
 /// Seam: RedisRateLimitCounter against the shared test Redis.
 /// </summary>
 public sealed class RateLimitCounterTests : IAsyncLifetime
@@ -15,12 +18,26 @@ public sealed class RateLimitCounterTests : IAsyncLifetime
     public Task InitializeAsync() => _redis.InitializeAsync();
     public Task DisposeAsync() => _redis.DisposeAsync();
 
-    private RedisRateLimitCounter NewCounter() => new(new RateLimitOptions
+    private string KeyPrefix => _redis.KeyPrefix + "rl:";
+
+    private RedisRateLimitCounter NewCounter() => new(new StaticOptions(new RateLimitOptions
     {
         ConnectionString = _redis.ConnectionString,
-        KeyPrefix = _redis.KeyPrefix + "rl:",
+        KeyPrefix = KeyPrefix,
         WindowSeconds = 60,
-    });
+    }));
+
+    private sealed class StaticOptions(RateLimitOptions value) : IOptionsMonitor<RateLimitOptions>
+    {
+        public RateLimitOptions CurrentValue => value;
+        public RateLimitOptions Get(string? name) => value;
+        public IDisposable OnChange(Action<RateLimitOptions, string?> listener) => new NoopDisposable();
+
+        private sealed class NoopDisposable : IDisposable
+        {
+            public void Dispose() { }
+        }
+    }
 
     private static readonly TimeSpan Minute = TimeSpan.FromMinutes(1);
 
@@ -84,14 +101,33 @@ public sealed class RateLimitCounterTests : IAsyncLifetime
     }
 
     [Fact]
+    public async Task RefusedRequests_DoNotConsumePermits()
+    {
+        var counter = NewCounter();
+
+        Assert.True((await counter.ReserveAsync("global", "ip:z", limit: 2, Minute)).Allowed);
+        Assert.True((await counter.ReserveAsync("global", "ip:z", limit: 2, Minute)).Allowed);
+
+        for (var i = 0; i < 5; i++)
+            Assert.False((await counter.ReserveAsync("global", "ip:z", limit: 2, Minute)).Allowed);
+
+        // The stored count is "admitted this window", so a flood of refusals
+        // cannot grow it (or the key) without bound.
+        using var mux = await ConnectionMultiplexer.ConnectAsync(
+            $"{_redis.ConnectionString},connectTimeout=2000,abortConnect=false");
+        var stored = await mux.GetDatabase().StringGetAsync($"{KeyPrefix}global:ip:z");
+        Assert.Equal("2", stored.ToString());
+    }
+
+    [Fact]
     public async Task UnreachableRedis_FailsClosedThrows()
     {
-        using var dead = new RedisRateLimitCounter(new RateLimitOptions
+        using var dead = new RedisRateLimitCounter(new StaticOptions(new RateLimitOptions
         {
             ConnectionString = "127.0.0.1:1",
             KeyPrefix = "shopmindtest:dead:rl:",
             ConnectTimeoutMs = 200,
-        });
+        }));
 
         var act = async () => await dead.ReserveAsync("global", "ip:x", limit: 5, Minute);
         await Assert.ThrowsAsync<RateLimitUnavailableException>(act);

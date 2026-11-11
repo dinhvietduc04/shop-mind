@@ -47,6 +47,16 @@ public sealed class UserBucketsWebFactory : RateLimitWebFactory
     }
 }
 
+/// <summary>A limit of zero disables the bucket instead of denying everything.</summary>
+public sealed class DisabledBucketWebFactory : RateLimitWebFactory
+{
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        base.ConfigureWebHost(builder);
+        builder.UseSetting("RateLimit:GlobalPerMinute", "0");
+    }
+}
+
 public class GlobalRateLimitTests(GlobalBucketWebFactory factory) : IntegrationTestBase<GlobalBucketWebFactory>(factory)
 {
     [Fact]
@@ -60,7 +70,16 @@ public class GlobalRateLimitTests(GlobalBucketWebFactory factory) : IntegrationT
                 $"request {i} should not be limited, got {ok.StatusCode}");
             Assert.Equal("5", ok.Headers.GetValues("X-RateLimit-Limit").Single());
             Assert.Equal(4 - i, int.Parse(ok.Headers.GetValues("X-RateLimit-Remaining").Single()));
-            Assert.True(int.Parse(ok.Headers.GetValues("X-RateLimit-Reset").Single()) is >= 0 and <= 60);
+
+            // X-RateLimit-Reset is a UTC epoch second (GitHub/Twitter convention)…
+            var resetEpoch = long.Parse(ok.Headers.GetValues("X-RateLimit-Reset").Single());
+            var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            Assert.InRange(resetEpoch, now, now + 61);
+
+            // …while the IETF family reports the same reset as delta seconds.
+            Assert.Equal("5", ok.Headers.GetValues("RateLimit-Limit").Single());
+            Assert.Equal(4 - i, int.Parse(ok.Headers.GetValues("RateLimit-Remaining").Single()));
+            Assert.True(int.Parse(ok.Headers.GetValues("RateLimit-Reset").Single()) is >= 0 and <= 60);
         }
 
         var blocked = await Client.GetAsync(RateLimitWebFactory.AnyRoute);
@@ -72,6 +91,22 @@ public class GlobalRateLimitTests(GlobalBucketWebFactory factory) : IntegrationT
     }
 
     private record ErrorEnvelope(string Title, int Status, string Code);
+}
+
+public class DisabledBucketTests(DisabledBucketWebFactory factory) : IntegrationTestBase<DisabledBucketWebFactory>(factory)
+{
+    [Fact]
+    public async Task ZeroLimit_DisablesTheBucket_NoRefusalAndNoHeaders()
+    {
+        // Global is the only bucket an unknown route hits; 0 = off, not "deny all".
+        for (var i = 0; i < 10; i++)
+        {
+            var res = await Client.GetAsync(RateLimitWebFactory.AnyRoute);
+            Assert.NotEqual(HttpStatusCode.TooManyRequests, res.StatusCode);
+            Assert.NotEqual(HttpStatusCode.ServiceUnavailable, res.StatusCode);
+            Assert.False(res.Headers.Contains("X-RateLimit-Limit"));
+        }
+    }
 }
 
 public class AuthRateLimitTests(AuthBucketWebFactory factory) : IntegrationTestBase<AuthBucketWebFactory>(factory)

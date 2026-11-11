@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shop.Api.Extensions;
 using Shop.Api.Middleware;
+using Shop.Api.RateLimiting;
 using Shop.Application.Interfaces;
 using Shop.Application.Validation;
 using Shop.Infrastructure;
@@ -67,7 +69,17 @@ builder.Services.AddValidatorsFromAssemblyContaining<RegisterValidator>(ServiceL
 builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
     p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
+builder.Services.AddRateLimiting();
+
+// B3-L1: behind a reverse proxy the per-IP buckets need the real client IP.
+// Opt-in and allow-listed so an exposed API cannot be spoofed via X-Forwarded-For.
+var trustForwardedHeaders =
+    builder.Services.AddTrustedProxyForwarding(builder.Configuration);
+
 var app = builder.Build();
+
+if (trustForwardedHeaders)
+    app.UseTrustedProxyForwarding();
 
 // M10: correlation id first — everything downstream (logs, exception handling,
 // rate limiting, idempotency, outbox payloads) runs inside its scope.
@@ -84,12 +96,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 app.UseAuthentication();
+// B3-L1: bucket table (429 + Retry-After + X-RateLimit-*); fail-closed on store outage.
+app.UseMiddleware<Shop.Api.RateLimiting.RateLimitMiddleware>();
 // A1 / ADR-0006: scope=agent tokens authenticate for the hosted pay page but
 // are forbidden on every /api route.
 app.UseMiddleware<AgentScopeRestGuardMiddleware>();
 app.UseAuthorization();
-// B3-L1: bucket table (429 + Retry-After + X-RateLimit-*); fail-closed on store outage.
-app.UseMiddleware<Shop.Api.RateLimiting.RateLimitMiddleware>();
 // B2 (ADR-0004): guards endpoints marked [RequireIdempotency]; fail-closed on money paths.
 app.UseMiddleware<Shop.Api.Idempotency.IdempotencyMiddleware>();
 app.MapControllers();
