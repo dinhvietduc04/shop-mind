@@ -40,6 +40,29 @@ public class SpecFilterCodecTests
         Assert.Empty(SpecFilterCodec.Parse("  "));
     }
 
+    [Fact]
+    public void Format_writes_the_wire_grammar_and_round_trips_through_parse()
+    {
+        var raw = "panel:in:IPS|VA;wireless:eq:true;ram_gb:gte:16;screen_in:lte:14.5";
+        var clauses = SpecFilterCodec.Parse(raw);
+
+        var formatted = SpecFilterCodec.Format(clauses);
+        var reparsed = SpecFilterCodec.Parse(formatted);
+
+        Assert.Equal(raw, formatted);
+        Assert.Equal(
+            clauses.Select(c => (c.Key, c.Op, c.Value is IReadOnlyList<string> list ? string.Join('|', list) : c.Value.ToString())),
+            reparsed.Select(c => (c.Key, c.Op, c.Value is IReadOnlyList<string> list ? string.Join('|', list) : c.Value.ToString())));
+    }
+
+    [Fact]
+    public void Format_keeps_fractional_range_values_culture_invariant()
+    {
+        var clauses = SpecFilterCodec.Parse("screen_in:gte:13.6");
+
+        Assert.Equal("screen_in:gte:13.6", SpecFilterCodec.Format(clauses));
+    }
+
     [Theory]
     [InlineData("bogus:gte:1", "not a registered spec")]
     [InlineData("ram_gb>=16", "not key:op:value")]

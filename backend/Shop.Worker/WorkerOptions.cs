@@ -25,3 +25,11 @@ public sealed class RetentionOptions
     public int KeepDays { get; set; } = 30;
     public int IntervalHours { get; set; } = 24;
 }
+
+/// <summary>B4: collected-data retention (bound from "Retention").</summary>
+public sealed class DataRetentionOptions
+{
+    /// <summary>M18 schema: behavior events are kept 12 months.</summary>
+    public int BehaviorEventKeepDays { get; set; } = 365;
+    public int IntervalHours { get; set; } = 24;
+}

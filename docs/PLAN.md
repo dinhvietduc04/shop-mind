@@ -138,8 +138,8 @@ docs/PLAN.md                THIS FILE
 | M9 | Redis & Caching | ✅ Done (2026-10-05) | M8 |
 | M10 | Events + Outbox | ⬜ Next | M9 |
 | M11 | Queue + Workers (RabbitMQ) | ⬜ | M10 |
-| M12 | MCP Foundation | ⬜ | M11 |
-| M13 | MCP Business Tools | ⬜ | M12 |
+| M12 | MCP Foundation | ✅ Done (2026-11-10) | M11 |
+| M13 | MCP Business Tools | 🟡 Partial (A2 + discovery/preview; recommendations backlog) | M12 |
 | M14 | AI Provider abstraction | ✅ Done (2026-11-11) | M12 |
 | M15 | AI Agent (ReAct loop) | ⬜ | M13–M14 |
 | M16 | Human-in-the-Loop | ⬜ | M15 |
@@ -453,11 +453,11 @@ AI (agent) → MCP Client → Shop.Mcp (STDIO + Streamable HTTP)
 
 **Deliverable / Exit.** ✅ A1: running MCP server exposing `search_products`, `get_product`, `get_product_facets`, and `get_cart` behind auth with validated schemas. ✅ A2: 12 live tools (add compare, order reads, cart writes, `create_quote`), origin-scoped quote replacement with `QUOTE_HELD_BY_HUMAN`, and mandatory idempotency on WRITE/QUOTE.
 
-## M13 — MCP Business Tools — 🟡 Assist subset shipped as A2
+## M13 — MCP Business Tools — 🟡 A2 + deterministic discovery/preview shipped
 
 **Goal.** Full business-capability toolset so an agent can shop like a human: discover → compare → cart → orders → checkout prep.
 
-**Baseline.** M12 has 12 tools after A2. The A2 Assist subset covers compare, cart writes, order reads, and `create_quote`; the higher-level tools below (`get_product_inventory`, `find_products_for_requirement`, recommendations, `prepare_checkout`) are not part of A2 and remain planned.
+**Baseline.** M12 closed with 12 live tools after A2 (compare, cart writes, order reads, `create_quote`). M13 adds the two higher-level tools that do not need the AI tables: `find_products_for_requirement` (deterministic A3 composition) and `prepare_checkout` (read-only quote dry run), for 14 live tools. `get_product_inventory`, `get_personalized_recommendations`, and the `AiAction` draft remain open as recorded below.
 
 **Tasks (read tools first, then write tools).**
 
@@ -473,9 +473,9 @@ Write (all user-scoped):
 
 - [x] `get_cart`, `add_to_cart(productId, qty)`, `update_cart(itemId, qty)`, `remove_from_cart(itemId)` → reuse `CartService` rules verbatim; A2 writes require `idempotencyKey`.
 - [x] `create_quote` → reuses the B5 money path, tags `QuoteOrigin.Agent`, and refuses to replace a human open quote (`QUOTE_HELD_BY_HUMAN`).
-- [ ] Higher-level: `find_products_for_requirement(requirementText, budget?, categoryHint?)` → structured-filter extraction (price cap, category keywords) + `search_products` + rank by price/stock match with explanation. (No LLM here yet — keyword heuristics; LLM ranking comes in M15.)
-- [ ] `get_personalized_recommendations(limit?)` → stub in this milestone (returns bestsellers/newest); real engine in M18 behind same signature.
-- [ ] `prepare_checkout` → validates cart, returns price breakdown + `AiAction` draft (does NOT create order; hands to M16 confirmation).
+- [x] Higher-level: `find_products_for_requirement(requirementText, budget?, categoryHint?)` → `RequirementSearchService` resolves a budget + category with keyword heuristics, discovers the category facets, applies only facet-supported A3 use-case hints, then searches once through `ProductService.QueryAsync` and ranks with `SpecRanking`. Output is structured and self-explaining: applied filters, up to three elicitation questions, and per-item "why". No LLM, embeddings, or behavior history; an unknown `categoryHint` is `INVALID_ARGS` (fail-closed).
+- [ ] `get_personalized_recommendations(limit?)` → stub in this milestone (returns bestsellers/newest); real engine in M18 behind same signature. **Deferred:** M17/M18 stay backlog per AI_ASSISTANT_PLAN §9; adding a recommendations stub would be an untested second search path.
+- [x] `prepare_checkout` → `CheckoutPreviewService` revalidates and reprices the authenticated user's cart with the same server prices and `CheckoutPricing` rule as `create_quote`, returning per-line issues plus subtotal/shipping/total and `canQuote`. It creates no order, no payment session, and reserves no stock; the `AiAction` draft is deferred until the M16 AI tables exist.
 
 **Contracts.** Publish JSON schemas + examples for every tool; `pageSize<=50` default 20; money as decimal strings with 2dp; IDs as UUID strings.
 
@@ -483,11 +483,11 @@ Write (all user-scoped):
 
 **Acceptance Criteria.**
 
-- [ ] Scripted scenario via MCP only: search laptop → get 2 details → compare → add best to cart → get cart subtotal matches REST.
-- [ ] Cross-user isolation holds for all new tools.
-- [ ] Invalid qty / inactive product / insufficient stock return typed errors, never exceptions leaking internals.
+- [x] Scripted scenario via MCP only: search laptop → get 2 details → compare → add best to cart → get cart subtotal matches REST.
+- [x] Cross-user isolation holds for all new tools. `find_products_for_requirement` is anonymous catalog data only; `prepare_checkout` takes no user argument and always previews the token owner's cart (anonymous → `UNAUTHORIZED`).
+- [x] Invalid qty / inactive product / insufficient stock return typed errors, never exceptions leaking internals. M13 additions: unknown category hint → `INVALID_ARGS`, empty cart preview → `INVALID_ARGS`, unauthorized preview → `UNAUTHORIZED`; an out-of-stock line is reported as a `canQuote=false` issue instead of throwing.
 
-**Test Plan.** Tool-level integration matrix mirroring M4/M6 tests but driven through MCP client (add-twice merges, over-stock rejected, cancel eligibility).
+**Test Plan.** Tool-level integration matrix mirroring M4/M6 tests but driven through MCP client (add-twice merges, over-stock rejected, cancel eligibility). M13 adds unit coverage for budget/category extraction, the shared shipping rule, and codec formatting; integration coverage for the 14-tool manifest, anonymous requirement search (budget + RAM hint, MacBook excluded), fail-closed unknown hint, and a side-effect-free preview (no order, no reservation, cart intact).
 
 **Deliverable / Exit.** Agent-capable toolset; `prepare_checkout` returns a human-readable summary without side effects.
 

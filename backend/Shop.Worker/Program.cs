@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMq"));
 builder.Services.Configure<WorkerOutboxOptions>(builder.Configuration.GetSection("Outbox"));
 builder.Services.Configure<RetentionOptions>(builder.Configuration.GetSection("OutboxRetention"));
+builder.Services.Configure<DataRetentionOptions>(builder.Configuration.GetSection("Retention"));
 
 builder.Services.AddSingleton<IBrokerPublisher, RabbitMqPublisher>();
 builder.Services.AddTransient<AnalyticsEventHandler>();
@@ -24,6 +25,7 @@ builder.Services.AddHostedService<EmailConsumerWorker>();
 builder.Services.AddHostedService<AnalyticsConsumerWorker>();
 builder.Services.AddHostedService<PaymentWebhookQueueWorker>();
 builder.Services.AddHostedService<OutboxRetentionWorker>();
+builder.Services.AddHostedService<RetentionSweeperWorker>();
 
 var host = builder.Build();
 host.Run();

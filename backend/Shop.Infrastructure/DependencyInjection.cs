@@ -71,12 +71,14 @@ public static class DependencyInjection
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IProductComparisonBuilder, ProductComparisonBuilder>(); // A2 compare
+        services.AddScoped<IRequirementSearchService, RequirementSearchService>(); // M13 requirement search
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IInventoryService, InventoryService>();
         services.AddScoped<IEventPublisher, EventPublisher>(); // M10
         services.AddScoped<OrderStatusTransitioner>(); // B1/B5: shared conditional-transition engine
         services.AddScoped<IQuoteService, QuoteService>(); // B5
+        services.AddScoped<ICheckoutPreviewService, CheckoutPreviewService>(); // M13 dry-run bill
         services.AddScoped<QuoteExpirySweeper>(); // B5
         services.AddScoped<PaymentWebhookConsumer>(); // B5
 

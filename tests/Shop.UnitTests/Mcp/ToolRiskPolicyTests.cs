@@ -34,6 +34,22 @@ public class ToolRiskPolicyTests
     }
 
     [Fact]
+    public void M13_tools_are_read_only_and_only_the_discovery_tool_is_anonymous()
+    {
+        AssertPolicy("find_products_for_requirement", ToolRiskClass.Read, anonymous: true);
+        AssertPolicy("prepare_checkout", ToolRiskClass.Read, anonymous: false);
+    }
+
+    [Fact]
+    public void Manifest_contains_every_live_tool_and_no_never_tool()
+    {
+        var manifest = ToolManifest.Build(Policy, _ => true);
+
+        Assert.Equal(14, manifest.Count);
+        Assert.All(manifest, policy => Assert.NotEqual(ToolRiskClass.Never, policy.RiskClass));
+    }
+
+    [Fact]
     public void Human_only_money_and_cancel_tools_are_documented_as_never()
     {
         AssertPolicy("cancel_order", ToolRiskClass.Never, anonymous: false);

@@ -1,4 +1,4 @@
-# Shop.Mcp (A1 + A2)
+# Shop.Mcp (A1 + A2 + M13)
 
 MCP server for ShopMind's Assist-level shopping agent. It exposes a
 policy-generated toolset and calls the Application services — never a database
@@ -12,10 +12,12 @@ context or raw SQL.
 | `get_product` | READ | yes | Product detail + available stock |
 | `get_product_facets` | READ | yes | Category specification filters (registry ∩ active data) |
 | `compare_products` | READ | yes | Deterministic 2–4 product table: header columns + aligned spec rows |
+| `find_products_for_requirement` | READ | yes | Deterministic budget/category/facet extraction → ranked matches + applied filters + elicitation questions |
 | `get_cart` | READ | no | The authenticated user's cart |
 | `get_orders` | READ | no | The user's orders and quotes, newest first |
 | `get_order` | READ | no | One owner-scoped order |
 | `get_order_status` | READ | no | Status projection of one owner-scoped order |
+| `prepare_checkout` | READ | no | Side-effect-free reprice of the cart: line issues + subtotal/shipping/total; creates nothing |
 | `add_to_cart` | WRITE | no | Add a product; merges quantities; requires `idempotencyKey` |
 | `update_cart` | WRITE | no | Set an owned cart line's absolute quantity; requires `idempotencyKey` |
 | `remove_from_cart` | WRITE | no | Remove an owned cart line; requires `idempotencyKey` |
@@ -36,6 +38,19 @@ stay human-only.
   `gte | lte | eq | in`. It maps to the same fail-closed grammar as REST: an
   unregistered key or malformed clause is `INVALID_ARGS`, never a silently
   unfiltered page.
+- `find_products_for_requirement` is the deterministic discovery tool. It reads
+  a price cap and category from `requirementText` (explicit `budget` and
+  `categoryHint` win), discovers the category facets, and adds only the A3
+  use-case hints the facets support (for example "backend dev" → `ram_gb >= 16`).
+  It searches once through the same filtered-search path as `search_products`
+  and returns ranked matches with the applied filters, up to three questions
+  when the request is fuzzy, and a per-item "why". It is not an LLM or a
+  recommendation engine; an unknown `categoryHint` is `INVALID_ARGS`.
+- `prepare_checkout` is a dry run of the bill. It revalidates the authenticated
+  user's cart with the same server prices and shipping rule as `create_quote`,
+  reports per-line issues, and sets `canQuote=false` when something is wrong.
+  It creates no order, payment session, or stock reservation — the human still
+  reviews and pays via `create_quote`/the hosted page.
 - Cart tools reuse `ICartService` and the REST validators, so merge, stock
   check, repricing, and ownership rules are identical to HTTP.
 - `create_quote` reuses `IQuoteService` with `QuoteOrigin.Agent`. It may replace
@@ -115,7 +130,7 @@ In .NET environment form use double underscores, for example
 
 ## Auth and error contract
 
-- Anonymous callers may use the four public READ tools.
+- Anonymous callers may use the five public READ tools.
 - Every cart, order, and quote tool requires a delegated agent JWT: audience
   `Shop.Mcp`, `scope=agent`.
 - `Shop.Api` rejects `scope=agent` tokens on every `/api/*` route with `403
@@ -160,7 +175,9 @@ The integration suite covers HTTP and STDIO transports, the manifest/kill
 switch, anonymous catalog reads, spec-filtered search, compare shape, cart and
 order ownership through two agent JWTs, add/update/remove with idempotent
 replay and mismatch, over-stock rejection, quote origin scope
-(`QUOTE_HELD_BY_HUMAN`), quote replay, the scripted shopping scenario, the
-fail-closed idempotency outage, budgets, and token-free logs. It uses the same
-disposable Postgres/Redis seam as the API tests (`SHOPMIND_TEST_POSTGRES`,
+(`QUOTE_HELD_BY_HUMAN`), quote replay, the scripted shopping scenario,
+deterministic requirement search (budget + RAM hint, fail-closed unknown
+category), the side-effect-free checkout preview (no order, no reservation),
+the fail-closed idempotency outage, budgets, and token-free logs. It uses the
+same disposable Postgres/Redis seam as the API tests (`SHOPMIND_TEST_POSTGRES`,
 `SHOPMIND_TEST_REDIS`).
