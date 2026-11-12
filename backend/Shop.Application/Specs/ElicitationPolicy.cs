@@ -60,6 +60,15 @@ public static class ElicitationPolicy
         return new ElicitationPlan(false, questions, [], []);
     }
 
+    /// <summary>
+    /// A3: the use-case hint table exposed for composition. Hints are returned
+    /// only when the discovered facets can support them — the same gate
+    /// <see cref="BuildPlan"/> applies before adding a filter.
+    /// </summary>
+    public static IReadOnlyList<SpecClause> UseCaseClauses(
+        string message, IReadOnlyList<FacetDto>? facets = null) =>
+        HintsFor(message, facets ?? []).ToList();
+
     private static IEnumerable<SpecClause> HintsFor(string message, IReadOnlyList<FacetDto> facets)
     {
         var text = message.ToLowerInvariant();
@@ -87,7 +96,8 @@ public static class ElicitationPolicy
         _ => false,
     };
 
-    private static string Describe(SpecClause clause)
+    /// <summary>A3: the human-readable form of one applied filter (never invented copy).</summary>
+    public static string Describe(SpecClause clause)
     {
         var def = SpecRegistry.Find(clause.Key);
         var label = def?.Label ?? clause.Key;

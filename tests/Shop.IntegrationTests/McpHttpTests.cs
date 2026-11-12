@@ -31,9 +31,10 @@ public class McpHttpTests(McpWebFactory factory) : IClassFixture<McpWebFactory>
 
         Assert.Equal(
             [
-                "add_to_cart", "compare_products", "create_quote", "get_cart",
-                "get_order", "get_order_status", "get_orders", "get_product",
-                "get_product_facets", "remove_from_cart", "search_products", "update_cart",
+                "add_to_cart", "compare_products", "create_quote", "find_products_for_requirement",
+                "get_cart", "get_order", "get_order_status", "get_orders", "get_product",
+                "get_product_facets", "prepare_checkout", "remove_from_cart", "search_products",
+                "update_cart",
             ],
             names);
     }
@@ -135,6 +136,50 @@ public class McpHttpTests(McpWebFactory factory) : IClassFixture<McpWebFactory>
 
         Assert.False(result.IsError);
         Assert.Contains("battery_h", Text(result), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Find_products_for_requirement_applies_deterministic_filters_anonymously()
+    {
+        await using var client = await McpTestClient.ConnectAsync(factory);
+
+        var result = await client.CallToolAsync(
+            "find_products_for_requirement",
+            new Dictionary<string, object?>
+            {
+                ["requirementText"] = "laptop for backend dev under $1600",
+            });
+
+        Assert.False(result.IsError);
+        var payload = Payload(result);
+
+        Assert.Equal("laptops", payload.GetProperty("category").GetString());
+        Assert.Equal(1600m, payload.GetProperty("budget").GetDecimal());
+        Assert.Contains(
+            payload.GetProperty("appliedFilters").EnumerateArray().Select(f => f.GetString()),
+            filter => filter!.Contains("RAM (GB) >= 16", StringComparison.Ordinal));
+
+        var names = payload.GetProperty("items").EnumerateArray()
+            .Select(item => item.GetProperty("name").GetString())
+            .ToArray();
+        Assert.Contains("ThinkPad X1 Carbon Gen 11", names);
+        Assert.DoesNotContain("MacBook Air M3", names);
+    }
+
+    [Fact]
+    public async Task Find_products_for_requirement_fails_closed_on_an_unknown_category_hint()
+    {
+        await using var client = await McpTestClient.ConnectAsync(factory);
+
+        var result = await client.CallToolAsync(
+            "find_products_for_requirement",
+            new Dictionary<string, object?>
+            {
+                ["requirementText"] = "something", ["categoryHint"] = "toasters",
+            });
+
+        Assert.True(result.IsError);
+        Assert.Equal(McpErrorCodes.InvalidArgs, Error(result).Code);
     }
 
     [Fact]
@@ -645,6 +690,60 @@ public class McpHttpTests(McpWebFactory factory) : IClassFixture<McpWebFactory>
         Assert.StartsWith("/pay/", Payload(quoteResult).GetProperty("hostedPayUrl").GetString());
     }
 
+    [Fact]
+    public async Task Prepare_checkout_previews_the_exact_bill_without_creating_anything()
+    {
+        var (userId, token) = await CreateUserWithTokenAsync("preview");
+        var productId = await ProductIdBySkuAsync("LEN-X1C-G11");
+        var reservedBefore = await ReservedQuantityAsync(productId);
+        await using var client = await McpTestClient.ConnectAsync(factory, token);
+
+        var added = await client.CallToolAsync(
+            "add_to_cart",
+            new Dictionary<string, object?>
+            {
+                ["productId"] = productId, ["quantity"] = 2, ["idempotencyKey"] = "preview-add",
+            });
+        Assert.False(added.IsError);
+
+        var result = await client.CallToolAsync("prepare_checkout", new Dictionary<string, object?>());
+
+        Assert.False(result.IsError);
+        var preview = Payload(result);
+        Assert.Equal(2998m, preview.GetProperty("subtotal").GetDecimal());
+        Assert.Equal(0m, preview.GetProperty("shippingFee").GetDecimal());
+        Assert.Equal(2998m, preview.GetProperty("totalAmount").GetDecimal());
+        Assert.True(preview.GetProperty("canQuote").GetBoolean());
+        Assert.Equal(1, preview.GetProperty("items").GetArrayLength());
+
+        Assert.Empty(await OrdersFromDbAsync(userId));
+        Assert.Equal(reservedBefore, await ReservedQuantityAsync(productId));
+        Assert.Single(await CartLinesAsync(userId));
+    }
+
+    [Fact]
+    public async Task Prepare_checkout_without_a_token_is_unauthorized()
+    {
+        await using var client = await McpTestClient.ConnectAsync(factory);
+
+        var result = await client.CallToolAsync("prepare_checkout", new Dictionary<string, object?>());
+
+        Assert.True(result.IsError);
+        Assert.Equal(McpErrorCodes.Unauthorized, Error(result).Code);
+    }
+
+    [Fact]
+    public async Task Prepare_checkout_with_an_empty_cart_is_invalid_args()
+    {
+        var (_, token) = await CreateUserWithTokenAsync("preview-empty");
+        await using var client = await McpTestClient.ConnectAsync(factory, token);
+
+        var result = await client.CallToolAsync("prepare_checkout", new Dictionary<string, object?>());
+
+        Assert.True(result.IsError);
+        Assert.Equal(McpErrorCodes.InvalidArgs, Error(result).Code);
+    }
+
     private async Task<Guid> CreateAgentQuoteAsync(McpClient client, Guid productId, string key)
     {
         await client.CallToolAsync(
@@ -703,6 +802,16 @@ public class McpHttpTests(McpWebFactory factory) : IClassFixture<McpWebFactory>
             .Include(o => o.Items)
             .Where(o => o.UserId == userId)
             .ToListAsync();
+    }
+
+    private async Task<int> ReservedQuantityAsync(Guid productId)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        return await db.Inventories.AsNoTracking()
+            .Where(i => i.ProductId == productId)
+            .Select(i => i.ReservedQuantity)
+            .SingleAsync();
     }
 
     private static JsonElement Payload(CallToolResult result) =>

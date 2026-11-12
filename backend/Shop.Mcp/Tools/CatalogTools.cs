@@ -8,6 +8,7 @@ using Shop.Application.Comparisons;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
 using Shop.Application.Mcp;
+using Shop.Application.Requirements;
 using Shop.Domain.Exceptions;
 using Shop.Mcp.Tooling;
 
@@ -96,6 +97,35 @@ public static class CatalogTools
                 if (productIds is null || productIds.Length == 0)
                     throw new DomainValidationException("productIds is required.");
                 return (object?)await comparisons.BuildAsync(productIds, token);
+            },
+            ct);
+    }
+
+    [McpServerTool(Name = "find_products_for_requirement", Title = "Find products for a requirement")]
+    [Description("Turn a shopping requirement into structured filters (budget, category, facet-supported use-case specs), search the catalog, and return ranked matches with the filters that produced them plus any questions to ask when the requirement is fuzzy. Deterministic, not an LLM.")]
+    public static async Task<CallToolResult> FindProductsForRequirement(
+        ToolExecutor executor,
+        IRequirementSearchService requirements,
+        [Description("The shopper's requirement in their own words, for example \"laptop for backend dev under $1200\".")] string requirementText,
+        [Description("Optional price cap in USD; overrides a budget found in the text.")] decimal? budget = null,
+        [Description("Optional category slug, for example laptops.")] string? categoryHint = null,
+        CancellationToken ct = default)
+    {
+        return await executor.RunAsync(
+            "find_products_for_requirement",
+            new { requirementText, budget, categoryHint },
+            async token =>
+            {
+                if (string.IsNullOrWhiteSpace(requirementText))
+                    throw new DomainValidationException("requirementText is required.");
+                if (budget is <= 0)
+                    throw new DomainValidationException("budget must be greater than zero.");
+                if (categoryHint is { Length: > 100 })
+                    throw new DomainValidationException("categoryHint must be 100 characters or fewer.");
+
+                return (object?)await requirements.SearchAsync(
+                    new RequirementSearchRequest(requirementText, budget, categoryHint),
+                    token);
             },
             ct);
     }

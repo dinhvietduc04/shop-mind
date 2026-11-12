@@ -39,6 +39,34 @@ public static class SpecFilterCodec
         return clauses;
     }
 
+    /// <summary>
+    /// A3: the inverse of <see cref="Parse"/> — the MCP/REST wire grammar. Used by
+    /// composed services (find_products_for_requirement) that reuse the single
+    /// filtered-search path instead of growing a second one.
+    /// </summary>
+    public static string Format(IReadOnlyList<SpecClause> clauses) =>
+        string.Join(';', clauses.Select(FormatClause));
+
+    private static string FormatClause(SpecClause clause) =>
+        $"{clause.Key}:{OpText(clause.Op)}:{ValueText(clause)}";
+
+    private static string OpText(SpecOp op) => op switch
+    {
+        SpecOp.Gte => "gte",
+        SpecOp.Lte => "lte",
+        SpecOp.Eq => "eq",
+        SpecOp.In => "in",
+        _ => throw new ArgumentOutOfRangeException(nameof(op), op, "unknown spec op"),
+    };
+
+    private static string ValueText(SpecClause clause) => clause.Value switch
+    {
+        double n => n.ToString("0.############", CultureInfo.InvariantCulture),
+        bool b => b ? "true" : "false",
+        IReadOnlyList<string> values => string.Join('|', values),
+        _ => Convert.ToString(clause.Value, CultureInfo.InvariantCulture) ?? string.Empty,
+    };
+
     private static object ParseValue(SpecDefinition def, SpecOp op, string raw)
     {
         if (op == SpecOp.In)

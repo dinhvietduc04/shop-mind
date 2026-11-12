@@ -14,10 +14,28 @@ namespace Shop.Mcp.Tools;
 /// A2: the agent may create a quote for the human to review and pay, never pay
 /// it. The quote is tagged Agent origin, so it may replace only another
 /// agent-origin open quote; a human bill blocks it with QUOTE_HELD_BY_HUMAN.
+/// M13 adds the read-only <c>prepare_checkout</c> dry run, which creates
+/// nothing — no order, no session, no reservation.
 /// </summary>
 [McpServerToolType]
 public static class QuoteTools
 {
+    [McpServerTool(Name = "prepare_checkout", Title = "Prepare checkout")]
+    [Description("Dry-run the bill for the authenticated user's cart: revalidates stock and returns the exact subtotal, shipping, total and per-line issues that create_quote would produce. Creates nothing and reserves no stock.")]
+    public static async Task<CallToolResult> PrepareCheckout(
+        ToolExecutor executor,
+        McpToolContext context,
+        ICheckoutPreviewService preview,
+        CancellationToken ct = default)
+    {
+        return await executor.RunAsync(
+            "prepare_checkout",
+            null,
+            async token => (object?)await preview.PreviewAsync(
+                ToolArguments.RequireUserId(context), token),
+            ct);
+    }
+
     [McpServerTool(Name = "create_quote", Title = "Create quote")]
     [Description("Create a bill from the authenticated user's cart for the human to review and pay. The agent never confirms payment.")]
     public static async Task<CallToolResult> CreateQuote(

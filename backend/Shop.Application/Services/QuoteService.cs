@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Application.Dtos;
 using Shop.Application.Interfaces;
 using Shop.Application.Persistence;
+using Shop.Application.Pricing;
 using Shop.Domain.Entities;
 using Shop.Domain.Enums;
 using Shop.Domain.Events;
@@ -25,8 +26,6 @@ public class QuoteService(
     OrderStatusTransitioner transitioner) : IQuoteService
 {
     public const int QuoteExpiryMinutes = 30; // reservation TTL (plan: 30m, sweeper every 30s)
-    private const decimal FreeShippingThreshold = 500m;
-    private const decimal FlatShippingFee = 15m;
 
     public async Task<QuoteResult> CreateQuoteAsync(Guid userId, CreateQuoteRequest request, QuoteOrigin origin, CancellationToken ct = default)
     {
@@ -122,7 +121,7 @@ public class QuoteService(
             });
         }
         order.Subtotal = order.Items.Sum(i => i.Subtotal);
-        order.ShippingFee = order.Subtotal >= FreeShippingThreshold || order.Subtotal == 0 ? 0m : FlatShippingFee;
+        order.ShippingFee = CheckoutPricing.ShippingFeeFor(order.Subtotal);
         order.TotalAmount = order.Subtotal + order.ShippingFee;
 
         db.Orders.Add(order);
