@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { BinChips, CatalogView } from "@/components/catalog-view";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
-import { useCategories } from "@/lib/api/hooks";
+import { useCategories } from "@/features/catalog";
 import { bandClass, bandForCategory } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 

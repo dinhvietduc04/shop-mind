@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { LogOut, MapPin, Package } from "lucide-react";
 import { RequireAuth } from "@/components/guard";
 import { BandChip, Button, ErrorNote, Skeleton } from "@/components/ui";
-import { useAccountAddress, useSaveAddress } from "@/lib/api/hooks";
+import { useAccountAddress, useSaveAddress } from "@/features/auth";
 import { DEMO_ADDRESS } from "@/lib/quotes/intake";
-import { ApiError, type ShippingAddressDto } from "@/lib/api/types";
+import { ApiError, type ShippingAddressDto } from "@/infrastructure/api";
 import { useSession } from "@/lib/session";
 
 function AccountInner() {

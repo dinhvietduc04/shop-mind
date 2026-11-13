@@ -3,11 +3,8 @@ import { available } from "./server/inventory";
 import { cartAdd, getCart } from "./server/cart";
 import { createQuote } from "./server/quotes";
 import { toolEnabled } from "./server/ai";
-import type {
-  AgentTurnResult,
-  ChatProductRef,
-  ElicitField,
-} from "@/lib/api/types";
+import type { ChatProductRef, ElicitField } from "@/infrastructure/api";
+import type { AgentTurnResult } from "@/lib/api/contracts/schemas";
 import { matchesSpecs } from "@/lib/attributes/codec";
 import { facetPool, specLabel } from "@/lib/attributes/registry";
 import { DEMO_ADDRESS } from "@/lib/quotes/intake";

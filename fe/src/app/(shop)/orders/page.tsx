@@ -5,8 +5,8 @@ import { ArrowLeft, Package } from "lucide-react";
 import { RequireAuth } from "@/components/guard";
 import { StatusChip } from "@/components/order-status";
 import { EmptyState, Skeleton } from "@/components/ui";
-import { useOrders } from "@/lib/api/hooks";
-import { formatUsd } from "@/lib/api/types";
+import { useOrders } from "@/features/orders";
+import { formatUsd } from "@/infrastructure/api";
 
 export default function OrdersPage() {
   return (

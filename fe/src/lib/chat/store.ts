@@ -1,10 +1,11 @@
 "use client";
 
 import { create } from "zustand";
-import { activeQuoteStale, cartStale, stockWallStale } from "@/lib/api/invalidation";
+import { activeQuoteStale, cartStale, stockWallStale } from "@/infrastructure/query";
 import { asMember } from "@/lib/session";
 import { turnTouches } from "@/lib/tools/registry";
-import type { AgentTurnResult, ChatError } from "@/lib/api/types";
+import type { ChatError } from "@/infrastructure/api";
+import type { AgentTurnResult } from "@/lib/api/contracts/schemas";
 import { streamTurn } from "./transport";
 
 export interface ChatMessage {

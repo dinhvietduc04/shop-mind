@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { UserDto } from "@/lib/api/types";
+import type { UserDto } from "@/lib/api/contracts/schemas";
 
 const MEMBER: UserDto = {
   id: "u1",

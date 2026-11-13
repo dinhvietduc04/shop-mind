@@ -1,4 +1,4 @@
-import type { AiConversationDto, AiLedgerEntryDto, AiSettingsDto } from "@/lib/api/types";
+import type { AiConversationDto, AiLedgerEntryDto, AiSettingsDto } from "@/infrastructure/api";
 import { AI_TOOLS, LLM_TURN } from "@/lib/tools/registry";
 import { registerStore, uuid } from "./snapshot";
 

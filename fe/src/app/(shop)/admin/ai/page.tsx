@@ -2,9 +2,9 @@
 
 import { AdminTable, Panel, Pill, statusBand, td, th, Toggle } from "@/components/admin/widgets";
 import { Skeleton } from "@/components/ui";
-import { useAiConversations, useAiLedger, useAiSettings, useSaveAiSettings } from "@/lib/api/hooks";
+import { useAiConversations, useAiLedger, useAiSettings, useSaveAiSettings } from "@/features/admin";
 import { LLM_TURN, NEVER_TOOLS, SWITCHABLE_TOOLS } from "@/lib/tools/registry";
-import type { AiSettingsDto } from "@/lib/api/types";
+import type { AiSettingsDto } from "@/infrastructure/api";
 
 /** Transparency page: every tool call the assistant made, plus the kill
  *  switches a human can pull. Chat keeps working while this page is closed.

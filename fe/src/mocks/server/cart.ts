@@ -1,4 +1,4 @@
-import type { CartItemDto } from "@/lib/api/types";
+import type { CartItemDto } from "@/infrastructure/api";
 import { available } from "./inventory";
 import { findProduct } from "./catalog";
 import { registerStore } from "./snapshot";

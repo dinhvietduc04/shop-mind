@@ -12,7 +12,7 @@ import {
   settleQuote,
 } from "./quotes";
 import { resetServer } from "./snapshot";
-import type { ShippingAddressDto } from "@/lib/api/types";
+import type { ShippingAddressDto } from "@/infrastructure/api";
 
 /**
  * Plain Node assertions cover the quote ledger's riskiest invariants:

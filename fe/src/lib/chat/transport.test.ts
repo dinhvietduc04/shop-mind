@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { decodeFrames, mapTurnError } from "./transport";
-import type { AgentTurnResult } from "@/lib/api/types";
+import type { AgentTurnResult } from "@/lib/api/contracts/schemas";
 
 /* These two pure functions are the transport's contract knowledge: the wire
    grammar and the failure taxonomy. streamTurn() is their orchestration. The

@@ -1,4 +1,4 @@
-import type { Specs } from "@/lib/api/types";
+import type { Specs } from "@/infrastructure/api";
 
 /**
  * The attribute registry holds the per-key Specs vocabulary from ADR-0007,

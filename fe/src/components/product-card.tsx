@@ -6,8 +6,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button, MagnitudeTick, PhotoPlate, StockDots } from "@/components/ui";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
 import { specLabel } from "@/lib/attributes/registry";
-import { useAddToCart, useCart, useRemoveCartItem } from "@/lib/api/hooks";
-import { formatUsd, ApiError, type ProductDto } from "@/lib/api/types";
+import { useAddToCart, useCart, useRemoveCartItem } from "@/features/cart";
+import { formatUsd, ApiError, type ProductDto } from "@/infrastructure/api";
 import { asMember } from "@/lib/session";
 import { cn } from "@/lib/cn";
 

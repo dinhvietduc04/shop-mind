@@ -1,4 +1,5 @@
-import type { CategoryDto, CreateProductRequest, InventoryDto, Specs, UpdateProductRequest } from "@/lib/api/types";
+import type { CategoryDto, InventoryDto, Specs } from "@/infrastructure/api";
+import type { CreateProductRequest, UpdateProductRequest } from "@/lib/api/contracts/schemas";
 import { slugify } from "@/lib/slug";
 import { FIXTURE_CATEGORIES, FIXTURE_PRODUCTS, type FixtureProduct } from "../fixtures";
 import { validateProductWrite, type WriteResult } from "@/lib/admin/product-schema";

@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { AdminTable, Panel, Pill, statusBand, td, th } from "@/components/admin/widgets";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
-import { useAdminCategories, useDeleteCategory, useSaveCategory } from "@/lib/api/hooks";
-import { ApiError, type CategoryDto, type CreateCategoryRequest } from "@/lib/api/types";
+import { useAdminCategories, useDeleteCategory, useSaveCategory } from "@/features/admin";
+import { ApiError, type CategoryDto } from "@/infrastructure/api";
+import type { CreateCategoryRequest } from "@/lib/api/contracts/schemas";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
 import { slugify } from "@/lib/slug";
 

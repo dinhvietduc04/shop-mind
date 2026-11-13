@@ -5,15 +5,14 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { ThemeProvider, useTheme } from "next-themes";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { Moon, Radio, Search, ShoppingCart, Sun } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { BandChip } from "@/components/ui";
-import { useCart, useCategories, useProducts } from "@/lib/api/hooks";
+import { useCart } from "@/features/cart";
+import { useCategories, useProducts } from "@/features/catalog";
 import { useSession } from "@/lib/session";
-import { queryClient } from "@/lib/api/queryClient";
-import { beginHold } from "@/lib/api/readyGate";
-import { formatUsd } from "@/lib/api/types";
+import { QueryProvider } from "@/infrastructure/query";
+import { beginHold, formatUsd } from "@/infrastructure/api";
 import { useShopUI } from "@/lib/ui";
 import { BAND_DIGIT, bandClass, bandForCategory } from "@/lib/bands";
 
@@ -36,7 +35,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryProvider>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         {/* cacheComponents: browser-only content (next/dynamic ssr:false loading
             browser()) must suspend to a Suspense boundary during prerender. */}
@@ -47,7 +46,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         )}
         {children}
       </ThemeProvider>
-    </QueryClientProvider>
+    </QueryProvider>
   );
 }
 

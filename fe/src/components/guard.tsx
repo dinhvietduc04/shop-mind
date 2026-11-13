@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui";
 import { useSession } from "@/lib/session";
-import type { UserDto } from "@/lib/api/types";
+import type { UserDto } from "@/lib/api/contracts/schemas";
 
 /**
  * Client-side route protection. The mock API is the actual authority. Every

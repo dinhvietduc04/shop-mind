@@ -5,8 +5,8 @@ import Link from "next/link";
 import { AdminTable, Panel, td, th } from "@/components/admin/widgets";
 import { StatusChip } from "@/components/order-status";
 import { Button, Skeleton } from "@/components/ui";
-import { useAdminOrders } from "@/lib/api/hooks";
-import { formatUsd, type OrderStatus } from "@/lib/api/types";
+import { useAdminOrders } from "@/features/admin";
+import { formatUsd, type OrderStatus } from "@/infrastructure/api";
 import { cn } from "@/lib/cn";
 
 const STATUSES: (OrderStatus | "All")[] = [

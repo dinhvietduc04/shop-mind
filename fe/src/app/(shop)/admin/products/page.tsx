@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Plus, Trash2 } from "lucide-react";
 import { AdminTable, Panel, Pill, statusBand, td, th } from "@/components/admin/widgets";
 import { Button, ErrorNote, MagnitudeTick, Skeleton, StockDots } from "@/components/ui";
-import { useAdminProducts, useDeleteProduct } from "@/lib/api/hooks";
-import { ApiError, formatUsd } from "@/lib/api/types";
+import { useAdminProducts, useDeleteProduct } from "@/features/admin";
+import { ApiError, formatUsd } from "@/infrastructure/api";
 import { BAND_BG, bandForCategory } from "@/lib/bands";
 
 export default function AdminProductsPage() {

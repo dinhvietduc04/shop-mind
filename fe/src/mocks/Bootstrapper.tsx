@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { startMockApi } from "./browser";
 import { bootSession } from "@/lib/session";
-import { releaseHold } from "@/lib/api/readyGate";
+import { releaseHold } from "@/infrastructure/api";
 
 /**
  * Loaded only from Providers through next/dynamic({ssr:false}). msw v3's

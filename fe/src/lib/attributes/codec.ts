@@ -1,5 +1,5 @@
 import { specDef } from "./registry";
-import type { Specs } from "@/lib/api/types";
+import type { Specs } from "@/infrastructure/api";
 
 /**
  * The Spec filter codec. It defines one grammar between every producer

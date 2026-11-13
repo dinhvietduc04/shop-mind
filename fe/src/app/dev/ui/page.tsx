@@ -14,7 +14,7 @@ import {
   StockDots,
 } from "@/components/ui";
 import { BAND_DIGIT, MAGNITUDE_LABEL, magnitudeBand } from "@/lib/bands";
-import { formatUsd } from "@/lib/api/types";
+import { formatUsd } from "@/infrastructure/api";
 
 const LADDER = Object.entries(BAND_DIGIT) as [keyof typeof BAND_DIGIT, number | null][];
 

@@ -1,4 +1,5 @@
-import type { CategoryDto, ProductDto, Specs, UserDto } from "@/lib/api/types";
+import type { CategoryDto, ProductDto, Specs } from "@/infrastructure/api";
+import type { UserDto } from "@/lib/api/contracts/schemas";
 
 /**
  * Fixtures are transcribed from backend/Shop.Infrastructure/Seed/SeedData.cs

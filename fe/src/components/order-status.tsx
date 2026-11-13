@@ -1,4 +1,4 @@
-import type { OrderStatus } from "@/lib/api/types";
+import type { OrderStatus } from "@/infrastructure/api";
 import { BAND_BG } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 import { MAINLINE, ORDER_BAND, mainlineRank } from "@/lib/orders/lifecycle";

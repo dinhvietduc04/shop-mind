@@ -57,19 +57,21 @@ import {
 } from "./server/identity";
 import { persist } from "./server/snapshot";
 import type {
-  AgentTurnResult,
   CartDto,
   CartItemDto,
-  ChatSseFrame,
-  CreateProductRequest,
   InventoryDto,
   OrderDto,
   OrderStatus,
   PagedResult,
   ShippingAddressDto,
   Specs,
+} from "@/infrastructure/api";
+import type {
+  AgentTurnResult,
+  ChatSseFrame,
+  CreateProductRequest,
   UpdateProductRequest,
-} from "@/lib/api/types";
+} from "@/lib/api/contracts/schemas";
 import { runAgentTurn } from "./agent";
 
 type ShippingAddressBody = Partial<ShippingAddressDto> | null;

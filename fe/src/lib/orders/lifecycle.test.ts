@@ -10,7 +10,7 @@ import {
   mainlineRank,
   stockFate,
 } from "./lifecycle";
-import type { OrderStatus } from "@/lib/api/types";
+import type { OrderStatus } from "@/infrastructure/api";
 
 /* Parity with the backend authority at backend/Shop.Domain/Rules/
    OrderTransitions.cs lines 7 to 16. If the .NET file changes, this test is

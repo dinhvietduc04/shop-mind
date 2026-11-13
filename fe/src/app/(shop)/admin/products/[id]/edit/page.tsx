@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { ErrorNote, Skeleton } from "@/components/ui";
 import { ProductForm } from "@/components/admin/product-form";
-import { useAdminProduct } from "@/lib/api/hooks";
+import { useAdminProduct } from "@/features/admin";
 
 /** Mount-after-settle: the form's initial state is the loaded product, so the
  *  query result is passed as a prop from a child boundary. No sync effect. */

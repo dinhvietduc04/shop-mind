@@ -19,6 +19,9 @@ public interface IAppDbContext
     DbSet<PaymentSession> PaymentSessions { get; }
     DbSet<PaymentAnomaly> PaymentAnomalies { get; }
     DbSet<OutboxMessage> OutboxMessages { get; }
+    DbSet<AiConversation> AiConversations { get; }
+    DbSet<AiMessage> AiMessages { get; }
+    DbSet<AiAction> AiActions { get; }
 
     /// <summary>B5: per-consumer exactly-once ledger (webhook intake + worker consumers).</summary>
     DbSet<ProcessedEvent> ProcessedEvents { get; }
