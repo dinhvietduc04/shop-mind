@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { quoteOutcome } from "./intake";
-import type { OrderDto, OrderStatus, PaymentStatus } from "@/lib/api/types";
+import type { OrderDto, OrderStatus, PaymentStatus } from "@/infrastructure/api";
 
 const order = (status: OrderStatus, payment?: { outcome?: "captured" | "failed" | "expired" | null; transactionId?: string | null; status?: PaymentStatus }): OrderDto =>
   ({

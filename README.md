@@ -36,16 +36,24 @@ Seeded users:
 - `admin@shopmind.local` / `Admin123!`
 - `customer@shopmind.local` / `Customer123!`
 
-## Quickstart (Docker Compose)
+## Quickstart (Podman Compose)
 
-Requires Docker Desktop running.
+Requires the Podman machine running (`podman machine start`).
 
 ```bash
-docker compose up --build
+podman compose up --build
 # API: http://localhost:5000/swagger (via container)
 # MCP (A1): http://localhost:5001/mcp
-# Postgres: localhost:5432
+# Postgres: localhost:15432 (5432 is the host's own PostgreSQL, left alone)
+# Redis: localhost:6379   RabbitMQ: localhost:5672, UI on :15672
 ```
+
+On Windows, `win-sshproxy` exposes that API as `npipe:////./pipe/docker_engine`
+and `npipe:////./pipe/podman-machine-default`, which `podman compose` and
+Podman Desktop both use — no `DOCKER_HOST` needed. If Podman Desktop shows no
+containers after a machine start, a stale `%TEMP%\podman\*.api.sock` is making
+`win-sshproxy` exit before it creates those pipes: delete it and run
+`podman machine restart`.
 
 ## API surface
 
@@ -154,8 +162,8 @@ Config (`appsettings.json`, overridable via env):
 "Redis": { "ConnectionString": "localhost:6379", "Enabled": true, "DefaultTtlSeconds": 90 }
 ```
 
-Docker Compose runs `redis:7-alpine` (API uses `Redis__ConnectionString:
-redis:6379`). Local dev without Docker: run Redis locally or set
+Compose runs `redis:7-alpine` (API uses `Redis__ConnectionString:
+redis:6379`). Local dev outside Compose: run Redis locally or set
 `Redis:Enabled=false` to silence connection warnings.
 
 ## Projects
@@ -170,7 +178,8 @@ frontend/ (vanilla SPA)
 
 ```bash
 dotnet test tests/Shop.UnitTests
-# Integration needs Docker (Testcontainers + PostgreSQL):
+# Integration needs a container runtime (Testcontainers + PostgreSQL);
+# Podman works through the same docker_engine pipe:
 dotnet test tests/Shop.IntegrationTests
 ```
 

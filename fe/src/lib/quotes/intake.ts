@@ -1,6 +1,6 @@
 import { useEffect, useSyncExternalStore } from "react";
-import { useActiveQuote, useQuote } from "@/lib/api/hooks";
-import type { OrderDto, ShippingAddressDto } from "@/lib/api/types";
+import { useActiveQuote, useQuote } from "@/features/checkout";
+import type { OrderDto, ShippingAddressDto } from "@/infrastructure/api";
 import { mainlineRank } from "@/lib/orders/lifecycle";
 
 /**
@@ -95,7 +95,7 @@ export function useOpenQuoteToken(): string | null {
  */
 export function useHeldQuote(): {
   token: string | null;
-  quote: (import("@/lib/api/types").QuoteDto & { order: OrderDto }) | null;
+  quote: (import("@/infrastructure/api").QuoteDto & { order: OrderDto }) | null;
   isPending: boolean;
 } {
   const pointer = useOpenQuoteToken();

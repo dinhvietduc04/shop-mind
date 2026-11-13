@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Kpi, Panel, Pill, statusBand } from "@/components/admin/widgets";
 import { Skeleton, StockDots, Button } from "@/components/ui";
 import { isRevenueEligible } from "@/lib/orders/lifecycle";
-import { useAdminOrders, useAiLedger, useInventory } from "@/lib/api/hooks";
-import { formatUsd } from "@/lib/api/types";
+import { useAdminOrders, useAiLedger, useInventory } from "@/features/admin";
+import { formatUsd } from "@/infrastructure/api";
 import { useSession } from "@/lib/session";
 
 /** Admin dashboard: everything reads the same live mock db the storefront

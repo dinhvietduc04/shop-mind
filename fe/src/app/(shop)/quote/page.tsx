@@ -6,14 +6,12 @@ import { ArrowLeft, Banknote, Ban, Hourglass, Minus, Plus, X } from "lucide-reac
 import { RequireAuth } from "@/components/guard";
 import { Button, EmptyState, ErrorNote, MagnitudeTick, PhotoPlate } from "@/components/ui";
 import { StatusChip } from "@/components/order-status";
+import { useAccountAddress } from "@/features/auth";
 import {
-  useAccountAddress,
   useCancelPayment,
   useCreateQuote,
-  useCart,
-  useRemoveCartItem,
-  useUpdateCartItem,
-} from "@/lib/api/hooks";
+} from "@/features/checkout";
+import { useCart, useRemoveCartItem, useUpdateCartItem } from "@/features/cart";
 import {
   DEMO_ADDRESS,
   holdOpenQuote,
@@ -21,18 +19,22 @@ import {
   releaseOpenQuote,
   useHeldQuote,
 } from "@/lib/quotes/intake";
-import { ApiError, formatUsd } from "@/lib/api/types";
+import { ApiError, formatUsd } from "@/infrastructure/api";
 import { FREE_SHIPPING_THRESHOLD, shippingFeeFor } from "@/lib/shipping";
+
+const MILLIS_PER_SECOND = 1000;
+const MILLIS_PER_MINUTE = 60_000;
+const QUOTE_RELEASE_DELAY_MS = 4_000;
 
 function Countdown({ to }: { to: string }) {
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000);
+    const t = setInterval(() => setNow(Date.now()), MILLIS_PER_SECOND);
     return () => clearInterval(t);
   }, []);
   const left = Math.max(0, new Date(to).getTime() - now);
-  const m = Math.floor(left / 60000);
-  const s = Math.floor((left % 60000) / 1000);
+  const m = Math.floor(left / MILLIS_PER_MINUTE);
+  const s = Math.floor((left % MILLIS_PER_MINUTE) / MILLIS_PER_SECOND);
   return (
     <span className="font-mono tabular-nums">
       {left === 0 ? "EXPIRED" : `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`}
@@ -209,7 +211,7 @@ function QuotePageInner() {
                 abandon.mutate(undefined, {
                   onSuccess: () => {
                     // wait for the server to show the release, then clear this tab's pointer
-                    setTimeout(releaseOpenQuote, 4000);
+                    setTimeout(releaseOpenQuote, QUOTE_RELEASE_DELAY_MS);
                   },
                 })
               }

@@ -6,8 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
 import { StatusChip, StatusTimeline } from "@/components/order-status";
 import { Button, EmptyState, Skeleton } from "@/components/ui";
-import { useQuote } from "@/lib/api/hooks";
-import { formatUsd } from "@/lib/api/types";
+import { useQuote } from "@/features/checkout";
+import { formatUsd } from "@/infrastructure/api";
 
 function SuccessView() {
   const token = useSearchParams().get("session");

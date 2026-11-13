@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 import { BandChip } from "@/components/ui";
 import type { BandName } from "@/lib/bands";
 import { ORDER_BAND } from "@/lib/orders/lifecycle";
-import type { OrderStatus } from "@/lib/api/types";
+import type { OrderStatus } from "@/infrastructure/api";
 import { cn } from "@/lib/cn";
 
 /** Shared layout for the admin screens. Same flat-outline world as the

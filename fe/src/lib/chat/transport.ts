@@ -4,14 +4,14 @@
  * `mocks/handlers.ts`. Failure taxonomy: map on the server's `code` first and
  * fall back to HTTP status only for errors without the envelope.
  */
-import { authHeaders } from "@/lib/api/client";
-import { whenReady } from "@/lib/api/readyGate";
+import { authHeaders } from "@/infrastructure/api";
+import { whenReady } from "@/infrastructure/api";
+import type { ChatError } from "@/infrastructure/api";
 import type {
   AgentTurnResult,
-  ChatError,
   ChatRequest,
   ChatSseFrame,
-} from "@/lib/api/types";
+} from "@/lib/api/contracts/schemas";
 
 const NETWORK_LOSS: ChatError = {
   kind: "network",

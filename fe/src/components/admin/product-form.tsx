@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Plus, X } from "lucide-react";
 import { Panel } from "@/components/admin/widgets";
 import { BandChip, Button, ErrorNote, MagnitudeTick, StockDots } from "@/components/ui";
-import { useAdminCategories } from "@/lib/api/hooks";
+import { useAdminCategories } from "@/features/admin";
 import { saveProduct } from "@/lib/admin/product-intake";
 import { specsSchema } from "@/lib/admin/product-schema";
-import { formatUsd, type ProductAdminDto, type Specs } from "@/lib/api/types";
+import { formatUsd, type ProductAdminDto, type Specs } from "@/infrastructure/api";
 import { bandForCategory, BAND_BG } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 

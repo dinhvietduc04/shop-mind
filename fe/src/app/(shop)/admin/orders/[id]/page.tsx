@@ -7,9 +7,9 @@ import { ArrowLeft } from "lucide-react";
 import { AdminTable, Panel, td, th } from "@/components/admin/widgets";
 import { StatusChip, StatusTimeline } from "@/components/order-status";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
-import { useAdminOrder, useSetOrderStatus } from "@/lib/api/hooks";
+import { useAdminOrder, useSetOrderStatus } from "@/features/admin";
 import { legalTargets } from "@/lib/orders/lifecycle";
-import { ApiError, formatUsd, type OrderStatus } from "@/lib/api/types";
+import { ApiError, formatUsd, type OrderStatus } from "@/infrastructure/api";
 
 /** Status dropdown offers only legal targets. A client mirror of
  *  OrderTransitions.cs. The mock re-checks server-side, so hand-crafted

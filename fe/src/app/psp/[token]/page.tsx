@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { BadgeCheck, Hourglass, Lock, ShieldAlert, X } from "lucide-react";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
-import { useCancelPayment, useConfirmPayment, useQuote } from "@/lib/api/hooks";
+import { useCancelPayment, useConfirmPayment, useQuote } from "@/features/checkout";
 import { quoteOutcome } from "@/lib/quotes/intake";
-import { formatUsd } from "@/lib/api/types";
+import { formatUsd } from "@/infrastructure/api";
 
 /**
  * FakePsp hosted payment page. Intentionally chromeless and outside the shop

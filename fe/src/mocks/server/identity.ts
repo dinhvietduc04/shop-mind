@@ -1,4 +1,5 @@
-import type { ShippingAddressDto, UserDto } from "@/lib/api/types";
+import type { ShippingAddressDto } from "@/infrastructure/api";
+import type { UserDto } from "@/lib/api/contracts/schemas";
 import { MOCK_USERS } from "../fixtures";
 import { registerStore, uuid } from "./snapshot";
 

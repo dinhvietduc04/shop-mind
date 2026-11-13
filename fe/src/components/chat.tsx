@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Ban, Hourglass, MessageSquareText, RefreshCw, Send, Wrench } from "lucide-react";
 import { Button, MagnitudeTick, StockDots } from "@/components/ui";
-import { formatUsd, type ChatProductRef, type ElicitField, type ToolTrailItem } from "@/lib/api/types";
+import { formatUsd, type ChatProductRef, type ElicitField, type ToolTrailItem } from "@/infrastructure/api";
 import { specLabel } from "@/lib/attributes/registry";
 import { useChat, type ChatMessage } from "@/lib/chat/store";
 import { cn } from "@/lib/cn";

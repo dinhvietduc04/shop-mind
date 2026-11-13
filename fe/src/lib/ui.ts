@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import type { ProductQuery } from "@/lib/api/types";
+import type { ProductQuery } from "@/lib/api/contracts/schemas";
 
 export type SortKey = NonNullable<ProductQuery["sort"]>;
 

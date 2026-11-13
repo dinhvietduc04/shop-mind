@@ -1,4 +1,4 @@
-import type { OrderDto, OrderStatus, QuoteDto, ShippingAddressDto } from "@/lib/api/types";
+import type { OrderDto, OrderStatus, QuoteDto, ShippingAddressDto } from "@/infrastructure/api";
 import { isLegalTransition, stockFate } from "@/lib/orders/lifecycle";
 import { shippingFeeFor } from "@/lib/shipping";
 import { cartClear, getCart } from "./cart";

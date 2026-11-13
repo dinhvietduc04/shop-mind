@@ -7,7 +7,7 @@ import { ProductCard } from "@/components/product-card";
 import { AssistantPanel } from "@/components/assistant-panel";
 import { BinRail } from "@/components/shell";
 import { Button, EmptyState, ErrorNote, Skeleton } from "@/components/ui";
-import { useCategories, useFacets, useProducts } from "@/lib/api/hooks";
+import { useCategories, useFacets, useProducts } from "@/features/catalog";
 import { encodeChipState } from "@/lib/attributes/codec";
 import { useShopUI, type SortKey } from "@/lib/ui";
 import { bandForCategory, bandClass } from "@/lib/bands";

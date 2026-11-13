@@ -1,4 +1,4 @@
-import type { OrderStatus } from "@/lib/api/types";
+import type { OrderStatus } from "@/infrastructure/api";
 import type { BandName } from "@/lib/bands";
 
 /**

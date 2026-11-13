@@ -1,6 +1,7 @@
-import { api, idemKey } from "@/lib/api/client";
-import { catalogWriteStale } from "@/lib/api/invalidation";
-import { ApiError, type CreateProductRequest, type ProductAdminDto, type Specs, type UpdateProductRequest } from "@/lib/api/types";
+import { api, idemKey } from "@/infrastructure/api";
+import { catalogWriteStale } from "@/infrastructure/query";
+import { ApiError, type ProductAdminDto, type Specs } from "@/infrastructure/api";
+import type { CreateProductRequest, UpdateProductRequest } from "@/lib/api/contracts/schemas";
 import { validateProductWrite, type ProductProblem } from "./product-schema";
 
 /**

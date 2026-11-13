@@ -14,10 +14,11 @@ import {
   Skeleton,
   StockDots,
 } from "@/components/ui";
-import { useAddToCart, useCart, useCategories, useProduct, useProducts } from "@/lib/api/hooks";
+import { useAddToCart, useCart } from "@/features/cart";
+import { useCategories, useProduct, useProducts } from "@/features/catalog";
 import { specLabel } from "@/lib/attributes/registry";
 import { asMember } from "@/lib/session";
-import { ApiError, formatUsd, type Specs } from "@/lib/api/types";
+import { ApiError, formatUsd, type Specs } from "@/infrastructure/api";
 import { bandForCategory } from "@/lib/bands";
 import { cn } from "@/lib/cn";
 

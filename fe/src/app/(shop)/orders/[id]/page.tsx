@@ -6,8 +6,8 @@ import { ArrowLeft, Ban, RotateCcw } from "lucide-react";
 import { RequireAuth } from "@/components/guard";
 import { StatusChip, StatusTimeline } from "@/components/order-status";
 import { Button, ErrorNote, MagnitudeTick, Skeleton } from "@/components/ui";
-import { useCancelOrder, useOrder } from "@/lib/api/hooks";
-import { ApiError, formatUsd } from "@/lib/api/types";
+import { useCancelOrder, useOrder } from "@/features/orders";
+import { ApiError, formatUsd } from "@/infrastructure/api";
 
 export default function OrderDetailPage() {
   return (

@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { LogIn } from "lucide-react";
 import { z } from "zod";
 import { Button, ErrorNote, Skeleton } from "@/components/ui";
-import { ApiError } from "@/lib/api/types";
+import { ApiError } from "@/infrastructure/api";
 import { useSession } from "@/lib/session";
 
 const loginSchema = z.object({

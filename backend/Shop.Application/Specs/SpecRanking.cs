@@ -11,6 +11,16 @@ public sealed record RankableProduct(Guid Id, decimal Price, bool InStock, JsonE
 /// </summary>
 public static class SpecRanking
 {
+    /// <summary>
+    /// A3/A5: the ranking order in prose. The agent prompt reads this constant,
+    /// so the instruction the model sees cannot drift from the deterministic
+    /// ranker that actually orders the tool result.
+    /// </summary>
+    public const string RuleDescription =
+        "Rank matches by facet-match count first, then in-stock before out-of-stock, " +
+        "then ascending price, then product id. Never invent a model score, popularity " +
+        "signal, or ranking that is not produced by a tool call.";
+
     public static IReadOnlyList<RankableProduct> Rank(
         IEnumerable<RankableProduct> products, IReadOnlyList<SpecClause> clauses) =>
         products

@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { AdminTable, Panel, td, th } from "@/components/admin/widgets";
 import { Button, ErrorNote, Skeleton, StockDots } from "@/components/ui";
-import { useInventory, useSetStock } from "@/lib/api/hooks";
-import { ApiError, type InventoryDto } from "@/lib/api/types";
+import { useInventory, useSetStock } from "@/features/admin";
+import { ApiError, type InventoryDto } from "@/infrastructure/api";
 
 export default function AdminInventoryPage() {
   const [search, setSearch] = useState("");

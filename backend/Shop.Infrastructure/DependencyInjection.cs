@@ -2,11 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Shop.Application.Agent;
 using Shop.Application.Caching;
 using Shop.Application.Comparisons;
 using Shop.Application.Interfaces;
+using Shop.Application.Mcp;
 using Shop.Application.Persistence;
 using Shop.Application.Services;
+using Shop.Infrastructure.Agent;
 using Shop.Infrastructure.Ai;
 using Shop.Infrastructure.Auth;
 using Shop.Infrastructure.Caching;
@@ -43,6 +46,10 @@ public static class DependencyInjection
 
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddSingleton<IToolRiskPolicy>(ToolRiskPolicy.Default);
+        services.AddSingleton<IAgentTokenMinter, AgentTokenMinter>();
+        services.AddScoped<IAgentToolGateway, DefaultAgentToolGateway>();
+        services.AddScoped<AgentLoop>();
 
         // B5: PSP adapters behind the normalized webhook contract.
         services.Configure<PaymentsOptions>(config.GetSection("Payments"));

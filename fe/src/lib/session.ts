@@ -1,9 +1,9 @@
 "use client";
 
 import { create } from "zustand";
-import { api, setToken, hasToken } from "./api/client";
-import { queryClient } from "./api/queryClient";
-import type { AuthResponse, LoginRequest, RegisterRequest, UserDto } from "./api/types";
+import { api, setToken, hasToken } from "@/infrastructure/api";
+import { queryClient } from "@/infrastructure/query/queryClient";
+import type { AuthResponse, LoginRequest, RegisterRequest, UserDto } from "@/lib/api/contracts/schemas";
 
 /**
  * Session truth is the bearer token in localStorage; this store mirrors the
